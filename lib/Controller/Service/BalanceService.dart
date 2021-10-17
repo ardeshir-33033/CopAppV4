@@ -4,12 +4,12 @@ import 'package:copapp/Api/Enums.dart';
 import 'package:copapp/Api/QueryModel.dart';
 import 'package:copapp/Api/ResponseModel.dart';
 import 'package:copapp/Api/Routing/RoutingBalance.dart';
+import 'package:copapp/AppModel/MultiBalance/Part.dart';
 import 'package:copapp/Model/Balance/HomeModel.dart';
 import 'package:copapp/Model/Balance/QuickSearchModel.dart';
 import 'package:copapp/Model/Balance/ShowCategoryModel.dart';
 import 'package:copapp/Model/Category.dart';
 import 'package:copapp/Model/Keyword.dart';
-import 'package:copapp/Model/Part.dart';
 import 'package:copapp/Model/Shopping/Product/FilterV2.dart';
 
 import 'BalanceExtension.dart';

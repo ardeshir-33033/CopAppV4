@@ -3,7 +3,7 @@ import 'Category.dart';
 import 'Product.dart';
 import 'Vehicle.dart';
 
-class Part {
+class RPart {
   String? partNumber;
   String? appName;
   String? name;
@@ -13,14 +13,14 @@ class Part {
   List<Product>? products;
   List<Vehicle>? vehicles;
   List<Category>? categories;
-  List<Part>? family;
-  List<Part>? join;
+  List<RPart>? family;
+  List<RPart>? join;
   int? id;
   String? imagePath;
   String? vehiclesPersianName;
   int? nameForSort;
 
-  Part({
+  RPart({
     this.partNumber,
     this.appName,
     this.name,
@@ -38,7 +38,7 @@ class Part {
     this.nameForSort,
   });
 
-  Part.fromJson(Map<String, dynamic> json) {
+  RPart.fromJson(Map<String, dynamic> json) {
     partNumber = json['partNumber'] ?? "";
     name = json['name'] ?? "";
     appName = json['appName'] ?? "";
@@ -54,13 +54,13 @@ class Part {
     if (json['families'] != null) {
       family = [];
       json['families'].forEach((v) {
-        family!.add(Part.fromJson(v));
+        family!.add(RPart.fromJson(v));
       });
     }
     if (json['joines'] != null) {
       join = [];
       json['joines'].forEach((v) {
-        join!.add(Part.fromJson(v));
+        join!.add(RPart.fromJson(v));
       });
     }
     if (json['vehicles'] != null) {
@@ -109,10 +109,10 @@ class Part {
     return data;
   }
 
-  List<Part>? listFromJson(dynamic jsns) {
+  List<RPart>? listFromJson(dynamic jsns) {
     if (jsns != null) {
-      return jsns.map<Part>((ct) {
-        return Part.fromJson(ct);
+      return jsns.map<RPart>((ct) {
+        return RPart.fromJson(ct);
       }).toList();
     }
 
