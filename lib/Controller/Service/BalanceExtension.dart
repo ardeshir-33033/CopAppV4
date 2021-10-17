@@ -127,7 +127,7 @@ class BalanceExtensions {
 
       return (selectedBalances.data as RShowCategoryModel).parts!;
     } else {
-      selectedBalances.ShowMessage();
+      selectedBalances.showMessage();
       return [];
     }
   }

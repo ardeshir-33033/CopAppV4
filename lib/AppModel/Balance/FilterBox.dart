@@ -11,13 +11,13 @@ class FilterBox {
     if (json['subCategories'] != null) {
       subCategories = [];
       json['subCategories'].forEach((v) {
-        subCategories!.add(new SubCategory.fromJson(v));
+        if (v != null) subCategories!.add(new SubCategory.fromJson(v));
       });
     }
     if (json['filters'] != null) {
       filters = [];
       json['filters'].forEach((v) {
-        filters!.add(new Filter.fromJson(v));
+        if (v != null) filters!.add(new Filter.fromJson(v));
       });
     }
   }

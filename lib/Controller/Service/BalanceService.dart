@@ -122,16 +122,16 @@ class BalanceServiceV2 extends BalanceExtensions with Api {
         data: null,
         message: "پارامتر های ورودی خالی هستند",
       );
-    var json = {
-      "id": id,
-      "keywordId": keywordId == 0 ? null : keywordId,
-      "pageSize": pageSize,
-      "page": page,
-      "filterId": filterId,
-      "chairId": UserServiceV2.chairId
-    };
-    var body = jsonEncode(json);
-    var response = await HTTPPOST(
+    Map<String,dynamic> json = {
+  "categoryId": id,
+  "keyWord": "$keywordId",
+  "pageSize": pageSize,
+  "page": page,
+  "filterId": filterId,
+  "chairId": UserServiceV2.chairId
+};
+    String body = jsonEncode(json);
+    ResponseModel response = await HTTPPOST(
       RoutingBalance.GET_GetBalanceFilterBox,
       [
         // QueryModel(
@@ -160,7 +160,7 @@ class BalanceServiceV2 extends BalanceExtensions with Api {
         // ),
       ],
       body,
-      HeaderEnum.EmptyHeaderEnum,
+      HeaderEnum.BasicHeaderEnum,
       ResponseEnum.ResponseModelEnum,
     );
     if (response.isSuccess) {
