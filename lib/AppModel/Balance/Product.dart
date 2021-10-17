@@ -12,12 +12,12 @@ class Product {
   String? lastMarketPriceUpdate;
   String? brandsImagePath;
   String? brandsName;
-  int? productInfosPrice;
+  double? productInfosPrice;
   int? productVirtualQTY;
   int? multipleQTY;
-  int? score;
+  double? score;
   int? productsId;
-  int? lastMarketPrice;
+  double? lastMarketPrice;
   List<ProductImage>? images;
   bool? warranty;
 

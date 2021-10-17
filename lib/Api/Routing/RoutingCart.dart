@@ -9,7 +9,7 @@ class RoutingCart {
   static const GET_GenerateOrderWithAddress =
       "${RoutingBase.ApiUrl}/$BaseName/GenerateOrderWithAddress";
 
-  static const Get_MyCart = "${RoutingBase.ApiUrl}/$BaseName/MyCart";
+  static const Get_MyCart = "${RoutingBase.ApiUrlV2}/$BaseName/MyCart";
 
   static const POST_PayOrder = "${RoutingBase.ApiUrl}/$BaseName/PayOrder";
   static const POST_AddProduct =
