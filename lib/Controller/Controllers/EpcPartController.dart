@@ -134,7 +134,7 @@ class EpcPartController extends GetxController {
         if (value.isSuccess) {
           balanceParts[tabIndex] = value.data;
           balanceParts[tabIndex].forEach((element) {
-            balanceProducts[tabIndex].addAll(element.products);
+            balanceProducts[tabIndex].addAll(element.products!);
           });
           productsLoading[tabIndex] = false;
           update();

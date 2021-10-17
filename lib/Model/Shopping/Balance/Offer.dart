@@ -1,8 +1,7 @@
-import 'dart:developer';
+import 'package:copapp/AppModel/MultiBalance/Part.dart';
 
 import '../../Brand.dart';
 import '../../Country.dart';
-import '../../Part.dart';
 import '../../ProductImage.dart';
 import '../../ProductInfo.dart';
 import '../../Unit.dart';

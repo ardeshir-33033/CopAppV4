@@ -126,7 +126,7 @@ class BalanceExtensions {
 
       // selectedParts = (selectedBalances.data as ShowCategoryModel).parts!;
 
-      return (selectedBalances.data as ShowCategoryModel).parts!;
+      return (selectedBalances.data as ShowCategoryModel).parts! as List<Part>;
     } else {
       selectedBalances.ShowMessage();
       return [];
