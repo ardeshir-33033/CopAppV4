@@ -17,6 +17,7 @@ class Product {
   int? multipleQTY;
   double? score;
   int? productsId;
+  int? detailQTY;
   double? lastMarketPrice;
   List<ProductImage>? images;
   bool? warranty;
@@ -35,6 +36,7 @@ class Product {
       this.lastMarketPrice,
       this.images,
       this.warranty,
+      this.detailQTY,
       this.lastMarketPriceUpdate});
 
   Product.fromJson(Map<String, dynamic> json) {
@@ -45,6 +47,7 @@ class Product {
     brandsImagePath = json['brandsImagePath'];
     productInfosPrice = json['productInfosPrice'];
     productVirtualQTY = json['productVirtualQTY'];
+    detailQTY = json['detailQTY'];
     if (json['country'].runtimeType == String)
       country = json['country'];
     else
@@ -76,6 +79,7 @@ class Product {
     data['multipleQTY'] = this.multipleQTY;
     data['score'] = this.score;
     data['lastMarketPrice'] = this.lastMarketPrice;
+    data['detailQTY'] = this.detailQTY;
     if (this.images != null) {
       data['images'] = this.images!.map((v) => v.toJson()).toList();
     }
