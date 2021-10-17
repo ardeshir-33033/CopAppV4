@@ -22,11 +22,10 @@ class MultiBalanceController extends GetxController {
 
   getBalance({bool isFilter = false}) async {
     await getBalanceData().then((value) async {
-      await getFilters().then((v) {
-        result = value;
-        update([2, 1]);
-      });
+      result = value;
+      update([2]);
     });
+    await getFilters().then((value) => update([1]));
   }
 
   Future getFilters({bool isFilter = false}) async {
