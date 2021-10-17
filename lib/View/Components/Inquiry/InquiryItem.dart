@@ -284,7 +284,7 @@ class _InquiryItemState extends State<InquiryItem> {
                       ),
                       height: 1.0,
                     ),
-                    Expanded(
+           Expanded(
                       flex: 6,
                       child: Container(
                         child: Row(
@@ -412,6 +412,82 @@ class _InquiryItemState extends State<InquiryItem> {
                                 },
                               ),
                             ),
+                            Container(
+                              margin: EdgeInsets.only(left: 5.0),
+                              decoration: BoxDecoration(
+                                color: CBase().borderPrimaryColor,
+                              ),
+                              width: 1,
+                              // height: 50.0,
+                            ),
+                            Flexible(
+                                flex: 5,
+                                child: Column(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    Text(
+                                      'آخرین قیمت',
+                                      style: TextStyle(
+                                        fontSize:
+                                            CBase().getSmallfontSizeByScreen(),
+                                        color: CBase().textPrimaryColor,
+                                      ),
+                                      textAlign: TextAlign.center,
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(left: 5.0),
+                                      child: Divider(
+                                        color: CBase().borderPrimaryColor,
+                                        height: 1,
+                                        thickness: 1,
+                                      ),
+                                    ),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Text(
+                                          widget.bal!.lastMarketPrice == null ||
+                                                  widget.bal!.lastMarketPrice ==
+                                                      0
+                                              ? 'بدون قیمت'
+                                              : nf
+                                                  .format(widget
+                                                      .bal!.lastMarketPrice!)
+                                                  .toString(),
+                                          style: TextStyle(
+                                            fontSize: CBase()
+                                                .getSmallfontSizeByScreen(),
+                                            color: CBase().textPrimaryColor,
+                                          ),
+                                          textAlign: TextAlign.center,
+                                        ),
+                                        Visibility(
+                                          visible: widget
+                                                      .bal!.lastMarketPrice !=
+                                                  null &&
+                                              widget.bal!.lastMarketPrice != 0,
+                                          child: Row(
+                                            children: [
+                                              SizedBox(
+                                                width: 5.0,
+                                              ),
+                                              SvgPicture.string(
+                                                toman,
+                                                color: CBase().textPrimaryColor,
+                                                allowDrawingOutsideViewBox:
+                                                    true,
+                                                width: 15.0,
+                                                height: 15.0,
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ))
                           ],
                         ),
                       ),
