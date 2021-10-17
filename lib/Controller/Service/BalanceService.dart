@@ -4,6 +4,7 @@ import 'package:copapp/Api/Enums.dart';
 import 'package:copapp/Api/QueryModel.dart';
 import 'package:copapp/Api/ResponseModel.dart';
 import 'package:copapp/Api/Routing/RoutingBalance.dart';
+import 'package:copapp/AppModel/Balance/FilterBox.dart';
 import 'package:copapp/AppModel/Home/Car.dart';
 import 'package:copapp/AppModel/Home/Category.dart';
 import 'package:copapp/AppModel/Home/HomeModel.dart';
@@ -146,58 +147,92 @@ class BalanceServiceV2 extends BalanceExtensions with Api {
     }
   }
 
-  Future<ResponseModel<RShowCategoryModel>> GetShowCategory(
-      int? id, int? keywordId, int? pageSize, int? page, int? filterId) async {
-    // validation
+  Future<ResponseModel> getBalanceData(int? category, int? vehicle,
+      {int? filterId}) async {
+    Map<String, dynamic> json = {
+      "category": category,
+      // "page": "<integer>",
+      // "pageSize": "<integer>",
+      "vehicles": [vehicle],
+      "filter": filterId,
+      "chair": UserServiceV2.chairId,
+      // "username": "09111351530"
+    };
+    var body = jsonEncode(json);
+    ResponseModel response = await HTTPPOST(
+      RoutingBalance.Post_GetBalanceData,
+      [],
+      body,
+      HeaderEnum.BearerHeaderEnum,
+      ResponseEnum.ResponseModelEnum,
+    );
+
+    if (response.isSuccess) {
+      response.data = Part().listFromJson(response.data);
+      // BalanceData.fromJson(response.data);
+    }
+    return ResponseModel(
+      isSuccess: response.isSuccess,
+      statusCode: response.statusCode,
+      data: response.data,
+      message: response.message,
+    );
+  }
+
+  Future<ResponseModel<FilterBox>> getBalanceFilterBox(
+      int? id, int? keywordId, {int? pageSize, int? page, int? filterId}) async {
     if (id == 0 && pageSize == 0 && page == 0 && filterId == 0)
-      return ResponseModel<RShowCategoryModel>(
+      return ResponseModel(
         isSuccess: false,
         statusCode: "500",
         data: null,
         message: "پارامتر های ورودی خالی هستند",
       );
-
-    var response = await HTTPGET<RShowCategoryModel>(
-      RoutingBalance.GET_ShowCategory,
+    var json = {
+      "id": id,
+      "keywordId": keywordId == 0 ? null : keywordId,
+      "pageSize": pageSize,
+      "page": page,
+      "filterId": filterId,
+      "chairId": UserServiceV2.chairId
+    };
+    var body = jsonEncode(json);
+    var response = await HTTPPOST(
+      RoutingBalance.GET_GetBalanceFilterBox,
       [
-        QueryModel(
-          name: "id",
-          value: id.toString(),
-        ),
-        QueryModel(
-          name: "keywordId",
-          value: keywordId == 0 ? null : keywordId.toString(),
-        ),
-        QueryModel(
-          name: "pageSize",
-          value: pageSize.toString(),
-        ),
-        QueryModel(
-          name: "page",
-          value: page.toString(),
-        ),
-        QueryModel(
-          name: "filterId",
-          value: filterId.toString(),
-        ),
+        // QueryModel(
+        //   name: "id",
+        //   value: id.toString(),
+        // ),
+        // QueryModel(
+        //   name: "keywordId",
+        //   value: keywordId == 0 ? null : keywordId.toString(),
+        // ),
+        // QueryModel(
+        //   name: "pageSize",
+        //   value: pageSize.toString(),
+        // ),
+        // QueryModel(
+        //   name: "page",
+        //   value: page.toString(),
+        // ),
+        // QueryModel(
+        //   name: "filterId",
+        //   value: filterId.toString(),
+        // ),
+        // QueryModel(
+        //   name: "chairId",
+        //   value: UserServiceV2.chairId.toString(),
+        // ),
       ],
+      body,
       HeaderEnum.EmptyHeaderEnum,
       ResponseEnum.ResponseModelEnum,
     );
-
-    if (!response.isSuccess)
-      return ResponseModel<RShowCategoryModel>(
-        isSuccess: false,
-        statusCode: "500",
-        message: "موردی یافت نشد",
-      );
-
-    var scm = RShowCategoryModel.fromJson(response.data);
-    response.data = scm;
-
-    currentParts = scm.parts!.cast<Part>();
-
-    return ResponseModel<RShowCategoryModel>(
+    if (response.isSuccess) {
+      response.data = FilterBox.fromJson(response.data);
+    }
+    return ResponseModel<FilterBox>(
       isSuccess: response.isSuccess,
       statusCode: response.statusCode,
       data: response.data,

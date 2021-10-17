@@ -18,7 +18,6 @@ class BalanceExtensions {
   static List<Filter> filters = [];
   List<SubCategory> subCategories = [];
 
-
   setSelectedCar(Car car) {
     SelectedCar = car;
   }
@@ -51,13 +50,15 @@ class BalanceExtensions {
     return SelectedCategory;
   }
 
-  List<Filter> getFilter(){
+  List<Filter> getFilter() {
     return filters;
   }
-  int filterLength(){
+
+  int filterLength() {
     return filters.length;
   }
-  setFilter(List<Filter> filter){
+
+  setFilter(List<Filter> filter) {
     filters = filter;
   }
 
@@ -97,7 +98,7 @@ class BalanceExtensions {
     return selectedParts;
   }
 
-  void setSelectedPart(List<Part> part ) {
+  void setSelectedPart(List<Part> part) {
     selectedParts = part;
   }
 
@@ -111,14 +112,12 @@ class BalanceExtensions {
 
   Future<List<Part>?> productsToWidgets(
       int? filterId, GlobalKey<ScaffoldState> _scaffoldKey) async {
-    var selectedBalances = await BalanceServiceV2().GetShowCategory(
+    var selectedBalances = await BalanceServiceV2().getBalanceData(
         BalanceServiceV2().getSelectedCategory()?.id,
         // 233,
-        BalanceExtensions().getSelectedCar()?.id,//7
+        BalanceExtensions().getSelectedCar()?.id, //7
         // BalanceServiceV2().getSelectedCar()?.id,
-        null,
-        null,
-        filterId);
+        filterId: filterId);
 
     if (selectedBalances.isSuccess) {
       filters = (selectedBalances.data as RShowCategoryModel).filters!;
@@ -133,7 +132,6 @@ class BalanceExtensions {
       return [];
     }
   }
-
 
   List<SubCategory> getSubCategoryList() {
     return subCategories;

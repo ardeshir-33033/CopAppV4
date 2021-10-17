@@ -45,11 +45,12 @@ class Product {
     brandsImagePath = json['brandsImagePath'];
     productInfosPrice = json['productInfosPrice'];
     productVirtualQTY = json['productVirtualQTY'];
-    if(json['country'].runtimeType==String)
-    country = json['country'];
-    else     country = json['country']["name"];
+    if (json['country'].runtimeType == String)
+      country = json['country'];
+    else
+      country = json['country']["name"];
 
-    multipleQTY = json['multipleQTY'];
+    multipleQTY = json['multipleQTY'].toInt();
     score = json['score'];
     lastMarketPrice = json['lastMarketPrice'];
     if (json['images'] != null) {
