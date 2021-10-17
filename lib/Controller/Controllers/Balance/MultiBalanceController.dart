@@ -1,3 +1,4 @@
+import 'package:copapp/AppModel/MultiBalance/Part.dart';
 import 'package:copapp/Controller/Service/BalanceExtension.dart';
 import 'package:copapp/Controller/Service/BalanceService.dart';
 import 'package:copapp/Model/Balance/ShowCategoryModel.dart';
@@ -45,7 +46,7 @@ class MultiBalanceController extends GetxController {
         subCategories =
             (selectedBalances.data as ShowCategoryModel).subCategories!;
 
-      return (selectedBalances.data as ShowCategoryModel).parts;
+      return (selectedBalances.data as ShowCategoryModel).parts as List<Part>;
     } else {
       selectedBalances.ShowMessage();
       return [];
