@@ -15,7 +15,7 @@ class Product {
   double? productInfosPrice;
   int? productVirtualQTY;
   int? multipleQTY;
-  double? score;
+  int? score;
   int? productsId;
   int? detailQTY;
   double? lastMarketPrice;
@@ -48,12 +48,12 @@ class Product {
     productInfosPrice = json['productInfosPrice'];
     productVirtualQTY = json['productVirtualQTY'];
     detailQTY = json['detailQTY'];
-    if (json['country'].runtimeType == String)
+    //remove this later when the model is unique.
+    if (json['country']==null||json['country'].runtimeType == String)
       country = json['country'];
     else
       country = json['country']["name"];
-
-    multipleQTY = json['multipleQTY'].toInt();
+    multipleQTY = json['multipleQTY'];
     score = json['score'];
     lastMarketPrice = json['lastMarketPrice'];
     if (json['images'] != null) {
