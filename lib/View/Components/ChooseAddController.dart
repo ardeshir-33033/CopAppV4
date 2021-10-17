@@ -22,7 +22,7 @@ class ChooseAddressController extends GetxController {
   List<Address>? addresses = [];
 
   Future initAddress() async {
-    AddressModel = await ProfileServiceV2().GetAddresses();
+    AddressModel = await ProfileServiceV2().getAddresses();
   }
 
   Future<ResponseModel<List<AllShippers>>?> Shipper() async {
@@ -59,7 +59,7 @@ class ChooseAddressController extends GetxController {
 
   void delete(int index) async {
     ResponseModel res =
-        await ProfileServiceV2().DeleteAddress(addresses![index].id!);
+        await ProfileServiceV2().deleteAddress(addresses![index].id!);
     if (!res.isSuccess) {
       res.showMessage();
     } else {

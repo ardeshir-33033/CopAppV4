@@ -4,12 +4,12 @@ import 'package:copapp/Model/Order/OrderHeader.dart';
 import 'package:get/get.dart';
 
 class PendingOrdController extends GetxController {
-  ResponseModel<List<OrderHeader>> orderResponse =
+  ResponseModel orderResponse =
       ResponseModel<List<OrderHeader>>();
   List<OrderHeader>? pendingOrders;
 
   Future getPendingOrders() async {
-    orderResponse = await OrderServiceV2().GetAllPendingOrders();
+    orderResponse = await OrderServiceV2().getAllPendingOrders();
     if (!orderResponse.isSuccess) {
       orderResponse.showMessage();
       Future.delayed(Duration(seconds: 2), () {

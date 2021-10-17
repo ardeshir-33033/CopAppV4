@@ -36,7 +36,7 @@ class EpcPartController extends GetxController {
     super.onInit();
     isLoading = true;
     update();
-    EpcService().GetPartGroups(EpcService.selectedSubGroup!.id!).then((value) {
+    EpcService().getPartGroups(EpcService.selectedSubGroup!.id!).then((value) {
       if (value.isSuccess) {
         partGroups = value.data;
 

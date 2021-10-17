@@ -17,7 +17,7 @@ class AccessPointController extends GetxController {
   bool isLoading = false;
 
   Future checkPass() async {
-    ResponseModel model = await ProfileServiceV2().CheckSecondPassword("xxxx");
+    ResponseModel model = await ProfileServiceV2().checkSecondPassword("xxxx");
     if (model.statusCode == "listEmpty") {
       ////هیچ رمزی نیس
       type = 3;
@@ -69,7 +69,7 @@ class AccessPointController extends GetxController {
         isLoading = true;
         update();
         if (type == 2) {
-          ResponseModel res = await ProfileServiceV2().CheckSecondPassword(
+          ResponseModel res = await ProfileServiceV2().checkSecondPassword(
               "${textEditingController1.text + textEditingController2.text + textEditingController3.text + textEditingController4.text}");
           if (res.isSuccess == true) {
             scoreServiceController
@@ -93,7 +93,7 @@ class AccessPointController extends GetxController {
           }
         }
         if (type == 3) {
-          ResponseModel res = await ProfileServiceV2().SetSecondPassword(
+          ResponseModel res = await ProfileServiceV2().setSecondPassword(
               "${textEditingController1.text + textEditingController2.text + textEditingController3.text + textEditingController4.text}");
           if (res.isSuccess == true) {
             scoreServiceController
@@ -114,7 +114,7 @@ class AccessPointController extends GetxController {
           }
         }
         if (type == 1) {
-          ResponseModel res = await ProfileServiceV2().SetSecondPassword(
+          ResponseModel res = await ProfileServiceV2().setSecondPassword(
               "${textEditingController1.text + textEditingController2.text + textEditingController3.text + textEditingController4.text}");
           if (res.isSuccess == true) {
             scoreServiceController

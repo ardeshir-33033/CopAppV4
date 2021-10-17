@@ -34,7 +34,7 @@ class _TrackingState extends State<Tracking> {
   String? _date;
 
   Future orderDetail() async {
-    OrderModel = await OrderServiceV2().GetWithDetail(widget.orderId!);
+    OrderModel = await OrderServiceV2().getWithDetail(widget.orderId!);
   }
 
   @override

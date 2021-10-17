@@ -1,11 +1,9 @@
 import 'dart:ui';
-
 import 'package:copapp/AppModel/Balance/Product.dart';
 import 'package:copapp/Controller/Controllers/Balance/BalanceItemController.dart';
 import 'package:copapp/Controller/Controllers/General/ScoreService.dart';
 import 'package:copapp/Controller/Controllers/SearchProductController.dart';
 import 'package:copapp/Controller/Service/CartService.dart';
-import 'package:copapp/Controller/Service/ProfileServiceV2.dart';
 import 'package:copapp/Utilities/Base.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
@@ -172,35 +170,9 @@ class _JoinedItemsState extends State<JoinedItems> {
                         },
                       ),
                     ),
-                    ProfileServiceV2().getDisplayPoint()
-                        ? Container(
-                            child: Text(
-                              "-",
-                              style: TextStyle(
-                                fontSize: CBase().getSubTitlefontSizeByScreen(),
-                                color: CBase().textPrimaryColor,
-                              ),
-                              textAlign: TextAlign.right,
-                            ),
-                          )
-                        : SizedBox(
-                            width: 1.0,
-                          ),
-                    ProfileServiceV2().getDisplayPoint()
-                        ? Container(
-                            margin: EdgeInsets.only(
-                              left: 5.0,
-                              right: 5.0,
-                            ),
-                            child: Image.asset(
-                              "images/commition.png",
-                              width: 20.0,
-                              height: 20.0,
-                            ),
-                          )
-                        : SizedBox(
-                            width: 1.0,
-                          ),
+                    SizedBox(
+                      width: 1.0,
+                    ),
                   ],
                 ),
               ],
@@ -268,7 +240,8 @@ class _JoinedItemsState extends State<JoinedItems> {
                                                 ? 'خرید'
                                                 : (CartServiceV2()
                                                             .cartProductQTY(
-                                                                widget.bal!.productsId)
+                                                                widget.bal!
+                                                                    .productsId)
                                                             .toString() +
                                                         " " +
                                                         widget.bal!.unitsName!)
@@ -290,7 +263,7 @@ class _JoinedItemsState extends State<JoinedItems> {
                                           balanceItemController
                                               .add(widget.bal!, hasItem)
                                               .then((value) {
-                                                checkNewCount(value);
+                                            checkNewCount(value);
                                             isLoadingPurchase = false;
                                             searchProductController.update();
                                           });
@@ -319,7 +292,7 @@ class _JoinedItemsState extends State<JoinedItems> {
                                                   .remove(
                                                       widget.bal!, itemCount)
                                                   .then((value) {
-                                                    checkNewCount(value);
+                                                checkNewCount(value);
                                                 isLoadingPurchase = false;
                                                 searchProductController
                                                     .update();
@@ -397,8 +370,7 @@ class _JoinedItemsState extends State<JoinedItems> {
                                                 Container(
                                                   child: Text(
                                                     nf
-                                                        .format(widget
-                                                                .bal!
+                                                        .format(widget.bal!
                                                                 .productInfosPrice ??
                                                             0.0)
                                                         .toString(),
@@ -453,8 +425,7 @@ class _JoinedItemsState extends State<JoinedItems> {
                                                 child: Text(
                                                   nf
                                                       .format(itemCount *
-                                                          widget
-                                                              .bal!
+                                                          widget.bal!
                                                               .productInfosPrice!)
                                                       .toString(),
                                                   style: TextStyle(

@@ -80,13 +80,13 @@ class SendCartController extends GetxController {
       if (invoiceController.orderId == null) {
         res = await CartServiceV2().payment(1);
       } else {
-        res = await OrderServiceV2().ZarrinPayOrder(invoiceController.orderId!);
+        res = await OrderServiceV2().zarrinPayOrder(invoiceController.orderId!);
       }
       if (res != null) {
-        ResponseModel? response = await ProfileServiceV2().UploadScreenShot(1);
+        ResponseModel? response = await ProfileServiceV2().uploadScreenShot(1);
         ResponseModel? response2;
         if (Sharei().getMultiPic()) {
-          response2 = (await ProfileServiceV2().UploadScreenShot(2))!;
+          response2 = (await ProfileServiceV2().uploadScreenShot(2))!;
         }
 
         if (response!.isSuccess == true) {

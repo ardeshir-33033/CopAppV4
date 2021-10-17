@@ -6,7 +6,7 @@ import 'package:copapp/Api/Routing/RoutingProductInfo.dart';
 class ProductInfoService extends Api {
   double totalScore = 0;
 
-  Future<double> GetTotalScore() async {
+  Future<double> getTotalScore() async {
     var response = await HTTPGET(
       RoutingProductInfo.GET_TotalScore,
       [],
@@ -18,7 +18,5 @@ class ProductInfoService extends Api {
     }
     return totalScore;
   }
-// double? getTotalScore(){
-//   return totalScore ;
-// }
+
 }

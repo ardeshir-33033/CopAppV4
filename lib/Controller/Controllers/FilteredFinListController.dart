@@ -54,7 +54,7 @@ class FilteredFinListController extends GetxController {
     } else if (id == 2) {
       data = {'productId': selected};
     }
-    model = await OrderServiceV2().PostOrdersFilter(data);
+    model = await OrderServiceV2().postOrdersFilter(data);
             if (!model!.isSuccess) {
       model!.showMessage();
     }

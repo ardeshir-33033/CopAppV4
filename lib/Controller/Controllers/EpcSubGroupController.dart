@@ -11,7 +11,7 @@ class EpcSubGroupController extends GetxController {
     super.onInit();
     isLoading = true;
     update();
-    EpcService().GetSubGroups(EpcService.selectedGroup!.id!).then((value) {
+    EpcService().getSubGroups(EpcService.selectedGroup!.id!).then((value) {
       if (value.isSuccess) {
         subGroups = value.data;
       } else {

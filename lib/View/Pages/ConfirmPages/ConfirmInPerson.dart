@@ -52,7 +52,7 @@ class _ConfirmInPersonState
   Future<void> didChangeAppLifecycleState(AppLifecycleState state) async {
     if (state == AppLifecycleState.resumed) {
       if (OrderServiceV2().getAuthority() != "") {
-        var result = await OrderServiceV2().Verify();
+        var result = await OrderServiceV2().verify();
         OrderServiceV2().setAuthority("");
         if (!result.isSuccess) {
           result.showMessage();
@@ -124,7 +124,7 @@ class _ConfirmInPersonState
                           isLoading = true;
                         });
                         if (invoiceController.orderId != null) {
-                          result = await OrderServiceV2().ZarrinPayOrder(
+                          result = await OrderServiceV2().zarrinPayOrder(
                               invoiceController.orderId!,
                               addressId: widget.addressId);
                         } else {

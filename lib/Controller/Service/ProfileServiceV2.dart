@@ -24,19 +24,7 @@ class ProfileServiceV2 extends UserServiceV2 with ProfileExtensions {
   static Profile profile = new Profile();
   static bool uploadPic = false;
 
-  // callbacks
-  static Function(dynamic result)? refreshCallback;
-
-  Future profile_initialization() async {
-    await loadDisplayModeLocaly();
-    await loadDisplayPointLocaly();
-  }
-
-  setPhoneNumber(String res) {
-    profile.phoneNumber = res;
-  }
-
-  Future<bool> Upload(File imageFile) async {
+  Future<bool> upload(File imageFile) async {
     var head = Api().bearerHeader;
     var request = http.MultipartRequest(
         'POST',
@@ -49,17 +37,17 @@ class ProfileServiceV2 extends UserServiceV2 with ProfileExtensions {
     http.StreamedResponse response = await request.send();
 
     if (response.statusCode == 200) {
-      String varo = await response.stream.bytesToString();
+      // String varo = await response.stream.bytesToString();
       return true;
     } else {
-      String varo = await response.stream.bytesToString();
+      // String varo = await response.stream.bytesToString();
       return false;
     }
   }
 
-  Future<ResponseModel?> UploadScreenShot(int index) async {
+  Future<ResponseModel?> uploadScreenShot(int index) async {
     File file = Sharei().getScreenShot(index);
-    var head = Api().bearerHeader;
+    Map<String, String> head = Api().bearerHeader;
     var request = http.MultipartRequest(
         'POST', Uri.parse(RoutingProfile.POST_UploadScreenShot));
 
@@ -67,7 +55,7 @@ class ProfileServiceV2 extends UserServiceV2 with ProfileExtensions {
     request.headers.addAll(head);
     http.StreamedResponse response = await request.send();
 
-    var jsonString = await response.stream.bytesToString();
+    String jsonString = await response.stream.bytesToString();
     var data = json.decode(jsonString);
 
     if (response.statusCode == 200) {
@@ -87,7 +75,7 @@ class ProfileServiceV2 extends UserServiceV2 with ProfileExtensions {
     }
   }
 
-  Future<ResponseModel<Profile>> EditPersonalInformation(
+  Future<ResponseModel<Profile>> editPersonalInformation(
       {bool isImageDeleted = false}) async {
     // profile = Profile();
     FormData form = FormData.fromMap({
@@ -101,19 +89,10 @@ class ProfileServiceV2 extends UserServiceV2 with ProfileExtensions {
       "MonthBirthDate": profile.monthBirthDate,
       "DayBirthDate": profile.dayBirthDate,
       "IsImageDeleted": isImageDeleted,
-      // "Image": profile?.imageAddress,
-      // "Image": uploadPic
-      //     ? profile?.imageAddress != null
-      //         ? await MultipartFile.fromFile(
-      //             profile?.imageAddress,
-      //             filename: path.basename(profile.imageAddress),
-      //           )
-      //         : null
-      //     : null,
       "Id": profile.id
     });
 
-    var response = await HTTPPOSTFORM<Profile>(
+    ResponseModel response = await HTTPPOSTFORM<Profile>(
       RoutingProfile.POST_EditPersonalInformation,
       [],
       form,
@@ -131,37 +110,54 @@ class ProfileServiceV2 extends UserServiceV2 with ProfileExtensions {
     );
   }
 
-  Future<ResponseModel> SetSecondPassword(String password) async {
-    var map = {
+  Future<ResponseModel> setSecondPassword(String password) async {
+    Map<String, String> map = {
       "password": "$password",
     };
-    var json = jsonEncode(map);
-    var response = await HTTPPOST(RoutingProfile.POST_SetSecondPassword, [],
-        json, HeaderEnum.BearerHeaderEnum, ResponseEnum.ResponseModelEnum);
+    String json = jsonEncode(map);
+    ResponseModel response = await HTTPPOST(
+        RoutingProfile.POST_SetSecondPassword,
+        [],
+        json,
+        HeaderEnum.BearerHeaderEnum,
+        ResponseEnum.ResponseModelEnum);
 
     return response;
   }
 
-  Future<bool> ChangeSecondPassword(String password, String newPassword) async {
-    var map = {"password": "$password", "newPassword": "$newPassword"};
-    var json = jsonEncode(map);
-    var response = await HTTPPOST(RoutingProfile.POST_ChangeSecondPassword, [],
-        json, HeaderEnum.BearerHeaderEnum, ResponseEnum.ResponseModelEnum);
+  Future<bool> changeSecondPassword(String password, String newPassword) async {
+    Map<String, String> map = {
+      "password": "$password",
+      "newPassword": "$newPassword"
+    };
+    String json = jsonEncode(map);
+    ResponseModel response = await HTTPPOST(
+      RoutingProfile.POST_ChangeSecondPassword,
+      [],
+      json,
+      HeaderEnum.BearerHeaderEnum,
+      ResponseEnum.ResponseModelEnum,
+    );
     return response.isSuccess;
   }
 
-  Future<ResponseModel> CheckSecondPassword(String password) async {
-    var map = {
+  Future<ResponseModel> checkSecondPassword(String password) async {
+    Map<String, String> map = {
       "password": "$password",
     };
-    var json = jsonEncode(map);
-    var response = await HTTPPOST(RoutingProfile.POST_CheckSecondPassword, [],
-        json, HeaderEnum.BearerHeaderEnum, ResponseEnum.ResponseModelEnum);
+    String json = jsonEncode(map);
+    ResponseModel response = await HTTPPOST(
+      RoutingProfile.POST_CheckSecondPassword,
+      [],
+      json,
+      HeaderEnum.BearerHeaderEnum,
+      ResponseEnum.ResponseModelEnum,
+    );
     return response;
   }
 
-  Future<ResponseModel<Profile>> GetPersonalInformation() async {
-    var response = await HTTPGET<Profile>(
+  Future<ResponseModel<Profile>> getPersonalInformation() async {
+    ResponseModel response = await HTTPGET<Profile>(
       RoutingProfile.GET_GetPersonalInformation,
       [],
       HeaderEnum.BearerHeaderEnum,
@@ -180,26 +176,17 @@ class ProfileServiceV2 extends UserServiceV2 with ProfileExtensions {
     );
   }
 
-  Future<ResponseModel> SetAddresses(Address address) async {
-    if (address == null)
-      return ResponseModel(
-        isSuccess: false,
-        statusCode: "500",
-        data: null,
-        message: "پارامتر های ورودی خالی هستند",
-      );
+  Future<ResponseModel> setAddresses(Address address) async {
 
-    var json = jsonEncode(address.toJson());
+    String json = jsonEncode(address.toJson());
 
-    var response = await HTTPPOST(
+    ResponseModel response = await HTTPPOST(
       RoutingProfile.POST_SetAddresses,
       [],
       json,
       HeaderEnum.BearerHeaderEnum,
       ResponseEnum.ResponseModelEnum,
     );
-
-    // await GetPersonalInformation();
 
     return ResponseModel(
       isSuccess: response.isSuccess,
@@ -208,7 +195,7 @@ class ProfileServiceV2 extends UserServiceV2 with ProfileExtensions {
     );
   }
 
-  Future<ResponseModel> SetBankCardNumber(CardModel card) async {
+  Future<ResponseModel> setBankCardNumber(CardModel card) async {
     var json = jsonEncode(card.toJson());
     var response = await HTTPPOST(
       RoutingProfile.POST_SetBankCardNumber,
@@ -226,7 +213,7 @@ class ProfileServiceV2 extends UserServiceV2 with ProfileExtensions {
     );
   }
 
-  Future<ResponseModel> DeleteAddress(int id) async {
+  Future<ResponseModel> deleteAddress(int id) async {
     if (id == 0)
       return ResponseModel(
         isSuccess: false,
@@ -235,7 +222,7 @@ class ProfileServiceV2 extends UserServiceV2 with ProfileExtensions {
         message: "پارامتر های ورودی خالی هستند",
       );
 
-    var response = await HTTPDELETE(
+    ResponseModel response = await HTTPDELETE(
       RoutingProfile.DELETE_Delete,
       [
         QueryModel(
@@ -254,7 +241,7 @@ class ProfileServiceV2 extends UserServiceV2 with ProfileExtensions {
     );
   }
 
-  Future<ResponseModel<List<Address>>> GetAddresses() async {
+  Future<ResponseModel<List<Address>>> getAddresses() async {
     var response = await HTTPGET<List<Address>>(
       RoutingProfile.GET_GetAddresses,
       [],
@@ -276,45 +263,7 @@ class ProfileServiceV2 extends UserServiceV2 with ProfileExtensions {
     );
   }
 
-  Future<ResponseModel<List<FavoriteProduct>>> GetFavoriteProducts() async {
-    var response = await HTTPGET<List<FavoriteProduct>>(
-      RoutingProfile.GET_GetFavoriteProducts,
-      [],
-      HeaderEnum.BearerHeaderEnum,
-      ResponseEnum.ResponseModelEnum,
-    );
 
-    if (response.isSuccess) {
-      profile.favoriteProducts = FavoriteProduct().listFromJson(response.data);
-    }
-
-    response.data = FavoriteProduct().listFromJson(response.data);
-
-    return ResponseModel<List<FavoriteProduct>>(
-      isSuccess: response.isSuccess,
-      statusCode: response.statusCode,
-      data: response.data,
-      message: response.message,
-    );
-  }
-
-  Future<ResponseModel<MainData>> GetMainPageData() async {
-    var response = await HTTPGET<MainData>(
-      RoutingProfile.GET_GetMainPageData,
-      [],
-      HeaderEnum.BearerHeaderEnum,
-      ResponseEnum.ResponseModelEnum,
-    );
-
-    response.data = MainData.fromJson(response.data);
-
-    return ResponseModel<MainData>(
-      isSuccess: response.isSuccess,
-      statusCode: response.statusCode,
-      data: response.data,
-      message: response.message,
-    );
-  }
 
   // Future<ResponseModel<List<MustBuyProduct>>> GetProductMostBuy() async {
   //   var response = await HTTPGET<List<MustBuyProduct>>(
@@ -334,21 +283,4 @@ class ProfileServiceV2 extends UserServiceV2 with ProfileExtensions {
   //   );
   // }
 
-  Future<ResponseModel<ProfileInformation>> GetInfoProfile() async {
-    var response = await HTTPGET<ProfileInformation>(
-      RoutingProfile.GET_GetInfoProfile,
-      [],
-      HeaderEnum.BearerHeaderEnum,
-      ResponseEnum.ResponseModelEnum,
-    );
-
-    response.data = ProfileInformation.fromJson(response.data);
-
-    return ResponseModel<ProfileInformation>(
-      isSuccess: response.isSuccess,
-      statusCode: response.statusCode,
-      data: response.data,
-      message: response.message,
-    );
-  }
 }
