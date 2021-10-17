@@ -9,20 +9,20 @@ import 'package:flutter/material.dart';
 import 'BalanceService.dart';
 
 class BalanceExtensions {
-  static Car? SelectedCar;
-  static Category? SelectedCategory;
-  static List<Category>? SelectedSubCategories;
+  static Car? selectedCar;
+  static Category? selectedCategory;
+  static List<Category>? selectedSubCategories;
   static Category? formerCategory;
   static List<Part> selectedParts = [];
   static List<Filter> filters = [];
   List<SubCategory> subCategories = [];
 
   setSelectedCar(Car car) {
-    SelectedCar = car;
+    selectedCar = car;
   }
 
   setSelectedSubCategories(List<Category> cats) {
-    SelectedSubCategories = cats;
+    selectedSubCategories = cats;
   }
 
   setFormerCategory(bool del) {
@@ -38,15 +38,15 @@ class BalanceExtensions {
   }
 
   setSelectedCategory(Category? cat) {
-    SelectedCategory = cat;
+    selectedCategory = cat;
   }
 
   Car? getSelectedCar() {
-    return SelectedCar;
+    return selectedCar;
   }
 
   Category? getSelectedCategory() {
-    return SelectedCategory;
+    return selectedCategory;
   }
 
   List<Filter> getFilter() {
@@ -62,7 +62,7 @@ class BalanceExtensions {
   }
 
   bool haveSelectedCar(int id) {
-    if (SelectedCar != null && SelectedCar!.id == id) {
+    if (selectedCar != null && selectedCar!.id == id) {
       return true;
     }
 
@@ -70,7 +70,7 @@ class BalanceExtensions {
   }
 
   List<Category>? getSelectedSubCategory() {
-    return SelectedSubCategories;
+    return selectedSubCategories;
   }
 
   bool selectedPart(int? id) {

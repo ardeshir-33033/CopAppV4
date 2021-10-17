@@ -13,7 +13,7 @@ class AddressController extends GetxController {
   AddAddressController addAddressController = Get.put(AddAddressController());
 
   Future<ResponseModel> initAddress() async {
-    addressModel = await ProfileServiceV2().GetAddresses();
+    addressModel = await ProfileServiceV2().getAddresses();
     addAddressController.isSendingCart = false;
     return addressModel;
   }
@@ -37,7 +37,7 @@ class AddressController extends GetxController {
 
   void deleteAddress(int index) async {
     ResponseModel res =
-        await ProfileServiceV2().DeleteAddress(addresses[index].id!);
+        await ProfileServiceV2().deleteAddress(addresses[index].id!);
     if (!res.isSuccess) {
       res.showMessage();
     } else {

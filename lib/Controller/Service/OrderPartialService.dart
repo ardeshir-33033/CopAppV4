@@ -10,7 +10,7 @@ import 'package:copapp/Model/Order/OrderHeader.dart';
 
 
 class PartialService extends Api {
-  Future<ResponseModel<OrderHeader>> PartialAddProduct(
+  Future<ResponseModel<OrderHeader>> partialAddProduct(
       int productId, double qty) async {
     var map = {"productId": productId, "rowNumber": 0, "qty": qty};
 
@@ -34,7 +34,7 @@ class PartialService extends Api {
     );
   }
 
-  Future<ResponseModel<OrderHeader>> PartialUpdateProduct(
+  Future<ResponseModel<OrderHeader>> partialUpdateProduct(
       int productId, double qty, int orderId) async {
     var map = {"productId": productId, "rowNumber": 0, "qty": qty};
 
@@ -58,7 +58,7 @@ class PartialService extends Api {
     );
   }
 
-  Future<ResponseModel<OrderHeader>> PartialDeleteProduct(
+  Future<ResponseModel<OrderHeader>> partialDeleteProduct(
       int productId, int orderId) async {
     var response = await HTTPDELETE(
       RoutingPartial.Post_PartialAddProduct,

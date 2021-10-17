@@ -19,20 +19,20 @@ class FinancialController extends GetxController {
   Widget? child;
   String heading = '';
   int preId = 0;
-  ResponseModel<OrdersFilterModel> filtersModel =
-      ResponseModel<OrdersFilterModel>();
+  ResponseModel filtersModel =
+      ResponseModel();
   OrdersFilterModel? filters;
   bool searchVis = false, rangeVis = false;
   List<String> orderCodes = [];
 
-  ResponseModel<List<OrderHeader>> commissionModel =
+  ResponseModel commissionModel =
       ResponseModel<List<OrderHeader>>();
   List<OrderHeader> allCommissions = [];
   List<OrderHeader> commissions = [];
 
   Future getAllFactros() async {
     Map<String, dynamic> data = {};
-    model = await OrderServiceV2().PostOrdersFilter(data);
+    model = await OrderServiceV2().postOrdersFilter(data);
     if (!model!.isSuccess) {
       if (!poped) model!.showMessage();
       Future.delayed(Duration(seconds: 2), () {
@@ -46,7 +46,7 @@ class FinancialController extends GetxController {
   }
 
   Future getCommission() async {
-    commissionModel = await OrderServiceV2().GetAllCommissionOrders();
+    commissionModel = await OrderServiceV2().getAllCommissionOrders();
     if (!commissionModel.isSuccess) {
       if (!poped) commissionModel.showMessage();
       Future.delayed(Duration(seconds: 2), () {
@@ -60,7 +60,7 @@ class FinancialController extends GetxController {
   }
 
   Future getFilters() async {
-    filtersModel = await OrderServiceV2().GetFeedOrdersFilter();
+    filtersModel = await OrderServiceV2().getFeedOrdersFilter();
     if (!filtersModel.isSuccess) {
       if (!poped) filtersModel.showMessage();
       Future.delayed(Duration(seconds: 2), () {
@@ -124,7 +124,7 @@ class FinancialController extends GetxController {
   }
 
   getFilteredByDate(Map<String, dynamic> data) async {
-    model = await OrderServiceV2().PostOrdersFilter(data);
+    model = await OrderServiceV2().postOrdersFilter(data);
     if (!model!.isSuccess) {
       if (!poped) model!.showMessage();
       Future.delayed(Duration(seconds: 2), () {

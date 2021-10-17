@@ -190,7 +190,7 @@ class AddAddressController extends GetxController {
             postalCode: postalCode.text,
             receiverName: recieverNameController.text);
 
-        ResponseModel result = await ProfileServiceV2().SetAddresses(address);
+        ResponseModel result = await ProfileServiceV2().setAddresses(address);
         if (result.isSuccess) {
           // widget.onDataChange!();
 

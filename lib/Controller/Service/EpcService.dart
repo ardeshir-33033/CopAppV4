@@ -13,7 +13,7 @@ class EpcService extends Api {
   static EpcGroup? selectedGroup;
 
   static EpcSubGroup? selectedSubGroup;
-  Future<ResponseModel<List<EpcModelSerie>>> GetModelSeries() async {
+  Future<ResponseModel> getModelSeries() async {
     var result = await HTTPGET(
         RoutingEpc.Get_GetModelSeries,
         [QueryModel(name: 'modelId', value: '325')],
@@ -23,7 +23,7 @@ class EpcService extends Api {
     if (result.isSuccess) {
       result.data = EpcModelSerie().toList(result.data);
     }
-    return ResponseModel<List<EpcModelSerie>>(
+    return ResponseModel(
       isSuccess: result.isSuccess,
       statusCode: result.statusCode,
       data: result.data,
@@ -32,7 +32,7 @@ class EpcService extends Api {
   }
 
 
-  Future<ResponseModel<List<EpcModelSerie>>> GetIranCars() async {
+  Future<ResponseModel> getIranCars() async {
     var result = await HTTPGET(
         RoutingEpc.Get_GetIranCars,
         [],
@@ -42,7 +42,7 @@ class EpcService extends Api {
     if (result.isSuccess) {
       result.data = EpcModelSerie().toList(result.data);
     }
-    return ResponseModel<List<EpcModelSerie>>(
+    return ResponseModel(
       isSuccess: result.isSuccess,
       statusCode: result.statusCode,
       data: result.data,
@@ -50,7 +50,7 @@ class EpcService extends Api {
     );
   }
 
-  Future<ResponseModel<List<EpcGroup>>> GetGroups(int modelSeriesId) async {
+  Future<ResponseModel<List<EpcGroup>>> getGroups(int modelSeriesId) async {
     var result = await HTTPGET(
         RoutingEpc.Get_GetGroups,
         [QueryModel(name: 'modelSeriesId', value: '$modelSeriesId')],
@@ -67,7 +67,7 @@ class EpcService extends Api {
     );
   }
 
-  Future<ResponseModel<List<EpcSubGroup>>> GetSubGroups(int groupId) async {
+  Future<ResponseModel<List<EpcSubGroup>>> getSubGroups(int groupId) async {
     var result = await HTTPGET(
         RoutingEpc.Get_GetSubGroups,
         [QueryModel(name: 'groupId', value: '$groupId')],
@@ -85,7 +85,7 @@ class EpcService extends Api {
     );
   }
 
-  Future<ResponseModel<List<EpcPartGroup>>> GetPartGroups(int subGroup) async {
+  Future<ResponseModel<List<EpcPartGroup>>> getPartGroups(int subGroup) async {
     var result = await HTTPGET(
         RoutingEpc.Get_GetPartGroups,
         [QueryModel(name: 'subGroup', value: '$subGroup')],

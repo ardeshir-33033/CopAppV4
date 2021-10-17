@@ -14,7 +14,7 @@ class CreditCardController extends GetxController {
   void onInit() {
     // TODO: implement onInit
     super.onInit();
-    ProfileServiceV2().GetPersonalInformation().then((value) {
+    ProfileServiceV2().getPersonalInformation().then((value) {
       if (!value.isSuccess) {
         value.showMessage();
       } else {
@@ -35,7 +35,7 @@ class CreditCardController extends GetxController {
         cartNo: cardNumberController.text,
       );
 
-      await ProfileServiceV2().SetBankCardNumber(card).then((value) {
+      await ProfileServiceV2().setBankCardNumber(card).then((value) {
         isSubmiting = false;
         update();
         value.showMessage();

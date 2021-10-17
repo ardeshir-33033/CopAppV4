@@ -12,7 +12,7 @@ class EpcHomeController extends GetxController {
     isLoading = true;
     update();
 
-    EpcService().GetIranCars().then((value) {
+    EpcService().getIranCars().then((value) {
       if (value.isSuccess) {
         modelSeries = value.data;
       } else {

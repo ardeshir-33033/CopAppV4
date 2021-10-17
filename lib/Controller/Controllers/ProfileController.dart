@@ -44,7 +44,7 @@ class ProfileController extends GetxController {
   bool uploadImage = false;
 
   Future getPersonalInfo() async {
-    profileResponse = await ProfileServiceV2().GetPersonalInformation();
+    profileResponse = await ProfileServiceV2().getPersonalInformation();
     profileResponse.showMessage();
   }
 
@@ -61,7 +61,7 @@ class ProfileController extends GetxController {
     if (email.text != "") {
       ProfileServiceV2.profile.emailAddress = email.text;
     }
-    ProfileServiceV2().EditPersonalInformation().then((v) {
+    ProfileServiceV2().editPersonalInformation().then((v) {
       v.showMessage();
 
       isLoadingNumber = false;
@@ -90,7 +90,7 @@ class ProfileController extends GetxController {
     if (codemelli.text != "") {
       ProfileServiceV2.profile.nationalCode = codemelli.text;
     }
-    ProfileServiceV2().EditPersonalInformation().then((v) {
+    ProfileServiceV2().editPersonalInformation().then((v) {
       v.showMessage();
 
       isLoadingPersonal = false;
@@ -146,7 +146,7 @@ class ProfileController extends GetxController {
       ProfileServiceV2.profile.imageAddress = image!.path;
       isUploading = true;
       update();
-      await ProfileServiceV2().Upload(image!).then((v) {
+      await ProfileServiceV2().upload(image!).then((v) {
         if (v) {
           isUploading = false;
           update();
@@ -165,7 +165,7 @@ class ProfileController extends GetxController {
     update();
     if (ProfileServiceV2.profile.imageAddress != null)
       ProfileServiceV2()
-          .EditPersonalInformation(isImageDeleted: true)
+          .editPersonalInformation(isImageDeleted: true)
           .then((value) {
         if (value.isSuccess) {
           profileData = value.data;

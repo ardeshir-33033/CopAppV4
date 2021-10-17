@@ -102,7 +102,7 @@ class MapController extends GetxController {
   onPositionChange(LatLng res) async {
     mapPosition = res;
     ResponseModel result =
-        await MapService().GetMapAddress(res.latitude, res.longitude);
+        await MapService().getMapAddress(res.latitude, res.longitude);
     if (result.isSuccess == false) {
       // result.ShowMessage(_scaffoldKey);
     } else {

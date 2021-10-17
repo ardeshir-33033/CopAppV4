@@ -13,7 +13,7 @@ class PointController extends GetxController {
     isLoading = true;
     update();
 
-    ProductInfoService().GetTotalScore().then((v) {
+    ProductInfoService().getTotalScore().then((v) {
       value = v;
 
       setValue();
