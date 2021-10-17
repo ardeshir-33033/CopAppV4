@@ -78,7 +78,7 @@ class SendCartController extends GetxController {
       update();
       var res;
       if (invoiceController.orderId == null) {
-        res = await CartServiceV2().Payment(1);
+        res = await CartServiceV2().payment(1);
       } else {
         res = await OrderServiceV2().ZarrinPayOrder(invoiceController.orderId!);
       }

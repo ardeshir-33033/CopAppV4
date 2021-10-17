@@ -1,9 +1,13 @@
+import 'dart:io';
+
+import 'package:copapp/AppModel/Home/Category.dart';
 import 'package:copapp/AppModel/MultiBalance/Part.dart';
+import 'package:copapp/AppModel/MultiBalance/SubCategory.dart';
 import 'package:copapp/Controller/Service/BalanceExtension.dart';
 import 'package:copapp/Controller/Service/BalanceService.dart';
 import 'package:copapp/Model/Balance/ShowCategoryModel.dart';
-import 'package:copapp/Model/Balance/SubCategory.dart';
 import 'package:copapp/Model/Category.dart';
+import 'package:copapp/Model/Part.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -41,12 +45,12 @@ class MultiBalanceController extends GetxController {
 
     if (selectedBalances.isSuccess) {
       BalanceExtensions()
-          .setFilter((selectedBalances.data as ShowCategoryModel).filters!);
+          .setFilter((selectedBalances.data as RShowCategoryModel).filters!);
       if (!isFilter)
         subCategories =
-            (selectedBalances.data as ShowCategoryModel).subCategories!;
+            (selectedBalances.data as RShowCategoryModel).subCategories!;
 
-      return (selectedBalances.data as ShowCategoryModel).parts as List<Part>;
+      return (selectedBalances.data as RShowCategoryModel).parts;
     } else {
       selectedBalances.ShowMessage();
       return [];

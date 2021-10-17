@@ -1,13 +1,13 @@
-class SubCategory {
+class RSubCategory {
   String? name;
   int? id;
 
-  SubCategory({
+  RSubCategory({
     this.id,
     this.name,
   });
 
-  SubCategory.fromJson(Map<String, dynamic> json) {
+  RSubCategory.fromJson(Map<String, dynamic> json) {
     name = json['name'] ?? "";
     id = json['id'] ?? 0;
   }
@@ -19,10 +19,10 @@ class SubCategory {
     return data;
   }
 
-  List<SubCategory>? listFromJson(dynamic jsns) {
+  List<RSubCategory>? listFromJson(dynamic jsns) {
     if (jsns != null) {
-      return jsns.map<SubCategory>((ct) {
-        return SubCategory.fromJson(ct);
+      return jsns.map<RSubCategory>((ct) {
+        return RSubCategory.fromJson(ct);
       }).toList();
     }
 

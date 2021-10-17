@@ -1,9 +1,7 @@
-import 'package:copapp/Controller/Service/CartService.dart';
-import 'package:copapp/Model/CartDetail.dart';
+import 'package:copapp/AppModel/Cart/CartDetail.dart';
 import 'package:copapp/Utilities/Base.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:persian_number_utility/persian_number_utility.dart';
 
 class InvoiceWidget extends StatelessWidget {
@@ -58,7 +56,7 @@ class InvoiceWidget extends StatelessWidget {
                   child: SingleChildScrollView(
                     scrollDirection: Axis.horizontal,
                     child: Text(
-                      "${item?.product?.name}",
+                      "${item?.product?.productsName}",
                       style: TextStyle(
                         fontSize: CBase().getTextfontSizeByScreen() + 1,
                         color: CBase().textPrimaryColor,
@@ -85,7 +83,7 @@ class InvoiceWidget extends StatelessWidget {
               Expanded(
                   flex: 2,
                   child: Text(
-                    item!.qty!.toInt().toString().toPersianDigit(),
+                    item!.detailQTY!.toInt().toString().toPersianDigit(),
                     style: TextStyle(
                       fontSize: CBase().getTitlefontSizeByScreen(),
                       color: CBase().textPrimaryColor,
@@ -108,7 +106,7 @@ class InvoiceWidget extends StatelessWidget {
               Expanded(
                 flex: 4,
                 child: Text(
-                  nf.format(item!.finalPrice!).toString(),
+                  nf.format(item!.detailFinalPrice!).toString(),
                   style: TextStyle(
                     fontSize: CBase().getTitlefontSizeByScreen(),
                     color: CBase().textPrimaryColor,

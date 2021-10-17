@@ -1,3 +1,4 @@
+import 'package:copapp/AppModel/MultiBalance/Part.dart';
 import 'package:copapp/Controller/Controllers/General/ScoreService.dart';
 import 'package:copapp/Model/Part.dart';
 import 'package:copapp/Utilities/Base.dart';
@@ -46,12 +47,11 @@ class BalanceWidget extends StatelessWidget {
                                         //                 .price !=
                                         //             0
                                         //
-                                       e.productInfos!.first.qty != 0 && e.productInfos!.first.price == 0
+                                       e.productVirtualQTY != 0 && e.productInfosPrice == 0
                                             ? Container(): Padding(
                                                 padding: EdgeInsets.symmetric(
                                                     horizontal: 10.0),
-                                                child: e.productInfos!.first
-                                                            .qty !=
+                                                child: e.productVirtualQTY !=
                                                         0
                                                     ? BalanceItem(
                                                         scaffold: scaffoldKey,
@@ -87,9 +87,9 @@ class BalanceWidget extends StatelessWidget {
   bool hasValidProduct(Part bal) {
     // bool result = false;
     for (int i = 0; i < bal.products!.length; i++) {
-      if (bal.products![i].productInfos!.first.qty == 0 ||
-          (bal.products![i].productInfos!.first.price != 0 &&
-              bal.products![i].productInfos!.first.qty != 0)) {
+      if (bal.products![i].productVirtualQTY == 0 ||
+          (bal.products![i].productInfosPrice != 0 &&
+              bal.products![i].productVirtualQTY != 0)) {
         // result = true;
         return true;
       }

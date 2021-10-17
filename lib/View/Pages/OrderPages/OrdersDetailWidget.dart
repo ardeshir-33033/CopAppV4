@@ -61,19 +61,19 @@ class OrdersDetailWidget extends StatelessWidget {
                           ? Expanded(
                               flex: 1,
                               child: Text(
-                                ('${orderDetail?.product?.productInfos?.first.score?.toInt()}'
+                                ('${orderDetail?.product?.score}'
                                     .toPersianDigit()),
                                 style:
                                     TextStyle(color: CBase().basePrimaryColor),
                               ))
                           : Expanded(
                               flex: 1,
-                              child: orderDetail!.product!.brand!.imagePath !=
+                              child: orderDetail!.product!.brandsImagePath !=
                                           null ||
-                                      orderDetail!.product!.brand!.imagePath !=
+                                      orderDetail!.product!.brandsImagePath!=
                                           ""
                                   ? SvgPicture.network(
-                                      orderDetail!.product!.brand!.imagePath!)
+                                      orderDetail!.product!.brandsImagePath!)
                                   : Container(
                                       decoration: BoxDecoration(
                                           image: DecorationImage(
@@ -121,7 +121,7 @@ class OrdersDetailWidget extends StatelessWidget {
                                   child: SingleChildScrollView(
                                     scrollDirection: Axis.horizontal,
                                     child: Text(
-                                      orderDetail?.product?.name ?? "",
+                                      orderDetail?.product?.productsName ?? "",
                                       style: TextStyle(
                                         fontSize:
                                             CBase().getTitlefontSizeByScreen(),
@@ -138,15 +138,12 @@ class OrdersDetailWidget extends StatelessWidget {
                                           MainAxisAlignment.spaceBetween,
                                       children: [
                                         scoreController.getShowScore()
-                                            ? orderDetail!.product!.brand!
-                                                            .imagePath !=
+                                            ? orderDetail!.product!.brandsImagePath !=
                                                         null ||
-                                                    orderDetail!.product!.brand!
-                                                            .imagePath !=
+                                                    orderDetail!.product!.brandsImagePath!=
                                                         ""
                                                 ? SvgPicture.network(
-                                                    orderDetail!.product!.brand!
-                                                        .imagePath!)
+                                                    orderDetail!.product!.brandsImagePath!)
                                                 : Container(
                                                     decoration: BoxDecoration(
                                                         image: DecorationImage(
@@ -157,7 +154,7 @@ class OrdersDetailWidget extends StatelessWidget {
                                                 children: [
                                                   Text(
                                                       orderDetail?.product
-                                                              ?.brand?.name ??
+                                                              ?.brandsName ??
                                                           "",
                                                       style: TextStyle(
                                                         fontSize: CBase()
@@ -173,7 +170,7 @@ class OrdersDetailWidget extends StatelessWidget {
                                                   ),
                                                   Text(
                                                       orderDetail?.product
-                                                              ?.country?.name ??
+                                                              ?.country??
                                                           "",
                                                       style: TextStyle(
                                                         fontSize: CBase()
@@ -239,7 +236,7 @@ class OrdersDetailWidget extends StatelessWidget {
                                                       .toPersianDigit() +
                                                   " " +
                                                   orderDetail!
-                                                      .product!.unit!.name!),
+                                                      .product!.unitsName!),
                                               style: TextStyle(
                                                 fontSize: CBase()
                                                     .getTitlefontSizeByScreen(),

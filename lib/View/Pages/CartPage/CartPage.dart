@@ -5,7 +5,7 @@ import 'package:copapp/Controller/Service/CartService.dart';
 import 'package:copapp/Utilities/Base.dart';
 import 'package:copapp/View/Components/General/AppDrawer.dart';
 import 'package:copapp/View/Components/General/CustomAppBar.dart';
-import 'package:easy_localization/easy_localization.dart'as lc;
+import 'package:easy_localization/easy_localization.dart' as lc;
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:persian_number_utility/persian_number_utility.dart';
@@ -22,8 +22,6 @@ class CartPage extends StatelessWidget {
     locale: "fa-IR",
     symbol: "",
   );
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -54,18 +52,16 @@ class CartPage extends StatelessWidget {
                               Expanded(
                                 flex: 8,
                                 child: CartTab(
-                                  scaffold: scaffoldKey,
-                                  cartDetail: CartServiceV2()
-                                      .getMyCart()!
-                                      .cart!
-                                      .cartDetails,
-                                  // cartController.cartDetail,
-                                  // refreshCallback: (refresh) {
-                                  //   cartDetail =
-                                  //       CartServiceV2().getMyCart()!.cart!.cartDetails!;
-                                  //   setState(() {});
-                                  // },
-                                ),
+                                    scaffold: scaffoldKey,
+                                    cartDetail:
+                                        CartServiceV2().getMyCart()!.details
+                                    // cartController.cartDetail,
+                                    // refreshCallback: (refresh) {
+                                    //   cartDetail =
+                                    //       CartServiceV2().getMyCart()!.cart!.cartDetails!;
+                                    //   setState(() {});
+                                    // },
+                                    ),
                               ),
                               Visibility(
                                 visible: CartServiceV2().cartHasProduct(),
@@ -77,7 +73,9 @@ class CartPage extends StatelessWidget {
                                         Expanded(
                                           child: Container(
                                             margin: EdgeInsets.only(
-                                                bottom: 10, left: 20, right: 20),
+                                                bottom: 10,
+                                                left: 20,
+                                                right: 20),
                                             child: Column(
                                               children: [
                                                 Container(
@@ -95,8 +93,9 @@ class CartPage extends StatelessWidget {
                                                       ),
                                                     ],
                                                   ),
-                                                  child: GetBuilder<ScoreService>(
-                                                      builder: (_) {
+                                                  child:
+                                                      GetBuilder<ScoreService>(
+                                                          builder: (_) {
                                                     return Column(
                                                       children: [
                                                         SizedBox(
@@ -105,7 +104,8 @@ class CartPage extends StatelessWidget {
                                                         Container(
                                                           margin: EdgeInsets
                                                               .symmetric(
-                                                                  horizontal: 20),
+                                                                  horizontal:
+                                                                      20),
                                                           child: Row(
                                                             mainAxisAlignment:
                                                                 MainAxisAlignment

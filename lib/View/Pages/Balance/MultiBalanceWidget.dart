@@ -1,3 +1,4 @@
+import 'package:copapp/AppModel/MultiBalance/Part.dart';
 import 'package:copapp/Controller/Controllers/Balance/MultiBalanceController.dart';
 import 'package:copapp/Controller/Service/BalanceExtension.dart';
 import 'package:copapp/Model/Part.dart';
@@ -53,13 +54,13 @@ class MultiBalanceWidget extends StatelessWidget {
                       ),
                     ),
                   )
-                : bal.imagePath != null && bal.imagePath!.length > 0
+                : bal.thumbImagePath != null && bal.thumbImagePath!.length > 0
                     ? Expanded(
                         flex: 2,
                         child: Container(
                           decoration: BoxDecoration(
                             image: DecorationImage(
-                              image: NetworkImage(bal.imagePath!),
+                              image: NetworkImage(bal.thumbImagePath!),
                               fit: BoxFit.contain,
                             ),
                           ),

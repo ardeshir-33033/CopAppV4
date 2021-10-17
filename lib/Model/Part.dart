@@ -1,6 +1,5 @@
-import 'package:flutter/material.dart';
+import 'package:copapp/AppModel/Balance/Product.dart';
 import 'Category.dart';
-import 'Product.dart';
 import 'Vehicle.dart';
 
 class RPart {
@@ -12,7 +11,7 @@ class RPart {
   String? thumbImagePath;
   List<Product>? products;
   List<Vehicle>? vehicles;
-  List<Category>? categories;
+  List<RCategory>? categories;
   List<RPart>? family;
   List<RPart>? join;
   int? id;
@@ -72,7 +71,7 @@ class RPart {
     if (json['categories'] != null) {
       categories = [];
       json['categories'].forEach((v) {
-        categories!.add(new Category.fromJson(v));
+        categories!.add(new RCategory.fromJson(v));
       });
     }
     id = json['id'] ?? 0;

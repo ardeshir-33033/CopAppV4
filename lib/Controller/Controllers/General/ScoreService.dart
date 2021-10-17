@@ -19,8 +19,8 @@ class ScoreService extends GetxController {
 
   double getCartTotalPrice() {
     var totalScore = 0.0;
-    CartServiceV2().getMyCart()?.cart?.cartDetails?.forEach((element) {
-      totalScore += element.product!.productInfos!.first.score! * element.qty!;
+    CartServiceV2().getMyCart()?.details?.forEach((element) {
+      totalScore += element.product!.score! * element.detailQTY!;
     });
     return totalScore;
   }

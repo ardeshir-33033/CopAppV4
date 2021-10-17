@@ -6,7 +6,7 @@ class CreateOrder {
   String? authority;
   String? referenceId;
   String? deliveryProvince;
-  String?deliveryCity;
+  String? deliveryCity;
   String? deliveryAddress;
 
   CreateOrder({
@@ -21,9 +21,9 @@ class CreateOrder {
 
   CreateOrder.fromJson(Map<String, dynamic> json) {
     if (json['orderDetails'] != null) {
-      orderDetails =[];
+      orderDetails = [];
       json['orderDetails'].forEach((v) {
-        orderDetails!.add(new OrderDetail.fromJson(v));
+        orderDetails!.add(OrderDetail.fromJson(v));
       });
     }
     profileId = json['profileId'] ?? 0;

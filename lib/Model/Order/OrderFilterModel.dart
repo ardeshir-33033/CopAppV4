@@ -1,4 +1,5 @@
-import '../Product.dart';
+import 'package:copapp/AppModel/Balance/Product.dart';
+
 
 class OrdersFilterModel {
   List<String>? customers;

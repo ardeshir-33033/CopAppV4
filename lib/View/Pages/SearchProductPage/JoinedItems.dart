@@ -1,11 +1,11 @@
 import 'dart:ui';
 
+import 'package:copapp/AppModel/Balance/Product.dart';
 import 'package:copapp/Controller/Controllers/Balance/BalanceItemController.dart';
 import 'package:copapp/Controller/Controllers/General/ScoreService.dart';
 import 'package:copapp/Controller/Controllers/SearchProductController.dart';
 import 'package:copapp/Controller/Service/CartService.dart';
 import 'package:copapp/Controller/Service/ProfileServiceV2.dart';
-import 'package:copapp/Model/Product.dart';
 import 'package:copapp/Utilities/Base.dart';
 import 'package:copapp/Utilities/Snacki.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -49,7 +49,7 @@ class _JoinedItemsState extends State<JoinedItems> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    checkHasItem(widget.bal!.id!);
+    checkHasItem(widget.bal!.productsId!);
     balanceItemController.scaffoldKey = searchProductController.scaffoldKey;
   }
 
@@ -95,7 +95,7 @@ class _JoinedItemsState extends State<JoinedItems> {
                             ),
                             alignment: Alignment.centerRight,
                             child: SvgPicture.network(
-                                widget.bal?.brand?.imagePath ?? ""),
+                                widget.bal?.brandsImagePath ?? ""),
                           ),
                         ),
                       ),
@@ -108,7 +108,7 @@ class _JoinedItemsState extends State<JoinedItems> {
                     Container(
                       margin: EdgeInsets.only(right: 3.0),
                       child: Text(
-                        '${widget.bal?.brand?.name} ${widget.bal?.country?.name}',
+                        '${widget.bal?.brandsName} ${widget.bal?.country}',
                         style: TextStyle(
                           fontSize: CBase().getSubTitlefontSizeByScreen(),
                           color: CBase().basePrimaryLightColor,
@@ -134,15 +134,15 @@ class _JoinedItemsState extends State<JoinedItems> {
                         height: 16.0,
                       ),
                     ),
-                    Container(
-                      child: Text(
-                        (widget.bal?.code ?? "").toPersianDigit(),
-                        style: TextStyle(
-                          fontSize: CBase().getTextfontSizeByScreen(),
-                          color: CBase().textPrimaryColor,
-                        ),
-                      ),
-                    ),
+                    // Container(
+                    //   child: Text(
+                    //     (widget.bal?.code ?? "").toPersianDigit(),
+                    //     style: TextStyle(
+                    //       fontSize: CBase().getTextfontSizeByScreen(),
+                    //       color: CBase().textPrimaryColor,
+                    //     ),
+                    //   ),
+                    // ),
                     Flexible(
                       fit: FlexFit.tight,
                       child: Text(""),
@@ -216,8 +216,8 @@ class _JoinedItemsState extends State<JoinedItems> {
           ),
           Container(
               height: 60.0,
-              child: widget.bal!.productInfos!.first.price != 0.0 &&
-                      widget.bal!.productInfos!.first.qty != 0.0
+              child: widget.bal!.productInfosPrice != 0.0 &&
+                      widget.bal!.productVirtualQTY != 0.0
                   ? Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -269,10 +269,10 @@ class _JoinedItemsState extends State<JoinedItems> {
                                                 ? 'خرید'
                                                 : (CartServiceV2()
                                                             .cartProductQTY(
-                                                                widget.bal!.id)
+                                                                widget.bal!.productsId)
                                                             .toString() +
                                                         " " +
-                                                        widget.bal!.unit!.name!)
+                                                        widget.bal!.unitsName!)
                                                     .toPersianDigit(),
                                             style: TextStyle(
                                               fontSize: CBase()
@@ -364,7 +364,7 @@ class _JoinedItemsState extends State<JoinedItems> {
                                                 children: [
                                                   Container(
                                                     child: Text(
-                                                      ('${(widget.bal!.productInfos!.first.score! * itemCount).toInt()}'),
+                                                      ('${(widget.bal!.score! * itemCount).toInt()}'),
                                                       style: TextStyle(
                                                         fontSize: CBase()
                                                                 .getTextfontSizeByScreen() +
@@ -400,9 +400,7 @@ class _JoinedItemsState extends State<JoinedItems> {
                                                     nf
                                                         .format(widget
                                                                 .bal!
-                                                                .productInfos!
-                                                                .first
-                                                                .price ??
+                                                                .productInfosPrice ??
                                                             0.0)
                                                         .toString(),
                                                     style: TextStyle(
@@ -458,9 +456,7 @@ class _JoinedItemsState extends State<JoinedItems> {
                                                       .format(itemCount *
                                                           widget
                                                               .bal!
-                                                              .productInfos!
-                                                              .first
-                                                              .price!)
+                                                              .productInfosPrice!)
                                                       .toString(),
                                                   style: TextStyle(
                                                     fontSize: CBase()

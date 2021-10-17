@@ -1,7 +1,7 @@
 import 'package:copapp/Api/ResponseModel.dart';
+import 'package:copapp/AppModel/Cart/CartDetail.dart';
 import 'package:copapp/Controller/Service/CartService.dart';
-import 'package:copapp/Model/CartDetail.dart';
-import 'package:copapp/Model/CartHeader.dart';
+
 import 'package:copapp/Utilities/Sharei.dart';
 import 'package:copapp/View/Pages/SendCartPages/SendingCart.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -22,9 +22,9 @@ class InvoiceController extends GetxController {
   void onInit() {
     // TODO: implement onInit
     super.onInit();
-    if (CartServiceV2().getMyCart()!.cart != null &&
-        CartServiceV2().getMyCart()!.cart!.cartDetails != null)
-      cart = CartServiceV2().getMyCart()!.cart!.cartDetails!;
+    if (CartServiceV2().getMyCart() != null &&
+        CartServiceV2().getMyCart()!.details != null)
+      cart = CartServiceV2().getMyCart()!.details!;
     isLoading = false;
     update();
   }
@@ -47,10 +47,6 @@ class InvoiceController extends GetxController {
   }
 
   double getCartSumPrice() {
-    double sumPrice = 0.0;
-    cart.forEach((element) {
-      sumPrice += element.finalPrice!;
-    });
-    return sumPrice;
+    return CartServiceV2.myCart!.orderFinalPrice??0;
   }
 }

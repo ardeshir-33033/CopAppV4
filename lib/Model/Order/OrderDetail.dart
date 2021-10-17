@@ -1,6 +1,7 @@
+import 'package:copapp/AppModel/Balance/Product.dart';
+import 'package:copapp/AppModel/Cart/CartDetail.dart';
 import 'package:copapp/Model/CartDetail.dart';
 
-import '../Product.dart';
 
 class OrderDetail {
   int? orderHeaderId;
@@ -88,14 +89,13 @@ class OrderDetail {
     if (list != null) {
       return list.map<CartDetail>((e) {
         return CartDetail(
-          unitPrice: e.unitPrice,
-          finalPrice: e.finalPrice,
-          decreasePrice: e.decreasedPrice,
-          id: e.id,
+          detailUnitPrice: e.unitPrice,
+          detailFinalPrice: e.finalPrice,
+          detailDecreasePrice: e.decreasedPrice,
+          detailId: e.id,
           product: e.product,
-          productId: e.productId,
-          qty: e.quantity,
-          sumPrice: e.sumPrice
+          detailQTY: e.quantity!.toInt(),
+          detailSumPrice: e.sumPrice
         );
       }).toList();
     }

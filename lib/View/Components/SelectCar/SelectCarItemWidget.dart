@@ -1,5 +1,5 @@
+import 'package:copapp/AppModel/Home/Car.dart';
 import 'package:copapp/Controller/Service/BalanceService.dart';
-import 'package:copapp/Model/Keyword.dart';
 import 'package:copapp/Utilities/Base.dart';
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
@@ -7,12 +7,12 @@ import 'dart:math' as math;
 class SelectedCarItemWidget extends StatelessWidget {
   final double? width, height;
   final Function? onCancel;
-  final List<Keyword>? cars;
+  final List<Car>? cars;
   final String? year;
 
   SelectedCarItemWidget(
       {this.width, this.height, this.onCancel, this.cars, this.year});
-  Keyword? car = BalanceServiceV2().getSelectedCar();
+  Car? car = BalanceServiceV2().getSelectedCar();
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +50,7 @@ class SelectedCarItemWidget extends StatelessWidget {
                   children: [
                     Center(
                         child: Text(
-                      car?.keyWord ?? "",
+                      car?.engName ?? "",
                       // car!.keyWord != null ? car!.keyWord : '',
                       maxLines: 1,
                       style: TextStyle(
@@ -68,13 +68,7 @@ class SelectedCarItemWidget extends StatelessWidget {
                     ),
                     Center(
                         child: Text(
-                      car!.name != null
-                          ? car!.name != '٥'
-                              ? car!.name != '۷۰۰'
-                                  ? car!.name! + " تـــن"
-                                  : car!.name! + " پـــی"
-                              : car!.name! + ' تــــن'
-                          : '',
+                      car!.name ?? '',
                       maxLines: 1,
                       style: TextStyle(
                           color: CBase().textPrimaryColor,

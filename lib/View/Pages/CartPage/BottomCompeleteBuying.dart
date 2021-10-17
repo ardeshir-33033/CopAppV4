@@ -1,5 +1,6 @@
 import 'package:copapp/Controller/Controllers/InvoiceController.dart';
 import 'package:copapp/Controller/Service/CartService.dart';
+import 'package:copapp/Model/CartDetail.dart';
 import 'package:copapp/Model/Order/OrderDetail.dart';
 import 'package:copapp/Utilities/Base.dart';
 import 'package:copapp/View/Pages/InvoicePage/InvoicePage.dart';
@@ -41,7 +42,7 @@ int? orderId;
         InvoiceController invoiceController = Get.put(InvoiceController());
         if (type == 1) {
           invoiceController.cart =
-              CartServiceV2().getMyCart()!.cart!.cartDetails!;
+              CartServiceV2().getMyCart()!.details!;
           invoiceController.orderId = null;
         } else {
           invoiceController.cart = OrderDetail().toCartDetail(pendingCart!)!;

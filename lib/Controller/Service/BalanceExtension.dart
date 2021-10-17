@@ -1,15 +1,16 @@
+import 'package:copapp/AppModel/Home/Car.dart';
+import 'package:copapp/AppModel/Home/Category.dart';
 import 'package:copapp/AppModel/MultiBalance/Part.dart';
+import 'package:copapp/AppModel/MultiBalance/SubCategory.dart';
 import 'package:copapp/Model/Balance/Filter.dart';
 import 'package:copapp/Model/Balance/ShowCategoryModel.dart';
-import 'package:copapp/Model/Balance/SubCategory.dart';
-import 'package:copapp/Model/Category.dart';
-import 'package:copapp/Model/Keyword.dart';
+import 'package:copapp/Model/Part.dart';
 import 'package:flutter/material.dart';
 
 import 'BalanceService.dart';
 
 class BalanceExtensions {
-  static Keyword? SelectedCar;
+  static Car? SelectedCar;
   static Category? SelectedCategory;
   static List<Category>? SelectedSubCategories;
   static Category? formerCategory;
@@ -18,7 +19,7 @@ class BalanceExtensions {
   List<SubCategory> subCategories = [];
 
 
-  setSelectedCar(Keyword car) {
+  setSelectedCar(Car car) {
     SelectedCar = car;
   }
 
@@ -42,7 +43,7 @@ class BalanceExtensions {
     SelectedCategory = cat;
   }
 
-  Keyword? getSelectedCar() {
+  Car? getSelectedCar() {
     return SelectedCar;
   }
 
@@ -120,13 +121,13 @@ class BalanceExtensions {
         filterId);
 
     if (selectedBalances.isSuccess) {
-      filters = (selectedBalances.data as ShowCategoryModel).filters!;
+      filters = (selectedBalances.data as RShowCategoryModel).filters!;
       subCategories =
-          (selectedBalances.data as ShowCategoryModel).subCategories!;
+          (selectedBalances.data as RShowCategoryModel).subCategories!;
 
       // selectedParts = (selectedBalances.data as ShowCategoryModel).parts!;
 
-      return (selectedBalances.data as ShowCategoryModel).parts! as List<Part>;
+      return (selectedBalances.data as RShowCategoryModel).parts!;
     } else {
       selectedBalances.ShowMessage();
       return [];

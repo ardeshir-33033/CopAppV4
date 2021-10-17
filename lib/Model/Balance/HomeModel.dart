@@ -1,26 +1,26 @@
 import '../Category.dart';
 import '../Keyword.dart';
 
-class HomeModel {
-  List<Category>? categories;
-  List<Keyword>? keywords;
+class RHomeModel {
+  List<RCategory>? categories;
+  List<RKeyword>? keywords;
 
-  HomeModel({
+  RHomeModel({
     this.categories,
     this.keywords,
   });
 
-  HomeModel.fromJson(Map<String, dynamic> json) {
+  RHomeModel.fromJson(Map<String, dynamic> json) {
     if (json['categories'] != null) {
       categories = [];
       json['categories'].forEach((v) {
-        categories!.add(new Category.fromJson(v));
+        categories!.add(new RCategory.fromJson(v));
       });
     }
     if (json['keywords'] != null) {
       keywords = [];
       json['keywords'].forEach((v) {
-        keywords!.add(new Keyword.fromJson(v));
+        keywords!.add(new RKeyword.fromJson(v));
       });
     }
   }

@@ -1,12 +1,16 @@
+
+
+import 'package:copapp/AppModel/Home/Car.dart';
+import 'package:copapp/AppModel/Home/Category.dart';
 import 'package:copapp/AppModel/MultiBalance/Part.dart';
-import '../Category.dart';
-import '../Keyword.dart';
+import 'package:copapp/AppModel/MultiBalance/SubCategory.dart';
+
+import '../Part.dart';
 import '../Vehicle.dart';
 import 'Filter.dart';
-import 'SubCategory.dart';
 
-class ShowCategoryModel {
-  List<Keyword>? keywords;
+class RShowCategoryModel {
+  List<Car>? keywords;
   List<Vehicle>? vehicles;
   Category? category;
   List<SubCategory>? subCategories;
@@ -14,7 +18,7 @@ class ShowCategoryModel {
   List<Part>? parts;
   int? totalParts;
 
-  ShowCategoryModel({
+  RShowCategoryModel({
     this.keywords,
     this.vehicles,
     this.category,
@@ -24,11 +28,11 @@ class ShowCategoryModel {
     this.totalParts,
   });
 
-  ShowCategoryModel.fromJson(Map<String, dynamic> json) {
+  RShowCategoryModel.fromJson(Map<String, dynamic> json) {
     if (json['keywords'] != null) {
       keywords = [];
       json['keywords'].forEach((v) {
-        keywords!.add(Keyword.fromJson(v));
+        keywords!.add(Car.fromJson(v));
       });
     }
     if (json['vehicles'] != null) {

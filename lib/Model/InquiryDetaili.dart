@@ -1,4 +1,4 @@
-import 'Product.dart';
+import 'package:copapp/AppModel/Balance/Product.dart';
 
 class InquiryDetail {
   int? productId;
@@ -33,7 +33,7 @@ class InquiryDetail {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = Map<String, dynamic>();
     data['productId'] = this.productId;
     if (this.product != null) {
       data['product'] = this.product!.toJson();

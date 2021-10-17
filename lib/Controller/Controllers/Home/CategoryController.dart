@@ -1,7 +1,7 @@
+import 'package:copapp/AppModel/Home/Category.dart';
+import 'package:copapp/AppModel/Home/HomeModel.dart';
 import 'package:copapp/Controller/Controllers/HomePageController.dart';
 import 'package:copapp/Controller/Service/BalanceService.dart';
-import 'package:copapp/Model/Balance/HomeModel.dart';
-import 'package:copapp/Model/Category.dart';
 import 'package:get/get.dart';
 
 class CategoryController extends GetxController {

@@ -1,5 +1,6 @@
 import 'dart:typed_data';
 
+import 'package:copapp/AppModel/MultiBalance/Part.dart';
 import 'package:copapp/Model/OrderHeader.dart';
 import 'package:copapp/Model/Part.dart';
 import 'package:flutter/services.dart';
@@ -62,9 +63,9 @@ class Sharei {
       String content = "*برند های کالا:*\n";
 
       part.products!.forEach((element) {
-        if (element.productInfos!.first.price! > 0.0)
+        if (element.productInfosPrice! > 0.0)
           content +=
-              '*•* ${element.name} - ${element.brand?.name} - ${element.country?.name} - ${element.productInfos?.first.price!.toInt()} تومان\n\n';
+              '*•* ${element.productsName} - ${element.brandsName} - ${element.country} - ${element.productInfosPrice} تومان\n\n';
       });
 
       await Share.shareFiles(['$directory/screenshot.png'],
@@ -92,7 +93,7 @@ class Sharei {
 
       order.orderDetails!.forEach((element) {
         content +=
-            '${element.product?.name} - ${element.quantity} ${element.product?.unit?.name} - مبلغ کل : ${element.finalPrice}\n';
+            '${element.product?.productsName} - ${element.quantity} ${element.product!.unitsName} - مبلغ کل : ${element.finalPrice}\n';
       });
 
       await Share.shareFiles(['$directory/screenshot.png'],

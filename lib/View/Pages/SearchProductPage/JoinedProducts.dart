@@ -1,8 +1,5 @@
 import 'package:copapp/Controller/Controllers/SearchProductController.dart';
-import 'package:copapp/Model/Part.dart';
-import 'package:copapp/Model/Product.dart';
 import 'package:copapp/Utilities/Base.dart';
-import 'package:copapp/Utilities/Sharei.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -61,7 +58,7 @@ class JoinedProducts extends StatelessWidget {
                         children: [
                           searchProductController.part != null &&
                                   searchProductController
-                                      .part!.imagePath!.isNotEmpty
+                                      .part!.thumbImagePath!.isNotEmpty
                               ? InkWell(
                                   onTap: () {
                                     // ProductWidgets().showDialog(
@@ -83,7 +80,7 @@ class JoinedProducts extends StatelessWidget {
                                             image: DecorationImage(
                                               image: NetworkImage(
                                                   searchProductController
-                                                      .part!.imagePath!),
+                                                      .part!.thumbImagePath!),
                                               fit: BoxFit.scaleDown,
                                             ),
                                           ),
@@ -160,7 +157,7 @@ class JoinedProducts extends StatelessWidget {
                                   ),
                                   Text(
                                     (searchProductController
-                                                .part?.vehiclesPersianName ??
+                                                .part?.vehiclePersianName ??
                                             ' ')
                                         .toPersianDigit(),
                                     style: TextStyle(
@@ -236,10 +233,10 @@ class JoinedProducts extends StatelessWidget {
           searchProductController.part!.products != null &&
                   searchProductController.part!.products!.length > 0 &&
                   searchProductController
-                          .part!.products!.first.productInfos!.first.qty !=
+                          .part!.products!.first.productVirtualQTY !=
                       0 &&
                   searchProductController
-                          .part!.products!.first.productInfos!.first.price !=
+                          .part!.products!.first.productInfosPrice !=
                       0
               ? MoreFamily(
                   fvis: searchProductController.allJoinVis,

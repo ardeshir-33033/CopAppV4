@@ -1,6 +1,6 @@
+import 'package:copapp/AppModel/Home/Category.dart';
 import 'package:copapp/Controller/Service/BalanceExtension.dart';
 import 'package:copapp/Controller/Service/BalanceService.dart';
-import 'package:copapp/Model/Category.dart';
 import 'package:copapp/Utilities/Base.dart';
 import 'package:copapp/View/Pages/Balance/MultiBalancePage.dart';
 import 'package:flutter/material.dart';

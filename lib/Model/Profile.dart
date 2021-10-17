@@ -25,7 +25,7 @@ class Profile {
   List<Address>? addresses;
   List<FavoriteProduct>? favoriteProducts;
   List<OrderHeader> ?orderHeaders;
-  List<CartHeader> ?cartHeaders;
+  List<RCartHeader> ?cartHeaders;
   //Wallet wallet;
   Account? account;
   int? id;
@@ -98,9 +98,9 @@ class Profile {
       });
     }
     if (json['cartHeaders'] != null) {
-     List<CartHeader> cartHeaders = [];
+     List<RCartHeader> cartHeaders = [];
       json['cartHeaders'].forEach((v) {
-        cartHeaders.add(CartHeader.fromJson(v));
+        cartHeaders.add(RCartHeader.fromJson(v));
       });
     }
     //wallet = json['wallet'] != null ? Wallet.fromJson(json['wallet']) : null;

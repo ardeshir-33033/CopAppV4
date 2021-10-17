@@ -1,15 +1,15 @@
-class Category {
+class RCategory {
   String? name;
   int? id;
   int? sort;
 
-  Category({
+  RCategory({
     this.id,
     this.sort,
     this.name,
   });
 
-  Category.fromJson(Map<String, dynamic> json) {
+  RCategory.fromJson(Map<String, dynamic> json) {
     name = json['name'] ?? "";
     id = json['id'] ?? 0;
     sort = json['sort'];
@@ -23,10 +23,10 @@ class Category {
     return data;
   }
 
-  List<Category>? listFromJson(dynamic jsns) {
+  List<RCategory>? listFromJson(dynamic jsns) {
     if (jsns != null) {
-      return jsns.map<Category>((ct) {
-        return Category.fromJson(ct);
+      return jsns.map<RCategory>((ct) {
+        return RCategory.fromJson(ct);
       }).toList();
     }
 

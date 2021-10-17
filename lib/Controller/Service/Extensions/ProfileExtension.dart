@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:copapp/Model/Keyword.dart';
+import 'package:copapp/AppModel/Home/Car.dart';
 import 'package:copapp/Utilities/Base.dart';
 import 'package:copapp/Utilities/SharedPreferencePath.dart';
 import 'package:flutter/cupertino.dart';
@@ -22,7 +22,7 @@ class ProfileExtensions {
   static Function(dynamic result)? displayModeChangeCallback;
   static Function(dynamic result)? profileExtensionChanged;
 
-  static Keyword? mycar;
+  static Car? mycar;
   static bool displayPoint = false;
   static bool mechanicPanelOpened = false;
   static int selectedNavIndex = 0;
@@ -102,11 +102,11 @@ class ProfileExtensions {
     displayModeChangeCallback = func;
   }
 
-  setmyCar(Keyword car) {
+  setmyCar(Car car) {
     mycar = car;
   }
 
-  Keyword getMyCar() {
+  Car getMyCar() {
     return mycar!;
   }
 

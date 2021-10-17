@@ -1,5 +1,5 @@
+import 'package:copapp/AppModel/Cart/CartDetail.dart';
 import 'package:copapp/Controller/Service/CartService.dart';
-import 'package:copapp/Model/CartDetail.dart';
 import 'package:copapp/Utilities/Base.dart';
 import 'package:copapp/View/Components/Balance/BrandItems.dart';
 import 'package:copapp/View/Pages/HomePage.dart';

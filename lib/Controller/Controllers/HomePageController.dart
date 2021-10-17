@@ -1,6 +1,6 @@
+import 'package:copapp/AppModel/Home/Car.dart';
 import 'package:copapp/Controller/Service/BalanceExtension.dart';
 import 'package:copapp/Controller/Service/BalanceService.dart';
-import 'package:copapp/Controller/Service/InquiryService.dart';
 import 'package:copapp/Model/Keyword.dart';
 import 'package:copapp/Utilities/Snacki.dart';
 import 'package:flutter/material.dart';
@@ -14,14 +14,14 @@ class HomeController extends GetxController {
   String? selectedYear;
   bool isLoading = true;
   List<String> years = ['1400-1396', '1396-1388', '1396-1386', '1400-1396'];
-  List<Keyword> cars = [];
+  List<Car> cars = [];
 
   @override
   void onInit() {
     BalanceServiceV2().GetShowAllParents().then((v) {
       if(v.isSuccess){
         isLoading = false;
-        cars = BalanceServiceV2.myHomeData!.keywords!;
+        cars = BalanceServiceV2.myHomeData!.cars!;
         cars.forEach((v) {
           v.name = v.name!.toPersianDigit();
         });
@@ -42,7 +42,7 @@ class HomeController extends GetxController {
         );
       else {
         BalanceExtensions()
-            .setSelectedCar(Keyword(id: 0, keyWord: "همه", name: "All"));
+            .setSelectedCar(Car(id: 0, engName: "همه", name: "All"));
         carNotSelected = true;
         isuzuApear = true;
         update(['1']);
@@ -57,7 +57,7 @@ class HomeController extends GetxController {
 
   onCancelCar() {
     BalanceExtensions()
-        .setSelectedCar(Keyword(id: 0, keyWord: "همه", name: "All"));
+        .setSelectedCar(Car(id: 0, engName: "همه", name: "All"));
     carNotSelected = true;
     update(['1']);
 

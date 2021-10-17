@@ -1,16 +1,14 @@
-
-
 import 'Cart.dart';
 import 'Inquiry.dart';
 
-class CartHeader {
-  Cart? cart;
+class RCartHeader {
+  RCart? cart;
   Inquiry? inquiry;
 
-  CartHeader({this.cart, this.inquiry});
+  RCartHeader({this.cart, this.inquiry});
 
-  CartHeader.fromJson(Map<String, dynamic> json) {
-    cart = json['cart'] != null ? new Cart.fromJson(json['cart']) : null;
+  RCartHeader.fromJson(Map<String, dynamic> json) {
+    cart = json['cart'] != null ? new RCart.fromJson(json['cart']) : null;
     inquiry = json['inquiry'] != null ? new Inquiry.fromJson(json['inquiry']) : null;
   }
 

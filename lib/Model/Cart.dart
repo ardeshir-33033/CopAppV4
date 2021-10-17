@@ -4,16 +4,16 @@ import 'CartDetail.dart';
 import 'ConflictsPrice.dart';
 import 'ConflictsQty.dart';
 
-class Cart {
+class RCart {
   int? id;
   double? sumPrice;
   double? finalPrice;
   double? decreasePrice;
-  List<CartDetail>? cartDetails;
+  List<RCartDetail>? cartDetails;
   List<ConflictsQty>? conflictsQty;
   List<ConflictsPrice>? conflictsPrice;
 
-  Cart({
+  RCart({
     this.sumPrice,
     this.finalPrice,
     this.id,
@@ -23,7 +23,7 @@ class Cart {
     this.conflictsQty,
   });
 
-  Cart.fromJson(dynamic jsn) {
+  RCart.fromJson(dynamic jsn) {
     if (jsn == null) return;
 
     // this.id = jsn["id"] != null ? int.parse(jsn["id"].toString()) : 0;
@@ -32,7 +32,7 @@ class Cart {
         ? jsn["sumPrice"]
         : 0.0;
     this.cartDetails = jsn["cartDetails"] != null
-        ? CartDetail().listFromJson(jsn["cartDetails"])
+        ? RCartDetail().listFromJson(jsn["cartDetails"])
         : null;
     this.finalPrice = jsn["finalPrice"] != null
         ? jsn["finalPrice"]
@@ -48,10 +48,10 @@ class Cart {
         : null;
   }
 
-  List<Cart>? listFromJson(dynamic jsns) {
+  List<RCart>? listFromJson(dynamic jsns) {
     if (jsns != null) {
-      return jsns.map<Cart>((ct) {
-        return Cart.fromJson(ct);
+      return jsns.map<RCart>((ct) {
+        return RCart.fromJson(ct);
       }).toList();
     }
 

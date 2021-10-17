@@ -4,12 +4,13 @@ import 'package:copapp/Api/Enums.dart';
 import 'package:copapp/Api/QueryModel.dart';
 import 'package:copapp/Api/ResponseModel.dart';
 import 'package:copapp/Api/Routing/RoutingBalance.dart';
+import 'package:copapp/AppModel/Home/Car.dart';
+import 'package:copapp/AppModel/Home/Category.dart';
+import 'package:copapp/AppModel/Home/HomeModel.dart';
 import 'package:copapp/AppModel/MultiBalance/Part.dart';
-import 'package:copapp/Model/Balance/HomeModel.dart';
 import 'package:copapp/Model/Balance/QuickSearchModel.dart';
 import 'package:copapp/Model/Balance/ShowCategoryModel.dart';
-import 'package:copapp/Model/Category.dart';
-import 'package:copapp/Model/Keyword.dart';
+import 'package:copapp/Model/Part.dart';
 import 'package:copapp/Model/Shopping/Product/FilterV2.dart';
 
 import 'BalanceExtension.dart';
@@ -43,14 +44,14 @@ class BalanceServiceV2 extends BalanceExtensions with Api {
   //     );
   // }
 
-  Future<ResponseModel<List<Keyword>>> GetCars() async {
+  Future<ResponseModel<List<Car>>> GetCars() async {
     if (BalanceExtensions().getSelectedCar() == null)
       BalanceExtensions()
-          .setSelectedCar(Keyword(id: 0, keyWord: "همه", name: "All"));
+          .setSelectedCar(Car(id: 0, engName: "همه", name: "All"));
 
-    if (myHomeData?.keywords != null && myHomeData!.keywords!.length > 0) {
-      return ResponseModel<List<Keyword>>(
-        data: myHomeData!.keywords,
+    if (myHomeData?.cars != null && myHomeData!.cars!.length > 0) {
+      return ResponseModel<List<Car>>(
+        data: myHomeData!.cars,
         isSuccess: true,
         statusCode: "200",
         message: "",
@@ -70,10 +71,10 @@ class BalanceServiceV2 extends BalanceExtensions with Api {
 
     // myHomeData.keywords.add(Keyword(id: 0, keyWord: "همه", name: "All"));
 
-    return ResponseModel<List<Keyword>>(
+    return ResponseModel<List<Car>>(
       isSuccess: response.isSuccess,
       statusCode: response.statusCode,
-      data: myHomeData!.keywords,
+      data: myHomeData!.cars,
       message: response.message,
     );
   }
@@ -145,18 +146,18 @@ class BalanceServiceV2 extends BalanceExtensions with Api {
     }
   }
 
-  Future<ResponseModel<ShowCategoryModel>> GetShowCategory(
+  Future<ResponseModel<RShowCategoryModel>> GetShowCategory(
       int? id, int? keywordId, int? pageSize, int? page, int? filterId) async {
     // validation
     if (id == 0 && pageSize == 0 && page == 0 && filterId == 0)
-      return ResponseModel<ShowCategoryModel>(
+      return ResponseModel<RShowCategoryModel>(
         isSuccess: false,
         statusCode: "500",
         data: null,
         message: "پارامتر های ورودی خالی هستند",
       );
 
-    var response = await HTTPGET<ShowCategoryModel>(
+    var response = await HTTPGET<RShowCategoryModel>(
       RoutingBalance.GET_ShowCategory,
       [
         QueryModel(
@@ -185,18 +186,18 @@ class BalanceServiceV2 extends BalanceExtensions with Api {
     );
 
     if (!response.isSuccess)
-      return ResponseModel<ShowCategoryModel>(
+      return ResponseModel<RShowCategoryModel>(
         isSuccess: false,
         statusCode: "500",
         message: "موردی یافت نشد",
       );
 
-    var scm = ShowCategoryModel.fromJson(response.data);
+    var scm = RShowCategoryModel.fromJson(response.data);
     response.data = scm;
 
     currentParts = scm.parts!.cast<Part>();
 
-    return ResponseModel<ShowCategoryModel>(
+    return ResponseModel<RShowCategoryModel>(
       isSuccess: response.isSuccess,
       statusCode: response.statusCode,
       data: response.data,

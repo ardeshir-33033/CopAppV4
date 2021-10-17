@@ -20,7 +20,7 @@ class OrdersV2Widget extends StatelessWidget {
     double totalScore = 0.0;
     item.forEach((element) {
       totalScore +=
-          element.product!.productInfos!.first.score! * element.quantity!;
+          element.product!.score! * element.quantity!;
     });
     return totalScore;
   }

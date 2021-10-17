@@ -18,7 +18,7 @@ class FinFilterController extends GetxController {
     } else if (_id == 2) {
       items = [];
       _filters!.products!.forEach((v) {
-        items.add(v.name!);
+        items.add(v.productsName!);
       });
     }
     items.forEach((v) {
@@ -54,8 +54,8 @@ class FinFilterController extends GetxController {
       selected = items[index];
     } else if (_id == 2) {
       for (int j = 0; j < _filters!.products!.length; j++) {
-        if (_filters.products![j].name == items[index])
-          selected = _filters.products![j].id;
+        if (_filters.products![j].productsName == items[index])
+          selected = _filters.products![j].productsId;
       }
     }
     setSelected(index);

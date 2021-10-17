@@ -1,8 +1,9 @@
+import 'package:copapp/AppModel/Balance/Product.dart';
+
 import 'ConflictsPrice.dart';
 import 'ConflictsQty.dart';
 import 'Order/Buyer.dart';
 import 'Order/OrderStatus.dart';
-import 'Product.dart';
 
 class FilterResponseModel {
   int? id;

@@ -1,9 +1,9 @@
 import 'package:auto_size_text_pk/auto_size_text_pk.dart';
+import 'package:copapp/AppModel/Balance/Product.dart';
 import 'package:copapp/Controller/Controllers/Balance/BalanceItemController.dart';
 import 'package:copapp/Controller/Controllers/General/ScoreService.dart';
 import 'package:persian_number_utility/persian_number_utility.dart';
 import 'package:copapp/Controller/Service/CartService.dart';
-import 'package:copapp/Model/Product.dart';
 import 'package:copapp/Utilities/Base.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -51,7 +51,7 @@ class _BalanceItemState extends State<BalanceItem> {
 
   @override
   Widget build(BuildContext context) {
-    checkHasItem(widget.bal!.id!);
+    checkHasItem(widget.bal!.productsId!);
     double widgetHeight = (CBase().getFullWidth(context) - 40) * 0.33 + 1;
     return GetBuilder<ScoreService>(builder: (_) {
       return Container(
@@ -127,15 +127,15 @@ class _BalanceItemState extends State<BalanceItem> {
                         ? Expanded(
                             flex: 1,
                             child: AutoSizeText(
-                              '${widget.bal?.productInfos?.first.score?.toInt()}'
+                              '${widget.bal?.score}'
                                   .toPersianDigit(),
                               style: TextStyle(color: CBase().basePrimaryColor),
                             ))
-                        : widget.bal!.brand!.imagePath != null
+                        : widget.bal!.brandsImagePath != null
                             ? Expanded(
                                 flex: 1,
                                 child: SvgPicture.network(
-                                    widget.bal?.brand?.imagePath ?? ""),
+                                    widget.bal!.brandsImagePath!),
                               )
                             : Container(),
                   ],
@@ -187,7 +187,7 @@ class _BalanceItemState extends State<BalanceItem> {
                             child: SingleChildScrollView(
                               scrollDirection: Axis.horizontal,
                               child: AutoSizeText(
-                                widget.bal!.name!.toPersianDigit(),
+                                widget.bal!.productsName!.toPersianDigit(),
                                 style: TextStyle(
                                   fontSize:
                                       CBase().getTitlefontSizeByScreen() * 0.85,
@@ -202,17 +202,17 @@ class _BalanceItemState extends State<BalanceItem> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               scoreServiceController.getShowScore()
-                                  ? widget.bal!.brand!.imagePath != null
+                                  ? widget.bal!.brandsImagePath != null
                                       ? SvgPicture.network(
-                                          widget.bal?.brand?.imagePath ?? "")
+                                          widget.bal!.brandsImagePath!)
                                       : Container()
                                   : Container(
                                       margin: EdgeInsets.only(right: 10.0),
                                       child: AutoSizeText(
-                                        widget.bal?.brand!.name! ??
+                                        widget.bal?.brandsName! ??
                                             "" +
                                                 " - " +
-                                                widget.bal!.country!.name,
+                                                widget.bal!.country!,
                                         style: TextStyle(
                                           fontSize: CBase()
                                               .getSubTitlefontSizeByScreen(),
@@ -223,9 +223,7 @@ class _BalanceItemState extends State<BalanceItem> {
                                     ),
                               Row(
                                 children: [
-                                  widget.bal!.productInfos!.length != 0
-                                      ? widget.bal!.productInfos!.first
-                                                  .warranty ==
+                                   widget.bal!.warranty ==
                                               true
                                           ? Padding(
                                               padding: const EdgeInsets.only(
@@ -240,8 +238,7 @@ class _BalanceItemState extends State<BalanceItem> {
                                                 ),
                                               ),
                                             )
-                                          : Container()
-                                      : Container(),
+                                          : Container(),
                                   GetBuilder<BalanceItemController>(
                                     id: 'load',
                                     builder: (_) {
@@ -344,7 +341,7 @@ class _BalanceItemState extends State<BalanceItem> {
                                                           .toString()
                                                           .toPersianDigit() +
                                                       " " +
-                                                      widget.bal!.unit!.name!,
+                                                      widget.bal!.unitsName!,
                                               style: TextStyle(
                                                 fontSize: CBase()
                                                     .getTitlefontSizeByScreen(),
@@ -461,10 +458,8 @@ class _BalanceItemState extends State<BalanceItem> {
                                                         Text(
                                                           nf
                                                               .format(widget
-                                                                      .bal
-                                                                      ?.productInfos
-                                                                      ?.first
-                                                                      .price ??
+                                                                      .bal!
+                                                                      .productInfosPrice ??
                                                                   0)
                                                               .toString(),
                                                           style: TextStyle(
@@ -505,8 +500,6 @@ class _BalanceItemState extends State<BalanceItem> {
                                                           Text(
                                                             (widget
                                                                         .bal!
-                                                                        .productInfos!
-                                                                        .first
                                                                         .score! *
                                                                     itemCount)
                                                                 .toInt()
@@ -567,9 +560,7 @@ class _BalanceItemState extends State<BalanceItem> {
                                                             .format(itemCount *
                                                                 widget
                                                                     .bal!
-                                                                    .productInfos!
-                                                                    .first
-                                                                    .price!)
+                                                                    .productInfosPrice!)
                                                             .toString(),
                                                         style: TextStyle(
                                                           fontSize: CBase()

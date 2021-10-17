@@ -1,3 +1,4 @@
+import 'package:copapp/AppModel/MultiBalance/Part.dart';
 import 'package:copapp/Controller/Controllers/EpcSubGroupController.dart';
 import 'package:copapp/Controller/Service/EpcService.dart';
 import 'package:copapp/Model/Part.dart';
@@ -41,7 +42,7 @@ class EpcSubGroupPage extends StatelessWidget {
                       CategoryItems(
                         item: Part(
                             name: 'انتخاب قطعه',
-                            vehiclesPersianName:
+                            vehiclePersianName:
                                 EpcService.selectedModelSerie!.englishName ??
                                     ''
                                         .replaceAll(RegExp('[0-9]*'), '')

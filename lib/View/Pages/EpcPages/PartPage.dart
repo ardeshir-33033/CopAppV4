@@ -190,11 +190,11 @@ class _EpcPartPageState extends State<EpcPartPage>
                                                                       padding: EdgeInsets.symmetric(
                                                                           horizontal:
                                                                               11),
-                                                                      child: partController.balanceProducts[partController.tabController!.index][i].productInfos!.first.qty != 0 &&
-                                                                              partController.balanceProducts[partController.tabController!.index][i].productInfos!.first.price == 0
+                                                                      child: partController.balanceProducts[partController.tabController!.index][i].productVirtualQTY != 0 &&
+                                                                              partController.balanceProducts[partController.tabController!.index][i].productInfosPrice == 0
                                                                           ? Container()
                                                                           : Container(
-                                                                              child: partController.balanceProducts[partController.tabController!.index][i].productInfos!.first.qty != 0
+                                                                              child: partController.balanceProducts[partController.tabController!.index][i].productVirtualQTY!= 0
                                                                                   ? BalanceItem(
                                                                                       bal: partController.balanceProducts[partController.tabController!.index][i],
                                                                                       scaffold: partController.scaffoldKey,

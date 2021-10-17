@@ -1,13 +1,13 @@
-class Keyword {
+class RKeyword {
   String? keyWord;
   String? imagePath;
   String? name;
   bool? selected;
   int? id;
 
-  Keyword({this.keyWord, this.imagePath, this.name, this.selected, this.id});
+  RKeyword({this.keyWord, this.imagePath, this.name, this.selected, this.id});
 
-  Keyword.fromJson(Map<String, dynamic> json) {
+  RKeyword.fromJson(Map<String, dynamic> json) {
     keyWord = json['keyWord'] ?? "";
     imagePath = json['imagePath'] ?? "";
     name = json['name'] ?? "";
@@ -25,10 +25,10 @@ class Keyword {
     return data;
   }
 
-  List<Keyword>? listFromJson(dynamic jsns) {
+  List<RKeyword>? listFromJson(dynamic jsns) {
     if (jsns != null) {
-      return jsns.map<Keyword>((ct) {
-        return Keyword.fromJson(ct);
+      return jsns.map<RKeyword>((ct) {
+        return RKeyword.fromJson(ct);
       }).toList();
     }
 

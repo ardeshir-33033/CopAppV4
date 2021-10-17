@@ -63,7 +63,7 @@ class _ConfirmInPersonState
           if (payedOrder.orderStatusId == "confirmed" ||
               payedOrder.orderStatusId == "packing") {
             ShowMessage(isSuccess: true, message: "عملیات موفق بود");
-            CartServiceV2().GetCart();
+            CartServiceV2().getCart();
 
             ///
           } else {
@@ -131,7 +131,7 @@ class _ConfirmInPersonState
                               addressId: widget.addressId);
                         } else {
                           result =
-                              await CartServiceV2().Payment(widget.addressId);
+                              await CartServiceV2().payment(widget.addressId);
                         }
                         setState(() {
                           isLoading = false;

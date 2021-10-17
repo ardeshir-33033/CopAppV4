@@ -1,9 +1,9 @@
 import 'package:auto_size_text_pk/auto_size_text_pk.dart';
+import 'package:copapp/AppModel/Balance/Product.dart';
 import 'package:copapp/Controller/Controllers/General/ScoreService.dart';
 import 'package:copapp/Controller/Controllers/Inquiry/InquiryItemController.dart';
 import 'package:copapp/Controller/Service/InquiryService.dart';
 import 'package:persian_number_utility/persian_number_utility.dart';
-import 'package:copapp/Model/Product.dart';
 import 'package:copapp/Utilities/Base.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -41,14 +41,14 @@ class _InquiryItemState extends State<InquiryItem> {
     // TODO: implement initState
     super.initState();
     inquiryItemController.scaffoldKey = widget.scaffold;
-    if (InquiryService().inquiryProductQTY(widget.bal!.id) >= 1) {
+    if (InquiryService().inquiryProductQTY(widget.bal!.productsId) >= 1) {
       hasItem = true;
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    checkHasItem(widget.bal!.id!);
+    checkHasItem(widget.bal!.productsId!);
     double widgetHeight = (CBase().getFullWidth(context) - 40) * 0.33 + 1;
     return GetBuilder<ScoreService>(builder: (_) {
       return Container(
@@ -129,15 +129,15 @@ class _InquiryItemState extends State<InquiryItem> {
                         ? Expanded(
                             flex: 1,
                             child: AutoSizeText(
-                              '${widget.bal?.productInfos?.first.score?.toInt()}'
+                              '${widget.bal?.score}'
                                   .toPersianDigit(),
                               style: TextStyle(color: CBase().basePrimaryColor),
                             ))
-                        : widget.bal!.brand!.imagePath != null
+                        : widget.bal!.brandsImagePath != null
                             ? Expanded(
                                 flex: 1,
                                 child: SvgPicture.network(
-                                    widget.bal?.brand?.imagePath ?? ""),
+                                    widget.bal?.brandsImagePath ?? ""),
                               )
                             : Container(),
                   ],
@@ -189,7 +189,7 @@ class _InquiryItemState extends State<InquiryItem> {
                             child: SingleChildScrollView(
                               scrollDirection: Axis.horizontal,
                               child: AutoSizeText(
-                                widget.bal!.name!.toPersianDigit(),
+                                widget.bal!.productsName!.toPersianDigit(),
                                 style: TextStyle(
                                   fontSize:
                                       CBase().getTitlefontSizeByScreen() * 0.85,
@@ -204,17 +204,17 @@ class _InquiryItemState extends State<InquiryItem> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               scoreServiceController.getShowScore()
-                                  ? widget.bal!.brand!.imagePath != null
+                                  ? widget.bal!.brandsImagePath != null
                                       ? SvgPicture.network(
-                                          widget.bal?.brand?.imagePath ?? "")
+                                          widget.bal?.brandsImagePath ?? "")
                                       : Container()
                                   : Container(
                                       margin: EdgeInsets.only(right: 10.0),
                                       child: AutoSizeText(
-                                        widget.bal?.brand!.name! ??
+                                        widget.bal?.brandsName! ??
                                             "" +
                                                 " - " +
-                                                widget.bal!.country!.name,
+                                                widget.bal!.country!,
                                         style: TextStyle(
                                           fontSize: CBase()
                                               .getSubTitlefontSizeByScreen(),
@@ -225,9 +225,7 @@ class _InquiryItemState extends State<InquiryItem> {
                                     ),
                               Row(
                                 children: [
-                                  widget.bal!.productInfos!.length != 0
-                                      ? widget.bal!.productInfos!.first
-                                                  .warranty ==
+                                widget.bal!.warranty ==
                                               true
                                           ? Padding(
                                               padding: const EdgeInsets.only(
@@ -242,8 +240,7 @@ class _InquiryItemState extends State<InquiryItem> {
                                                 ),
                                               ),
                                             )
-                                          : Container()
-                                      : Container(),
+                                          : Container(),
                                   GetBuilder<InquiryItemController>(
                                     id: 'load',
                                     builder: (_) {
@@ -346,7 +343,7 @@ class _InquiryItemState extends State<InquiryItem> {
                                                           .toString()
                                                           .toPersianDigit() +
                                                       " " +
-                                                      widget.bal!.unit!.name!,
+                                                      widget.bal!.unitsName!,
                                               style: TextStyle(
                                                 fontSize: CBase()
                                                     .getTitlefontSizeByScreen(),

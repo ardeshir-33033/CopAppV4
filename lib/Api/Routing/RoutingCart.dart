@@ -9,8 +9,11 @@ class RoutingCart {
   static const GET_GenerateOrderWithAddress =
       "${RoutingBase.ApiUrl}/$BaseName/GenerateOrderWithAddress";
 
+  static const Get_MyCart = "${RoutingBase.ApiUrl}/$BaseName/MyCart";
+
   static const POST_PayOrder = "${RoutingBase.ApiUrl}/$BaseName/PayOrder";
-  static const POST_AddProduct = "${RoutingBase.ApiUrl}/$BaseName/AddProductSimple";
+  static const POST_AddProduct =
+      "${RoutingBase.ApiUrl}/$BaseName/AddProductSimple";
   static const POST_UpdateAddress =
       "${RoutingBase.ApiUrl}/$BaseName/UpdateAddress";
 
@@ -28,5 +31,4 @@ class RoutingCart {
       "${RoutingBase.ApiUrl}/$BaseName/GenerateOrderWithAddress";
   static const GET_PaymentZarinPal =
       "${RoutingBase.ApiUrl}/$BaseName/GenerateOrderWithAddressZarrin";
-
 }

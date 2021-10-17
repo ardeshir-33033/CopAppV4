@@ -1,4 +1,5 @@
-import 'package:copapp/Model/Product.dart';
+
+import 'package:copapp/AppModel/Balance/Product.dart';
 
 class InquiryCart {
   List<InquiryDetails> inquiryDetails = [];

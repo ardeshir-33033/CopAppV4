@@ -1,3 +1,4 @@
+import 'package:copapp/AppModel/MultiBalance/Part.dart';
 import 'package:copapp/Controller/Service/BalanceExtension.dart';
 import 'package:copapp/Model/Balance/Filter.dart';
 import 'package:copapp/Model/Part.dart';
@@ -68,7 +69,7 @@ class _CategoryItemsState extends State<CategoryItems> {
                   ),
                 ),
                 Text(
-                  widget.item!.vehiclesPersianName!.toPersianDigit(),
+                  widget.item!.vehiclePersianName!.toPersianDigit(),
                   // PersianNumbers.toPersian(widget.item.vehiclesPersianName),
                   style: TextStyle(
                     fontSize: CBase().getTitlefontSizeByScreen() * 0.95,
@@ -89,7 +90,9 @@ class _CategoryItemsState extends State<CategoryItems> {
   }
 
   String? nameGenerator(Part? item) {
-    if (widget.item!.family == null && widget.item!.join == null) {
+    if (widget.item!.family == null
+    //  && widget.item!.join == null
+     ) {
       return widget.item!.name ?? "--";
     }
     if (widget.item!.family != null) {
@@ -99,12 +102,12 @@ class _CategoryItemsState extends State<CategoryItems> {
         return widget.item!.familyTitle;
       }
     }
-    if (widget.item!.join != null) {
-      if (widget.item!.joinTitle == "") {
-        return "تایتل جوین وارد نشده";
-      } else {
-        return widget.item!.joinTitle;
-      }
-    }
+    // if (widget.item!.join != null) {
+    //   if (widget.item!.joinTitle == "") {
+    //     return "تایتل جوین وارد نشده";
+    //   } else {
+    //     return widget.item!.joinTitle;
+    //   }
+    // }
   }
 }

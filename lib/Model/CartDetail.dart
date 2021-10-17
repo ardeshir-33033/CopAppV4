@@ -1,7 +1,8 @@
-import 'Product.dart';
+import 'package:copapp/AppModel/Balance/Product.dart';
+
 import 'SaleRoles.dart';
 
-class CartDetail {
+class RCartDetail {
   int? productId;
   Product? product;
   double? qty;
@@ -15,7 +16,7 @@ class CartDetail {
   double? oldUnitPrice;
   List<SaleRoles>? saleRoles;
 
-  CartDetail(
+  RCartDetail(
       {this.productId,
       this.product,
       this.qty,
@@ -29,7 +30,7 @@ class CartDetail {
       this.oldUnitPrice,
       this.saleRoles});
 
-  CartDetail.fromJson(Map<String, dynamic> json) {
+  RCartDetail.fromJson(Map<String, dynamic> json) {
     productId = json['productId'];
     product =
         json['product'] != null ? new Product.fromJson(json['product']) : null;
@@ -71,10 +72,10 @@ class CartDetail {
     return data;
   }
 
-  List<CartDetail>? listFromJson(dynamic jsns) {
+  List<RCartDetail>? listFromJson(dynamic jsns) {
     if (jsns != null) {
-      return jsns.map<CartDetail>((ct) {
-        return CartDetail.fromJson(ct);
+      return jsns.map<RCartDetail>((ct) {
+        return RCartDetail.fromJson(ct);
       }).toList();
     }
 

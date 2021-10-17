@@ -1,9 +1,10 @@
 import 'dart:async';
+import 'package:copapp/AppModel/Balance/Product.dart';
 import 'package:copapp/AppModel/MultiBalance/Part.dart';
 import 'package:copapp/Controller/Service/BalanceService.dart';
 import 'package:copapp/Controller/Service/EpcService.dart';
 import 'package:copapp/Model/Epc/EpcPartGroup.dart';
-import 'package:copapp/Model/Product.dart';
+import 'package:copapp/Model/Part.dart';
 import 'package:copapp/Utilities/Base.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

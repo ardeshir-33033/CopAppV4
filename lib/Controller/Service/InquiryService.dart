@@ -14,7 +14,7 @@ class InquiryService with Api {
     return inquiryCart;
   }
 
-  Future<ResponseModel<InquiryCart>> GetInquiry() async {
+  Future<ResponseModel<InquiryCart>> getInquiry() async {
     var response = await HTTPGET(
       RoutingInquiry.GetInquiry,
       [],
@@ -35,7 +35,7 @@ class InquiryService with Api {
     );
   }
 
-  Future<ResponseModel<InquiryCart>> AddInquiryProduct(
+  Future<ResponseModel<InquiryCart>> addInquiryProduct(
       int productId, int qty) async {
     var map = {"productId": productId, "qty": qty};
 
@@ -60,7 +60,7 @@ class InquiryService with Api {
     );
   }
 
-  Future<ResponseModel<InquiryCart>> UpdateProduct(
+  Future<ResponseModel<InquiryCart>> updateProduct(
       int productId, int qty) async {
     var map = {"productId": productId, "qty": qty};
 
@@ -85,7 +85,7 @@ class InquiryService with Api {
     );
   }
 
-  Future<ResponseModel<InquiryCart>> DeleteProduct(int id) async {
+  Future<ResponseModel<InquiryCart>> deleteProduct(int id) async {
     var response = await HTTPDELETE(
       RoutingInquiry.DeleteProduct,
       [QueryModel(name: "id", value: "$id")],
@@ -131,7 +131,7 @@ class InquiryService with Api {
     }
   }
 
-  Future<ResponseModel> GenerateManualPreOrder() async {
+  Future<ResponseModel> generateManualPreOrder() async {
     int profileId = UserServiceV2.profileId!;
 
     ResponseModel response = await HTTPGET(

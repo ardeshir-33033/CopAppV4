@@ -1,7 +1,7 @@
+import 'package:copapp/AppModel/Balance/Product.dart';
 import 'package:copapp/Controller/Controllers/General/PointController.dart';
 import 'package:copapp/Controller/Controllers/General/ScoreService.dart';
 import 'package:copapp/Controller/Service/CartService.dart';
-import 'package:copapp/Model/Product.dart';
 import 'package:copapp/Utilities/Snacki.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -13,17 +13,17 @@ class BalanceItemController extends GetxController {
   Future<int> add(Product bal, bool hasItem) async {
     update(['load']);
     if (!hasItem) {
-      var result = await CartServiceV2().AddProduct(bal.id, 1);
+      var result = await CartServiceV2().addProduct(bal.productsId!, 1);
       if (!result.isSuccess) {
         result.ShowMessage();
         return 0;
       } else {
         update([1]);
         update([6]);
-        if (bal.productInfos!.first.score! > 0) {
+        if (bal.productInfosPrice! > 0) {
           PointController pointController = Get.find();
           pointController
-              .add(bal.productInfos!.first.score! * (bal.multipleQTY??1),true);
+              .add(bal.score!.toDouble() * (bal.multipleQTY??1),true);
           ScoreService scoreService = Get.find();
           scoreService.update();
         }
@@ -36,28 +36,28 @@ class BalanceItemController extends GetxController {
     } else {
       upDate();
 
-      int QTY = CartServiceV2().cartProductQTY(bal.id);
+      int QTY = CartServiceV2().cartProductQTY(bal.productsId);
       int newQTY = QTY;
 
       if (bal.multipleQTY! <= 0)
         newQTY += 1;
       else
         newQTY += bal.multipleQTY!;
-      if (newQTY > bal.productInfos!.first.qty!.toInt()) {
+      if (newQTY > bal.productVirtualQTY!.toInt()) {
         Snacki().GETSnackBar(
             false, "تعداد خرید این کالا به ماکسیمم خود رسیده است.");
         return QTY;
       } else {
-        var result = await CartServiceV2().UpdateProduct(bal.id, newQTY);
+        var result = await CartServiceV2().updateProduct(bal.productsId!, newQTY);
 
         if (!result.isSuccess) {
           result.ShowMessage();
         } else {
           update([1]);
           update([6]);
-          if (bal.productInfos!.first.score! > 0) {
+          if (bal.score! > 0) {
             PointController pointController = Get.find();
-            pointController.add(bal.productInfos!.first.score!* (bal.multipleQTY??1),false);
+            pointController.add(bal.score!.toDouble() * (bal.multipleQTY??1),false);
             ScoreService scoreService = Get.find();
             scoreService.update();
           }
@@ -78,13 +78,13 @@ class BalanceItemController extends GetxController {
       itemCount -= bal.multipleQTY!;
 
     if (itemCount <= 0) {
-      var result = await CartServiceV2().DeleteProduct(bal.id);
+      var result = await CartServiceV2().deleteProduct(bal.productsId!);
 
-      if (!result.isSuccess) {
+      if (result.isSuccess) {
         result.ShowMessage();
       } else {
         PointController pointController = Get.find();
-        pointController.decrease(bal.productInfos!.first.score!* (bal.multipleQTY??1));
+        pointController.decrease(bal.score!.toDouble()* (bal.multipleQTY??1));
         ScoreService scoreService = Get.find();
         scoreService.update();
         update([5]);
@@ -92,13 +92,13 @@ class BalanceItemController extends GetxController {
         // update([1]);
       }
     } else {
-      var result = await CartServiceV2().UpdateProduct(bal.id, itemCount);
+      var result = await CartServiceV2().updateProduct(bal.productsId!, itemCount);
 
       if (!result.isSuccess) {
         result.ShowMessage();
       } else {
         PointController pointController = Get.find();
-        pointController.decrease(bal.productInfos!.first.score!* (bal.multipleQTY??1));
+        pointController.decrease(bal.score!.toDouble() * (bal.multipleQTY??1));
         ScoreService scoreService = Get.find();
         scoreService.update();
         update([1]);

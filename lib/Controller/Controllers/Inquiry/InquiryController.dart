@@ -9,7 +9,7 @@ class InquiryCartController extends GetxController {
   void onInit() {
     // TODO: implement onInit
     super.onInit();
-    InquiryService().GetInquiry().then((value) {
+    InquiryService().getInquiry().then((value) {
       if (value.isSuccess) {
         isLoading = false;
         update();
@@ -22,14 +22,14 @@ class InquiryCartController extends GetxController {
   submitPreOrder() async {
     isSubmiting = true;
     update(['sub']);
-    ResponseModel res = await InquiryService().GenerateManualPreOrder();
+    ResponseModel res = await InquiryService().generateManualPreOrder();
     isSubmiting = false;
     update(['sub']);
     res.ShowMessage();
     if (res.isSuccess) {
       InquiryService.inquiryCart!.inquiryDetails = [];
       update();
-      InquiryService().GetInquiry();
+      InquiryService().getInquiry();
     }
   }
 }

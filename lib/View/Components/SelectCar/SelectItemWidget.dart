@@ -1,9 +1,9 @@
-import 'package:copapp/Model/Keyword.dart';
+import 'package:copapp/AppModel/Home/Car.dart';
 import 'package:copapp/Utilities/Base.dart';
 import 'package:flutter/material.dart';
 
 class CarItemWidget extends StatelessWidget {
-  final Keyword? car;
+  final Car? car;
   final double? width, height;
   final Function? ontap;
   final String? year;
@@ -28,7 +28,7 @@ class CarItemWidget extends StatelessWidget {
           children: [
             Center(
                 child: Text(
-              car!.keyWord ?? '',
+              car!.engName ?? '',
               maxLines: 1,
               style: TextStyle(fontSize: CBase().getTextfontSizeByScreen()),
             )),

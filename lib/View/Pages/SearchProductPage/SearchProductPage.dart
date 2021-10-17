@@ -1,3 +1,4 @@
+import 'package:copapp/AppModel/MultiBalance/Part.dart';
 import 'package:copapp/Controller/Controllers/SearchProductController.dart';
 import 'package:copapp/Model/Part.dart';
 import 'package:copapp/View/Components/General/MainFooter.dart';

@@ -13,10 +13,10 @@ class FinListController extends GetxController{
     for (int i = 0; i < items!.length; i++) {
       points.add(0);
       for (int j = 0; j < items[i].orderDetails!.length; j++) {
-        if (items[i].orderDetails![j].product!.productInfos![0].score !=
+        if (items[i].orderDetails![j].product!.score !=
             null) {
           points[i] +=
-              items[i].orderDetails![j].product!.productInfos![0].score!;
+              items[i].orderDetails![j].product!.score!;
         }
       }
     }

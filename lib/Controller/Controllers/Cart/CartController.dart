@@ -13,7 +13,7 @@ class CartController extends GetxController {
   void onInit() {
     super.onInit();
     if (CartServiceV2.myCart == null) {
-      CartServiceV2().GetCart().then((value) {
+      CartServiceV2().getCart().then((value) {
         isLoading = false;
         update();
         if(value.isSuccess == false){

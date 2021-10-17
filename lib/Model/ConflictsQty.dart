@@ -1,4 +1,4 @@
-import 'Product.dart';
+import 'package:copapp/AppModel/Balance/Product.dart';
 import 'SaleRoles.dart';
 
 class ConflictsQty {
