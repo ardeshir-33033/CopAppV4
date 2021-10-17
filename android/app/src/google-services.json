@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "257344829185",
+    "project_id": "copappv4test",
+    "storage_bucket": "copappv4test.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:257344829185:android:04b7379a0bf14599b38d00",
+        "android_client_info": {
+          "package_name": "com.example.copapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "257344829185-b5h3l1hm775unc4nn21bsljku461b877.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.copapp",
+            "certificate_hash": "d5507941e55ac534a369068f9547476f6de99a84"
+          }
+        },
+        {
+          "client_id": "257344829185-8cimu52b90ucb0ofpnaqmnqm37n3g78c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDTfOraYeSEjqfT0WxoiuIGdfSf53uMiUI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "257344829185-8cimu52b90ucb0ofpnaqmnqm37n3g78c.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

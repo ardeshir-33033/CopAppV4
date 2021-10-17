@@ -1,0 +1,116 @@
+import 'package:copapp/Controller/Controllers/Balance/MultiBalanceController.dart';
+import 'package:copapp/Controller/Service/BalanceExtension.dart';
+import 'package:copapp/Model/Part.dart';
+import 'package:copapp/Utilities/Base.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
+
+class MultiBalanceWidget extends StatelessWidget {
+  Part bal;
+
+  MultiBalanceWidget({required this.bal});
+
+  MultiBalanceController multiBalanceController = Get.find();
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: () {
+        multiBalanceController.selectPart(bal);
+      },
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(8.0),
+        ),
+        child: Column(
+          children: [
+            Container(
+              margin: EdgeInsets.all(5.0),
+              child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Text(
+                  nameGenerator(),
+                  style: TextStyle(
+                    fontSize: 12,
+                    color: CBase().textPrimaryColor,
+                    letterSpacing: -0.065,
+                  ),
+                  textAlign: TextAlign.right,
+                ),
+              ),
+            ),
+            bal.thumbImagePath != "" && bal.thumbImagePath != null
+                ? Expanded(
+                    flex: 2,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: NetworkImage(bal.thumbImagePath!),
+                          fit: BoxFit.contain,
+                        ),
+                      ),
+                    ),
+                  )
+                : bal.imagePath != null && bal.imagePath!.length > 0
+                    ? Expanded(
+                        flex: 2,
+                        child: Container(
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                              image: NetworkImage(bal.imagePath!),
+                              fit: BoxFit.contain,
+                            ),
+                          ),
+                        ),
+                      )
+                    : Expanded(
+                        flex: 1,
+                        child: Container(
+                          // margin: EdgeInsets.all(5.0),
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                              image: AssetImage("images/noimageiconsmall.png"),
+                              fit: BoxFit.scaleDown,
+                            ),
+                          ),
+                        ),
+                      ),
+            GetBuilder<MultiBalanceController>(
+                id: 3,
+                builder: (_) {
+                  return BalanceExtensions().selectedPart(bal.id) == true
+                      ? Padding(
+                          padding: EdgeInsets.symmetric(
+                              vertical: 5.0, horizontal: 10),
+                          child: SvgPicture.asset(
+                            "images/checkBoxRed.svg",
+                            height: 12,
+                          ),
+                        )
+                      : Padding(
+                          padding: EdgeInsets.symmetric(
+                              vertical: 5.0, horizontal: 10.0),
+                          child: SvgPicture.asset(
+                            "images/checkBoxBlank.svg",
+                            height: 12,
+                          ),
+                        );
+                }),
+
+            // ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  String nameGenerator() {
+    if (bal.appName == "") {
+      return "نام وارد نشده";
+    } else {
+      return bal.appName ?? "";
+    }
+  }
+}

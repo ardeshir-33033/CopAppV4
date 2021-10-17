@@ -1,0 +1,25 @@
+import 'package:copapp/Controller/Service/EpcService.dart';
+import 'package:copapp/Model/Epc/EpcModelSerie.dart';
+import 'package:get/get.dart';
+
+class EpcHomeController extends GetxController {
+  bool isLoading = false;
+  List<EpcModelSerie> modelSeries = [];
+  @override
+  void onInit() {
+    // TODO: implement onInit
+    super.onInit();
+    isLoading = true;
+    update();
+
+    EpcService().GetIranCars().then((value) {
+      if (value.isSuccess) {
+        modelSeries = value.data;
+      } else {
+        value.ShowMessage();
+      }
+      isLoading = false;
+      update();
+    });
+  }
+}
