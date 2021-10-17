@@ -14,7 +14,7 @@ class InquiryCartController extends GetxController {
         isLoading = false;
         update();
       } else {
-        value.ShowMessage();
+        value.showMessage();
       }
     });
   }
@@ -25,7 +25,7 @@ class InquiryCartController extends GetxController {
     ResponseModel res = await InquiryService().generateManualPreOrder();
     isSubmiting = false;
     update(['sub']);
-    res.ShowMessage();
+    res.showMessage();
     if (res.isSuccess) {
       InquiryService.inquiryCart!.inquiryDetails = [];
       update();

@@ -1,10 +1,8 @@
 import 'package:copapp/AppModel/MultiBalance/Part.dart';
 import 'package:copapp/Controller/Controllers/SearchProductController.dart';
-import 'package:copapp/Model/Part.dart';
 import 'package:copapp/View/Components/General/MainFooter.dart';
 import 'package:copapp/View/Components/General/SearchBox.dart';
 import 'package:copapp/View/Pages/SearchProductPage/SearchProduct.dart';
-import 'package:cupertino_will_pop_scope/cupertino_will_pop_scope.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

@@ -33,7 +33,7 @@ class FilterBalanceWidget extends StatelessWidget {
                 BalanceController balanceController = Get.find();
                 if (!balanceController.isLoadingfilter) {
                   selected = i;
-                  balanceController.BalanceFilter(
+                  balanceController.balanceFilter(
                       scaffoldKey: scaffoldKey,
                       filterId: BalanceExtensions().getFilter()[i].id);
                 }

@@ -1,11 +1,9 @@
 import 'package:copapp/Controller/Controllers/LoginController.dart';
 import 'package:copapp/Controller/Service/CartService.dart';
 import 'package:copapp/View/Pages/LoginPages/LoginPage.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
-
-import '../View/Pages/HomePage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
 import 'Base.dart';
 
 class Snacki with ChangeNotifier {

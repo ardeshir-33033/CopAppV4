@@ -2,14 +2,15 @@ import 'package:copapp/Api/ResponseModel.dart';
 import 'package:copapp/Controller/Controllers/LoginController.dart';
 import 'package:copapp/Controller/Service/UserServiceV2.dart';
 import 'package:copapp/Model/GoogleAuth.dart';
+import 'package:copapp/Utilities/Base.dart';
 import 'package:copapp/View/Components/FullCheckBox.dart';
 import 'package:copapp/View/Components/RedButton.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:persian_number_utility/persian_number_utility.dart';
-import 'package:copapp/Utilities/Base.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+
 import 'RegisterPage.dart';
 import 'ResetPasswordPage.dart';
 
@@ -216,7 +217,7 @@ class LoginPage extends StatelessWidget {
                                       title: "ورود",
                                       onTapCallback: (result) async {
                                         if (!loginController.circularVis) {
-                                          loginController.LoginPress(
+                                          loginController.loginPress(
                                               userName: loginController
                                                   .userName.text
                                                   .toEnglishDigit(),
@@ -333,13 +334,13 @@ class LoginPage extends StatelessWidget {
     if (GoogleUser == null) {
       print("failed");
     } else {
-      googleAuth = loginController.GoogleSignToPost(GoogleUser);
+      googleAuth = loginController.googleSignToPost(GoogleUser);
       ResponseModel model = await UserServiceV2().GoogleLogIn(googleAuth);
       if (model.isSuccess) {
         // Navigator.push(context,
         //     MaterialPageRoute(builder: (BuildContext context) => HomePageV4()));
       } else {
-        model.ShowMessage();
+        model.showMessage();
       }
       ////RegisterBusiness().initialDataAsync();
 

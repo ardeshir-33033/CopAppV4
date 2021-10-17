@@ -61,7 +61,7 @@ class ChooseAddressController extends GetxController {
     ResponseModel res =
         await ProfileServiceV2().DeleteAddress(addresses![index].id!);
     if (!res.isSuccess) {
-      res.ShowMessage();
+      res.showMessage();
     } else {
       initAddress().then((value) {
         addresses = AddressModel.data;

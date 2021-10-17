@@ -5,7 +5,6 @@ import 'package:copapp/AppModel/Home/Category.dart';
 import 'package:copapp/AppModel/MultiBalance/Part.dart';
 import 'package:copapp/AppModel/MultiBalance/SubCategory.dart';
 
-import '../Part.dart';
 import '../Vehicle.dart';
 import 'Filter.dart';
 

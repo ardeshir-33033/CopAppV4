@@ -7,8 +7,8 @@ import 'package:copapp/Utilities/Sharei.dart';
 import 'package:copapp/Utilities/Snacki.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:url_launcher/url_launcher.dart';
 import 'package:persian_number_utility/persian_number_utility.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class SendCartController extends GetxController {
   final GlobalKey<ScaffoldState> scaffoldKey = new GlobalKey<ScaffoldState>();
@@ -93,14 +93,14 @@ class SendCartController extends GetxController {
           String num = controller2.text.substring(1).toEnglishDigit();
 
           if (await canLaunch(
-              "https://wa.me/98${num}/?text=test-${response.data}")) {
+              "https://wa.me/98$num/?text=test-${response.data}")) {
             String _url;
             if (response2 != null) {
               _url =
-                  "https://wa.me/98${num}/?text=copapp.ir\nفروشگاه آنلاین قطعات ایسوزو - مشتری گرامی ${controller1.text} \n *•* برای مشاهده فاکتور خود بر روی لینک کلیک کنید:\n ${response.data}  \n ادامه: \n ${response2.data} \n *•* برای پرداخت فاکتور خود بر روی لینک کلیک کنید: \n ${res.data ?? ""}";
+                  "https://wa.me/98$num/?text=copapp.ir\nفروشگاه آنلاین قطعات ایسوزو - مشتری گرامی ${controller1.text} \n *•* برای مشاهده فاکتور خود بر روی لینک کلیک کنید:\n ${response.data}  \n ادامه: \n ${response2.data} \n *•* برای پرداخت فاکتور خود بر روی لینک کلیک کنید: \n ${res.data ?? ""}";
             } else {
               _url =
-                  "https://wa.me/98${num}/?text=copapp.ir\nفروشگاه آنلاین قطعات ایسوزو - مشتری گرامی ${controller1.text} \n *•* برای مشاهده فاکتور خود بر روی لینک کلیک کنید:\n ${response.data}  \n *•* برای پرداخت فاکتور خود بر روی لینک کلیک کنید: \n ${res.data ?? ""}";
+                  "https://wa.me/98$num/?text=copapp.ir\nفروشگاه آنلاین قطعات ایسوزو - مشتری گرامی ${controller1.text} \n *•* برای مشاهده فاکتور خود بر روی لینک کلیک کنید:\n ${response.data}  \n *•* برای پرداخت فاکتور خود بر روی لینک کلیک کنید: \n ${res.data ?? ""}";
               // _url = "https://wa.me/98${num}/?text=${Uri.parse("copapp.ir\nفروشگاه")}";
             }
             try {
@@ -113,10 +113,10 @@ class SendCartController extends GetxController {
             }
           }
         } else {
-          response.ShowMessage();
+          response.showMessage();
         }
       } else {
-        res!.ShowMessage(scaffoldKey);
+        res!.showMessage(scaffoldKey);
       }
     } else {
       Snacki().GETSnackBar(false, "لطفا فیلد های ضروری را پر کنید");

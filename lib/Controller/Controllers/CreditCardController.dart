@@ -1,8 +1,6 @@
-import 'package:copapp/Api/ResponseModel.dart';
 import 'package:copapp/Controller/Service/ProfileServiceV2.dart';
 import 'package:copapp/Model/CardModel.dart';
 import 'package:copapp/Utilities/Snacki.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -18,7 +16,7 @@ class CreditCardController extends GetxController {
     super.onInit();
     ProfileServiceV2().GetPersonalInformation().then((value) {
       if (!value.isSuccess) {
-        value.ShowMessage();
+        value.showMessage();
       } else {
         cardNumberController.text = ProfileServiceV2.profile.bankCarNo ?? '';
         isLoading = false;
@@ -40,7 +38,7 @@ class CreditCardController extends GetxController {
       await ProfileServiceV2().SetBankCardNumber(card).then((value) {
         isSubmiting = false;
         update();
-        value.ShowMessage();
+        value.showMessage();
         if (value.isSuccess) {
           Future.delayed(Duration(seconds: 2), () {
             Get.back();

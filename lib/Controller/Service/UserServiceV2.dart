@@ -1,4 +1,5 @@
 import 'dart:convert';
+
 import 'package:copapp/Api/Api.dart';
 import 'package:copapp/Api/QueryModel.dart';
 import 'package:copapp/Api/ResponseModel.dart';
@@ -13,7 +14,6 @@ import 'package:copapp/Model/phoneNumberModel.dart';
 import 'package:copapp/Utilities/SharedPreferencePath.dart';
 import 'package:dio/dio.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:path/path.dart' as path;
 
 import '../../Api/Enums.dart';
 

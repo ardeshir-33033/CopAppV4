@@ -29,7 +29,7 @@ class LoginController extends GetxController {
           password.text = UserServiceV2().getUser().password!;
 
           LoginController()
-              .LoginFunc(userName: userName.text, password: password.text)
+              .loginFunc(userName: userName.text, password: password.text)
               .then((value) {
             circularVis = false;
             update([2]);
@@ -51,7 +51,7 @@ class LoginController extends GetxController {
     update([2]);
   }
 
-  Future<bool> LoginFunc({
+  Future<bool> loginFunc({
     required String userName,
     required String password,
   }) async {
@@ -61,13 +61,13 @@ class LoginController extends GetxController {
         .Token(LoginModel(password: password, userName: userName));
     if (res.isSuccess == false) {
       // setCircularVal(false);
-      res.ShowMessage();
+      res.showMessage();
       circularVis = false;
       update([2]);
       return false;
     } else {
       if (autoLoginValue.value == '1') {
-        saveAutoLoginDataLocaly(true);
+        saveAutoLoginDataLocal(true);
       }
       // circularVis = false;
       // update([2]);
@@ -84,14 +84,14 @@ class LoginController extends GetxController {
     }
   }
 
-  LoginPress(
+  loginPress(
       {required String userName,
       required String password,
       required GlobalKey<ScaffoldState> scaffoldKey}) async {
     if (password == "" || userName == "") {
       Snacki().GETSnackBar(false, "فیلد رمز و پسورد نباید خالی باشد.");
     } else {
-      LoginFunc(password: password, userName: userName);
+      loginFunc(password: password, userName: userName);
       update([2]);
     }
 
@@ -101,7 +101,7 @@ class LoginController extends GetxController {
     // });
   }
 
-  Future saveAutoLoginDataLocaly(bool al) async {
+  Future saveAutoLoginDataLocal(bool al) async {
     await SharedPreferencePath()
         .setUserDataInSharePrefrences(al ? "1" : "0", "autoLoginKey");
     autoLoginValue.value = al ? "1" : "0";
@@ -111,26 +111,15 @@ class LoginController extends GetxController {
     var data = await SharedPreferencePath()
         .getUserDataInSharePrefrences("autoLoginKey");
     autoLoginValue.value = data ?? '0';
-
-    // return autoLoginValue.value;
   }
 
-  logingIn() async {
-    ResponseModel res = await UserServiceV2().AutoLogin();
 
-    if (res.isSuccess) {
-      // Get.off(
-      //   HomePage(),
-      // );
-    }
-  }
-
-  GoogleAuth GoogleSignToPost(GoogleSignInAccount GoogleUser) {
+  GoogleAuth googleSignToPost(GoogleSignInAccount googleUser) {
     GoogleAuth googleAuthUser = GoogleAuth(
-      id: GoogleUser.id,
-      displayName: GoogleUser.displayName,
-      photoUrl: GoogleUser.photoUrl,
-      email: GoogleUser.email,
+      id: googleUser.id,
+      displayName: googleUser.displayName,
+      photoUrl: googleUser.photoUrl,
+      email: googleUser.email,
     );
 
     return googleAuthUser;

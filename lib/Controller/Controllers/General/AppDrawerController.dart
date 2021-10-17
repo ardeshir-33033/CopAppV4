@@ -1,5 +1,4 @@
 import 'package:copapp/Controller/Service/UserServiceV2.dart';
-import 'package:copapp/Utilities/Snacki.dart';
 import 'package:get/get.dart';
 
 class AppDrawerController extends GetxController {

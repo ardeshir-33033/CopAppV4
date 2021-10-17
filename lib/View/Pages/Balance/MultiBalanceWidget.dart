@@ -1,7 +1,6 @@
 import 'package:copapp/AppModel/MultiBalance/Part.dart';
 import 'package:copapp/Controller/Controllers/Balance/MultiBalanceController.dart';
 import 'package:copapp/Controller/Service/BalanceExtension.dart';
-import 'package:copapp/Model/Part.dart';
 import 'package:copapp/Utilities/Base.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';

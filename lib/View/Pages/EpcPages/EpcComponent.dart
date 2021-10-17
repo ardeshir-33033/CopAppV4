@@ -3,7 +3,6 @@ import 'package:copapp/Utilities/Base.dart';
 import 'package:copapp/View/Components/General/NewDropDown.dart';
 import 'package:copapp/View/Pages/EpcPages/ItemsTable.dart';
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
 
 class EpcComponent extends StatelessWidget {

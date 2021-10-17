@@ -15,7 +15,7 @@ class EpcGroupController extends GetxController {
       if (value.isSuccess) {
         groups = value.data;
       } else {
-        value.ShowMessage();
+        value.showMessage();
       }
       isLoading = false;
       update();

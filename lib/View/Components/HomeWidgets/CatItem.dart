@@ -4,7 +4,6 @@ import 'package:copapp/Controller/Service/BalanceService.dart';
 import 'package:copapp/Utilities/Base.dart';
 import 'package:copapp/View/Pages/Balance/MultiBalancePage.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class CatItem extends StatelessWidget {
   final Category category;

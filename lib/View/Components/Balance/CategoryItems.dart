@@ -1,7 +1,6 @@
 import 'package:copapp/AppModel/MultiBalance/Part.dart';
 import 'package:copapp/Controller/Service/BalanceExtension.dart';
 import 'package:copapp/Model/Balance/Filter.dart';
-import 'package:copapp/Model/Part.dart';
 import 'package:copapp/Utilities/Base.dart';
 import 'package:flutter/material.dart';
 import 'package:persian_number_utility/persian_number_utility.dart';

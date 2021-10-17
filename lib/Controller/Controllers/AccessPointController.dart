@@ -108,7 +108,7 @@ class AccessPointController extends GetxController {
           } else {
             isLoading = false;
             update();
-            res.ShowMessage();
+            res.showMessage();
 
             // res.ShowMessage(scaffoldKey);
           }
@@ -129,7 +129,7 @@ class AccessPointController extends GetxController {
           } else {
             isLoading = false;
             update();
-            res.ShowMessage();
+            res.showMessage();
           }
         }
       }

@@ -7,21 +7,17 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'BasketItem.dart';
-
 class CartTab extends StatelessWidget {
-  GlobalKey<ScaffoldState> scaffold;
-
-  // Function(dynamic refresh)? refreshCallback;
-  List<CartDetail>? cartDetail = [];
+  final GlobalKey<ScaffoldState> scaffold;
+  ////List<CartDetail>? cartDetail = [];
+  final List<CartDetail>? cartDetail;
 
   CartTab({
     required this.scaffold,
-    // this.refreshCallback,
     this.cartDetail,
   });
 
-  NumberFormat nf = NumberFormat.currency(
+  final NumberFormat nf = NumberFormat.currency(
     locale: "fa-IR",
     symbol: "",
   );

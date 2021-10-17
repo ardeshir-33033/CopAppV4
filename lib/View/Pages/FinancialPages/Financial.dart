@@ -1,13 +1,10 @@
 import 'package:copapp/Controller/Controllers/FinancialController.dart';
-
 import 'package:copapp/Utilities/Base.dart';
 import 'package:copapp/View/Components/General/AppDrawer.dart';
 import 'package:copapp/View/Components/General/CustomAppBar.dart';
 import 'package:copapp/View/Components/General/SearchInList.dart';
 import 'package:cupertino_will_pop_scope/cupertino_will_pop_scope.dart';
-
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
 
 import 'ChoiceWidget.dart';

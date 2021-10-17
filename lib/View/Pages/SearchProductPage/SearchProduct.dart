@@ -1,5 +1,4 @@
 import 'package:copapp/Controller/Controllers/SearchProductController.dart';
-import 'package:copapp/Model/Part.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

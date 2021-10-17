@@ -5,7 +5,6 @@ import 'package:copapp/View/Components/FullCheckBox.dart';
 import 'package:copapp/View/Components/General/SearchInList.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:jalali_calendar/jalali_calendar.dart';
 
 class FinancialFilter extends StatelessWidget {
   final Function? onSelect;

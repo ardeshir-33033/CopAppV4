@@ -1,14 +1,14 @@
 import 'dart:async';
+import 'dart:ui' as ui;
+
 import 'package:copapp/AppModel/Balance/Product.dart';
 import 'package:copapp/AppModel/MultiBalance/Part.dart';
 import 'package:copapp/Controller/Service/BalanceService.dart';
 import 'package:copapp/Controller/Service/EpcService.dart';
 import 'package:copapp/Model/Epc/EpcPartGroup.dart';
-import 'package:copapp/Model/Part.dart';
 import 'package:copapp/Utilities/Base.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'dart:ui' as ui;
 
 class EpcPartController extends GetxController {
   bool isLoading = false, isZooming = false;
@@ -75,7 +75,7 @@ class EpcPartController extends GetxController {
       } else {
         isLoading = false;
         update();
-        value.ShowMessage();
+        value.showMessage();
       }
     });
   }
@@ -144,7 +144,7 @@ class EpcPartController extends GetxController {
                 duration: Duration(milliseconds: 500), curve: Curves.easeIn);
           });
         } else {
-          value.ShowMessage();
+          value.showMessage();
         }
       });
     } else {

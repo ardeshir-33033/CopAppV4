@@ -1,6 +1,5 @@
 import 'package:copapp/Controller/Controllers/General/AppDrawerController.dart';
 import 'package:copapp/Controller/Service/UserServiceV2.dart';
-import 'package:copapp/Model/Inquiry/InquiryCart.dart';
 import 'package:copapp/Utilities/Base.dart';
 import 'package:copapp/Utilities/Snacki.dart';
 import 'package:copapp/View/Pages/AboutUsPage/AboutUsPage.dart';

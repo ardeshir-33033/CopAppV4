@@ -2,7 +2,6 @@ import 'package:copapp/Controller/Controllers/FinListController.dart';
 import 'package:copapp/Model/FilterResponseModel.dart';
 import 'package:copapp/Model/Order/OrderFilterModel.dart';
 import 'package:copapp/Model/Order/OrderHeader.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

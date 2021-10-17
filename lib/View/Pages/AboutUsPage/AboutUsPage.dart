@@ -3,8 +3,8 @@ import 'package:copapp/Utilities/Base.dart';
 import 'package:copapp/View/Components/General/AppDrawer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:persian_number_utility/persian_number_utility.dart';
 import 'package:get/get.dart';
+import 'package:persian_number_utility/persian_number_utility.dart';
 
 class AboutUsPage extends StatelessWidget {
 

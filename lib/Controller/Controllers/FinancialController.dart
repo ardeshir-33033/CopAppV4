@@ -8,7 +8,6 @@ import 'package:copapp/View/Pages/FinancialPages/FinancialFilter.dart';
 import 'package:copapp/View/Pages/FinancialPages/FinancialList.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:jalali_calendar/jalali_calendar.dart';
 import 'package:persian_number_utility/persian_number_utility.dart';
 
 class FinancialController extends GetxController {
@@ -35,7 +34,7 @@ class FinancialController extends GetxController {
     Map<String, dynamic> data = {};
     model = await OrderServiceV2().PostOrdersFilter(data);
     if (!model!.isSuccess) {
-      if (!poped) model!.ShowMessage();
+      if (!poped) model!.showMessage();
       Future.delayed(Duration(seconds: 2), () {
         if (!poped) {
           poped = true;
@@ -49,7 +48,7 @@ class FinancialController extends GetxController {
   Future getCommission() async {
     commissionModel = await OrderServiceV2().GetAllCommissionOrders();
     if (!commissionModel.isSuccess) {
-      if (!poped) commissionModel.ShowMessage();
+      if (!poped) commissionModel.showMessage();
       Future.delayed(Duration(seconds: 2), () {
         if (!poped) {
           poped = true;
@@ -63,7 +62,7 @@ class FinancialController extends GetxController {
   Future getFilters() async {
     filtersModel = await OrderServiceV2().GetFeedOrdersFilter();
     if (!filtersModel.isSuccess) {
-      if (!poped) filtersModel.ShowMessage();
+      if (!poped) filtersModel.showMessage();
       Future.delayed(Duration(seconds: 2), () {
         if (!poped) {
           poped = true;
@@ -127,7 +126,7 @@ class FinancialController extends GetxController {
   getFilteredByDate(Map<String, dynamic> data) async {
     model = await OrderServiceV2().PostOrdersFilter(data);
     if (!model!.isSuccess) {
-      if (!poped) model!.ShowMessage();
+      if (!poped) model!.showMessage();
       Future.delayed(Duration(seconds: 2), () {
         if (!poped) {
           poped = true;

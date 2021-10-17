@@ -2,13 +2,13 @@ import 'package:auto_size_text_pk/auto_size_text_pk.dart';
 import 'package:copapp/AppModel/Balance/Product.dart';
 import 'package:copapp/Controller/Controllers/Balance/BalanceItemController.dart';
 import 'package:copapp/Controller/Controllers/General/ScoreService.dart';
-import 'package:persian_number_utility/persian_number_utility.dart';
 import 'package:copapp/Controller/Service/CartService.dart';
 import 'package:copapp/Utilities/Base.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:persian_number_utility/persian_number_utility.dart';
 
 class BalanceItem extends StatefulWidget {
   Product? bal;

@@ -19,7 +19,7 @@ class BalanceController extends GetxController {
     return items;
   }
 
-  BalanceFilter(
+  balanceFilter(
       {required GlobalKey<ScaffoldState> scaffoldKey, int? filterId}) async {
     isLoadingfilter = true;
     update([2]);

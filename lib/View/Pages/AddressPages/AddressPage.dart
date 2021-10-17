@@ -1,5 +1,4 @@
 import 'package:copapp/Controller/Controllers/AddressController.dart';
-
 import 'package:copapp/Utilities/Base.dart';
 import 'package:copapp/View/Components/General/AppDrawer.dart';
 import 'package:copapp/View/Components/General/CustomAppBar.dart';
@@ -42,14 +41,14 @@ class AddressPage extends StatelessWidget {
                       Expanded(
                         child: Container(
                           width: CBase().getFullWidth(context),
-                          child: addressController.Addresses == null
+                          child: addressController.addresses == null
                               ? Center(
                                   child: Text("در حال دریافت"),
                                 )
-                              : addressController.Addresses.isNotEmpty
+                              : addressController.addresses.isNotEmpty
                                   ? ListView.builder(
                                       itemCount:
-                                          addressController.Addresses.length,
+                                          addressController.addresses.length,
                                       itemBuilder: (context, index) {
                                         return Column(
                                           children: [
@@ -104,7 +103,7 @@ class AddressPage extends StatelessWidget {
                                                                           right:
                                                                               10.0),
                                                                   child: Text(
-                                                                    '${addressController.Addresses[index].title ?? ""}',
+                                                                    '${addressController.addresses[index].title ?? ""}',
                                                                     style:
                                                                         TextStyle(
                                                                       fontSize:
@@ -184,7 +183,7 @@ class AddressPage extends StatelessWidget {
                                                                       context) /
                                                               20,
                                                           child: Text(
-                                                              "آدرس: ${addressController.Addresses[index].city} - ${addressController.Addresses[index].completeAddress}",
+                                                              "آدرس: ${addressController.addresses[index].city} - ${addressController.addresses[index].completeAddress}",
                                                               style: TextStyle(
                                                                 fontSize: CBase()
                                                                     .mtextfontSize,
@@ -276,7 +275,7 @@ class AddressPage extends StatelessWidget {
                                                                       .spaceEvenly,
                                                               children: [
                                                                 Text(
-                                                                    "${addressController.Addresses[index].receiverName ?? ""}",
+                                                                    "${addressController.addresses[index].receiverName ?? ""}",
                                                                     style:
                                                                         TextStyle(
                                                                       fontSize:
@@ -290,7 +289,7 @@ class AddressPage extends StatelessWidget {
                                                                   thickness: 2,
                                                                 ),
                                                                 Text(
-                                                                    "${addressController.Addresses[index].postalCode ?? ""}",
+                                                                    "${addressController.addresses[index].postalCode ?? ""}",
                                                                     style:
                                                                         TextStyle(
                                                                       fontSize:
@@ -344,7 +343,7 @@ class AddressPage extends StatelessWidget {
                                                                         .addAddressController
                                                                         .currentAddress =
                                                                     addressController
-                                                                            .Addresses[
+                                                                            .addresses[
                                                                         index];
                                                                 Get.to(() =>
                                                                     AddAddress());
@@ -392,7 +391,7 @@ class AddressPage extends StatelessWidget {
                                             ),
                                             Visibility(
                                                 visible: addressController
-                                                            .Addresses.length -
+                                                            .addresses.length -
                                                         1 ==
                                                     index,
                                                 child: Padding(

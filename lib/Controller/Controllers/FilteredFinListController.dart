@@ -3,7 +3,6 @@ import 'package:copapp/Controller/Service/OrderService.dart';
 import 'package:copapp/Model/FilterResponseModel.dart';
 import 'package:copapp/Model/Order/OrderHeader.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class FilteredFinListController extends GetxController {
@@ -57,7 +56,7 @@ class FilteredFinListController extends GetxController {
     }
     model = await OrderServiceV2().PostOrdersFilter(data);
             if (!model!.isSuccess) {
-      model!.ShowMessage();
+      model!.showMessage();
     }
   }
 

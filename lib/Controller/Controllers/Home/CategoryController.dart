@@ -12,7 +12,7 @@ class CategoryController extends GetxController {
   @override
   void onInit() {
     BalanceServiceV2()
-        .GetShowAllParents()
+        .getHomeData()
         .then((value) {
       if (value.isSuccess) {
         isLoading = false;
@@ -20,7 +20,7 @@ class CategoryController extends GetxController {
 
         update();
       } else {
-        value.ShowMessage();
+        value.showMessage();
       }
     });
     super.onInit();

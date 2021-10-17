@@ -1,6 +1,5 @@
 import 'package:copapp/AppModel/Balance/Product.dart';
 import 'package:copapp/AppModel/Cart/CartDetail.dart';
-import 'package:copapp/Model/CartDetail.dart';
 
 
 class OrderDetail {

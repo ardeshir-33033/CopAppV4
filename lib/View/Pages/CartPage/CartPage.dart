@@ -9,6 +9,7 @@ import 'package:easy_localization/easy_localization.dart' as lc;
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:persian_number_utility/persian_number_utility.dart';
+
 import 'BottomCompeleteBuying.dart';
 import 'CartTab.dart';
 

@@ -4,6 +4,7 @@ import 'package:copapp/Utilities/Base.dart';
 import 'package:copapp/View/Pages/LoginPages/RegisterPagePassword.dart';
 import 'package:flutter/material.dart';
 import 'package:persian_number_utility/persian_number_utility.dart';
+
 import 'RedButton.dart'; //import
 
 class FormRegisterStep1 extends StatefulWidget {
@@ -99,7 +100,7 @@ class _FormRegisterStep1State extends State<FormRegisterStep1> {
                       )),
                 );
               } else {
-                ResponseModel().ShowMessage();
+                ResponseModel().showMessage();
               }
               // user.fullName = fname.text + " " + lname.text;
             },

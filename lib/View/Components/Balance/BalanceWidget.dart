@@ -1,10 +1,10 @@
 import 'package:copapp/AppModel/MultiBalance/Part.dart';
 import 'package:copapp/Controller/Controllers/General/ScoreService.dart';
-import 'package:copapp/Model/Part.dart';
 import 'package:copapp/Utilities/Base.dart';
 import 'package:copapp/View/Components/Inquiry/InquiryItem.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
 import 'BrandItems.dart';
 import 'CategoryItems.dart';
 

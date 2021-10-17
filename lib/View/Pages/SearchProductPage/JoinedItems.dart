@@ -7,7 +7,6 @@ import 'package:copapp/Controller/Controllers/SearchProductController.dart';
 import 'package:copapp/Controller/Service/CartService.dart';
 import 'package:copapp/Controller/Service/ProfileServiceV2.dart';
 import 'package:copapp/Utilities/Base.dart';
-import 'package:copapp/Utilities/Snacki.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

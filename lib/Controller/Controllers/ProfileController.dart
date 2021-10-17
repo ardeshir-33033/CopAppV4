@@ -1,22 +1,22 @@
 import 'dart:io';
+
 import 'package:copapp/Api/ResponseModel.dart';
 import 'package:copapp/Controller/Service/ProfileServiceV2.dart';
-import 'package:copapp/Utilities/Snacki.dart';
-import 'package:persian_number_utility/persian_number_utility.dart';
 import 'package:copapp/Model/Profile.dart';
+import 'package:copapp/Utilities/Snacki.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:persian_number_utility/persian_number_utility.dart';
 
 class ProfileController extends GetxController {
   @override
   void onInit() {
-    // TODO: implement onInit
     super.onInit();
     isLoadingMain = true;
     update();
-    GetPersonalInfo().then((value) {
+    getPersonalInfo().then((value) {
       profileData = profileResponse.data;
       isLoadingMain = false;
       update();
@@ -43,26 +43,26 @@ class ProfileController extends GetxController {
   final picker = ImagePicker();
   bool uploadImage = false;
 
-  Future GetPersonalInfo() async {
+  Future getPersonalInfo() async {
     profileResponse = await ProfileServiceV2().GetPersonalInformation();
-    profileResponse.ShowMessage();
+    profileResponse.showMessage();
   }
 
   confirmNumber() {
     isLoadingNumber = true;
     update();
-    if (teleNumber.text != null && teleNumber.text != "") {
+    if (teleNumber.text != "") {
       ProfileServiceV2.profile.telePhoneNumber =
           teleNumber.text.toEnglishDigit();
     }
-    if (phoneNumber.text != null && phoneNumber.text != "") {
+    if (phoneNumber.text != "") {
       ProfileServiceV2.profile.phoneNumber = phoneNumber.text.toEnglishDigit();
     }
-    if (email.text != null && email.text != "") {
+    if (email.text != "") {
       ProfileServiceV2.profile.emailAddress = email.text;
     }
     ProfileServiceV2().EditPersonalInformation().then((v) {
-      v.ShowMessage();
+      v.showMessage();
 
       isLoadingNumber = false;
       editingBool = false;
@@ -91,7 +91,7 @@ class ProfileController extends GetxController {
       ProfileServiceV2.profile.nationalCode = codemelli.text;
     }
     ProfileServiceV2().EditPersonalInformation().then((v) {
-      v.ShowMessage();
+      v.showMessage();
 
       isLoadingPersonal = false;
 
@@ -176,7 +176,7 @@ class ProfileController extends GetxController {
           Get.back();
         } else {
           Get.back();
-          value.ShowMessage();
+          value.showMessage();
         }
       });
   }

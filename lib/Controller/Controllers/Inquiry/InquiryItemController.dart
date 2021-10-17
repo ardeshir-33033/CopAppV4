@@ -23,7 +23,7 @@ class InquiryItemController extends GetxController {
             .firstWhere((element) => element.productId == product.productsId)
             .qty!;
       } else {
-        value.ShowMessage();
+        value.showMessage();
       }
     });
     return newQty;
@@ -47,7 +47,7 @@ class InquiryItemController extends GetxController {
           BalanceItemController balanceItemController = Get.find();
           balanceItemController.update([6]);
         } else {
-          value.ShowMessage();
+          value.showMessage();
         }
       });
     } else {
@@ -64,7 +64,7 @@ class InquiryItemController extends GetxController {
             BalanceItemController balanceItemController = Get.find();
             balanceItemController.update([6]);
           } else {
-            value.ShowMessage();
+            value.showMessage();
           }
         });
       } else {
@@ -73,7 +73,7 @@ class InquiryItemController extends GetxController {
           if (value.isSuccess) {
             newQty = 0;
           } else {
-            value.ShowMessage();
+            value.showMessage();
           }
         });
       }

@@ -1,28 +1,21 @@
 import 'package:copapp/Api/ResponseModel.dart';
 import 'package:copapp/Controller/Controllers/AddAddressController.dart';
 import 'package:copapp/Controller/Service/ProfileServiceV2.dart';
-import 'package:copapp/Controller/Service/ShippingService.dart';
 import 'package:copapp/Model/Address.dart';
-import 'package:copapp/Model/Neshan/NeshanModel.dart';
-import 'package:copapp/Model/Shipping/CountryNameModel.dart';
-import 'package:copapp/Model/Shipping/ProvinceCityModel.dart';
-import 'package:copapp/Model/Shipping/ProvinceModel.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:http/http.dart';
+
 
 class AddressController extends GetxController {
 
-  ResponseModel<List<Address>> AddressModel = ResponseModel<List<Address>>();
-  List<Address> Addresses = [];
+  ResponseModel<List<Address>> addressModel = ResponseModel<List<Address>>();
+  List<Address> addresses = [];
   bool isLoading = false;
   AddAddressController addAddressController = Get.put(AddAddressController());
 
   Future<ResponseModel> initAddress() async {
-    AddressModel = await ProfileServiceV2().GetAddresses();
+    addressModel = await ProfileServiceV2().GetAddresses();
     addAddressController.isSendingCart = false;
-    return AddressModel;
+    return addressModel;
   }
 
   @override
@@ -31,12 +24,12 @@ class AddressController extends GetxController {
     super.onInit();
     isLoading = true;
     update();
-    Addresses = [];
+    addresses = [];
     initAddress().then((value) {
       if(!value.isSuccess){
-        value.ShowMessage();
+        value.showMessage();
       }
-      Addresses = AddressModel.data;
+      addresses = addressModel.data;
       isLoading = false;
       update();
     });
@@ -44,12 +37,12 @@ class AddressController extends GetxController {
 
   void deleteAddress(int index) async {
     ResponseModel res =
-        await ProfileServiceV2().DeleteAddress(Addresses[index].id!);
+        await ProfileServiceV2().DeleteAddress(addresses[index].id!);
     if (!res.isSuccess) {
-      res.ShowMessage();
+      res.showMessage();
     } else {
       initAddress().then((value) {
-        Addresses = AddressModel.data;
+        addresses = addressModel.data;
         update();
       });
     }

@@ -6,10 +6,8 @@ import 'package:copapp/Utilities/Base.dart';
 import 'package:copapp/View/Components/General/AppDrawer.dart';
 import 'package:copapp/View/Components/General/CustomAppBar.dart';
 import 'package:copapp/View/Components/General/InAppBrowser.dart';
-import 'package:copapp/View/Widgets/DrawerWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
 import 'PreDataWidget.dart';
@@ -57,7 +55,7 @@ class _ConfirmInPersonState
         var result = await OrderServiceV2().Verify();
         OrderServiceV2().setAuthority("");
         if (!result.isSuccess) {
-          result.ShowMessage();
+          result.showMessage();
         } else {
           OrderHeader payedOrder = OrderHeader.fromJson(result.data);
           if (payedOrder.orderStatusId == "confirmed" ||
@@ -153,7 +151,7 @@ class _ConfirmInPersonState
 
                           // await _launchURL(result.data);
                         } else {
-                          result.ShowMessage(_scaffoldKey);
+                          result.showMessage(_scaffoldKey);
                         }
                       },
                     ),

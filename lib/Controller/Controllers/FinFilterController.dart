@@ -13,7 +13,7 @@ class FinFilterController extends GetxController {
       items = [];
       _filters!.customers!.forEach((v) {
         print(v);
-        if (v != null) items.add(v);
+        items.add(v);
       });
     } else if (_id == 2) {
       items = [];
@@ -49,7 +49,6 @@ class FinFilterController extends GetxController {
   }
 
   void onTap(int index, int? _id, OrdersFilterModel? _filters) {
-    String heading = items[index];
     if (_id == 1) {
       selected = items[index];
     } else if (_id == 2) {

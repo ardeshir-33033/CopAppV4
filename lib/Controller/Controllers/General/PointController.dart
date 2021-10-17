@@ -1,7 +1,5 @@
 import 'package:audioplayers/audioplayers.dart';
-import 'package:copapp/Controller/Service/CartService.dart';
 import 'package:copapp/Controller/Service/ProductInfoService.dart';
-import 'package:copapp/Utilities/Base.dart';
 import 'package:get/get.dart';
 
 class PointController extends GetxController {

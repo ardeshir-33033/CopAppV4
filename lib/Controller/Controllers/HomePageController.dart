@@ -1,7 +1,6 @@
 import 'package:copapp/AppModel/Home/Car.dart';
 import 'package:copapp/Controller/Service/BalanceExtension.dart';
 import 'package:copapp/Controller/Service/BalanceService.dart';
-import 'package:copapp/Model/Keyword.dart';
 import 'package:copapp/Utilities/Snacki.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -18,16 +17,17 @@ class HomeController extends GetxController {
 
   @override
   void onInit() {
-    BalanceServiceV2().GetShowAllParents().then((v) {
-      if(v.isSuccess){
+    super.onInit();
+    BalanceServiceV2().getHomeData().then((v) {
+      if (v.isSuccess) {
         isLoading = false;
         cars = BalanceServiceV2.myHomeData!.cars!;
         cars.forEach((v) {
           v.name = v.name!.toPersianDigit();
         });
         update(['2']);
-      }else{
-        v.ShowMessage();
+      } else {
+        v.showMessage();
       }
     });
   }
@@ -56,8 +56,7 @@ class HomeController extends GetxController {
   }
 
   onCancelCar() {
-    BalanceExtensions()
-        .setSelectedCar(Car(id: 0, engName: "همه", name: "All"));
+    BalanceExtensions().setSelectedCar(Car(id: 0, engName: "همه", name: "All"));
     carNotSelected = true;
     update(['1']);
 

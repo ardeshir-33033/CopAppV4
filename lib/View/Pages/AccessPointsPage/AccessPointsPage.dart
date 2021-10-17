@@ -1,14 +1,9 @@
-import 'package:copapp/Api/ResponseModel.dart';
 import 'package:copapp/Controller/Controllers/AccessPointController.dart';
 import 'package:copapp/Controller/Controllers/General/ScoreService.dart';
-
-import 'package:copapp/Controller/Service/ProfileServiceV2.dart';
 import 'package:copapp/Utilities/Base.dart';
-import 'package:copapp/Utilities/Snacki.dart';
 import 'package:copapp/View/Components/General/AppDrawer.dart';
 import 'package:copapp/View/Components/General/CustomAppBar.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
 import 'NewPassword.dart';

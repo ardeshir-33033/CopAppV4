@@ -15,7 +15,7 @@ class BalanceItemController extends GetxController {
     if (!hasItem) {
       var result = await CartServiceV2().addProduct(bal.productsId!, 1);
       if (!result.isSuccess) {
-        result.ShowMessage();
+        result.showMessage();
         return 0;
       } else {
         update([1]);
@@ -36,8 +36,8 @@ class BalanceItemController extends GetxController {
     } else {
       upDate();
 
-      int QTY = CartServiceV2().cartProductQTY(bal.productsId);
-      int newQTY = QTY;
+      int qty = CartServiceV2().cartProductQTY(bal.productsId);
+      int newQTY = qty;
 
       if (bal.multipleQTY! <= 0)
         newQTY += 1;
@@ -46,12 +46,12 @@ class BalanceItemController extends GetxController {
       if (newQTY > bal.productVirtualQTY!.toInt()) {
         Snacki().GETSnackBar(
             false, "تعداد خرید این کالا به ماکسیمم خود رسیده است.");
-        return QTY;
+        return qty;
       } else {
         var result = await CartServiceV2().updateProduct(bal.productsId!, newQTY);
 
         if (!result.isSuccess) {
-          result.ShowMessage();
+          result.showMessage();
         } else {
           update([1]);
           update([6]);
@@ -81,7 +81,7 @@ class BalanceItemController extends GetxController {
       var result = await CartServiceV2().deleteProduct(bal.productsId!);
 
       if (result.isSuccess) {
-        result.ShowMessage();
+        result.showMessage();
       } else {
         PointController pointController = Get.find();
         pointController.decrease(bal.score!.toDouble()* (bal.multipleQTY??1));
@@ -95,7 +95,7 @@ class BalanceItemController extends GetxController {
       var result = await CartServiceV2().updateProduct(bal.productsId!, itemCount);
 
       if (!result.isSuccess) {
-        result.ShowMessage();
+        result.showMessage();
       } else {
         PointController pointController = Get.find();
         pointController.decrease(bal.score!.toDouble() * (bal.multipleQTY??1));

@@ -15,7 +15,7 @@ class ProductWidgets {
       result.isSuccess = false;
       result.message = "تصویری موجود نیست";
 
-      result.ShowMessage();
+      result.showMessage();
 
       return;
     }

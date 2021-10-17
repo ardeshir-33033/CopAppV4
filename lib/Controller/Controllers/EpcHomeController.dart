@@ -16,7 +16,7 @@ class EpcHomeController extends GetxController {
       if (value.isSuccess) {
         modelSeries = value.data;
       } else {
-        value.ShowMessage();
+        value.showMessage();
       }
       isLoading = false;
       update();

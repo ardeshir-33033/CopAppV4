@@ -1,6 +1,5 @@
 import 'package:copapp/Controller/Controllers/InvoiceController.dart';
 import 'package:copapp/Controller/Service/CartService.dart';
-import 'package:copapp/Model/CartDetail.dart';
 import 'package:copapp/Model/Order/OrderDetail.dart';
 import 'package:copapp/Utilities/Base.dart';
 import 'package:copapp/View/Pages/InvoicePage/InvoicePage.dart';

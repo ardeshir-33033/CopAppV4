@@ -1,11 +1,6 @@
-import 'dart:async';
 import 'dart:io';
-import 'package:copapp/Api/ResponseModel.dart';
+
 import 'package:copapp/Controller/Controllers/General/SearchController.dart';
-import 'package:copapp/Controller/Service/BalanceService.dart';
-import 'package:copapp/Model/Keyword.dart';
-import 'package:copapp/Model/Part.dart';
-import 'package:copapp/Model/Serach/CarTipVm.dart';
 import 'package:copapp/Utilities/Base.dart';
 import 'package:copapp/View/Components/Search/SearchSpeech.dart';
 import 'package:copapp/View/Pages/SearchProductPage/SearchProductPage.dart';

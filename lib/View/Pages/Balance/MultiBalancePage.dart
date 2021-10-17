@@ -9,6 +9,7 @@ import 'package:copapp/View/Components/General/SearchBox.dart';
 import 'package:cupertino_will_pop_scope/cupertino_will_pop_scope.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
 import 'MultiBalanceWidget.dart';
 
 class MultiBalancePage extends StatefulWidget {

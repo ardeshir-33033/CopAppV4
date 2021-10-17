@@ -1,10 +1,12 @@
 import 'dart:async';
+
 import 'package:copapp/Api/ResponseModel.dart';
 import 'package:copapp/Controller/Service/UserServiceV2.dart';
 import 'package:copapp/Utilities/Base.dart';
 import 'package:copapp/View/Pages/LoginPages/NumberPage.dart';
-import 'package:persian_number_utility/persian_number_utility.dart'; //import
 import 'package:flutter/material.dart';
+import 'package:persian_number_utility/persian_number_utility.dart'; //import
+
 import 'RedButton.dart';
 
 class FormRegisterStep2 extends StatefulWidget {

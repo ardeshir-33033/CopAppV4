@@ -5,15 +5,11 @@ import 'package:copapp/Api/QueryModel.dart';
 import 'package:copapp/Api/ResponseModel.dart';
 import 'package:copapp/Api/Routing/RoutingBalance.dart';
 import 'package:copapp/AppModel/Balance/FilterBox.dart';
-import 'package:copapp/AppModel/Home/Car.dart';
 import 'package:copapp/AppModel/Home/Category.dart';
 import 'package:copapp/AppModel/Home/HomeModel.dart';
 import 'package:copapp/AppModel/MultiBalance/Part.dart';
 import 'package:copapp/Model/Balance/QuickSearchModel.dart';
-import 'package:copapp/Model/Balance/ShowCategoryModel.dart';
-import 'package:copapp/Model/Part.dart';
 import 'package:copapp/Model/Shopping/Product/FilterV2.dart';
-
 import 'BalanceExtension.dart';
 import 'UserServiceV2.dart';
 
@@ -44,70 +40,7 @@ class BalanceServiceV2 extends BalanceExtensions with Api {
   //       message: response.message,
   //     );
   // }
-
-  Future<ResponseModel<List<Car>>> GetCars() async {
-    if (BalanceExtensions().getSelectedCar() == null)
-      BalanceExtensions()
-          .setSelectedCar(Car(id: 0, engName: "همه", name: "All"));
-
-    if (myHomeData?.cars != null && myHomeData!.cars!.length > 0) {
-      return ResponseModel<List<Car>>(
-        data: myHomeData!.cars,
-        isSuccess: true,
-        statusCode: "200",
-        message: "",
-      );
-    }
-
-    var response = await HTTPGET<HomeModel>(
-      RoutingBalance.GET_Home,
-      [],
-      HeaderEnum.EmptyHeaderEnum,
-      ResponseEnum.ResponseModelEnum,
-    );
-
-    response.data = HomeModel.fromJson(response.data);
-
-    myHomeData = response.data;
-
-    // myHomeData.keywords.add(Keyword(id: 0, keyWord: "همه", name: "All"));
-
-    return ResponseModel<List<Car>>(
-      isSuccess: response.isSuccess,
-      statusCode: response.statusCode,
-      data: myHomeData!.cars,
-      message: response.message,
-    );
-  }
-
-  Future<ResponseModel<List<Category>>> GetCategories() async {
-    var response = await HTTPGET<HomeModel>(
-      RoutingBalance.GET_Home,
-      [
-        QueryModel(
-          name: "charSort",
-          value: sortBool.toString(),
-        )
-      ],
-      HeaderEnum.EmptyHeaderEnum,
-      ResponseEnum.ResponseModelEnum,
-    );
-
-    response.data = HomeModel.fromJson(response.data);
-
-    myHomeData = response.data;
-
-    var cats = (response.data as HomeModel).categories;
-
-    return ResponseModel<List<Category>>(
-      isSuccess: response.isSuccess,
-      statusCode: response.statusCode,
-      data: cats,
-      message: response.message,
-    );
-  }
-
-  Future<ResponseModel<HomeModel>> GetShowAllParents() async {
+  Future<ResponseModel<HomeModel>> getHomeData() async {
     if (myHomeData != null) {
       return ResponseModel<HomeModel>(
         data: myHomeData!,
@@ -132,11 +65,12 @@ class BalanceServiceV2 extends BalanceExtensions with Api {
         HeaderEnum.EmptyHeaderEnum,
         ResponseEnum.ResponseModelEnum,
       );
+      if (response.isSuccess) {
+        response.data = HomeModel.fromJson(response.data);
 
-      response.data = HomeModel.fromJson(response.data);
-
-      categories = response.data.categories;
-      myHomeData = response.data;
+        categories = response.data.categories;
+        myHomeData = response.data;
+      }
 
       return ResponseModel<HomeModel>(
         isSuccess: response.isSuccess,
@@ -179,8 +113,8 @@ class BalanceServiceV2 extends BalanceExtensions with Api {
     );
   }
 
-  Future<ResponseModel<FilterBox>> getBalanceFilterBox(
-      int? id, int? keywordId, {int? pageSize, int? page, int? filterId}) async {
+  Future<ResponseModel<FilterBox>> getBalanceFilterBox(int? id, int? keywordId,
+      {int? pageSize, int? page, int? filterId}) async {
     if (id == 0 && pageSize == 0 && page == 0 && filterId == 0)
       return ResponseModel(
         isSuccess: false,
@@ -240,7 +174,7 @@ class BalanceServiceV2 extends BalanceExtensions with Api {
     );
   }
 
-  Future<ResponseModel<QuickSearchModel>> GetQuickSearch(String search) async {
+  Future<ResponseModel<QuickSearchModel>> getQuickSearch(String search) async {
     // validation
     if (search.isEmpty)
       return ResponseModel<QuickSearchModel>(
@@ -295,7 +229,7 @@ class BalanceServiceV2 extends BalanceExtensions with Api {
         statusCode: response.statusCode);
   }
 
-  Future<ResponseModel<Part>> GetSearch(
+  Future<ResponseModel<Part>> getSearch(
       {int? page,
       int? pageSize,
       int? filterId,

@@ -24,7 +24,7 @@ class ResponseModel<T> {
     return this;
   }
 
-  ShowMessage(){
+  showMessage(){
     Get.showSnackbar(GetBar(
       titleText: Text(
         this.isSuccess ? "عملیات موفق" : "عملیات ناموفق",

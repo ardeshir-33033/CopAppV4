@@ -2,7 +2,6 @@ import 'package:copapp/Utilities/Base.dart';
 import 'package:copapp/View/Components/FormRegisterStep2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:persian_number_utility/persian_number_utility.dart'; //import
 
 class QC_RegisterPasswordPage extends StatefulWidget {
   // UserRegisterModel user = UserRegisterModel();

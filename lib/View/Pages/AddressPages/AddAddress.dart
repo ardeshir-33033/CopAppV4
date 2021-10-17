@@ -1,5 +1,4 @@
 import 'package:copapp/Controller/Controllers/AddAddressController.dart';
-import 'package:copapp/Model/Address.dart';
 import 'package:copapp/Utilities/Base.dart';
 import 'package:copapp/View/Components/General/AppDrawer.dart';
 import 'package:copapp/View/Components/General/CustomAppBar.dart';

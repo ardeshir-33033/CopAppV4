@@ -1,12 +1,8 @@
-import 'dart:convert';
-import 'dart:io';
 
 import 'package:copapp/AppModel/Home/Car.dart';
-import 'package:copapp/Utilities/Base.dart';
 import 'package:copapp/Utilities/SharedPreferencePath.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 
 
 

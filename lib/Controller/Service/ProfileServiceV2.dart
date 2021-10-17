@@ -13,12 +13,11 @@ import 'package:copapp/Model/Profile.dart';
 import 'package:copapp/Model/ProfileInformation.dart';
 import 'package:copapp/Utilities/Sharei.dart';
 import 'package:dio/dio.dart';
-import 'UserServiceV2.dart';
-import 'package:path/path.dart' as path;
 import 'package:http/http.dart' as http;
-import 'Extensions/ProfileExtension.dart';
 
 import '../../Api/Enums.dart';
+import 'Extensions/ProfileExtension.dart';
+import 'UserServiceV2.dart';
 
 class ProfileServiceV2 extends UserServiceV2 with ProfileExtensions {
   // models

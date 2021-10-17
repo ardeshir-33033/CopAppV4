@@ -1,12 +1,14 @@
 import 'dart:io';
+
 import 'package:copapp/View/Pages/LoginPages/LoginPage.dart';
+import 'package:cupertino_will_pop_scope/cupertino_will_pop_scope.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
+
 import 'Utilities/Base.dart';
-import 'package:cupertino_will_pop_scope/cupertino_will_pop_scope.dart';
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(

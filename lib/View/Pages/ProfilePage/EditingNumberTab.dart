@@ -1,5 +1,4 @@
 import 'package:copapp/Controller/Controllers/ProfileController.dart';
-import 'package:copapp/Controller/Service/ProfileServiceV2.dart';
 import 'package:copapp/Utilities/Base.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

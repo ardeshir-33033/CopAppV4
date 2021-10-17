@@ -10,6 +10,7 @@ import 'package:copapp/View/Pages/TrackingPages/transporting.dart';
 import 'package:copapp/View/Widgets/DrawerWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+
 import 'TrackingComponents/tracking_progress_widget.dart';
 import 'bill.dart';
 import 'buy.dart';
@@ -42,7 +43,7 @@ class _TrackingState extends State<Tracking> {
     super.initState();
     orderDetail().then((value) {
       if (!OrderModel.isSuccess) {
-        OrderModel.ShowMessage();
+        OrderModel.showMessage();
       } else {
         order = OrderModel.data;
         if (order.orderStatusId == "confirmedPay") {

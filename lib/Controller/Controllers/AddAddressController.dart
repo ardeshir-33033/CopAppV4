@@ -91,7 +91,6 @@ class AddAddressController extends GetxController {
       ResponseModel<List<CountryName>> result =
           await ShippingService().GetAllCountries();
 
-      if (result != null) {
         countries = result.data;
         provinces = countries[0].countryProvinces!;
         provincesItems = [];
@@ -117,8 +116,9 @@ class AddAddressController extends GetxController {
           }
         }
         update();
-      }
+
     } catch (e) {
+      // ignore: deprecated_member_use
       scaffoldKey.currentState!.showSnackBar(SnackBar(
         content: Text('مشکلی در دریافت اطلاعات رخ داده است'),
       ));
@@ -205,12 +205,13 @@ class AddAddressController extends GetxController {
           update();
           Get.back();
         } else {
-          result.ShowMessage();
+          result.showMessage();
           isLoading = false;
           update();
         }
       }
     } else {
+      // ignore: deprecated_member_use
       scaffoldKey.currentState!.showSnackBar(SnackBar(
         content: Text('لطفا تمام فیلد ها را پر کنید'),
       ));

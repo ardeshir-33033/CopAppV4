@@ -1,8 +1,6 @@
 import 'package:copapp/Controller/Controllers/ProfileController.dart';
 import 'package:copapp/Controller/Service/ProfileServiceV2.dart';
-import 'package:copapp/Controller/Service/UserServiceV2.dart';
 import 'package:copapp/Utilities/Base.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jalali_calendar/jalali_calendar.dart';

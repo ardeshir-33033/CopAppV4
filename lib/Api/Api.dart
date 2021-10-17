@@ -1,8 +1,10 @@
 import 'dart:convert';
 import 'dart:io';
+
 import 'package:copapp/Controller/Service/UserServiceV2.dart';
 import 'package:dio/dio.dart';
 import 'package:http/http.dart' as http;
+
 import 'Enums.dart';
 import 'QueryModel.dart';
 import 'ResponseModel.dart';
@@ -36,27 +38,22 @@ class Api {
     switch (typeEnum) {
       case HeaderEnum.ImageHeaderEnum:
         return imageHeader;
-        break;
       case HeaderEnum.BearerHeaderEnum:
         return bearerHeader;
-        break;
       case HeaderEnum.FormDataHeaderEnum:
         return formDataHeader;
-        break;
       case HeaderEnum.BasicHeaderEnum:
         return basicHeader;
-        break;
       case HeaderEnum.EmptyHeaderEnum:
         return null;
-        break;
       default:
         return basicHeader;
     }
   }
 
-  String GenerateQuery(List<QueryModel> queries) {
+  String generateQuery(List<QueryModel> queries) {
     String query = "";
-    if (queries != null && queries.length > 0) {
+    if (queries.length > 0) {
       query += "?";
       queries.forEach((element) {
         if (element.value != null && element.value != "null") {
@@ -71,8 +68,8 @@ class Api {
     return query;
   }
 
-  String UrlGenerator(String url, List<QueryModel> query) {
-    var queryPart = GenerateQuery(query);
+  String urlGenerator(String url, List<QueryModel> query) {
+    var queryPart = generateQuery(query);
 
     return "$url$queryPart";
   }
@@ -83,7 +80,7 @@ class Api {
         case ResponseEnum.ResponseModelEnum:
           String data = utf8.decode(response.bodyBytes);
 
-          if (data == null || data.isEmpty)
+          if (data.isEmpty)
             return ResponseModel(
               statusCode: "555",
               isSuccess: false,
@@ -111,7 +108,6 @@ class Api {
       switch (typeEnum) {
         case ResponseEnum.ResponseModelEnum:
           return ResponseModel().fromJson(response.data);
-          break;
         default:
           return response.data.bodyBytes;
       }
@@ -124,6 +120,7 @@ class Api {
     }
   }
 
+  // ignore: non_constant_identifier_names
   Future<ResponseModel> HTTPGET<T>(
     String url,
     List<QueryModel> query,
@@ -132,7 +129,7 @@ class Api {
   ) async {
     try {
       var response = await http.get(
-        Uri.parse(UrlGenerator(url, query)),
+        Uri.parse(urlGenerator(url, query)),
         headers: headerGetter(headerType),
       );
 
@@ -146,6 +143,7 @@ class Api {
     }
   }
 
+  // ignore: non_constant_identifier_names
   Future<ResponseModel> HTTPDELETE<T>(
     String url,
     List<QueryModel> query,
@@ -154,7 +152,7 @@ class Api {
   ) async {
     try {
       var response = await http.delete(
-        Uri.parse(UrlGenerator(url, query)),
+        Uri.parse(urlGenerator(url, query)),
         headers: headerGetter(headerType),
       );
 
@@ -168,11 +166,12 @@ class Api {
     }
   }
 
+  // ignore: non_constant_identifier_names
   Future<ResponseModel> HTTPPOST<T>(String url, List<QueryModel> query,
       var body, HeaderEnum headerType, ResponseEnum responseType) async {
     try {
       var response = await http.post(
-        Uri.parse(UrlGenerator(url, query)),
+        Uri.parse(urlGenerator(url, query)),
         headers: headerGetter(headerType),
         body: body,
       );
@@ -187,6 +186,7 @@ class Api {
     }
   }
 
+  // ignore: non_constant_identifier_names
   Future<ResponseModel> HTTPPUT<T>(
     String url,
     List<QueryModel> query,
@@ -196,7 +196,7 @@ class Api {
   ) async {
     try {
       var response = await http.put(
-        Uri.parse(UrlGenerator(url, query)),
+        Uri.parse(urlGenerator(url, query)),
         headers: headerGetter(headerType),
         body: body,
       );
@@ -211,6 +211,7 @@ class Api {
     }
   }
 
+  // ignore: non_constant_identifier_names
   Future<ResponseModel> HTTPPUTFILE<T>(
     String url,
     List<QueryModel> query,
@@ -221,7 +222,7 @@ class Api {
       Dio dio = Dio();
 
       var response = await dio.put(
-        UrlGenerator(url, query),
+        urlGenerator(url, query),
         data: body,
       );
 
@@ -235,6 +236,7 @@ class Api {
     }
   }
 
+  // ignore: non_constant_identifier_names
   Future<ResponseModel> HTTPPOSTFORM<T>(
     String url,
     List<QueryModel> query,
@@ -245,7 +247,7 @@ class Api {
     try {
       Dio dio = Dio();
 
-      var response = await dio.post(UrlGenerator(url, query),
+      var response = await dio.post(urlGenerator(url, query),
           data: body,
           options: Options(
             headers: headerGetter(headerType),

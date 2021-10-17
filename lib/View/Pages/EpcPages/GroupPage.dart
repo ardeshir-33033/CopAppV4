@@ -1,7 +1,6 @@
 import 'package:copapp/AppModel/MultiBalance/Part.dart';
 import 'package:copapp/Controller/Controllers/EpcGroupController.dart';
 import 'package:copapp/Controller/Service/EpcService.dart';
-import 'package:copapp/Model/Part.dart';
 import 'package:copapp/Utilities/Base.dart';
 import 'package:copapp/View/Components/Balance/CategoryItems.dart';
 import 'package:copapp/View/Components/General/AppDrawer.dart';

@@ -1,15 +1,15 @@
-import 'package:copapp/View/Pages/CartPage/CartPage.dart';
-import 'package:copapp/View/Pages/OrderPages/ConfirmedOrders/ConfirmedOrders.dart';
-import '../../../Controller/Controllers/Cart/CartLengthController.dart';
 import 'package:copapp/Controller/Controllers/HomePageController.dart';
-import '../../../Controller/Controllers/General/FooterController.dart';
 import 'package:copapp/Controller/Service/CartService.dart';
 import 'package:copapp/Utilities/Base.dart';
-import '../../Pages/HomePage.dart';
+import 'package:copapp/View/Pages/CartPage/CartPage.dart';
+import 'package:copapp/View/Pages/OrderPages/ConfirmedOrders/ConfirmedOrders.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+
+import '../../../Controller/Controllers/Cart/CartLengthController.dart';
+import '../../../Controller/Controllers/General/FooterController.dart';
 
 class MainFooterNavigation extends StatelessWidget {
   String? currentPage;

@@ -3,8 +3,9 @@ import 'dart:ui';
 import 'package:copapp/Utilities/Base.dart';
 import 'package:flutter/material.dart';
 import 'package:photo_view/photo_view.dart';
-import 'package:slide_popup_dialog/slide_popup_dialog.dart' as slideDialog;
 import 'package:photo_view/photo_view_gallery.dart';
+import 'package:slide_popup_dialog/slide_popup_dialog.dart' as slideDialog;
+
 import 'Brand.dart';
 import 'Country.dart';
 import 'Part.dart';
