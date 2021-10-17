@@ -291,7 +291,7 @@ class CartServiceV2 extends GetxController with Api {
       int product = myCart!.details!
           .indexWhere((element) => element.product?.productsId == productId);
 
-      if (product >= 0) return myCart!.details![product].detailQTY!;
+      if (product >= 0) return myCart!.details![product].product!.detailQTY!;
     }
 
     return 0;
