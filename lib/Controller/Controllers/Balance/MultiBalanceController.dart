@@ -26,22 +26,22 @@ class MultiBalanceController extends GetxController {
   }
 
   getBalance({bool isFilter = false}) async {
-    getBalanceData().then((value) {
-      result = value;
-      update([2, 1]);
+    await getBalanceData().then((value) async {
+      await getFilters().then((v) {
+        result = value;
+        update([2, 1]);
+      });
     });
   }
 
-  void getFilters({bool isFilter = false}) async {
+  Future getFilters({bool isFilter = false}) async {
     var response = await BalanceServiceV2().getBalanceFilterBox(
-        BalanceServiceV2().getSelectedCategory()?.id,
-        BalanceExtensions().getSelectedCar()?.id,
-
-        );
+      BalanceServiceV2().getSelectedCategory()?.id,
+      BalanceExtensions().getSelectedCar()?.id,
+    );
     if (response.isSuccess) {
       subCategories = (response.data as FilterBox).subCategories;
-      BalanceExtensions()
-          .setFilter((response.data as FilterBox).filters!);
+      BalanceExtensions().setFilter((response.data as FilterBox).filters!);
     }
   }
 
