@@ -54,7 +54,7 @@ class CartServiceV2 extends GetxController with Api {
     String json = jsonEncode(map);
 
     var response = await HTTPPOST(
-      RoutingCart.POST_AddProduct,
+      RoutingCart.POST_Add2CartV2,
       [],
       json,
       HeaderEnum.BearerHeaderEnum,
@@ -88,9 +88,9 @@ class CartServiceV2 extends GetxController with Api {
 
     String json = jsonEncode(map);
 
-    var response = await HTTPPUT(
-      RoutingCart.PUT_UpdateProduct,
-      [QueryModel(value: 'chairId', name: UserServiceV2.chairId!.toString())],
+    var response = await HTTPPOST(
+      RoutingCart.POST_Update2CartV2,
+      [],
       json,
       HeaderEnum.BearerHeaderEnum,
       ResponseEnum.ResponseModelEnum,

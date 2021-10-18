@@ -14,6 +14,10 @@ class RoutingCart {
   static const POST_PayOrder = "${RoutingBase.ApiUrl}/$BaseName/PayOrder";
   static const POST_AddProduct =
       "${RoutingBase.ApiUrl}/$BaseName/AddProductSimple";
+  static const POST_Add2CartV2 =
+      "${RoutingBase.ApiUrl}/$BaseName/Add2CartV2";
+  static const POST_Update2CartV2 =
+      "${RoutingBase.ApiUrl}/$BaseName/Update2CartV2";
   static const POST_UpdateAddress =
       "${RoutingBase.ApiUrl}/$BaseName/UpdateAddress";
 
