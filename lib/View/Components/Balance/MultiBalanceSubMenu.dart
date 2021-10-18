@@ -7,6 +7,7 @@ import 'package:copapp/View/Pages/Balance/BalancePage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class ProductPageSubMenu extends StatelessWidget {
   List<Part>? items = [];
   GlobalKey<ScaffoldState> scaffoldKey = new GlobalKey<ScaffoldState>();

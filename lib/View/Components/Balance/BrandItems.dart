@@ -11,14 +11,11 @@ import 'package:get/get.dart';
 import 'package:persian_number_utility/persian_number_utility.dart';
 
 class BalanceItem extends StatefulWidget {
-  Product? bal;
-  Function(dynamic)? onTapCallback;
-
-  GlobalKey<ScaffoldState> scaffold;
+  final Product? bal;
+  final GlobalKey<ScaffoldState> scaffold;
 
   BalanceItem({
     this.bal,
-    this.onTapCallback,
     required this.scaffold,
   });
 
@@ -43,9 +40,7 @@ class _BalanceItemState extends State<BalanceItem> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
-    // checkHasItem(widget.bal!.id!);
     balanceItemController.scaffoldKey = widget.scaffold;
   }
 
@@ -127,8 +122,7 @@ class _BalanceItemState extends State<BalanceItem> {
                         ? Expanded(
                             flex: 1,
                             child: AutoSizeText(
-                              '${widget.bal?.score}'
-                                  .toPersianDigit(),
+                              '${widget.bal?.score}'.toPersianDigit(),
                               style: TextStyle(color: CBase().basePrimaryColor),
                             ))
                         : widget.bal!.brandsImagePath != null
@@ -210,9 +204,7 @@ class _BalanceItemState extends State<BalanceItem> {
                                       margin: EdgeInsets.only(right: 10.0),
                                       child: AutoSizeText(
                                         widget.bal?.brandsName! ??
-                                            "" +
-                                                " - " +
-                                                widget.bal!.country!,
+                                            "" + " - " + widget.bal!.country!,
                                         style: TextStyle(
                                           fontSize: CBase()
                                               .getSubTitlefontSizeByScreen(),
@@ -223,22 +215,21 @@ class _BalanceItemState extends State<BalanceItem> {
                                     ),
                               Row(
                                 children: [
-                                   widget.bal!.warranty ==
-                                              true
-                                          ? Padding(
-                                              padding: const EdgeInsets.only(
-                                                  left: 5.0),
-                                              child: Text(
-                                                "گارانتی",
-                                                style: TextStyle(
-                                                  fontSize: CBase()
-                                                      .getSubTitlefontSizeByScreen(),
-                                                  color: CBase()
-                                                      .basePrimaryLightColor,
-                                                ),
-                                              ),
-                                            )
-                                          : Container(),
+                                  widget.bal!.warranty == true
+                                      ? Padding(
+                                          padding:
+                                              const EdgeInsets.only(left: 5.0),
+                                          child: Text(
+                                            "گارانتی",
+                                            style: TextStyle(
+                                              fontSize: CBase()
+                                                  .getSubTitlefontSizeByScreen(),
+                                              color:
+                                                  CBase().basePrimaryLightColor,
+                                            ),
+                                          ),
+                                        )
+                                      : Container(),
                                   GetBuilder<BalanceItemController>(
                                     id: 'load',
                                     builder: (_) {
@@ -354,7 +345,7 @@ class _BalanceItemState extends State<BalanceItem> {
                                             ),
                                           ),
                                           onTap: () {
-                                            if (!isLoading&&!hasItem) {
+                                            if (!isLoading && !hasItem) {
                                               isLoading = true;
                                               balanceItemController
                                                   .add(widget.bal!, hasItem)
@@ -498,9 +489,7 @@ class _BalanceItemState extends State<BalanceItem> {
                                                             width: 10,
                                                           ),
                                                           Text(
-                                                            (widget
-                                                                        .bal!
-                                                                        .score! *
+                                                            (widget.bal!.score! *
                                                                     itemCount)
                                                                 .toInt()
                                                                 .toString()
@@ -558,8 +547,7 @@ class _BalanceItemState extends State<BalanceItem> {
                                                       child: AutoSizeText(
                                                         nf
                                                             .format(itemCount *
-                                                                widget
-                                                                    .bal!
+                                                                widget.bal!
                                                                     .productInfosPrice!)
                                                             .toString(),
                                                         style: TextStyle(
@@ -629,5 +617,4 @@ class _BalanceItemState extends State<BalanceItem> {
       itemCount = c;
     }
   }
-
- }
+}

@@ -88,8 +88,8 @@ class AddAddressController extends GetxController {
 
   Future getCountries() async {
     try {
-      ResponseModel<List<CountryName>> result =
-          await ShippingService().GetAllCountries();
+      ResponseModel result =
+          await ShippingService().getAllCountries();
 
         countries = result.data;
         provinces = countries[0].countryProvinces!;

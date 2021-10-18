@@ -14,7 +14,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class BalancePage extends StatefulWidget {
-  List<Part>? items;
+  final List<Part>? items;
 
   BalancePage({
     this.items,

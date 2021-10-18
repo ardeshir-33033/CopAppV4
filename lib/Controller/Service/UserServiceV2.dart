@@ -22,6 +22,7 @@ class UserServiceV2 extends Api {
   String userKey = "user-data";
   String jwtKey = "jwt-data";
   String userTypeKey = "type-data";
+
   // String autoLoginKey = "auto-login-data";
 
   // models
@@ -29,19 +30,20 @@ class UserServiceV2 extends Api {
   static User? user;
   static int? profileId;
   static int? chairId;
+
   Future<User?> initialization() async {
     // userType = await loadUserTypeLocaly();
 
-    user = await loadUserDataLocaly();
+    user = await loadUserDataLocal();
   }
 
-  Future saveAutoLoginDataLocaly(bool al) async {
+  Future saveAutoLoginDataLocal(bool al) async {
     await SharedPreferencePath()
         .setUserDataInSharePrefrences(al ? "1" : "0", "autoLoginKey");
     // autoLoginValue.value = al ? "1" : "0";
   }
 
-  Future<User?> loadUserDataLocaly() async {
+  Future<User?> loadUserDataLocal() async {
     try {
       var json = jsonDecode(
           await SharedPreferencePath().getUserDataInSharePrefrences(userKey) ??
@@ -54,16 +56,8 @@ class UserServiceV2 extends Api {
     return user;
   }
 
+  // ignore: non_constant_identifier_names
   Future<ResponseModel<AuthModel>> Token(LoginModel model) async {
-    // validation
-    if (model == null)
-      return ResponseModel<AuthModel>(
-        isSuccess: false,
-        statusCode: "500",
-        data: null,
-        message: "پارامتر های ورودی خالی هستند",
-      );
-
     FormData form = FormData.fromMap(model.toFormData());
 
     var response = await HTTPPOSTFORM<AuthModel>(
@@ -81,10 +75,10 @@ class UserServiceV2 extends Api {
       response.data.user.userName = model.userName;
       response.data.user.password = model.password;
       user = response.data.user;
-      saveUserDataLocaly(user!);
+      saveUserDataLocal(user!);
 
       jwt = response.data.jwt;
-      saveJWTDataLocaly(jwt!);
+      saveJWTDataLocal(jwt!);
     }
 
     return ResponseModel<AuthModel>(
@@ -95,6 +89,7 @@ class UserServiceV2 extends Api {
     );
   }
 
+  // ignore: non_constant_identifier_names
   Future<ResponseModel<AuthModel>> AutoLogin() async {
     if (user != null && user!.userName != null && user!.password != null) {
       return await Token(
@@ -113,7 +108,7 @@ class UserServiceV2 extends Api {
     );
   }
 
-  Future GoogleLogIn(GoogleAuth modelAuth) async {
+  Future googleLogIn(GoogleAuth modelAuth) async {
     var json = jsonEncode(modelAuth.toJson());
     var response = await HTTPPOST(
       RoutingUser.Post_GoogleToken,
@@ -131,11 +126,11 @@ class UserServiceV2 extends Api {
       jwt1.expiresIn = response.data['expires_in'] ?? 0;
 
       jwt = jwt1;
-      saveJWTDataLocaly(jwt!);
+      saveJWTDataLocal(jwt!);
 
       user = User.fromJson(response.data['user']);
       // profileId = user.profile.id;
-      saveUserDataLocaly(user!);
+      saveUserDataLocal(user!);
     }
 
     return ResponseModel(
@@ -146,70 +141,36 @@ class UserServiceV2 extends Api {
     );
   }
 
-  Future saveUserDataLocaly(User? model) async {
+  Future saveUserDataLocal(User? model) async {
     await SharedPreferencePath()
         .setUserDataInSharePrefrences(jsonEncode(model), userKey);
   }
 
-  setJWTData(JwtSecurityToken model) {
-    jwt = model;
-  }
-
-  saveJWTDataLocaly(JwtSecurityToken? model) async {
+  saveJWTDataLocal(JwtSecurityToken? model) async {
     await SharedPreferencePath()
         .setUserDataInSharePrefrences(jsonEncode(model), jwtKey);
-  }
-
-  Future<JwtSecurityToken?> loadJWTDataLocaly() async {
-    var json = jsonDecode(
-        await SharedPreferencePath().getUserDataInSharePrefrences(jwtKey) ??
-            "");
-
-    jwt = JwtSecurityToken.fromJson(json);
-
-    return jwt;
-  }
-
-  JwtSecurityToken getJWT() {
-    return jwt!;
   }
 
   String getToken() {
     return jwt?.accessToken ?? "";
   }
 
-  Future saveUserTypeLocaly(String type) async {
-    await SharedPreferencePath()
-        .setUserDataInSharePrefrences(type, userTypeKey);
-  }
-
-  Future loadUserTypeLocaly() async {
-    var ut =
-        await SharedPreferencePath().getUserDataInSharePrefrences(userTypeKey);
-
-    return ut ?? "";
-  }
-
-  String getUserType() {
-    return userKey;
-  }
-
   User getUser() {
     return user!;
   }
 
-  GoogleAuth GoogleSignToPost(GoogleSignInAccount GoogleUser) {
+  GoogleAuth googleSignToPost(GoogleSignInAccount googleUser) {
     GoogleAuth googleAuthUser = GoogleAuth(
-      id: GoogleUser.id,
-      displayName: GoogleUser.displayName,
-      photoUrl: GoogleUser.photoUrl,
-      email: GoogleUser.email,
+      id: googleUser.id,
+      displayName: googleUser.displayName,
+      photoUrl: googleUser.photoUrl,
+      email: googleUser.email,
     );
 
     return googleAuthUser;
   }
 
-  Future<ResponseModel> ResetPassword(String resetUserName) async {
+  Future<ResponseModel> resetPassword(String resetUserName) async {
     var response = await HTTPDELETE(
       RoutingUser.DELETE_ResetPassword,
       [QueryModel(name: "userName", value: resetUserName)],
@@ -224,7 +185,7 @@ class UserServiceV2 extends Api {
     );
   }
 
-  Future<ResponseModel> ChangePassword(String current, String password) async {
+  Future<ResponseModel> changePassword(String current, String password) async {
     if (current.isEmpty && password.isEmpty)
       return ResponseModel(
         isSuccess: false,
@@ -260,7 +221,7 @@ class UserServiceV2 extends Api {
     );
   }
 
-  Future<ResponseModel> SendAgainValidCode() async {
+  Future<ResponseModel> sendAgainValidCode() async {
     var response = await HTTPGET(
       RoutingUser.GET_SendValidCodeAgain,
       [
@@ -280,7 +241,7 @@ class UserServiceV2 extends Api {
     );
   }
 
-  Future<ResponseModel> SuspendedUser(String phone) async {
+  Future<ResponseModel> suspendedUser(String phone) async {
     if (phone.isEmpty)
       return ResponseModel(
         isSuccess: false,
@@ -288,17 +249,12 @@ class UserServiceV2 extends Api {
         data: null,
         message: "پارامتر های ورودی خالی هستند",
       );
-    phoneNumberModel model = phoneNumberModel(phoneNumber: phone);
+    PhoneNumberModel model = PhoneNumberModel(phoneNumber: phone);
 
-    // var map = {"phoneNumber": phone};
-    var json2 = model.toJson();
-    // print(json2);
-    var jsonModel = jsonEncode(json2);
-    // print(jsonModel);
+    Map<String, dynamic> json2 = model.toJson();
+    String jsonModel = jsonEncode(json2);
 
-    // var json = jsonEncode(map);
-
-    var response = await HTTPPOST(
+    ResponseModel response = await HTTPPOST(
       RoutingUser.POST_SuspendedUser,
       [],
       jsonModel,
@@ -313,7 +269,7 @@ class UserServiceV2 extends Api {
     );
   }
 
-  Future<ResponseModel> SuspendedUserVerify(String phone, String code) async {
+  Future<ResponseModel> suspendedUserVerify(String phone, String code) async {
     if (code.isEmpty && phone.isEmpty)
       return ResponseModel(
         isSuccess: false,
@@ -321,16 +277,12 @@ class UserServiceV2 extends Api {
         data: null,
         message: "پارامتر های ورودی خالی هستند",
       );
-    userVerifyCodeModel model =
-        userVerifyCodeModel(phoneNumber: phone, code: code);
-    var json = model.toJson();
-    var jsonModel = jsonEncode(json);
+    UserVerifyCodeModel model =
+        UserVerifyCodeModel(phoneNumber: phone, code: code);
+    Map<String, dynamic> json = model.toJson();
+    String jsonModel = jsonEncode(json);
 
-    // var map = {"phoneNumber": phone, "code": code};
-    //
-    // var json = jsonEncode(map);
-
-    var response = await HTTPPOST(
+    ResponseModel response = await HTTPPOST(
       RoutingUser.POST_SuspendedUserVerify,
       [],
       jsonModel,
@@ -345,7 +297,7 @@ class UserServiceV2 extends Api {
     );
   }
 
-  Future<ResponseModel> AgainSendValidCodeForSuspendedUser(String phone) async {
+  Future<ResponseModel> againSendValidCodeForSuspendedUser(String phone) async {
     if (phone.isEmpty)
       return ResponseModel(
         isSuccess: false,
@@ -354,11 +306,10 @@ class UserServiceV2 extends Api {
         message: "پارامتر های ورودی خالی هستند",
       );
 
-    var map = {"phoneNumber": phone};
+    Map<String, dynamic> map = {"phoneNumber": phone};
+    String json = jsonEncode(map);
 
-    var json = jsonEncode(map);
-
-    var response = await HTTPPOST(
+    ResponseModel response = await HTTPPOST(
       RoutingUser.POST_AgainSendValidCodeForSuspendedUser,
       [],
       json,
@@ -373,7 +324,7 @@ class UserServiceV2 extends Api {
     );
   }
 
-  Future<ResponseModel> SuspendedUserResetPassword(String phone) async {
+  Future<ResponseModel> suspendedUserResetPassword(String phone) async {
     if (phone.isEmpty)
       return ResponseModel(
         isSuccess: false,
@@ -400,7 +351,7 @@ class UserServiceV2 extends Api {
     );
   }
 
-  Future<ResponseModel> SuspendedUserVerifyReset(
+  Future<ResponseModel> suspendedUserVerifyReset(
       String phone, String code) async {
     if (code.isEmpty && phone.isEmpty)
       return ResponseModel(
@@ -410,9 +361,8 @@ class UserServiceV2 extends Api {
         message: "پارامتر های ورودی خالی هستند",
       );
 
-    var map = {"phoneNumber": phone, "code": code};
-
-    var json = jsonEncode(map);
+    Map<String, dynamic> map = {"phoneNumber": phone, "code": code};
+    String json = jsonEncode(map);
 
     var response = await HTTPPOST(
       RoutingUser.POST_SuspendedUserVerifyResert,
@@ -429,7 +379,7 @@ class UserServiceV2 extends Api {
     );
   }
 
-  Future<ResponseModel<User>> CreateWithValidation(
+  Future<ResponseModel> createWithValidation(
       {String? phone, String? password}) async {
     if (phone!.isEmpty && password!.isEmpty)
       return ResponseModel(
@@ -441,15 +391,10 @@ class UserServiceV2 extends Api {
 
     ValidationModel model =
         ValidationModel(phoneNumber: phone, password: password);
-    var json = model.toJson();
-    var jsonModel = jsonEncode(json);
+    Map<String, dynamic> json = model.toJson();
+    String jsonModel = jsonEncode(json);
 
-    // var map = {"phoneNumber": phone, "password": password};
-    //var map = {"phoneNumber": '0919941532', "password": '109876'};
-    //
-    // var json = jsonEncode(map);
-
-    var response = await HTTPPOST<User>(
+    ResponseModel response = await HTTPPOST(
       RoutingUser.POST_CreateWithValidation,
       [],
       jsonModel,
@@ -457,9 +402,11 @@ class UserServiceV2 extends Api {
       ResponseEnum.ResponseModelEnum,
     );
 
-    response.data = User.fromJson(response.data);
+    if (response.isSuccess) {
+      response.data = User.fromJson(response.data);
+    }
 
-    return ResponseModel<User>(
+    return ResponseModel(
       isSuccess: response.isSuccess,
       statusCode: response.statusCode,
       data: response.data,

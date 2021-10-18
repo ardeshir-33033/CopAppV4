@@ -10,7 +10,7 @@ import 'package:get/get.dart';
 import 'package:persian_number_utility/persian_number_utility.dart';
 
 class SearchboxV2 extends StatefulWidget {
-  GlobalKey<ScaffoldState> scaffoldKey = new GlobalKey<ScaffoldState>();
+  final GlobalKey<ScaffoldState> scaffoldKey;
 
   SearchboxV2({required this.scaffoldKey});
 
@@ -160,7 +160,7 @@ class _SearchboxV2State extends State<SearchboxV2> {
                   child: Container(
                     child: Center(
                       child: SearchSpeech(
-                        SpeechTextCallBack: (result) {
+                        speechTextCallBack: (result) {
                           // boxVis = true;
                           controller.text = result;
                           // searchItems(result);

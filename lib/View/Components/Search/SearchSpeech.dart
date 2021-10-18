@@ -7,10 +7,10 @@ import 'package:speech_to_text/speech_recognition_result.dart';
 import 'package:speech_to_text/speech_to_text.dart';
 
 class SearchSpeech extends StatefulWidget {
-  SearchSpeech({this.SpeechTextCallBack, this.SpeechButtonCallBack});
+  SearchSpeech({this.speechTextCallBack, this.speechButtonCallBack});
 
-  Function(String SpeechText)? SpeechTextCallBack;
-  Function()? SpeechButtonCallBack;
+  final Function(String speechText)? speechTextCallBack;
+  final Function()? speechButtonCallBack;
 
   @override
   _SearchSpeechState createState() => _SearchSpeechState();
@@ -84,7 +84,7 @@ class _SearchSpeechState extends State<SearchSpeech> {
     setState(() {
       level = 0.0;
     });
-    widget.SpeechTextCallBack!(speechController.text);
+    widget.speechTextCallBack!(speechController.text);
   }
 
   //////
@@ -101,7 +101,7 @@ class _SearchSpeechState extends State<SearchSpeech> {
     setState(() {
       speechController.text = "${result.recognizedWords}";
     });
-    widget.SpeechTextCallBack!(speechController.text);
+    widget.speechTextCallBack!(speechController.text);
   }
 
   void statusListener(String status) {
@@ -134,6 +134,7 @@ class _SearchSpeechState extends State<SearchSpeech> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
+        // ignore: unnecessary_statements
         !_hasSpeech || speech.isListening ? null : startListeningTap(10);
       },
       child: Container(

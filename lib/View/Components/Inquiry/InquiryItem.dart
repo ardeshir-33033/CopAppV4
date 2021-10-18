@@ -11,8 +11,8 @@ import 'package:get/get.dart';
 import 'package:persian_number_utility/persian_number_utility.dart';
 
 class InquiryItem extends StatefulWidget {
-  Product? bal;
-  GlobalKey<ScaffoldState> scaffold;
+  final Product? bal;
+  final GlobalKey<ScaffoldState> scaffold;
 
   InquiryItem({
     this.bal,

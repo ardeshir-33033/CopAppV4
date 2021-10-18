@@ -10,7 +10,7 @@ class CategoryItems extends StatefulWidget {
     required this.item,
   });
 
-  Part? item = Part();
+  final Part? item;
 
   @override
   _CategoryItemsState createState() => _CategoryItemsState();

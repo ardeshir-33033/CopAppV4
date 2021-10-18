@@ -2,9 +2,9 @@ import 'package:copapp/Utilities/Base.dart';
 import 'package:flutter/material.dart';
 
 class WhiteButton extends StatelessWidget {
-  Function()? onTapCallback;
-  Color? color;
-  String? text;
+  final Function()? onTapCallback;
+  final Color? color;
+  final String? text;
 
   WhiteButton({
     this.text,

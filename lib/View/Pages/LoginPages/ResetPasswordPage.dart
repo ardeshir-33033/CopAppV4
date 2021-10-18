@@ -202,7 +202,7 @@ class _QC_QC_ResetPasswordPageState extends State<QC_ResetPasswordPage> {
                                       });
                                       mobile.text = mobile.text.toEnglishDigit();
                                       await UserServiceV2()
-                                          .ResetPassword(mobile.text);
+                                          .resetPassword(mobile.text);
 
                                       setState(() {
                                         vis = false;

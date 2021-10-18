@@ -9,7 +9,7 @@ import 'package:get/get.dart';
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   CustomAppBar({required this.scaffoldKey, this.title})
       : preferredSize = Size.fromHeight(kToolbarHeight);
-  GlobalKey<ScaffoldState> scaffoldKey = new GlobalKey<ScaffoldState>();
+  final GlobalKey<ScaffoldState> scaffoldKey;
   final String? title;
   @override
   final Size preferredSize;

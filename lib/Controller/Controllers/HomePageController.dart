@@ -37,7 +37,7 @@ class HomeController extends GetxController {
       Get.back();
     } else {
       if (carNotSelected)
-        await Snacki().ShowExitSnack(
+        await Snacki().showExitSnack(
           scaffoldKey,
         );
       else {

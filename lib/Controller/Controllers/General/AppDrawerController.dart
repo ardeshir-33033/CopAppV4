@@ -16,9 +16,9 @@ class AppDrawerController extends GetxController {
   }
 
   exitPressed() async {
-    UserServiceV2().saveUserDataLocaly(null);
-    UserServiceV2().saveJWTDataLocaly(null);
-    UserServiceV2().saveAutoLoginDataLocaly(false);
+    UserServiceV2().saveUserDataLocal(null);
+    UserServiceV2().saveJWTDataLocal(null);
+    UserServiceV2().saveAutoLoginDataLocal(false);
     Get.back();
   }
 }

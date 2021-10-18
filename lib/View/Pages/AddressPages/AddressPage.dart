@@ -11,8 +11,8 @@ import 'AddAddress.dart';
 
 class AddressPage extends StatelessWidget {
 
-  GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
-  AddressController addressController = Get.put(AddressController());
+  final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
+  final AddressController addressController = Get.put(AddressController());
 
   @override
   Widget build(BuildContext context) {
@@ -41,6 +41,7 @@ class AddressPage extends StatelessWidget {
                       Expanded(
                         child: Container(
                           width: CBase().getFullWidth(context),
+                          // ignore: unnecessary_null_comparison
                           child: addressController.addresses == null
                               ? Center(
                                   child: Text("در حال دریافت"),

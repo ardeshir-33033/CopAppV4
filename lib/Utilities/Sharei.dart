@@ -1,6 +1,5 @@
 import 'dart:io';
 import 'dart:typed_data';
-
 import 'package:copapp/AppModel/MultiBalance/Part.dart';
 import 'package:copapp/Model/OrderHeader.dart';
 import 'package:flutter/services.dart';
@@ -12,7 +11,7 @@ class Sharei {
   static String? imagePath;
   static bool multiPic = false;
 
-  TakeScreenshot(ScreenshotController screenshotController, int index) async {
+  takeScreenshot(ScreenshotController screenshotController, int index) async {
     try {
       Uint8List? result = await screenshotController.capture(
           delay: Duration(milliseconds: 10), pixelRatio: 2.0);
@@ -37,7 +36,7 @@ class Sharei {
     return multiPic;
   }
 
-  ShareScreenShot(String userName) async {
+  shareScreenShot(String userName) async {
     await Share.shareFiles(['$imagePath/screenshot.png'],
         subject: "اپلیکیشن کوپ اپ",
         text: "برای کاربر:" +

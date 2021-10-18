@@ -5,18 +5,18 @@ import 'package:flutter/material.dart';
 class CarItemWidget extends StatelessWidget {
   final Car? car;
   final double? width, height;
-  final Function? ontap;
+  final Function? onTap;
   final String? year;
-  int? len;
+  final int? len;
 
   CarItemWidget(
-      {this.car, this.width, this.height, this.ontap, this.len, this.year});
+      {this.car, this.width, this.height, this.onTap, this.len, this.year});
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        ontap!();
+        onTap!();
       },
       child: AnimatedContainer(
         width: width,

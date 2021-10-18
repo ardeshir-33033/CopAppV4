@@ -3,11 +3,10 @@ import 'package:copapp/Controller/Service/CartService.dart';
 import 'package:copapp/View/Pages/LoginPages/LoginPage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import 'Base.dart';
 
 class Snacki with ChangeNotifier {
-  Future? ShowExitSnack(GlobalKey<ScaffoldState> scaffold) {
+  Future? showExitSnack(GlobalKey<ScaffoldState> scaffold) {
     final snackBar = SnackBar(
       duration: Duration(seconds: 7),
       content: Container(
@@ -94,6 +93,7 @@ class Snacki with ChangeNotifier {
                       ),
                     ),
                     onTap: () {
+                      // ignore: deprecated_member_use
                       scaffold.currentState!.hideCurrentSnackBar();
                       // return false;
                     },
@@ -107,8 +107,10 @@ class Snacki with ChangeNotifier {
           )),
     );
 
+    // ignore: deprecated_member_use
     scaffold.currentState!.showSnackBar(snackBar);
     Future.delayed(Duration(seconds: 3), () {
+      // ignore: deprecated_member_use
       scaffold.currentState!.hideCurrentSnackBar();
     });
   }
@@ -146,6 +148,7 @@ class Snacki with ChangeNotifier {
   //   scaffold.currentState!.showSnackBar(snackBar);
   // }
 
+  // ignore: non_constant_identifier_names
   GETSnackBar(bool isSuccessful , String text){
     Get.showSnackbar(GetBar(
       titleText: Text(

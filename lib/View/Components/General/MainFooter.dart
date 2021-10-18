@@ -12,12 +12,12 @@ import '../../../Controller/Controllers/Cart/CartLengthController.dart';
 import '../../../Controller/Controllers/General/FooterController.dart';
 
 class MainFooterNavigation extends StatelessWidget {
-  String? currentPage;
+  final String? currentPage;
 
   MainFooterNavigation({this.currentPage});
 
-  FooterController footerController = Get.put(FooterController());
-  CartLengthController cartLengthController = Get.find();
+  final FooterController footerController = Get.put(FooterController());
+  final CartLengthController cartLengthController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -56,15 +56,8 @@ class MainFooterNavigation extends StatelessWidget {
                       onTap: () {
                         if (!(currentPage == "HomePageV4")) {
                           footerController.homePress();
-                          Navigator.of(context).popUntil((route) => route.isFirst);
-
-                          // Navigator.popUntil(
-                          //   context,
-                          //   (route) =>
-                          //       route ==
-                          //       MaterialPageRoute(
-                          //           builder: (context) => HomePageV4()),
-                          // );
+                          Navigator.of(context)
+                              .popUntil((route) => route.isFirst);
                         } else {
                           HomeController homeController = Get.find();
                           if (homeController.carNotSelected == false) {
@@ -84,12 +77,10 @@ class MainFooterNavigation extends StatelessWidget {
                                 ? Stack(
                                     children: <Widget>[
                                       Container(
-                                        // margin: EdgeInsets.only(top: 5.0),
                                         child: SvgPicture.asset(
                                           "images/buy_empty.svg",
                                           width: 30,
                                           height: 25,
-                                          // color: Colors.grey[400],
                                           color: footerController.basketColor,
                                         ),
                                       ),
@@ -102,7 +93,6 @@ class MainFooterNavigation extends StatelessWidget {
                                             cartLengthController.cartLength
                                                 .toString(),
                                             style: TextStyle(
-                                                // color: CBase().basePrimaryColor,
                                                 color: CBase().textPrimaryColor,
                                                 fontSize: 14,
                                                 fontWeight: FontWeight.bold),
