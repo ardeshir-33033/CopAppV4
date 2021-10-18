@@ -80,7 +80,7 @@ class BalanceItemController extends GetxController {
     if (itemCount <= 0) {
       var result = await CartServiceV2().deleteProduct(bal.productsId!);
 
-      if (result.isSuccess) {
+      if (!result.isSuccess) {
         result.showMessage();
       } else {
         PointController pointController = Get.find();

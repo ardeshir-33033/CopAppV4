@@ -18,6 +18,10 @@ class RoutingCart {
       "${RoutingBase.ApiUrlV2}/$BaseName/Add2CartV2";
   static const POST_Update2CartV2 =
       "${RoutingBase.ApiUrlV2}/$BaseName/Update2CartV2";
+  static const DELETE_Delete2CartV2 =
+      "${RoutingBase.ApiUrlV2}/$BaseName/Delete2CartV2";
+  static const DELETE_DeleteCartV2 =
+      "${RoutingBase.ApiUrlV2}/$BaseName/DeleteCartV2";
   static const POST_UpdateAddress =
       "${RoutingBase.ApiUrl}/$BaseName/UpdateAddress";
 

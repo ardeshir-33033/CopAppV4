@@ -146,7 +146,7 @@ class CartServiceV2 extends GetxController with Api {
 
   Future<ResponseModel> deleteCart() async {
     var response = await HTTPDELETE(
-      RoutingCart.DELETE_DeleteCart,
+      RoutingCart.DELETE_DeleteCartV2,
       [],
       HeaderEnum.BearerHeaderEnum,
       ResponseEnum.ResponseModelEnum,
@@ -177,13 +177,13 @@ class CartServiceV2 extends GetxController with Api {
       );
 
     var response = await HTTPDELETE(
-      RoutingCart.DELETE_DeleteProduct,
+      RoutingCart.DELETE_Delete2CartV2,
       [
         QueryModel(
-          name: "id",
+          name: "productId",
           value: id.toString(),
         ),
-        QueryModel(value: 'chairId', name: UserServiceV2.chairId!.toString())
+        
       ],
       HeaderEnum.BearerHeaderEnum,
       ResponseEnum.ResponseModelEnum,

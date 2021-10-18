@@ -20,11 +20,13 @@ class MultiBalanceController extends GetxController {
   }
 
   getBalance({bool isSubCat = false}) async {
-    await getBalanceData(isSubCat: isSubCat).then((value) async {
+     getBalanceData(isSubCat: isSubCat).then((value) async {
       result = value;
-      update([2]);
+      update([1,2]);
     });
-    await getFilters().then((value) => update([1]));
+     getFilters().then((value) {
+      update([1]);
+    });
   }
 
   Future getFilters({bool isSubCat = false}) async {
