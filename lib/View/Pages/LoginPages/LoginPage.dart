@@ -23,7 +23,7 @@ class LoginPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    loginController.setContext(context);
+    // loginController.setContext(context);
     return Directionality(
       textDirection: TextDirection.rtl,
       child: Scaffold(
