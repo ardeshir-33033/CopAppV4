@@ -47,7 +47,7 @@ class CartServiceV2 extends GetxController with Api {
         message: "پارامتر های ورودی خالی هستند",
       );
 
-    Map<String, int> map = {"productId": productId, "qty": qty};
+    Map<String, int> map = {"product": productId, "qty": qty};
 
     String json = jsonEncode(map);
 
@@ -82,7 +82,7 @@ class CartServiceV2 extends GetxController with Api {
         message: "پارامتر های ورودی خالی هستند",
       );
 
-    Map<String, int> map = {"productId": productId, "qty": qty};
+    Map<String, int> map = {"product": productId, "qty": qty};
 
     String json = jsonEncode(map);
 
@@ -96,7 +96,7 @@ class CartServiceV2 extends GetxController with Api {
 
     if (response.isSuccess) {
       response.data = CartHeader.fromJson(response.data);
-      myCart!.details = response.data;
+      myCart = response.data;
       cartLengthController.setCartLength(myCart?.details?.length ?? 0);
     }
 
