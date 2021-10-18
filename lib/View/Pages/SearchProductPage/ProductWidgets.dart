@@ -10,7 +10,7 @@ import 'package:slide_popup_dialog/slide_popup_dialog.dart' as slideDialog;
 class ProductWidgets {
   void showDialog(BuildContext context, GlobalKey<ScaffoldState> scaffold,
       List<ProductImage> images) {
-    if (images == null || images.length == 0) {
+    if (images.length == 0) {
       ResponseModel result = ResponseModel();
       result.isSuccess = false;
       result.message = "تصویری موجود نیست";
@@ -55,46 +55,5 @@ class ProductWidgets {
         ),
       ),
     );
-  }
-
-
-  void _showDialog(BuildContext context) {
-    // slideDialog.showSlideDialog(
-    //   context: context,
-    //   child: Flexible(
-    //     fit: FlexFit.tight,
-    //     child: PhotoViewGallery.builder(
-    //       scrollPhysics: const BouncingScrollPhysics(),
-    //       builder: (BuildContext context, int index) {
-    //         return PhotoViewGalleryPageOptions(
-    //           imageProvider:
-    //               NetworkImage(widget.item?.product?.images[index]?.path ?? ""),
-    //           initialScale: PhotoViewComputedScale.contained * 0.8,
-    //           minScale: 0.4,
-    //           maxScale: 0.8,
-    //           heroAttributes: PhotoViewHeroAttributes(
-    //               tag: widget.item?.product?.images[index]?.id ?? 0),
-    //         );
-    //       },
-    //       itemCount: widget.item?.product?.images?.length ?? 0,
-    //       loadingBuilder: (context, event) => Center(
-    //         child: Container(
-    //           width: 200.0,
-    //           height: 200.0,
-    //           child: CircularProgressIndicator(
-    //             value: event == null
-    //                 ? 0
-    //                 : event.cumulativeBytesLoaded / event.expectedTotalBytes,
-    //           ),
-    //         ),
-    //       ),
-    //       backgroundDecoration: BoxDecoration(color: Colors.white),
-    //       pageController: PageController(),
-    //       onPageChanged: (index) {
-    //         //
-    //       },
-    //     ),
-    //   ),
-    // );
   }
 }

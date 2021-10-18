@@ -7,6 +7,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:persian_number_utility/persian_number_utility.dart';
 
+// ignore: must_be_immutable
 class OrdersDetailWidget extends StatelessWidget {
   OrdersDetailWidget({
     this.orderDetail,
@@ -14,7 +15,7 @@ class OrdersDetailWidget extends StatelessWidget {
   });
 
   OrderDetail? orderDetail = OrderDetail();
-  GlobalKey<ScaffoldState> scaffold;
+  final GlobalKey<ScaffoldState> scaffold;
 
   NumberFormat nf = NumberFormat.currency(
     locale: "fa-IR",

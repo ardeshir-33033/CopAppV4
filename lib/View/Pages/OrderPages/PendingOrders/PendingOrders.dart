@@ -10,8 +10,8 @@ import 'package:get/get.dart';
 
 class PendingOrders extends StatelessWidget {
 
-  PendingOrdController pendingOrdController = Get.put(PendingOrdController());
-  GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
+  final PendingOrdController pendingOrdController = Get.put(PendingOrdController());
+  final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
 
   @override

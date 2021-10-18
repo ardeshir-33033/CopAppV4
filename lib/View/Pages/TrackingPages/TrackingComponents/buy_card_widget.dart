@@ -19,7 +19,7 @@ class BuyCard extends StatelessWidget {
       this.center,
       this.bottomLeftHeading,
       this.bottomRightHeading,
-      this.phoneNumber = null})
+      this.phoneNumber})
       : super(key: key);
 
   @override

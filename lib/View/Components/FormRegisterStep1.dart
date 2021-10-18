@@ -88,7 +88,7 @@ class _FormRegisterStep1State extends State<FormRegisterStep1> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => QC_RegisterPasswordPage(
+                      builder: (context) => RegisterPasswordPage(
                         // user: user,
                         phoneNumber: phoneNumberController.text,
                       )),

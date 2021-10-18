@@ -12,12 +12,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
+// ignore: must_be_immutable
 class OrdersDetail extends StatelessWidget {
   OrdersDetail({this.orderDetails, required this.type, this.orderId});
 
   List<OrderDetail>? orderDetails = [];
-  int? orderId;
-  int type;
+  final int? orderId;
+  final int type;
 
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
  lc.NumberFormat nf = lc.NumberFormat.currency(

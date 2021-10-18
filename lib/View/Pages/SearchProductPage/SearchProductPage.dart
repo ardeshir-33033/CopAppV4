@@ -8,8 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class SearchProductPage extends StatelessWidget {
-  Part? bal;
-  late SearchProductController searchProductController;
+  final Part? bal;
+  late final  SearchProductController searchProductController;
   SearchProductPage({
     this.bal,
     Key? key,

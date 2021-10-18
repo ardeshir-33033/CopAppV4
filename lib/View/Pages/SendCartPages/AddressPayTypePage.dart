@@ -11,14 +11,14 @@ import 'package:persian_number_utility/persian_number_utility.dart';
 import 'AddressWidget.dart';
 
 class AddressPayType extends StatelessWidget {
-  lc.NumberFormat nf = lc.NumberFormat.currency(
+  final lc.NumberFormat nf = lc.NumberFormat.currency(
     locale: "fa-IR",
     symbol: "",
   );
 
-  ChooseAddressController addressController =
+  final ChooseAddressController addressController =
       Get.put(ChooseAddressController());
-  InvoiceController invoiceController = Get.find();
+  final InvoiceController invoiceController = Get.find();
 
   @override
   Widget build(BuildContext context) {

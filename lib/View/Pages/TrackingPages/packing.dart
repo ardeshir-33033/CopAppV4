@@ -5,6 +5,7 @@ import 'package:copapp/View/Pages/TrackingPages/TrackingComponents/packing_card_
 import 'package:flutter/material.dart';
 
 
+// ignore: must_be_immutable
 class Packing extends StatelessWidget {
   Packing({this.order});
 

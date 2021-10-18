@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:persian_number_utility/persian_number_utility.dart';
 
+// ignore: must_be_immutable
 class OrdersV2Widget extends StatelessWidget {
   OrderHeader? item = OrderHeader();
 

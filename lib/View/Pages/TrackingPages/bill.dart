@@ -3,6 +3,7 @@ import 'package:copapp/Utilities/Base.dart';
 import 'package:copapp/View/Pages/OrderPages/OrdersDetailWidget.dart';
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class Bill extends StatefulWidget {
   Bill({this.orderId, required this.scaffoldKey, this.order});
 
@@ -16,25 +17,6 @@ class Bill extends StatefulWidget {
 }
 
 class _BillState extends State<Bill> {
-  // ResponseModel<OrderHeader> OrderModel = ResponseModel<OrderHeader>();
-
-  // Future orderDetail() async {
-  //   OrderModel = await OrderServiceV2().GetWithDetail(widget.orderId);
-  // }
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    // orderDetail().then((value) {
-    //   if (!OrderModel.isSuccess) {
-    //     OrderModel.ShowMessage(widget.scaffoldKey);
-    //   } else {
-    //     order = OrderModel.data;
-    //   }
-    //   setState(() {});
-    // });
-  }
 
   @override
   Widget build(BuildContext context) {

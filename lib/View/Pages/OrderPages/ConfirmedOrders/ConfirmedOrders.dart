@@ -10,9 +10,9 @@ import 'package:get/get.dart';
 import '../OrdersV2Widget.dart';
 
 class ConfirmedOrders extends StatelessWidget {
-  ConfirmedOrdController confirmedOrdController =
+  final ConfirmedOrdController confirmedOrdController =
       Get.put(ConfirmedOrdController());
-  GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
+  final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
 
   @override

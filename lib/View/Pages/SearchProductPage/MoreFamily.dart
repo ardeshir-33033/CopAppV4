@@ -4,15 +4,15 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class MoreFamily extends StatelessWidget {
-  bool fvis;
-  int? familyCount;
+  final bool vis;
+  final int? familyCount;
 
   MoreFamily({
-    required this.fvis,
+    required this.vis,
     this.familyCount,
     Key? key,
   }) : super(key: key);
-  SearchProductController searchProductController = Get.find();
+  final SearchProductController searchProductController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +41,7 @@ class MoreFamily extends StatelessWidget {
                         ),
                       ),
                     ),
-                    fvis == true
+                    vis == true
                         ? Icon(
                             Icons.expand_less,
                             color: CBase().basePrimaryLightColor,

@@ -3,10 +3,10 @@ import 'package:copapp/View/Components/FormRegisterStep1.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-class QC_RegisterPage extends StatelessWidget {
-  bool vis = false;
-  TextEditingController name = TextEditingController();
-  TextEditingController family = TextEditingController();
+class RegisterPage extends StatelessWidget {
+  final bool vis = false;
+  final TextEditingController name = TextEditingController();
+  final TextEditingController family = TextEditingController();
 
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
@@ -36,7 +36,7 @@ class QC_RegisterPage extends StatelessWidget {
                             child: Container(
                               height: CBase().getFullHeight(context) / 3,
                               decoration: BoxDecoration(
-                                // color: Colors.black,
+                                  // color: Colors.black,
                                   image: DecorationImage(
                                       fit: BoxFit.fitWidth,
                                       image: AssetImage(
@@ -71,7 +71,12 @@ class QC_RegisterPage extends StatelessWidget {
                           data: Theme.of(context).copyWith(
                             accentColor: CBase().basePrimaryColor,
                           ),
-                          child: vis ? CircularProgressIndicator(valueColor: AlwaysStoppedAnimation<Color>(CBase().basePrimaryColor),) : Text(""),
+                          child: vis
+                              ? CircularProgressIndicator(
+                                  valueColor: AlwaysStoppedAnimation<Color>(
+                                      CBase().basePrimaryColor),
+                                )
+                              : Text(""),
                         ),
                       ),
                     ),

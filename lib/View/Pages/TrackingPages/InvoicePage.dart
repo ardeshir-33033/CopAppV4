@@ -17,8 +17,8 @@ import 'buy.dart';
 import 'invoice.dart';
 
 class Tracking extends StatefulWidget {
-  TrackingStage trackingStage;
-  int? orderId;
+  late final TrackingStage trackingStage;
+  final int? orderId;
 
   Tracking({Key? key, this.trackingStage = TrackingStage.Bill, this.orderId})
       : super(key: key);
@@ -29,23 +29,21 @@ class Tracking extends StatefulWidget {
 
 class _TrackingState extends State<Tracking> {
   GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
-  ResponseModel<OrderHeader> OrderModel = ResponseModel<OrderHeader>();
+  ResponseModel<OrderHeader> orderModel = ResponseModel<OrderHeader>();
   OrderHeader order = OrderHeader();
-  String? _date;
 
   Future orderDetail() async {
-    OrderModel = await OrderServiceV2().getWithDetail(widget.orderId!);
+    orderModel = await OrderServiceV2().getWithDetail(widget.orderId!);
   }
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     orderDetail().then((value) {
-      if (!OrderModel.isSuccess) {
-        OrderModel.showMessage();
+      if (!orderModel.isSuccess) {
+        orderModel.showMessage();
       } else {
-        order = OrderModel.data;
+        order = orderModel.data;
         if (order.orderStatusId == "confirmedPay") {
           widget.trackingStage = TrackingStage.Bill;
         } else if (order.orderStatusId == "Packing") {
@@ -137,11 +135,5 @@ class _TrackingState extends State<Tracking> {
         ),
       ),
     );
-  }
-
-  void _changeDatetime(int year, int month, int day) {
-    setState(() {
-      _date = '$year-$month-$day';
-    });
   }
 }

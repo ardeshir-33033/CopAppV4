@@ -7,7 +7,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 class AddressWidget extends StatelessWidget {
-  ChooseAddressController addressController = Get.find();
+  final ChooseAddressController addressController = Get.find();
   @override
   Widget build(BuildContext context) {
     return Column(

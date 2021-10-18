@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 import 'ProfileTextfield.dart';
 
 class EditingNumberTab extends StatelessWidget {
-  ProfileController profileController = Get.find();
+  final ProfileController profileController = Get.find();
 
   @override
   Widget build(BuildContext context) {

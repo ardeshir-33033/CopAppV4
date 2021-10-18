@@ -8,7 +8,7 @@ class SearchProduct extends StatelessWidget {
   SearchProduct({
     Key? key,
   }) : super(key: key);
-  SearchProductController searchProductController = Get.find();
+  final SearchProductController searchProductController = Get.find();
   @override
   Widget build(BuildContext context) {
     return Container(

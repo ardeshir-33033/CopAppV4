@@ -13,7 +13,7 @@ import 'package:get/get.dart';
 import 'package:persian_number_utility/persian_number_utility.dart';
 
 class JoinedItems extends StatefulWidget {
-  Product? bal;
+  final Product? bal;
 
   JoinedItems({
     this.bal,

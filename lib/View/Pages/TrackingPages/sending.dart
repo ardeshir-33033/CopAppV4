@@ -1,13 +1,12 @@
-
 import 'package:copapp/Model/Order/OrderHeader.dart';
 import 'package:copapp/Utilities/Base.dart';
 import 'package:copapp/View/Pages/TrackingPages/TrackingComponents/buy_card_widget.dart';
 import 'package:copapp/View/Pages/TrackingPages/TrackingComponents/packing_card_widget.dart';
 import 'package:flutter/material.dart';
-
 import 'TrackingComponents/plate_widget.dart';
 
 
+// ignore: must_be_immutable
 class Sending extends StatelessWidget {
 
   Sending({this.order});

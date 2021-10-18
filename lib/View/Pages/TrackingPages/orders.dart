@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 
 class OrdersV2Widget extends StatelessWidget {
   final int? count, id;
-  GlobalKey<ScaffoldState> scaffold;
+  final GlobalKey<ScaffoldState> scaffold;
+  final int type;
 
-  int type;
-
-  OrdersV2Widget({required this.scaffold, required this.type, this.count, this.id});
+  OrdersV2Widget(
+      {required this.scaffold, required this.type, this.count, this.id});
 
   @override
   Widget build(BuildContext context) {
@@ -42,12 +42,10 @@ class OrdersV2Widget extends StatelessWidget {
                                   child: Container(
                                 margin: EdgeInsets.symmetric(horizontal: 5),
                                 child: FittedBox(
-                                    child: Text("سبد خرید:${id}",
+                                    child: Text("سبد خرید:$id",
                                         style: TextStyle(
-                                          fontSize:
-                                              CBase().mtitlefontSize,
-                                          color:
-                                              CBase().textPrimaryColor,
+                                          fontSize: CBase().mtitlefontSize,
+                                          color: CBase().textPrimaryColor,
                                         ))),
                               ))),
                           VerticalDivider(
@@ -121,7 +119,7 @@ class OrdersV2Widget extends StatelessWidget {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text("تعداد اقلام:${count}",
+                          Text("تعداد اقلام:$count",
                               style: TextStyle(
                                 fontSize: CBase().mtitlefontSize,
                                 color: CBase().textPrimaryColor,

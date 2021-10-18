@@ -10,18 +10,18 @@ import 'package:persian_number_utility/persian_number_utility.dart';
 
 import 'LoginPage.dart';
 
-class QC_NumberPanel extends StatefulWidget {
-  String phoneNumber;
+class LoginNumberPanel extends StatefulWidget {
+  final String phoneNumber;
 
-  QC_NumberPanel({
+  LoginNumberPanel({
     required this.phoneNumber,
   });
 
   @override
-  _QC_NumberPanelState createState() => _QC_NumberPanelState();
+  _LoginNumberPanelState createState() => _LoginNumberPanelState();
 }
 
-class _QC_NumberPanelState extends State<QC_NumberPanel> {
+class _LoginNumberPanelState extends State<LoginNumberPanel> {
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
   bool vis = false;
@@ -31,7 +31,6 @@ class _QC_NumberPanelState extends State<QC_NumberPanel> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
   }
 

@@ -8,7 +8,7 @@ import 'EditingNumberTab.dart';
 import 'NumberInfoTabWidget.dart';
 
 class NumberInfoTab extends StatelessWidget {
-  ProfileController profileController = Get.find();
+  final ProfileController profileController = Get.find();
 
   @override
   Widget build(BuildContext context) {

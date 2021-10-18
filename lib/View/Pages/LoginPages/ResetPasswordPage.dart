@@ -8,14 +8,12 @@ import 'package:persian_number_utility/persian_number_utility.dart';
 
 import 'RegisterPage.dart'; //import
 
-class QC_ResetPasswordPage extends StatefulWidget {
-
+class ResetPasswordPage extends StatefulWidget {
   @override
-  _QC_QC_ResetPasswordPageState createState() =>
-      _QC_QC_ResetPasswordPageState();
+  _ResetPasswordPageState createState() => _ResetPasswordPageState();
 }
 
-class _QC_QC_ResetPasswordPageState extends State<QC_ResetPasswordPage> {
+class _ResetPasswordPageState extends State<ResetPasswordPage> {
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
   bool vis = false;
@@ -46,7 +44,7 @@ class _QC_QC_ResetPasswordPageState extends State<QC_ResetPasswordPage> {
                             child: Container(
                               height: CBase().getFullHeight(context) / 3.5,
                               decoration: BoxDecoration(
-                                // color: Colors.black,
+                                  // color: Colors.black,
                                   image: DecorationImage(
                                       fit: BoxFit.fitWidth,
                                       image: AssetImage(
@@ -85,7 +83,9 @@ class _QC_QC_ResetPasswordPageState extends State<QC_ResetPasswordPage> {
                                     alignment: Alignment.center,
                                     margin: const EdgeInsets.all(10.0),
                                   ),
-                                  SizedBox(height: CBase().getFullHeight(context) / 30,),
+                                  SizedBox(
+                                    height: CBase().getFullHeight(context) / 30,
+                                  ),
                                   Container(
                                     margin: EdgeInsets.symmetric(vertical: 8),
                                     height: 40.0,
@@ -99,7 +99,7 @@ class _QC_QC_ResetPasswordPageState extends State<QC_ResetPasswordPage> {
                                             color: CBase().textPrimaryColor),
                                         focusedBorder: UnderlineInputBorder(
                                           borderSide:
-                                          BorderSide(color: Colors.black),
+                                              BorderSide(color: Colors.black),
                                         ),
                                       ),
                                       textDirection: TextDirection.rtl,
@@ -114,59 +114,74 @@ class _QC_QC_ResetPasswordPageState extends State<QC_ResetPasswordPage> {
                                           alignment: Alignment.centerRight,
                                           child: Row(
                                             mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
+                                                MainAxisAlignment.spaceBetween,
                                             children: <Widget>[
-                                              FlatButton(
-                                                padding: EdgeInsets.only(
+                                              Padding(
+                                                padding: const EdgeInsets.only(
                                                   top: 0.0,
                                                   bottom: 35.0,
                                                 ),
-                                                highlightColor: Colors.grey[200],
-                                                child: Text(
-                                                  "پنل ورود",
-                                                  style: TextStyle(
-                                                      fontSize: 11,
-                                                      color: CBase()
-                                                          .textPrimaryColor,
-                                                      fontWeight:
-                                                      FontWeight.normal),
-                                                  textAlign: TextAlign.right,
+                                                child: TextButton(
+                                                  style: ButtonStyle(
+                                                    overlayColor:
+                                                        MaterialStateColor
+                                                            .resolveWith(
+                                                                (states) =>
+                                                                    Colors.grey[
+                                                                        200]!),
+                                                  ),
+                                                  child: Text(
+                                                    "پنل ورود",
+                                                    style: TextStyle(
+                                                        fontSize: 11,
+                                                        color: CBase()
+                                                            .textPrimaryColor,
+                                                        fontWeight:
+                                                            FontWeight.normal),
+                                                    textAlign: TextAlign.right,
+                                                  ),
+                                                  onPressed: () {
+                                                    Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                          builder: (context) =>
+                                                              LoginPage()),
+                                                    );
+                                                  },
                                                 ),
-                                                onPressed: () {
-                                                  Navigator.push(
-                                                    context,
-                                                    MaterialPageRoute(
-                                                        builder: (context) =>
-                                                            LoginPage()),
-                                                  );
-                                                },
                                               ),
-                                              FlatButton(
-                                                padding: EdgeInsets.only(
+                                              Padding(
+                                                padding: const EdgeInsets.only(
                                                   top: 0.0,
                                                   bottom: 35.0,
                                                 ),
-                                                child: Text(
-                                                  "حساب کاربری ندارم",
-                                                  style: TextStyle(
-                                                      fontSize: CBase()
-                                                          .getTextfontSizeByScreen(),
-                                                      color: CBase()
-                                                          .textPrimaryColor,
-                                                      fontWeight:
-                                                      FontWeight.normal),
-                                                  textAlign: TextAlign.right,
+                                                child: TextButton(
+                                                  child: Text(
+                                                    "حساب کاربری ندارم",
+                                                    style: TextStyle(
+                                                        fontSize: CBase()
+                                                            .getTextfontSizeByScreen(),
+                                                        color: CBase()
+                                                            .textPrimaryColor,
+                                                        fontWeight:
+                                                            FontWeight.normal),
+                                                    textAlign: TextAlign.right,
+                                                  ),
+                                                  style: ButtonStyle(
+                                                    overlayColor: MaterialStateColor
+                                                        .resolveWith((states) =>
+                                                            CBase()
+                                                                .backgroundColor),
+                                                  ),
+                                                  onPressed: () {
+                                                    Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                          builder: (context) =>
+                                                              RegisterPage()),
+                                                    );
+                                                  },
                                                 ),
-                                                highlightColor:
-                                                CBase().backgroundColor,
-                                                onPressed: () {
-                                                  Navigator.push(
-                                                    context,
-                                                    MaterialPageRoute(
-                                                        builder: (context) =>
-                                                            QC_RegisterPage()),
-                                                  );
-                                                },
                                               ),
                                             ],
                                           ),
@@ -186,7 +201,13 @@ class _QC_QC_ResetPasswordPageState extends State<QC_ResetPasswordPage> {
                                           accentColor: CBase().basePrimaryColor,
                                         ),
                                         child: vis
-                                            ? CircularProgressIndicator(valueColor: AlwaysStoppedAnimation<Color>(CBase().basePrimaryColor),)
+                                            ? CircularProgressIndicator(
+                                                valueColor:
+                                                    AlwaysStoppedAnimation<
+                                                            Color>(
+                                                        CBase()
+                                                            .basePrimaryColor),
+                                              )
                                             : Text(""),
                                       ),
                                     ),
@@ -200,7 +221,8 @@ class _QC_QC_ResetPasswordPageState extends State<QC_ResetPasswordPage> {
                                       setState(() {
                                         vis = true;
                                       });
-                                      mobile.text = mobile.text.toEnglishDigit();
+                                      mobile.text =
+                                          mobile.text.toEnglishDigit();
                                       await UserServiceV2()
                                           .resetPassword(mobile.text);
 

@@ -11,8 +11,8 @@ import '../OrdersV2Widget.dart';
 
 class SendingOrders extends StatelessWidget {
 
-  GlobalKey<ScaffoldState> scaffoldKey = new GlobalKey<ScaffoldState>();
-  SendingOrdController sendingOrdController = Get.put(SendingOrdController());
+  final GlobalKey<ScaffoldState> scaffoldKey = new GlobalKey<ScaffoldState>();
+  final SendingOrdController sendingOrdController = Get.put(SendingOrdController());
 
   @override
   Widget build(BuildContext context) {

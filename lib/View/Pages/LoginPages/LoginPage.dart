@@ -23,7 +23,6 @@ class LoginPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // loginController.setContext(context);
     return Directionality(
       textDirection: TextDirection.rtl,
       child: Scaffold(
@@ -133,12 +132,12 @@ class LoginPage extends StatelessWidget {
                                               style: ButtonStyle(
                                                 overlayColor: MaterialStateColor
                                                     .resolveWith(
-                                                        (states) => Colors.red),
+                                                        (states) => Colors.grey[200]!),
                                               ),
                                               // highlightColor: Colors.grey[200],
                                               onPressed: () {
                                                 Get.to(() =>
-                                                    QC_ResetPasswordPage());
+                                                    ResetPasswordPage());
                                               },
                                             ),
                                           ),
@@ -319,7 +318,7 @@ class LoginPage extends StatelessWidget {
                                             context,
                                             MaterialPageRoute(
                                                 builder: (context) =>
-                                                    QC_RegisterPage()),
+                                                    RegisterPage()),
                                           );
                                         },
                                       ),

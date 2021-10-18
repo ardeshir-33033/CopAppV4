@@ -50,7 +50,6 @@ class MyApp extends StatelessWidget {
           scaffoldBackgroundColor: CBase().backgroundColor,
           primaryColorLight: CBase().basePrimaryLightColor,
           indicatorColor: CBase().basePrimaryColor,
-          textSelectionColor: CBase().textPrimaryColor,
           primaryColorDark: CBase().textPrimaryColor,
           tabBarTheme: TabBarTheme(
             labelStyle: TextStyle(

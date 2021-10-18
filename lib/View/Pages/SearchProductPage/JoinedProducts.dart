@@ -10,15 +10,15 @@ import 'JoinedItems.dart';
 import 'MoreFamily.dart';
 
 class JoinedProducts extends StatelessWidget {
-  SearchProductController searchProductController = Get.find();
-  ScreenshotController screenshotController = ScreenshotController();
+  final SearchProductController searchProductController = Get.find();
+  final ScreenshotController screenshotController = ScreenshotController();
 
-  NumberFormat nf = NumberFormat.currency(
+  final NumberFormat nf = NumberFormat.currency(
     locale: "fa-IR",
     symbol: "",
   );
 
-  NumberFormat nf1 = NumberFormat.decimalPattern("fa-IR");
+  final NumberFormat nf1 = NumberFormat.decimalPattern("fa-IR");
 
   @override
   Widget build(BuildContext context) {
@@ -239,7 +239,7 @@ class JoinedProducts extends StatelessWidget {
                           .part!.products!.first.productInfosPrice !=
                       0
               ? MoreFamily(
-                  fvis: searchProductController.allJoinVis,
+                  vis: searchProductController.allJoinVis,
                   familyCount: searchProductController.part!.products!.length-1,
                 )
               : SizedBox(

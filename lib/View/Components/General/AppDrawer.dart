@@ -18,6 +18,8 @@ import 'package:copapp/View/Pages/ProfilePage/UserInformation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import 'Divider.dart';
+
 class AppDrawer extends StatelessWidget {
   AppDrawer({required this.scaffoldKey});
 
@@ -301,30 +303,3 @@ class AppDrawer extends StatelessWidget {
   }
 }
 
-class WDivider extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 15),
-      child: Divider(
-        height: 1,
-        thickness: 1,
-        color: Colors.white,
-      ),
-    );
-  }
-}
-
-class KDivider extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 15),
-      child: Divider(
-        height: 1,
-        thickness: 1,
-        color: CBase().baseYellowColor,
-      ),
-    );
-  }
-}

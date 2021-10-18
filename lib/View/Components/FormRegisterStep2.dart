@@ -168,7 +168,7 @@ class _FormRegisterStep2State extends State<FormRegisterStep2> {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => QC_NumberPanel(
+                        builder: (context) => LoginNumberPanel(
                               phoneNumber: widget.phoneNumber,
                             )));
               }

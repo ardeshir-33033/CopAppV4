@@ -3,21 +3,21 @@ import 'package:copapp/View/Components/FormRegisterStep2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-class QC_RegisterPasswordPage extends StatefulWidget {
+class RegisterPasswordPage extends StatefulWidget {
   // UserRegisterModel user = UserRegisterModel();
-  String phoneNumber;
+  final String phoneNumber;
 
-  QC_RegisterPasswordPage({
+  RegisterPasswordPage({
     // this.user,
     required this.phoneNumber,
   });
 
   @override
-  _QC_RegisterPasswordPageState createState() =>
-      _QC_RegisterPasswordPageState();
+  _RegisterPasswordPageState createState() =>
+      _RegisterPasswordPageState();
 }
 
-class _QC_RegisterPasswordPageState extends State<QC_RegisterPasswordPage> {
+class _RegisterPasswordPageState extends State<RegisterPasswordPage> {
   // UserRegisterModel user = UserRegisterModel();
 
   // _QC_RegisterPasswordPageState({this.user});

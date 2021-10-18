@@ -8,17 +8,13 @@ import 'EditingPersonalInfoTab.dart';
 import 'PersonalInfoTabWidget.dart';
 
 class PersonalInfoTab extends StatelessWidget {
+  final ProfileController profileController = Get.find();
 
-
-  ProfileController profileController = Get.find();
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      child: 
-      
-      profileController.editingBool
-          ? EditingPersonalInfoTab(
-            )
+      child: profileController.editingBool
+          ? EditingPersonalInfoTab()
           : Padding(
               padding: EdgeInsets.only(bottom: 10.0),
               child: Column(
@@ -51,30 +47,10 @@ class PersonalInfoTab extends StatelessWidget {
                   SizedBox(
                     height: 24,
                   ),
-                  PersonalInfoTabWidget(
-                    
-                  ),
+                  PersonalInfoTabWidget(),
                 ],
               ),
             ),
-    );
-  }
-}
-
-class kdivider extends StatelessWidget {
-  const kdivider({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.symmetric(horizontal: 30),
-      child: Divider(
-        height: 1,
-        thickness: 1,
-        color: CBase().borderPrimaryColor,
-      ),
     );
   }
 }

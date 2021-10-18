@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 class DrawerWidget extends StatelessWidget {
-  GlobalKey<ScaffoldState> scaffoldKey = new GlobalKey<ScaffoldState>();
+  final GlobalKey<ScaffoldState> scaffoldKey;
 
   DrawerWidget({required this.scaffoldKey});
 
@@ -26,7 +26,6 @@ class DrawerWidget extends StatelessWidget {
         ),
       ),
     );
-    ;
   }
 }
 

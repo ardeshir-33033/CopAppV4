@@ -1,11 +1,11 @@
 import 'package:copapp/Controller/Controllers/ProfileController.dart';
-import 'package:copapp/Utilities/Base.dart';
+import 'package:copapp/View/Components/General/Divider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class PersonalInfoTabWidget extends StatelessWidget {
 
-  ProfileController profileController = Get.find();
+  final ProfileController profileController = Get.find();
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -27,7 +27,7 @@ class PersonalInfoTabWidget extends StatelessWidget {
                   ],
                 ),
               ),
-              kdivider(),
+              KDivider(),
             ],
           ),
           SizedBox(
@@ -47,7 +47,7 @@ class PersonalInfoTabWidget extends StatelessWidget {
                   ],
                 ),
               ),
-              kdivider(),
+              KDivider(),
             ],
           ),
           SizedBox(
@@ -70,7 +70,7 @@ class PersonalInfoTabWidget extends StatelessWidget {
                   ],
                 ),
               ),
-              kdivider(),
+              KDivider(),
             ],
           ),
           SizedBox(
@@ -90,7 +90,7 @@ class PersonalInfoTabWidget extends StatelessWidget {
                   ],
                 ),
               ),
-              kdivider(),
+              KDivider(),
             ],
           ),
         ],
@@ -99,20 +99,3 @@ class PersonalInfoTabWidget extends StatelessWidget {
   }
 }
 
-class kdivider extends StatelessWidget {
-  const kdivider({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.symmetric(horizontal: 30),
-      child: Divider(
-        height: 1,
-        thickness: 1,
-        color: CBase().borderPrimaryColor,
-      ),
-    );
-  }
-}
