@@ -287,7 +287,6 @@ class CartServiceV2 extends GetxController with Api {
     return result;
   }
 
-
   int cartProductQTY(int? productId) {
     if (myCart?.details != null) {
       int product = myCart!.details!

@@ -65,7 +65,7 @@ class CartPage extends StatelessWidget {
                                     ),
                               ),
                               Visibility(
-                                // visible: CartServiceV2().cartHasProduct(),
+                                visible: CartServiceV2().cartHasProduct(),
                                 child: IntrinsicHeight(
                                   child: Align(
                                     alignment: FractionalOffset.bottomCenter,
