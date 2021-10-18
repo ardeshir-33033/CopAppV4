@@ -109,29 +109,6 @@ class BalanceExtensions {
     selectedParts.clear();
   }
 
-  Future<List<Part>?> productsToWidgets(
-      int? filterId, GlobalKey<ScaffoldState> _scaffoldKey) async {
-    var selectedBalances = await BalanceServiceV2().getBalanceData(
-        BalanceServiceV2().getSelectedCategory()?.id,
-        // 233,
-        BalanceExtensions().getSelectedCar()?.id, //7
-        // BalanceServiceV2().getSelectedCar()?.id,
-        filterId: filterId);
-
-    if (selectedBalances.isSuccess) {
-      filters = (selectedBalances.data as RShowCategoryModel).filters!;
-      subCategories =
-          (selectedBalances.data as RShowCategoryModel).subCategories!;
-
-      // selectedParts = (selectedBalances.data as ShowCategoryModel).parts!;
-
-      return (selectedBalances.data as RShowCategoryModel).parts!;
-    } else {
-      selectedBalances.showMessage();
-      return [];
-    }
-  }
-
   List<SubCategory> getSubCategoryList() {
     return subCategories;
   }

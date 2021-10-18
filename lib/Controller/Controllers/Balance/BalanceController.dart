@@ -1,5 +1,6 @@
 import 'package:copapp/AppModel/MultiBalance/Part.dart';
 import 'package:copapp/Controller/Service/BalanceExtension.dart';
+import 'package:copapp/Controller/Service/BalanceService.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -26,7 +27,12 @@ class BalanceController extends GetxController {
     update([1]);
 
     items =
-        (await BalanceExtensions().productsToWidgets(filterId, scaffoldKey))!;
+        (await BalanceServiceV2().getBalanceData(
+        BalanceServiceV2().getSelectedCategory()?.id,
+        // 233,
+        BalanceExtensions().getSelectedCar()?.id, //7
+        // BalanceServiceV2().getSelectedCar()?.id,
+        filterId: filterId)).data;
     List<Part> temp = [];
     if (BalanceExtensions.selectedParts.length > 0) {
       for (int i = 0; i < items!.length; i++) {

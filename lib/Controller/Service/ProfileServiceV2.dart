@@ -16,10 +16,9 @@ import 'package:dio/dio.dart';
 import 'package:http/http.dart' as http;
 
 import '../../Api/Enums.dart';
-import 'Extensions/ProfileExtension.dart';
 import 'UserServiceV2.dart';
 
-class ProfileServiceV2 extends UserServiceV2 with ProfileExtensions {
+class ProfileServiceV2 extends UserServiceV2 {
   // models
   static Profile profile = new Profile();
   static bool uploadPic = false;
@@ -29,7 +28,7 @@ class ProfileServiceV2 extends UserServiceV2 with ProfileExtensions {
     var request = http.MultipartRequest(
         'POST',
         Uri.parse(
-            'https://copserver.dinavision.org/api/v1/Profile/EditPersonalAvatar'));
+            'https://mobile.dinavision.org/api/v1/Profile/EditPersonalAvatar'));
     request.files
         .add(await http.MultipartFile.fromPath('avatar', imageFile.path));
     request.headers.addAll(head);
