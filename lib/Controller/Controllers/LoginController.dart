@@ -38,12 +38,13 @@ class LoginController extends GetxController {
         });
       }
     });
+    setContext();
     super.onInit();
   }
 
-  setContext(BuildContext context) {
-    CBase().setDeviceDimension(
-        CBase().getFullWidth(context), CBase().getFullHeight(context));
+  setContext() {
+    CBase().setDeviceDimension(CBase().getFullWidth(Get.context!),
+        CBase().getFullHeight(Get.context!));
   }
 
   setCircularVal(bool val) {
@@ -112,7 +113,6 @@ class LoginController extends GetxController {
         .getUserDataInSharePrefrences("autoLoginKey");
     autoLoginValue.value = data ?? '0';
   }
-
 
   GoogleAuth googleSignToPost(GoogleSignInAccount googleUser) {
     GoogleAuth googleAuthUser = GoogleAuth(

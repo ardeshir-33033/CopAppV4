@@ -65,7 +65,7 @@ class _MultiBalancePageState extends State<MultiBalancePage> {
                         return Container(
                           height: 30,
                           padding: EdgeInsets.only(right: 30.0),
-                          child: ListView.builder(
+                          child:multiBalanceController.result!=null? ListView.builder(
                               scrollDirection: Axis.horizontal,
                               itemCount:
                                   multiBalanceController.subCategories?.length,
@@ -116,7 +116,7 @@ class _MultiBalancePageState extends State<MultiBalancePage> {
                                     ),
                                   ),
                                 );
-                              }),
+                              }):SizedBox(),
                         );
                       }),
                   GetBuilder<MultiBalanceController>(
