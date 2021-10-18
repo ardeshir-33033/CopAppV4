@@ -10,7 +10,6 @@ import 'package:get/get.dart';
 class MultiBalanceController extends GetxController {
   static MultiBalanceController instance = Get.find();
   GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
-  int? sortId;
   List<Part>? result;
   List<SubCategory>? subCategories = [];
   List<Widget>? products;
@@ -20,17 +19,19 @@ class MultiBalanceController extends GetxController {
     getBalance();
   }
 
-  getBalance({bool isFilter = false}) async {
-    await getBalanceData().then((value) async {
+  getBalance({bool isSubCat = false}) async {
+    await getBalanceData(isSubCat: isSubCat).then((value) async {
       result = value;
       update([2]);
     });
     await getFilters().then((value) => update([1]));
   }
 
-  Future getFilters({bool isFilter = false}) async {
+  Future getFilters({bool isSubCat = false}) async {
     var response = await BalanceServiceV2().getBalanceFilterBox(
-      BalanceServiceV2().getSelectedCategory()?.id,
+      isSubCat
+          ? BalanceExtensions().getSelectedCategory()?.id
+          : BalanceServiceV2().getSelectedCategory()?.id,
       BalanceExtensions().getSelectedCar()?.id,
     );
     if (response.isSuccess) {
@@ -39,13 +40,15 @@ class MultiBalanceController extends GetxController {
     }
   }
 
-  Future<List<Part>?> getBalanceData() async {
+  Future<List<Part>?> getBalanceData({bool isSubCat = false}) async {
     var selectedBalances = await BalanceServiceV2().getBalanceData(
-        BalanceServiceV2().getSelectedCategory()?.id,
-        // 233,
-        BalanceExtensions().getSelectedCar()?.id,
-        // BalanceServiceV2().getSelectedCar()?.id,
-        filterId: sortId);
+      isSubCat
+          ? BalanceExtensions().getSelectedCategory()!.id
+          : BalanceServiceV2().getSelectedCategory()?.id,
+      // 233,
+      BalanceExtensions().getSelectedCar()?.id,
+      // BalanceServiceV2().getSelectedCar()?.id,
+    );
 
     if (selectedBalances.isSuccess) {
       return (selectedBalances.data);
@@ -64,7 +67,8 @@ class MultiBalanceController extends GetxController {
     BalanceExtensions()
         .setSelectedCategory(Category(name: "", id: subCategories![index].id));
     update([1]);
-    getBalance(isFilter: true).then((value) {
+    getBalanceData(isSubCat: true).then((value) {
+      result = value;
       update([2]);
     });
   }
@@ -92,7 +96,7 @@ class MultiBalanceController extends GetxController {
         // getBalance().then((value) {
         //   setState(() {});
         // });
-        getBalance(isFilter: true);
+        getBalance(isSubCat: true);
       }
     }
   }
