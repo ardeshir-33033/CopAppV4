@@ -1,10 +1,10 @@
-class userVerifyCodeModel {
+class UserVerifyCodeModel {
   String? phoneNumber;
   String? code;
 
-  userVerifyCodeModel({this.phoneNumber, this.code});
+  UserVerifyCodeModel({this.phoneNumber, this.code});
 
-  userVerifyCodeModel.fromJson(Map<String, dynamic> json) {
+  UserVerifyCodeModel.fromJson(Map<String, dynamic> json) {
     phoneNumber = json['phoneNumber'];
     code = json['code'];
   }

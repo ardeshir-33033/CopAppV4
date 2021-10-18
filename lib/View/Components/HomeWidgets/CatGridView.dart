@@ -2,12 +2,11 @@ import 'package:copapp/Controller/Controllers/Home/CategoryController.dart';
 import 'package:copapp/Utilities/Base.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import 'CatItem.dart';
 
 
 class CatGridView extends StatelessWidget {
-  CategoryController categoryController = Get.find();
+  final CategoryController categoryController = Get.find();
 
   @override
   Widget build(BuildContext context) {

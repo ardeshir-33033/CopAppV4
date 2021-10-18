@@ -1,9 +1,9 @@
-class phoneNumberModel {
+class PhoneNumberModel {
   String? phoneNumber;
 
-  phoneNumberModel({this.phoneNumber});
+  PhoneNumberModel({this.phoneNumber});
 
-  phoneNumberModel.fromJson(Map<String, dynamic> json) {
+  PhoneNumberModel.fromJson(Map<String, dynamic> json) {
     phoneNumber = json['phoneNumber'];
   }
 

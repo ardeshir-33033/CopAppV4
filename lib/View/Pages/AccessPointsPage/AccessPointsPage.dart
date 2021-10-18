@@ -5,16 +5,15 @@ import 'package:copapp/View/Components/General/AppDrawer.dart';
 import 'package:copapp/View/Components/General/CustomAppBar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import 'NewPassword.dart';
 import 'PointsRoundedButton.dart';
 
 class AccessPointsPage extends StatelessWidget {
-  GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
-  AccessPointController accessPointController =
+  final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
+  final AccessPointController accessPointController =
       Get.put(AccessPointController());
 
-  ScoreService scoreServiceController = Get.find();
+  final ScoreService scoreServiceController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -166,7 +165,7 @@ class AccessPointsPage extends StatelessWidget {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            KeyPad(context),
+                            keyPad(context),
                           ],
                         ),
                         Padding(
@@ -235,7 +234,7 @@ class AccessPointsPage extends StatelessWidget {
     );
   }
 
-  Widget KeyPad(BuildContext context) {
+  Widget keyPad(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,

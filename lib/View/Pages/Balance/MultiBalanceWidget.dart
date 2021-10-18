@@ -7,11 +7,11 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 class MultiBalanceWidget extends StatelessWidget {
-  Part bal;
+  final Part bal;
 
   MultiBalanceWidget({required this.bal});
 
-  MultiBalanceController multiBalanceController = Get.find();
+  final MultiBalanceController multiBalanceController = Get.find();
 
   @override
   Widget build(BuildContext context) {

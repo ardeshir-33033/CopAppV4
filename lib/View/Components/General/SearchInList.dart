@@ -11,7 +11,7 @@ class SearchInList extends StatefulWidget {
   final List<String> list;
   final Function ?getResult;
   final bool noTextEmpty;
-  String hint;
+  final String hint;
   final Function? onTap;
   final bool enable, initFocus;
 
@@ -36,7 +36,6 @@ class _SearchInListState extends State<SearchInList> {
   FocusNode textFocusNode = new FocusNode();
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
   }
 
@@ -119,7 +118,7 @@ class _SearchInListState extends State<SearchInList> {
               child: Container(
                 child: Center(
                   child: SearchSpeech(
-                    SpeechTextCallBack: (result) {
+                    speechTextCallBack: (result) {
                       controller.text = result;
                     },
                   ),

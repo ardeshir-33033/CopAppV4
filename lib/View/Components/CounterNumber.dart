@@ -4,12 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class CounterNumber extends StatelessWidget {
-  int number;
+  final int number;
 
   CounterNumber({required this.number});
 
   @override
   Widget build(BuildContext context) {
+    // ignore: unnecessary_statements
     number > 9 || number < 0 ? throw 'Number not in range' : null;
     return Container(
       width: 14.67,

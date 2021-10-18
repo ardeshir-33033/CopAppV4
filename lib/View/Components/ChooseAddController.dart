@@ -10,28 +10,26 @@ import 'package:get/get.dart';
 class ChooseAddressController extends GetxController {
   AddAddressController addAddressController = Get.put(AddAddressController());
   GlobalKey<ScaffoldState> scaffoldKey = new GlobalKey<ScaffoldState>();
-  ResponseModel<List<AllShippers>> ShipperResponse =
-      ResponseModel<List<AllShippers>>();
+  ResponseModel shipperResponse =
+      ResponseModel();
   List<AllShippers> shipper = [];
   int radioVal = 1;
   List<bool> checkboxes = [true];
-  // Address chosenAddress = Address();
 
-  ResponseModel<List<Address>> AddressModel = ResponseModel<List<Address>>();
+  ResponseModel addressModel = ResponseModel();
 
   List<Address>? addresses = [];
 
   Future initAddress() async {
-    AddressModel = await ProfileServiceV2().getAddresses();
+    addressModel = await ProfileServiceV2().getAddresses();
   }
 
-  Future<ResponseModel<List<AllShippers>>?> Shipper() async {
-    ShipperResponse = await ShippingService().GetAllShippers();
+  Future<ResponseModel<List<AllShippers>>?> getShipper() async {
+    shipperResponse = await ShippingService().getAllShippers();
   }
 
   @override
   void onInit() {
-    // TODO: implement onInit
     super.onInit();
     // Shipper().then((value) {
     //   shipper = ShipperResponse.data;
@@ -39,7 +37,7 @@ class ChooseAddressController extends GetxController {
     // });
     addresses = null;
     initAddress().then((value) {
-      addresses = AddressModel.data;
+      addresses = addressModel.data;
       for (int i = 0; i < addresses!.length; i++) {
         checkboxes.add(false);
       }
@@ -64,7 +62,7 @@ class ChooseAddressController extends GetxController {
       res.showMessage();
     } else {
       initAddress().then((value) {
-        addresses = AddressModel.data;
+        addresses = addressModel.data;
         update();
       });
     }

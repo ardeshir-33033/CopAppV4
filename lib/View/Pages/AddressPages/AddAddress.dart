@@ -10,7 +10,7 @@ import 'package:get/get.dart';
 import 'AddAddressComp.dart';
 
 class AddAddress extends StatelessWidget {
-  AddAddressController addAddressController = Get.find();
+  final AddAddressController addAddressController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -64,7 +64,7 @@ class AddAddress extends StatelessWidget {
                     child: ClipRRect(
                         borderRadius:
                             BorderRadius.vertical(top: Radius.circular(10)),
-                        child: googleMapComponent()),
+                        child: GoogleMapComponent()),
                   ),
                 ),
                 AddAddressComponent(),

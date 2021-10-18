@@ -9,8 +9,8 @@ import 'BrandItems.dart';
 import 'CategoryItems.dart';
 
 class BalanceWidget extends StatelessWidget {
-  Part? bal;
-  GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
+  final Part? bal;
+  final GlobalKey<ScaffoldState> scaffoldKey;
 
   BalanceWidget({
     this.bal,
@@ -40,30 +40,21 @@ class BalanceWidget extends StatelessWidget {
                               EdgeInsets.symmetric(horizontal: 0, vertical: 5),
                           child: Column(
                               children: bal!.products!
-                                  .map(
-                                    (e) =>
-                                        // // e.productInfos!.first.qty != 0 &&
-                                        //         e.productInfos!.first
-                                        //                 .price !=
-                                        //             0
-                                        //
-                                       e.productVirtualQTY != 0 && e.productInfosPrice == 0
-                                            ? Container(): Padding(
-                                                padding: EdgeInsets.symmetric(
-                                                    horizontal: 10.0),
-                                                child: e.productVirtualQTY !=
-                                                        0
-                                                    ? BalanceItem(
-                                                        scaffold: scaffoldKey,
-                                                        bal: e,
-                                                        onTapCallback: (res) {},
-                                                      )
-                                                    : InquiryItem(
-                                                        scaffold: scaffoldKey,
-                                                        bal: e,
-                                                      ))
-                                            // : ,
-                                  )
+                                  .map((e) => e.productVirtualQTY != 0 &&
+                                          e.productInfosPrice == 0
+                                      ? Container()
+                                      : Padding(
+                                          padding: EdgeInsets.symmetric(
+                                              horizontal: 10.0),
+                                          child: e.productVirtualQTY != 0
+                                              ? BalanceItem(
+                                                  scaffold: scaffoldKey,
+                                                  bal: e,
+                                                )
+                                              : InquiryItem(
+                                                  scaffold: scaffoldKey,
+                                                  bal: e,
+                                                )))
                                   .toList())),
                     ],
                   );
@@ -78,7 +69,6 @@ class BalanceWidget extends StatelessWidget {
                         fontSize: CBase().getTitlefontSizeByScreen()),
                   )),
                 ),
-          // joinWidget,
         ],
       ),
     );
@@ -94,14 +84,6 @@ class BalanceWidget extends StatelessWidget {
         return true;
       }
     }
-    // bal.products!.forEach((e) {
-    //   if (e.productInfos!.first.qty == 0 ||
-    //       (e.productInfos!.first.price != 0 &&
-    //           e.productInfos!.first.qty != 0)) {
-    //     // result = true;
-    //     return true;
-    //   }
-    // });
     return false;
   }
 }

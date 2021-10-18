@@ -7,14 +7,10 @@ import 'package:copapp/Api/ResponseModel.dart';
 import 'package:copapp/Api/Routing/RoutingProfile.dart';
 import 'package:copapp/Model/Address.dart';
 import 'package:copapp/Model/CardModel.dart';
-import 'package:copapp/Model/FavoriteProduct.dart';
-import 'package:copapp/Model/MainData.dart';
 import 'package:copapp/Model/Profile.dart';
-import 'package:copapp/Model/ProfileInformation.dart';
 import 'package:copapp/Utilities/Sharei.dart';
 import 'package:dio/dio.dart';
 import 'package:http/http.dart' as http;
-
 import '../../Api/Enums.dart';
 import 'UserServiceV2.dart';
 

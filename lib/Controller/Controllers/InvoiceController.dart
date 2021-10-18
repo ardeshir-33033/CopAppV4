@@ -27,14 +27,14 @@ class InvoiceController extends GetxController {
   }
 
   void confirm() {
-    Sharei().TakeScreenshot(screenshotController, 1);
+    Sharei().takeScreenshot(screenshotController, 1);
     if (scrollController.position.pixels !=
         scrollController.position.maxScrollExtent) {
       scrollController
           .animateTo(scrollController.position.maxScrollExtent,
               duration: Duration(milliseconds: 500), curve: Curves.linear)
           .then((value) {
-        Sharei().TakeScreenshot(screenshotController, 2);
+        Sharei().takeScreenshot(screenshotController, 2);
       });
       Sharei().setMultiPic(true);
     }

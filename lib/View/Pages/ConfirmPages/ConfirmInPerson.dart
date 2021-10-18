@@ -136,7 +136,7 @@ class _ConfirmInPersonState
                         });
 
                         if (result!.isSuccess) {
-                          MyInAppBrowser().setbrowser(browser);
+                          MyInAppBrowser().setBrowser(browser);
                           await browser.openUrlRequest(
                               urlRequest: URLRequest(
                                 url: Uri.parse(result.data),

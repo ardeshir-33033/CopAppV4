@@ -8,8 +8,8 @@ import 'package:persian_number_utility/persian_number_utility.dart';
 
 class AboutUsPage extends StatelessWidget {
 
-  GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
-  AboutUsController aboutUsController = Get.put(AboutUsController());
+  final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
+  final AboutUsController aboutUsController = Get.put(AboutUsController());
 
   @override
   Widget build(BuildContext context) {

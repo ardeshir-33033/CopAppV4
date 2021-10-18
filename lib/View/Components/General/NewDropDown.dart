@@ -28,7 +28,7 @@ class NewDropDown extends StatefulWidget {
   final List<DropdownMenuItem> items;
   final Color? iconColor;
   final Widget? divider, itemDivider;
-  void Function(dynamic)? onChanged;
+  final void Function(dynamic)? onChanged;
 
   @override
   _NewDropDownState createState() => _NewDropDownState();

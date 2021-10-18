@@ -1,10 +1,10 @@
 import 'dart:math' as math;
-
 import 'package:copapp/AppModel/Home/Car.dart';
 import 'package:copapp/Controller/Service/BalanceService.dart';
 import 'package:copapp/Utilities/Base.dart';
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class SelectedCarItemWidget extends StatelessWidget {
   final double? width, height;
   final Function? onCancel;

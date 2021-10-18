@@ -335,7 +335,7 @@ class LoginPage extends StatelessWidget {
       print("failed");
     } else {
       googleAuth = loginController.googleSignToPost(GoogleUser);
-      ResponseModel model = await UserServiceV2().GoogleLogIn(googleAuth);
+      ResponseModel model = await UserServiceV2().googleLogIn(googleAuth);
       if (model.isSuccess) {
         // Navigator.push(context,
         //     MaterialPageRoute(builder: (BuildContext context) => HomePageV4()));

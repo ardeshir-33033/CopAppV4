@@ -4,17 +4,11 @@ import 'package:copapp/Utilities/Base.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+// ignore: must_be_immutable
 class FilterBalanceWidget extends StatelessWidget {
-  GlobalKey<ScaffoldState> scaffoldKey = new GlobalKey<ScaffoldState>();
+  final GlobalKey<ScaffoldState> scaffoldKey;
 
   FilterBalanceWidget({required this.scaffoldKey});
-
-  // Map<String, dynamic> filters = {
-  //   "ارزان ترین": 2,
-  //   "گران ترین": 3,
-  //   "محبوب ترین": 4,
-  //   "گارانتی": 5,
-  // };
   int? selected;
 
   @override

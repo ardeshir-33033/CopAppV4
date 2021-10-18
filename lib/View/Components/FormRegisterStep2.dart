@@ -10,12 +10,10 @@ import 'package:persian_number_utility/persian_number_utility.dart'; //import
 import 'RedButton.dart';
 
 class FormRegisterStep2 extends StatefulWidget {
-  // UserRegisterModel user = UserRegisterModel();
-  String phoneNumber;
+  late final String phoneNumber;
 
   FormRegisterStep2({
     required this.phoneNumber,
-    // this.user,
   });
 
   @override
@@ -23,17 +21,12 @@ class FormRegisterStep2 extends StatefulWidget {
 }
 
 class _FormRegisterStep2State extends State<FormRegisterStep2> {
-  // UserRegisterModel user = UserRegisterModel();
 
   TextEditingController verifyCode = TextEditingController();
   bool vis = false;
 
-  // TextEditingController confirm = TextEditingController();
-
-  // _FormRegisterStep2State({this.user});
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     startTimer();
   }
@@ -98,6 +91,7 @@ class _FormRegisterStep2State extends State<FormRegisterStep2> {
             padding: EdgeInsets.only(top: 0.0, bottom: 40.0),
             child: Row(
               children: [
+                // ignore: deprecated_member_use
                 FlatButton(
                   child: Text(
                     "ارسال دوباره کد",
@@ -112,7 +106,7 @@ class _FormRegisterStep2State extends State<FormRegisterStep2> {
                   highlightColor: Colors.grey[200],
                   onPressed: () async {
                     if (_start == 0) {
-                      await UserServiceV2().AgainSendValidCodeForSuspendedUser(
+                      await UserServiceV2().againSendValidCodeForSuspendedUser(
                           widget.phoneNumber);
                       _start = 60;
                       startTimer();
@@ -165,7 +159,7 @@ class _FormRegisterStep2State extends State<FormRegisterStep2> {
               // if (password.text == confirm.text) {
               //   user.password = password.text;
               ResponseModel response = await UserServiceV2()
-                  .SuspendedUserVerify(widget.phoneNumber, verifyCode.text);
+                  .suspendedUserVerify(widget.phoneNumber, verifyCode.text);
 
               if (response.isSuccess) {
                 setState(() {

@@ -8,14 +8,12 @@ import 'package:persian_number_utility/persian_number_utility.dart';
 import 'RedButton.dart'; //import
 
 class FormRegisterStep1 extends StatefulWidget {
-  // UserRegisterModel user = UserRegisterModel();
-  GlobalKey<ScaffoldState> scaffoldKey = new GlobalKey<ScaffoldState>();
+  final GlobalKey<ScaffoldState> scaffoldKey;
 
 //////ثبت نام
 
   FormRegisterStep1({
     required this.scaffoldKey,
-    // this.user,
   });
 
   @override
@@ -23,12 +21,8 @@ class FormRegisterStep1 extends StatefulWidget {
 }
 
 class _FormRegisterStep1State extends State<FormRegisterStep1> {
-  // UserRegisterModel user = UserRegisterModel();
-
   TextEditingController phoneNumberController = TextEditingController();
-  TextEditingController lname = TextEditingController();
-
-  // _FormRegisterStep1State({this.user});
+  TextEditingController lastName = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -89,7 +83,7 @@ class _FormRegisterStep1State extends State<FormRegisterStep1> {
               phoneNumberController.text =
                   phoneNumberController.text.toEnglishDigit();
               ResponseModel result = await UserServiceV2()
-                  .SuspendedUser(phoneNumberController.text);
+                  .suspendedUser(phoneNumberController.text);
               if (result.isSuccess == true) {
                 Navigator.push(
                   context,
@@ -102,7 +96,6 @@ class _FormRegisterStep1State extends State<FormRegisterStep1> {
               } else {
                 ResponseModel().showMessage();
               }
-              // user.fullName = fname.text + " " + lname.text;
             },
           ),
         ],

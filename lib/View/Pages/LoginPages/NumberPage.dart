@@ -187,7 +187,7 @@ class _QC_NumberPanelState extends State<QC_NumberPanel> {
 
                               if (password.text == repeatPassword.text) {
                                 result1 = await UserServiceV2()
-                                    .CreateWithValidation(
+                                    .createWithValidation(
                                         phone: widget.phoneNumber,
                                         password: password.text);
                               } else {

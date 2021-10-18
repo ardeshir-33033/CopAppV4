@@ -8,7 +8,7 @@ import 'package:copapp/Model/Shipping/CountryNameModel.dart';
 class ShippingService extends Api {
   static List<AllShippers>? shippers;
 
-  Future<ResponseModel<List<AllShippers>>> GetAllShippers() async {
+  Future<ResponseModel> getAllShippers() async {
     var response = await HTTPGET<AllShippers>(
       RoutingShipping.GET_GetAllShippers,
       [],
@@ -16,11 +16,12 @@ class ShippingService extends Api {
       ResponseEnum.ResponseModelEnum,
     );
 
-    response.data = AllShippers().listFromJson(response.data);
+    if (response.isSuccess) {
+      response.data = AllShippers().listFromJson(response.data);
+      shippers = response.data;
+    }
 
-    shippers = response.data;
-
-    return ResponseModel<List<AllShippers>>(
+    return ResponseModel(
       isSuccess: response.isSuccess,
       statusCode: response.statusCode,
       data: response.data,
@@ -28,16 +29,19 @@ class ShippingService extends Api {
     );
   }
 
-  Future<ResponseModel<List<CountryName>>> GetAllCountries() async {
+  Future<ResponseModel> getAllCountries() async {
     var response = await HTTPGET<CountryName>(
         RoutingShipping.GET_GetAllCountries,
         [],
         HeaderEnum.EmptyHeaderEnum,
-        ResponseEnum.ResponseModelEnum);
+        ResponseEnum.ResponseModelEnum,
+    );
 
-    response.data = CountryName().listFromJson(response.data);
+    if(response.isSuccess){
+      response.data = CountryName().listFromJson(response.data);
+    }
 
-    return ResponseModel<List<CountryName>>(
+    return ResponseModel(
       isSuccess: response.isSuccess,
       statusCode: response.statusCode,
       data: response.data,

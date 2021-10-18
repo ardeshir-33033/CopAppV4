@@ -6,9 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-class googleMapComponent extends StatelessWidget {
-  MapController googleMapController = Get.put(MapController());
-  GoogleMapController? controller;
+class GoogleMapComponent extends StatelessWidget {
+  final MapController googleMapController = Get.put(MapController());
+  late final GoogleMapController? controller;
 
   @override
   Widget build(BuildContext context) {

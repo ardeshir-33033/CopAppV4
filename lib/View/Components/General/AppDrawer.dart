@@ -21,8 +21,8 @@ import 'package:get/get.dart';
 class AppDrawer extends StatelessWidget {
   AppDrawer({required this.scaffoldKey});
 
-  GlobalKey<ScaffoldState> scaffoldKey =  GlobalKey<ScaffoldState>();
-  AppDrawerController appDrawerController = Get.put(AppDrawerController());
+  final GlobalKey<ScaffoldState> scaffoldKey;
+  final AppDrawerController appDrawerController = Get.put(AppDrawerController());
 
   @override
   Widget build(BuildContext context) {
@@ -79,7 +79,7 @@ class AppDrawer extends StatelessWidget {
                           color: CBase().baseYellowColor),
                     ),
                   ),
-                  kDivider(),
+                  KDivider(),
                   ListTile(
                     onTap: () {
                       Navigator.push(context,
@@ -92,7 +92,7 @@ class AppDrawer extends StatelessWidget {
                           color: CBase().baseYellowColor),
                     ),
                   ),
-                  kDivider(),
+                  KDivider(),
                   ListTile(
                     onTap: () {
                       appDrawerController.profileSelected();
@@ -104,7 +104,7 @@ class AppDrawer extends StatelessWidget {
                           color: CBase().baseYellowColor),
                     ),
                   ),
-                  kDivider(),
+                  KDivider(),
                   GetBuilder<AppDrawerController>(
                       id: 1,
                       builder: (_) {
@@ -125,7 +125,7 @@ class AppDrawer extends StatelessWidget {
                                               1.2,
                                           color: Colors.white)),
                                 ),
-                                wDivider(),
+                                WDivider(),
                                 ListTile(
                                   onTap: () {
                                     Get.to(() => Financial());
@@ -137,7 +137,7 @@ class AppDrawer extends StatelessWidget {
                                               1.2,
                                           color: Colors.white)),
                                 ),
-                                wDivider(),
+                                WDivider(),
                                 ListTile(
                                   onTap: () {
                                     Get.to(() => UserInformationPage());
@@ -149,7 +149,7 @@ class AppDrawer extends StatelessWidget {
                                               1.2,
                                           color: Colors.white)),
                                 ),
-                                wDivider(),
+                                WDivider(),
                                 ListTile(
                                   onTap: () {
                                     Navigator.push(
@@ -165,7 +165,7 @@ class AppDrawer extends StatelessWidget {
                                               1.2,
                                           color: Colors.white)),
                                 ),
-                                wDivider(),
+                                WDivider(),
                                 ListTile(
                                   onTap: () {
                                     Get.to(() => CreditCardPage());
@@ -177,7 +177,7 @@ class AppDrawer extends StatelessWidget {
                                               1.2,
                                           color: Colors.white)),
                                 ),
-                                wDivider(),
+                                WDivider(),
                               ],
                             ),
                           ),
@@ -192,7 +192,7 @@ class AppDrawer extends StatelessWidget {
                             fontSize: CBase().getTextfontSizeByScreen() * 1.2,
                             color: CBase().baseYellowColor)),
                   ),
-                  kDivider(),
+                  KDivider(),
                   GetBuilder<AppDrawerController>(
                       id: 2,
                       builder: (_) {
@@ -213,7 +213,7 @@ class AppDrawer extends StatelessWidget {
                                               1.2,
                                           color: Colors.white)),
                                 ),
-                                wDivider(),
+                                WDivider(),
                                 ListTile(
                                   onTap: () {
                                     Get.to(() => ConfirmedOrders());
@@ -225,7 +225,7 @@ class AppDrawer extends StatelessWidget {
                                               1.2,
                                           color: Colors.white)),
                                 ),
-                                wDivider(),
+                                WDivider(),
                                 ListTile(
                                   onTap: () {
                                     Get.to(() => SendingOrders());
@@ -237,7 +237,7 @@ class AppDrawer extends StatelessWidget {
                                               1.2,
                                           color: Colors.white)),
                                 ),
-                                wDivider(),
+                                WDivider(),
                               ],
                             ),
                           ),
@@ -254,7 +254,7 @@ class AppDrawer extends StatelessWidget {
                           color: CBase().baseYellowColor),
                     ),
                   ),
-                  kDivider(),
+                  KDivider(),
                   ListTile(
                     onTap: () {
                       Get.to(() => AboutUsPage());
@@ -266,7 +266,7 @@ class AppDrawer extends StatelessWidget {
                           color: CBase().baseYellowColor),
                     ),
                   ),
-                  kDivider(),
+                  KDivider(),
                   ListTile(
                     onTap: () {
                       Get.to(() => ContactUs());
@@ -278,11 +278,11 @@ class AppDrawer extends StatelessWidget {
                           color: CBase().baseYellowColor),
                     ),
                   ),
-                  kDivider(),
+                  KDivider(),
                   ListTile(
                     onTap: () async {
                       appDrawerController.exitPressed();
-                      await Snacki().ShowExitSnack(
+                      await Snacki().showExitSnack(
                         scaffoldKey,
                       );
                     },
@@ -301,7 +301,7 @@ class AppDrawer extends StatelessWidget {
   }
 }
 
-class wDivider extends StatelessWidget {
+class WDivider extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -315,7 +315,7 @@ class wDivider extends StatelessWidget {
   }
 }
 
-class kDivider extends StatelessWidget {
+class KDivider extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(

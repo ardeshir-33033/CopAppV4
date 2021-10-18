@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 import '../CounterNumber.dart';
 
 class PointCounter extends StatelessWidget {
-  PointController pointController = Get.put(PointController());
+  final PointController pointController = Get.put(PointController());
 
   @override
   Widget build(BuildContext context) {

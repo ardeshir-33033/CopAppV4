@@ -2,10 +2,10 @@ import 'package:copapp/Utilities/Base.dart';
 import 'package:flutter/material.dart';
 
 class REDButton extends StatelessWidget {
-  Widget? route;
-  Function(dynamic result)? onTapCallback;
-  dynamic param;
-  String? title;
+  final Widget? route;
+  final Function(dynamic result)? onTapCallback;
+  final dynamic param;
+  final String? title;
 
   REDButton({
     this.onTapCallback,

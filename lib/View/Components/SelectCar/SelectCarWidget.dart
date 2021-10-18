@@ -3,12 +3,11 @@ import 'package:copapp/Utilities/Base.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:persian_number_utility/persian_number_utility.dart';
-
 import 'SelectCarItemWidget.dart';
 import 'SelectItemWidget.dart';
 
 class SelectCarWidget extends StatelessWidget {
-  HomeController homeController = Get.put(HomeController());
+  final HomeController homeController = Get.put(HomeController());
 
   @override
   Widget build(BuildContext context) {
@@ -101,7 +100,7 @@ class SelectCarWidget extends StatelessWidget {
           for (int i = homeController.cars.length - 1; i >= 0; i--)
             CarItemWidget(
               year: homeController.years[i].toPersianDigit(),
-              ontap: () {
+              onTap: () {
                 homeController.onSelectCar(i);
               },
               car: homeController.cars[i],
