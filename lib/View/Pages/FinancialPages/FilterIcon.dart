@@ -5,12 +5,15 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jalali_calendar/jalali_calendar.dart';
 
+// ignore: must_be_immutable
 class FilterIcon extends StatelessWidget {
   final int? id;
   final Function(DateTime since, DateTime till)? onSelect;
+  final FinancialController financialController = Get.find();
+  final TextEditingController textEditingController = TextEditingController();
+
   FilterIcon({Key? key, this.id, this.onSelect}) : super(key: key);
-  FinancialController financialController = Get.find();
-  TextEditingController textEditingController = TextEditingController();
+
   int? sd, sm, sy;
 
 

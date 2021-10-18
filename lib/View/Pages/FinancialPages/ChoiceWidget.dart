@@ -17,12 +17,12 @@ class ChoiceWidget extends StatelessWidget {
       required this.value})
       : super(key: key);
 
-  ChoiceWidgController choiceWidgController = Get.put(ChoiceWidgController());
+  final ChoiceWidgController choiceWidgController = Get.put(ChoiceWidgController());
 
   @override
   Widget build(BuildContext context) {
     if (items.isEmpty) throw Exception('Empty List');
-    if (value == null || value < 0) throw Exception('init is not in range');
+    if (value < 0) throw Exception('init is not in range');
     choiceWidgController.value = value;
     return GetBuilder<ChoiceWidgController>(
       

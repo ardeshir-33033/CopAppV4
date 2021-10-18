@@ -12,10 +12,10 @@ import 'package:easy_localization/easy_localization.dart' as lc;
 
 class InquiryCartPage extends StatelessWidget {
   InquiryCartPage({Key? key}) : super(key: key);
-  ScoreService scoreController = Get.find();
-  GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
-  InquiryCartController inquiryController = Get.find();
-  lc.NumberFormat nf = lc.NumberFormat.currency(
+  final ScoreService scoreController = Get.find();
+  final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
+  final InquiryCartController inquiryController = Get.find();
+  final lc.NumberFormat nf = lc.NumberFormat.currency(
     locale: "fa-IR",
     symbol: "",
   );

@@ -4,13 +4,14 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:persian_number_utility/persian_number_utility.dart';
 
+// ignore: must_be_immutable
 class InvoiceWidget extends StatelessWidget {
   InvoiceWidget({this.item, this.id});
 
   CartDetail? item = CartDetail();
-  int? id;
+  final int? id;
 
-  NumberFormat nf = NumberFormat.currency(
+  final NumberFormat nf = NumberFormat.currency(
     locale: "fa-IR",
     symbol: "",
   );

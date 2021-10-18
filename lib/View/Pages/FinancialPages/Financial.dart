@@ -12,9 +12,9 @@ import 'CustomSlider.dart';
 import 'FilterIcon.dart';
 
 class Financial extends StatelessWidget {
-  GlobalKey<ScaffoldState> scaffoldKey = new GlobalKey<ScaffoldState>();
+  final GlobalKey<ScaffoldState> scaffoldKey = new GlobalKey<ScaffoldState>();
 
-  FinancialController financialController = Get.put(FinancialController());
+  final FinancialController financialController = Get.put(FinancialController());
 
   @override
   Widget build(BuildContext context) {
@@ -63,8 +63,7 @@ class Financial extends StatelessWidget {
                                 financialController.choose(v);
                               },
                             ),
-                            financialController.heading.isNotEmpty &&
-                                    financialController.heading != null
+                            financialController.heading.isNotEmpty
                                 ? Container(
                                     width:
                                         MediaQuery.of(context).size.width * 0.6,

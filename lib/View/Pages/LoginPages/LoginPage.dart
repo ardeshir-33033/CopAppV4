@@ -15,15 +15,14 @@ import 'RegisterPage.dart';
 import 'ResetPasswordPage.dart';
 
 class LoginPage extends StatelessWidget {
-  LoginController loginController = Get.put(LoginController());
+  final LoginController loginController = Get.put(LoginController());
 
-  GoogleSignIn googleSignIn = GoogleSignIn(
+  final GoogleSignIn googleSignIn = GoogleSignIn(
       clientId:
           '257344829185-b5h3l1hm775unc4nn21bsljku461b877.apps.googleusercontent.com');
 
   @override
   Widget build(BuildContext context) {
-    double widgetHeight = (CBase().getFullWidth(context) - 42) * (128 / 950);
     loginController.setContext(context);
     return Directionality(
       textDirection: TextDirection.rtl,
@@ -80,7 +79,8 @@ class LoginPage extends StatelessWidget {
                               decoration: InputDecoration(
                                 hintText: "نام کاربری",
                                 hintStyle: TextStyle(
-                                    fontSize: CBase().getTitlefontSizeByScreen(),
+                                    fontSize:
+                                        CBase().getTitlefontSizeByScreen(),
                                     color: CBase().textPrimaryColor),
                                 focusedBorder: UnderlineInputBorder(
                                   borderSide: BorderSide(color: Colors.black),
@@ -95,7 +95,8 @@ class LoginPage extends StatelessWidget {
                               decoration: InputDecoration(
                                 hintText: "رمز عبور",
                                 hintStyle: TextStyle(
-                                    fontSize: CBase().getTitlefontSizeByScreen(),
+                                    fontSize:
+                                        CBase().getTitlefontSizeByScreen(),
                                     color: CBase().textPrimaryColor),
                                 focusedBorder: UnderlineInputBorder(
                                   borderSide: BorderSide(color: Colors.black),
@@ -115,23 +116,31 @@ class LoginPage extends StatelessWidget {
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
                                         children: <Widget>[
-                                          FlatButton(
+                                          Padding(
                                             padding: EdgeInsets.only(
                                                 top: 0.0, bottom: 35.0),
-                                            child: Text(
-                                              "بازیابی رمز عبور",
-                                              style: TextStyle(
-                                                fontSize: 11,
-                                                fontWeight: FontWeight.normal,
-                                                color: CBase().textPrimaryColor,
+                                            child: TextButton(
+                                              child: Text(
+                                                "بازیابی رمز عبور",
+                                                style: TextStyle(
+                                                  fontSize: 11,
+                                                  fontWeight: FontWeight.normal,
+                                                  color:
+                                                      CBase().textPrimaryColor,
+                                                ),
+                                                textAlign: TextAlign.right,
                                               ),
-                                              textAlign: TextAlign.right,
+                                              style: ButtonStyle(
+                                                overlayColor: MaterialStateColor
+                                                    .resolveWith(
+                                                        (states) => Colors.red),
+                                              ),
+                                              // highlightColor: Colors.grey[200],
+                                              onPressed: () {
+                                                Get.to(() =>
+                                                    QC_ResetPasswordPage());
+                                              },
                                             ),
-                                            highlightColor: Colors.grey[200],
-                                            onPressed: () {
-                                              Get.to(
-                                                  () => QC_ResetPasswordPage());
-                                            },
                                           ),
                                           SizedBox(
                                             width: 1,
@@ -189,7 +198,8 @@ class LoginPage extends StatelessWidget {
                                       ),
                                     ),
                                     SizedBox(
-                                      height: CBase().getFullHeight(context) / 20,
+                                      height:
+                                          CBase().getFullHeight(context) / 20,
                                     ),
                                     GetBuilder<LoginController>(
                                       id: 2,
@@ -230,7 +240,8 @@ class LoginPage extends StatelessWidget {
                                       },
                                     ),
                                     SizedBox(
-                                      height: CBase().getFullHeight(context) / 30,
+                                      height:
+                                          CBase().getFullHeight(context) / 30,
                                     ),
                                     Image(
                                       image: AssetImage(
@@ -240,7 +251,7 @@ class LoginPage extends StatelessWidget {
                                     Center(
                                       child: GestureDetector(
                                         onTap: () {
-                                          LoginSignIn();
+                                          loginSignIn();
                                         },
                                         child: Text(
                                           'ورود با حساب گوگل',
@@ -254,7 +265,7 @@ class LoginPage extends StatelessWidget {
                                     Spacer(),
                                     Align(
                                       alignment: FractionalOffset.bottomCenter,
-                                      child: FlatButton(
+                                      child: TextButton(
                                         child: Container(
                                           height: 30,
                                           width:
@@ -265,7 +276,8 @@ class LoginPage extends StatelessWidget {
                                                 BorderRadius.circular(15),
                                             boxShadow: [
                                               BoxShadow(
-                                                  color: const Color(0x29000000),
+                                                  color:
+                                                      const Color(0x29000000),
                                                   offset: Offset(0, 0),
                                                   blurRadius: 6)
                                             ],
@@ -279,7 +291,8 @@ class LoginPage extends StatelessWidget {
                                                 style: TextStyle(
                                                   fontSize: 11,
                                                   fontWeight: FontWeight.normal,
-                                                  color: CBase().textPrimaryColor,
+                                                  color:
+                                                      CBase().textPrimaryColor,
                                                 ),
                                                 textAlign: TextAlign.right,
                                               ),
@@ -295,7 +308,12 @@ class LoginPage extends StatelessWidget {
                                             ],
                                           ),
                                         ),
-                                        highlightColor: Colors.grey[200],
+                                        // highlightColor: Colors.grey[200],
+                                        style: ButtonStyle(
+                                          overlayColor:
+                                              MaterialStateColor.resolveWith(
+                                                  (states) => Colors.red),
+                                        ),
                                         onPressed: () {
                                           Navigator.push(
                                             context,
@@ -325,9 +343,10 @@ class LoginPage extends StatelessWidget {
     );
   }
 
-  void LoginSignIn() async {
+  void loginSignIn() async {
     await googleSignIn.signOut();
 
+    // ignore: non_constant_identifier_names
     GoogleSignInAccount? GoogleUser = await googleSignIn.signIn();
     GoogleAuth googleAuth;
 

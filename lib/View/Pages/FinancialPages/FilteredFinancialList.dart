@@ -21,7 +21,7 @@ class FilteredFinancialList extends StatelessWidget {
       this.onBack,
       this.name})
       : super(key: key);
-  FilteredFinListController listController =
+  final FilteredFinListController listController =
       Get.put(FilteredFinListController());
 
   @override

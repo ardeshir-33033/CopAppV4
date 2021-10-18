@@ -380,7 +380,7 @@ class _ContactUsState extends State<ContactUs> {
                               ),
                               initPicker
                                   ? Icon(
-                                      chosen != null && chosen!.path != null
+                                      chosen != null
                                           ? Icons.check
                                           : Icons.close,
                                       color: Color(0xff5e5e5e),
@@ -415,7 +415,7 @@ class _ContactUsState extends State<ContactUs> {
     } else {
       file = (await picker.getVideo(source: ImageSource.gallery))!;
     }
-    if (file != null) chosen = File.fromUri(Uri.parse(file.path));
+    chosen = File.fromUri(Uri.parse(file.path));
     Navigator.pop(context);
 
     setState(() {});

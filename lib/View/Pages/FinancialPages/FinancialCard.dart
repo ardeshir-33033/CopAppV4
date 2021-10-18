@@ -75,7 +75,7 @@ class FinancialCard extends StatelessWidget {
                   bottom: Container(
                     // width: CBase().getFullWidth(context) / 2,
                     height: MediaQuery.of(context).size.height * 0.065 - 5.5,
-                    child: customInfoWidget(
+                    child: CustomInfoWidget(
                       main: (price!.toPersianDigit()),
                       mainColor: CBase().textPrimaryColor,
                       mainCenter: true,
@@ -87,7 +87,7 @@ class FinancialCard extends StatelessWidget {
                   top: Container(
                     // width: 60,
                     height: MediaQuery.of(context).size.height * 0.065 - 5.5,
-                    child: customInfoWidget(
+                    child: CustomInfoWidget(
                       main: (points!.toPersianDigit()),
                       mainColor: CBase().textPrimaryColor,
                       mainCenter: true,
@@ -132,7 +132,7 @@ class FinancialCard extends StatelessWidget {
                 child: DoubleWidgetDivider(
                   bottom: Container(
                     height: MediaQuery.of(context).size.height * 0.065 - 5.5,
-                    child: customInfoWidget(
+                    child: CustomInfoWidget(
                       main: paymentStatus == 0
                           ? 'تسویه'
                           : paymentStatus == 1
@@ -153,7 +153,7 @@ class FinancialCard extends StatelessWidget {
                   ),
                   top: Container(
                     height: MediaQuery.of(context).size.height * 0.065 - 5.5,
-                    child: customInfoWidget(
+                    child: CustomInfoWidget(
                       main: isPaidCommision ? 'تسویه' : 'انتظار پرداخت',
                       mainColor: isPaidCommision
                           ? Color(0xff07B413)
@@ -175,7 +175,7 @@ class FinancialCard extends StatelessWidget {
                 child: DoubleWidgetDivider(
                   bottom: Container(
                     height: MediaQuery.of(context).size.height * 0.065 - 5.5,
-                    child: customInfoWidget(
+                    child: CustomInfoWidget(
                       main: dateBottom!,
                       mainColor: Color(0xff707070),
                       mainCenter: true,
@@ -184,7 +184,7 @@ class FinancialCard extends StatelessWidget {
                   ),
                   top: Container(
                     height: MediaQuery.of(context).size.height * 0.065 - 5.5,
-                    child: customInfoWidget(
+                    child: CustomInfoWidget(
                       main: dateTop!,
                       mainColor: Color(0xff707070),
                       mainCenter: true,

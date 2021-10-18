@@ -15,7 +15,7 @@ class FinancialList extends StatelessWidget {
   FinancialList({Key? key, this.items, this.id, this.filters, this.commissions})
       : super(key: key);
 
-  FinListController listController = Get.put(FinListController());
+  final FinListController listController = Get.put(FinListController());
 
   @override
   Widget build(BuildContext context) {

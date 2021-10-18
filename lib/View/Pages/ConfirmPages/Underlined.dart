@@ -4,13 +4,13 @@ import 'package:flutter/material.dart';
 class UnderlinedTextsWidget extends StatelessWidget {
   final String? title, detail;
   final Color dividerColor;
-  bool? lastItem = false;
+  final bool? lastItem;
 
   UnderlinedTextsWidget(
       {Key? key,
       @required this.title,
       @required this.detail,
-      this.lastItem,
+      this.lastItem = false,
       this.dividerColor = Colors.black})
       : super(key: key);
 
@@ -44,9 +44,11 @@ class UnderlinedTextsWidget extends StatelessWidget {
               ),
             ],
           ),
-          lastItem == true ? Divider(
-            color: dividerColor,
-          ):Container()
+          lastItem == true
+              ? Divider(
+                  color: dividerColor,
+                )
+              : Container()
         ],
       ),
     );

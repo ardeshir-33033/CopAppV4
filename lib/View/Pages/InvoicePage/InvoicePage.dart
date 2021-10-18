@@ -13,8 +13,8 @@ import 'InvoicePageWidget.dart';
 import 'WhiteButton.dart';
 
 class InvoicePage extends StatelessWidget {
-  InvoiceController invoiceController = Get.find();
-  lc.NumberFormat nf = lc.NumberFormat.currency(
+  final InvoiceController invoiceController = Get.find();
+  final lc.NumberFormat nf = lc.NumberFormat.currency(
     locale: "fa-IR",
     symbol: "",
   );

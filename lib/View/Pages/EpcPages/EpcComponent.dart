@@ -6,10 +6,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class EpcComponent extends StatelessWidget {
-  int? selected;
+  // int? selected;
 
-  EpcPartController partController = Get.find();
-  TransformationController transformationController =
+  final EpcPartController partController = Get.find();
+  final TransformationController transformationController =
       TransformationController();
 
   @override

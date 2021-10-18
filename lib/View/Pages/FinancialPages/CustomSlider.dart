@@ -9,7 +9,7 @@ class CustomSlider extends StatelessWidget {
 
   CustomSlider({Key? key, this.onSelect}) : super(key: key);
 
-  CustomSliderController sliderController = Get.put(CustomSliderController());
+  final CustomSliderController sliderController = Get.put(CustomSliderController());
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +47,7 @@ class CustomSlider extends StatelessWidget {
                     List<String> all = [];
                     String result = '';
                     int i = v.split('.')[0].length;
-                    for (i; i > 3; i = i - 3) {
+                    for (; i > 3; i = i - 3) {
                       all.add(v.split('.')[0].substring(i - 3, i));
                     }
                     all.add(v.split('.')[0].substring(0, i));

@@ -1,12 +1,12 @@
 // import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
-class customInfoWidget extends StatelessWidget {
+class CustomInfoWidget extends StatelessWidget {
   final String main, rotated;
   final Color mainColor;
   final double mainSize, rotatedSize;
   final bool mainCenter;
-  const customInfoWidget(
+  const CustomInfoWidget(
       {Key? key,
       required this.main,
       required this.mainColor,

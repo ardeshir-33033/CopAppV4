@@ -19,6 +19,7 @@ import 'package:get/get.dart';
 import '../../Controller/Controllers/Cart/CartLengthController.dart';
 import '../../Controller/Controllers/General/ScoreService.dart';
 
+// ignore: must_be_immutable
 class HomePageV4 extends StatelessWidget {
   HomeController homeController = Get.put(HomeController());
   CartLengthController cartLengthController = Get.put(CartLengthController());

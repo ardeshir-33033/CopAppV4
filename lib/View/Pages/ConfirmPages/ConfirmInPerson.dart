@@ -3,6 +3,7 @@ import 'package:copapp/Controller/Service/CartService.dart';
 import 'package:copapp/Controller/Service/OrderService.dart';
 import 'package:copapp/Model/Order/OrderHeader.dart';
 import 'package:copapp/Utilities/Base.dart';
+import 'package:copapp/Utilities/Snacki.dart';
 import 'package:copapp/View/Components/General/AppDrawer.dart';
 import 'package:copapp/View/Components/General/CustomAppBar.dart';
 import 'package:copapp/View/Components/General/InAppBrowser.dart';
@@ -48,7 +49,6 @@ class _ConfirmInPersonState
   //   super.dispose();
   // }
 
-  @override
   Future<void> didChangeAppLifecycleState(AppLifecycleState state) async {
     if (state == AppLifecycleState.resumed) {
       if (OrderServiceV2().getAuthority() != "") {
@@ -60,12 +60,12 @@ class _ConfirmInPersonState
           OrderHeader payedOrder = OrderHeader.fromJson(result.data);
           if (payedOrder.orderStatusId == "confirmed" ||
               payedOrder.orderStatusId == "packing") {
-            ShowMessage(isSuccess: true, message: "عملیات موفق بود");
+            Snacki().GETSnackBar(true, "عملیات موفق بود");
             CartServiceV2().getCart();
 
             ///
           } else {
-            ShowMessage(isSuccess: false, message: "عملیات انجام نشد.");
+            Snacki().GETSnackBar(false, "عملیات انجام نشد.");
           }
         }
       }
@@ -194,35 +194,5 @@ class _ConfirmInPersonState
         ),
       ),
     );
-  }
-
-  ShowMessage({bool? isSuccess, String? message}) {
-    final snackBar = SnackBar(
-      content: Container(
-        height: 50.0,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              isSuccess! ? "عملیات موفق" : "عملیات ناموفق",
-              style: TextStyle(
-                fontSize: CBase().getTextfontSizeByScreen(),
-                fontWeight: FontWeight.bold,
-                color:
-                    isSuccess ? CBase().successColor : CBase().basePrimaryColor,
-              ),
-            ),
-            Text(
-              message!,
-              style: TextStyle(
-                fontSize: CBase().getTextfontSizeByScreen(),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-
-    _scaffoldKey.currentState!.showSnackBar(snackBar);
   }
 }

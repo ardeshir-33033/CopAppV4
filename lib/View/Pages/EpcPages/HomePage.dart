@@ -11,8 +11,8 @@ import 'CarItem.dart';
 
 class EpcHome extends StatelessWidget {
   EpcHome({Key? key}) : super(key: key);
-  EpcHomeController epcController = Get.put(EpcHomeController());
-  GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
+  final EpcHomeController epcController = Get.put(EpcHomeController());
+  final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
     return Directionality(

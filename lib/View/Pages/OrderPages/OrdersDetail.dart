@@ -261,7 +261,7 @@ class OrdersDetail extends StatelessWidget {
                                     horizontal:
                                         CBase().getFullWidth(context) / 18,
                                     vertical: 10),
-                                child: BottomCompeleteBuying(
+                                child: BottomCompleteBuying(
                                     type: 2,
                                     pendingCart: orderDetails,
                                     orderId: orderId),

@@ -9,17 +9,16 @@ import 'package:easy_localization/easy_localization.dart' as lc;
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:persian_number_utility/persian_number_utility.dart';
-
 import 'BottomCompeleteBuying.dart';
 import 'CartTab.dart';
 
 class CartPage extends StatelessWidget {
-  GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
+  final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
-  CartController cartController = Get.find();
-  ScoreService scoreController = Get.find();
+  final CartController cartController = Get.find();
+  final ScoreService scoreController = Get.find();
 
-  lc.NumberFormat nf = lc.NumberFormat.currency(
+  final lc.NumberFormat nf = lc.NumberFormat.currency(
     locale: "fa-IR",
     symbol: "",
   );
@@ -182,7 +181,7 @@ class CartPage extends StatelessWidget {
                                                 SizedBox(
                                                   height: 10,
                                                 ),
-                                                BottomCompeleteBuying(
+                                                BottomCompleteBuying(
                                                   type: 1,
                                                 )
                                               ],

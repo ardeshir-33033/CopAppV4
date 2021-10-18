@@ -12,8 +12,8 @@ import 'PartPage.dart';
 
 class EpcSubGroupPage extends StatelessWidget {
   EpcSubGroupPage({Key? key}) : super(key: key);
-  GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
-  EpcSubGroupController subGroupController = Get.put(EpcSubGroupController());
+  final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
+  final EpcSubGroupController subGroupController = Get.put(EpcSubGroupController());
   @override
   Widget build(BuildContext context) {
     return Directionality(

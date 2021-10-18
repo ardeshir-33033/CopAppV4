@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 class EpcItemsTable extends StatelessWidget {
   
 
-  EpcPartController partController = Get.find();
+  final EpcPartController partController = Get.find();
 
   @override
   Widget build(BuildContext context) {

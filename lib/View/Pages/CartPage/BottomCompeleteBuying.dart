@@ -6,16 +6,14 @@ import 'package:copapp/View/Pages/InvoicePage/InvoicePage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class BottomCompeleteBuying extends StatelessWidget {
-  BottomCompeleteBuying({
-    this.type = 2,
-    Key? key,
-    this.pendingCart,
-    this.orderId
-  }) : super(key: key);
-  List<OrderDetail>? pendingCart;
-  int type = 2;
-int? orderId;
+class BottomCompleteBuying extends StatelessWidget {
+  BottomCompleteBuying(
+      {this.type = 2, Key? key, this.pendingCart, this.orderId})
+      : super(key: key);
+  final List<OrderDetail>? pendingCart;
+  final int type;
+  final int? orderId;
+
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -40,8 +38,7 @@ int? orderId;
       onTap: () {
         InvoiceController invoiceController = Get.put(InvoiceController());
         if (type == 1) {
-          invoiceController.cart =
-              CartServiceV2().getMyCart()!.details!;
+          invoiceController.cart = CartServiceV2().getMyCart()!.details!;
           invoiceController.orderId = null;
         } else {
           invoiceController.cart = OrderDetail().toCartDetail(pendingCart!)!;

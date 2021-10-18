@@ -2,15 +2,15 @@ import 'package:copapp/Utilities/Base.dart';
 import 'package:flutter/material.dart';
 
 class WhiteButton extends StatelessWidget {
-  Widget? route;
-  Function(dynamic result)? onTapCallback;
-  FlexFit? fit;
+  final Widget? route;
+  final Function(dynamic result)? onTapCallback;
+  final FlexFit? fit;
 
-  bool? icon;
-  Widget? rightIcon;
-  Widget? leftIcon;
-  Color? color;
-  String? text;
+  final bool? icon;
+  final Widget? rightIcon;
+  final Widget? leftIcon;
+  final Color? color;
+  final String? text;
   WhiteButton({
     this.leftIcon,
     this.rightIcon,

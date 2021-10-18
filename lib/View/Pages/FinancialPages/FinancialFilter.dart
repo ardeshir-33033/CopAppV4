@@ -8,7 +8,7 @@ import 'package:get/get.dart';
 
 class FinancialFilter extends StatelessWidget {
   final Function? onSelect;
-  int? id;
+  final int? id;
   final bool back;
   final OrdersFilterModel? filters;
 
@@ -16,7 +16,7 @@ class FinancialFilter extends StatelessWidget {
       {Key? key, this.onSelect, this.id, this.filters, this.back = false})
       : super(key: key);
 
-  FinFilterController filterController = Get.put(FinFilterController());
+  final FinFilterController filterController = Get.put(FinFilterController());
 
   @override
   Widget build(BuildContext context) {

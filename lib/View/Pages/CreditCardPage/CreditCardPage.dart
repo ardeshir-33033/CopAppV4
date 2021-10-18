@@ -9,8 +9,8 @@ import 'package:get/get.dart';
 import 'CreditCardFormatter.dart';
 
 class CreditCardPage extends StatelessWidget {
-  GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
-  CreditCardController creditCardController = Get.put(CreditCardController());
+  final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
+  final CreditCardController creditCardController = Get.put(CreditCardController());
   @override
   Widget build(BuildContext context) {
     return Directionality(
