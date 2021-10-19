@@ -46,7 +46,7 @@ class BalanceWidget extends StatelessWidget {
                                       : Padding(
                                           padding: EdgeInsets.symmetric(
                                               horizontal: 10.0),
-                                          child: e.productVirtualQTY != 0
+                                          child: e.isForSale()
                                               ? BalanceItem(
                                                   scaffold: scaffoldKey,
                                                   bal: e,

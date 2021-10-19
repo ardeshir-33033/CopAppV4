@@ -4,23 +4,18 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class SearchProductController extends GetxController {
-  List<Part> searchParts = [];
+
   final GlobalKey<ScaffoldState> scaffoldKey = new GlobalKey<ScaffoldState>();
   List<Widget> items = [];
   Part? part;
   bool isLoadingJoin = false;
   bool allJoinVis = false;
 
-  
+
   SearchProductController(Part? bal) {
     this.part = bal;
   }
 
-  @override
-  void onInit() {
-    super.onInit();
-    searchParts.add(part!);
-  }
 
   // Future add(Product? bal) async {
   //   int newQTY = CartServiceV2().cartProductQTY(bal!.id);

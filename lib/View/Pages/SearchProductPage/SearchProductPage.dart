@@ -38,7 +38,7 @@ class SearchProductPage extends StatelessWidget {
                           fit: FlexFit.tight,
                           child: ListView.builder(
                               itemCount:
-                                  searchProductController.searchParts.length,
+                                  searchProductController.part!.products!.length,
                               itemBuilder: (context, i) {
                                 return SearchProduct();
                               })),

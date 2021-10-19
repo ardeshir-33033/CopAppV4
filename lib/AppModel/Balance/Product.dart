@@ -49,7 +49,7 @@ class Product {
     productVirtualQTY = json['productVirtualQTY'];
     detailQTY = json['detailQTY'];
     //remove this later when the model is unique.
-    if (json['country']==null||json['country'].runtimeType == String)
+    if (json['country'] == null || json['country'].runtimeType == String)
       country = json['country'];
     else
       country = json['country']["name"];
@@ -92,6 +92,11 @@ class Product {
     slideDialog.showSlideDialog(
         context: context, child: SliderDialog(images: this.images));
   }
+
+  bool isForSale() {
+    return this.productVirtualQTY != null && this.productVirtualQTY! > 0;
+  }
+  
 }
 
 class SliderDialog extends StatefulWidget {
