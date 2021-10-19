@@ -160,7 +160,7 @@ class BalanceServiceV2 extends BalanceExtensions with Api {
         // ),
       ],
       body,
-      HeaderEnum.BasicHeaderEnum,
+      HeaderEnum.BearerHeaderEnum,
       ResponseEnum.ResponseModelEnum,
     );
     if (response.isSuccess) {
@@ -229,7 +229,7 @@ class BalanceServiceV2 extends BalanceExtensions with Api {
         statusCode: response.statusCode);
   }
 
-  Future<ResponseModel<Part>> getSearch(
+  Future<ResponseModel<Part>> getBalanceDataSearch(
       {int? page,
       int? pageSize,
       int? filterId,
@@ -253,10 +253,10 @@ class BalanceServiceV2 extends BalanceExtensions with Api {
     };
     String body = jsonEncode(json);
     ResponseModel response = await HTTPPOST(
-      RoutingBalance.POST_Search,
+      RoutingBalance.POST_BalanceDataSearch,
       [],
       body,
-      HeaderEnum.BasicHeaderEnum,
+      HeaderEnum.BearerHeaderEnum,
       ResponseEnum.ResponseModelEnum,
     );
     if (response.isSuccess) response.data = Part().listFromJson(response.data);

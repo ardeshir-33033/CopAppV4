@@ -12,7 +12,7 @@ class SearchController extends GetxController {
   Future searchItems(
       {String search = '',
       required GlobalKey<ScaffoldState> scaffoldKey}) async {
-    ResponseModel<Part> result = await BalanceServiceV2().getSearch(
+    ResponseModel<Part> result = await BalanceServiceV2().getBalanceDataSearch(
         search: search, keywordId: BalanceServiceV2().getSelectedCar()?.id);
 
     if (result.isSuccess == false) {
