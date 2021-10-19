@@ -84,7 +84,7 @@ class InvoiceWidget extends StatelessWidget {
               Expanded(
                   flex: 2,
                   child: Text(
-                    item!.detailQTY!.toInt().toString().toPersianDigit(),
+                    item!.product!.detailQTY!.toInt().toString().toPersianDigit(),
                     style: TextStyle(
                       fontSize: CBase().getTitlefontSizeByScreen(),
                       color: CBase().textPrimaryColor,
