@@ -6,7 +6,6 @@ class AboutUsController extends GetxController {
   ScrollController? scrollController;
   @override
   void onInit() {
-    // TODO: implement onInit
     super.onInit();
     scrollController = ScrollController();
     Future.delayed(

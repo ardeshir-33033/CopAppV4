@@ -20,7 +20,6 @@ class AddressController extends GetxController {
 
   @override
   void onInit() {
-    // TODO: implement onInit
     super.onInit();
     isLoading = true;
     update();

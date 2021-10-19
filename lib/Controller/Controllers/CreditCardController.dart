@@ -12,7 +12,6 @@ class CreditCardController extends GetxController {
 
   @override
   void onInit() {
-    // TODO: implement onInit
     super.onInit();
     ProfileServiceV2().getPersonalInformation().then((value) {
       if (!value.isSuccess) {

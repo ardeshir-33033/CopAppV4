@@ -38,7 +38,6 @@ class _InquiryItemState extends State<InquiryItem> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     inquiryItemController.scaffoldKey = widget.scaffold;
     if (InquiryService().inquiryProductQTY(widget.bal!.productsId) >= 1) {

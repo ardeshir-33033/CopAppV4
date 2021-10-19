@@ -188,7 +188,7 @@ extension GlobalKeyExtension on GlobalKey {
   Rect? get globalPaintBounds {
     final renderObject = currentContext?.findRenderObject();
     var translation = renderObject?.getTransformTo(null).getTranslation();
-    if (translation != null && renderObject!.paintBounds != null) {
+    if (translation != null && renderObject != null) {
       return renderObject.paintBounds
           .shift(Offset(translation.x, translation.y));
     } else {

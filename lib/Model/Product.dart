@@ -130,7 +130,6 @@ class _SliderDialogState extends State<SliderDialog> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     pageController.addListener(() {
       rightVis = true;

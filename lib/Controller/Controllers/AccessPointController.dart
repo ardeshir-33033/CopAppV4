@@ -31,7 +31,6 @@ class AccessPointController extends GetxController {
 
   @override
   void onInit() {
-    // TODO: implement onInit
     super.onInit();
     checkPass().then((value) {
       update();

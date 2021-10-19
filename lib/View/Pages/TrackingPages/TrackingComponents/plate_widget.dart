@@ -152,7 +152,6 @@ class _PlateWidgetState extends State<PlateWidget> {
   ];
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     widget.textEditingController1!.addListener(() {
       if (widget.textEditingController1!.text.length > 2) {

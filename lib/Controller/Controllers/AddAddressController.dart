@@ -41,7 +41,6 @@ class AddAddressController extends GetxController {
   bool isSendingCart=true;
   @override
   void onInit() {
-    // TODO: implement onInit
     super.onInit();
     isLoading = true;
     update();

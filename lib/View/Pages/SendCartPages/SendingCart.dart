@@ -19,7 +19,6 @@ class _SendCartState extends State<SendCart>
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     sendCartController.controller =
         TabController(length: sendCartController.list.length, vsync: this);

@@ -44,7 +44,6 @@ class _JoinedItemsState extends State<JoinedItems> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     checkHasItem(widget.bal!.productsId!);
     balanceItemController.scaffoldKey = searchProductController.scaffoldKey;

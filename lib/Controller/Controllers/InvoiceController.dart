@@ -17,7 +17,6 @@ class InvoiceController extends GetxController {
 
   @override
   void onInit() {
-    // TODO: implement onInit
     super.onInit();
     if (CartServiceV2().getMyCart() != null &&
         CartServiceV2().getMyCart()!.details != null)

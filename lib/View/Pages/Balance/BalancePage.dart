@@ -29,7 +29,6 @@ class _BalancePageState extends State<BalancePage> {
 
   @override
   void initState() {
-    // TODO: implement initState
     balanceController.init(widget.items!);
     super.initState();
   }

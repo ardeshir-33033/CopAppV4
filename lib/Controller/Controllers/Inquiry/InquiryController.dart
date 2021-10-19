@@ -7,7 +7,6 @@ class InquiryCartController extends GetxController {
   bool isSubmiting = false;
   @override
   void onInit() {
-    // TODO: implement onInit
     super.onInit();
     InquiryService().getInquiry().then((value) {
       if (value.isSuccess) {

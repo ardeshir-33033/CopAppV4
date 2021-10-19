@@ -21,7 +21,6 @@ class SendingOrdController extends GetxController {
 
   @override
   void onInit() {
-    // TODO: implement onInit
     super.onInit();
     getSendingOrders().then((value) {
       sendingOrders = [];

@@ -5,7 +5,6 @@ class CustomSliderController extends GetxController {
   double? start, end;
   @override
   void onInit() {
-    // TODO: implement onInit
     super.onInit();
     start = min;
     end = max;

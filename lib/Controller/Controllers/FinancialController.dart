@@ -239,7 +239,6 @@ class FinancialController extends GetxController {
 
   @override
   void onInit() {
-    // TODO: implement onInit
     super.onInit();
     getFilters().then((value) {
       filters = filtersModel.data;

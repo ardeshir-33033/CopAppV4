@@ -7,7 +7,6 @@ class EpcGroupController extends GetxController {
   List<EpcGroup> groups = [];
   @override
   void onInit() {
-    // TODO: implement onInit
     super.onInit();
     isLoading = true;
     update();

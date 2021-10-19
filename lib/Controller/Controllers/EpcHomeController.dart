@@ -7,7 +7,6 @@ class EpcHomeController extends GetxController {
   List<EpcModelSerie> modelSeries = [];
   @override
   void onInit() {
-    // TODO: implement onInit
     super.onInit();
     isLoading = true;
     update();

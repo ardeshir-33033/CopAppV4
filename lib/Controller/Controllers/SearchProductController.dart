@@ -16,7 +16,6 @@ class SearchProductController extends GetxController {
 
   @override
   void onInit() {
-    // TODO: implement onInit
     super.onInit();
     searchParts.add(part!);
   }

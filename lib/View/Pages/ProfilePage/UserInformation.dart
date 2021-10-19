@@ -24,7 +24,6 @@ class _UserInformationPageState extends State<UserInformationPage>
   TabController? tabController;
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     tabController = new TabController(
       vsync: this,
