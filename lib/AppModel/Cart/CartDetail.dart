@@ -5,7 +5,7 @@ class CartDetail {
   double? detailDecreasePrice;
   double? detailFinalPrice;
   double? detailIncreasePrice;
-  int? detailQTY;
+  // int? detailQTY;
   double? detailSumPrice;
   double? detailUnitPrice;
   Product? product;
@@ -15,7 +15,7 @@ class CartDetail {
       this.detailDecreasePrice,
       this.detailFinalPrice,
       this.detailIncreasePrice,
-      this.detailQTY,
+      // this.detailQTY,
       this.detailSumPrice,
       this.detailUnitPrice,
       this.product});
@@ -25,7 +25,7 @@ class CartDetail {
     detailDecreasePrice = json['detailDecreasePrice'];
     detailFinalPrice = json['detailFinalPrice'];
     detailIncreasePrice = json['detailIncreasePrice'];
-    detailQTY = json['detailQTY'];
+    // detailQTY = json['detailQTY'];
     detailSumPrice = json['detailSumPrice'];
     detailUnitPrice = json['detailUnitPrice'];
     product =
@@ -38,7 +38,7 @@ class CartDetail {
     data['detailDecreasePrice'] = this.detailDecreasePrice;
     data['detailFinalPrice'] = this.detailFinalPrice;
     data['detailIncreasePrice'] = this.detailIncreasePrice;
-    data['detailQTY'] = this.detailQTY;
+    // data['detailQTY'] = this.detailQTY;
     data['detailSumPrice'] = this.detailSumPrice;
     data['detailUnitPrice'] = this.detailUnitPrice;
     if (this.product != null) {

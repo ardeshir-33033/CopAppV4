@@ -93,7 +93,7 @@ class OrderDetail {
           detailDecreasePrice: e.decreasedPrice,
           detailId: e.id,
           product: e.product,
-          detailQTY: e.quantity!.toInt(),
+          // detailQTY: e.quantity!.toInt(),
           detailSumPrice: e.sumPrice
         );
       }).toList();

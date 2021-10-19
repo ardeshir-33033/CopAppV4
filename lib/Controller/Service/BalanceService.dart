@@ -9,7 +9,6 @@ import 'package:copapp/AppModel/Home/Category.dart';
 import 'package:copapp/AppModel/Home/HomeModel.dart';
 import 'package:copapp/AppModel/MultiBalance/Part.dart';
 import 'package:copapp/Model/Balance/QuickSearchModel.dart';
-import 'package:copapp/Model/Shopping/Product/FilterV2.dart';
 import 'BalanceExtension.dart';
 import 'UserServiceV2.dart';
 
