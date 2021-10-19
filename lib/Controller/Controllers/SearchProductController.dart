@@ -10,6 +10,8 @@ class SearchProductController extends GetxController {
   Part? part;
   bool isLoadingJoin = false;
   bool allJoinVis = false;
+
+  
   SearchProductController(Part? bal) {
     this.part = bal;
   }

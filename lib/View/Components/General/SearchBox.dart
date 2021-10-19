@@ -304,18 +304,15 @@ class _SearchboxV2State extends State<SearchboxV2> {
                                                     Container(
                                                       height: 20,
                                                       width: 150.0,
-                                                      child: ListView.builder(
-                                                        scrollDirection:
-                                                            Axis.horizontal,
-                                                        itemCount:
-                                                            searchController
-                                                                .searchedItems[
-                                                                    index]
-                                                                .vehicles!
-                                                                .length,
-                                                        itemBuilder: (context,
-                                                            int index2) {
-                                                          return Padding(
+                                                      child: SingleChildScrollView(
+                                                          scrollDirection: Axis.horizontal,
+                                                          // itemCount: searchController
+                                                          //     .searchedItems[
+                                                          //         index]
+                                                          //     .vehicleEnglishName!
+                                                          //     .length,
+
+                                                          child: Padding(
                                                             padding: EdgeInsets
                                                                 .symmetric(
                                                                     horizontal:
@@ -324,9 +321,7 @@ class _SearchboxV2State extends State<SearchboxV2> {
                                                               searchController
                                                                       .searchedItems[
                                                                           index]
-                                                                      .vehicles![
-                                                                          index2]
-                                                                      .name ??
+                                                                      .vehicleEnglishName ??
                                                                   "",
                                                               style: TextStyle(
                                                                   color: Colors
@@ -334,9 +329,7 @@ class _SearchboxV2State extends State<SearchboxV2> {
                                                                   fontSize: CBase()
                                                                       .ssmallTextfontSize),
                                                             ),
-                                                          );
-                                                        },
-                                                      ),
+                                                          )),
                                                     )
                                                   ],
                                                 ),

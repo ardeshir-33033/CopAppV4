@@ -122,14 +122,14 @@ class BalanceServiceV2 extends BalanceExtensions with Api {
         data: null,
         message: "پارامتر های ورودی خالی هستند",
       );
-    Map<String,dynamic> json = {
-  "categoryId": id,
-  "keyWord": "$keywordId",
-  "pageSize": pageSize,
-  "page": page,
-  "filterId": filterId,
-  "chairId": UserServiceV2.chairId
-};
+    Map<String, dynamic> json = {
+      "categoryId": id,
+      "keyWord": "$keywordId",
+      "pageSize": pageSize,
+      "page": page,
+      "filterId": filterId,
+      "chairId": UserServiceV2.chairId
+    };
     String body = jsonEncode(json);
     ResponseModel response = await HTTPPOST(
       RoutingBalance.GET_GetBalanceFilterBox,
@@ -248,32 +248,18 @@ class BalanceServiceV2 extends BalanceExtensions with Api {
         data: null,
         message: "پارامتر های ورودی خالی هستند",
       );
-
-    var response = await HTTPGET<FilterV2>(
-      RoutingBalance.GET_Search,
-      [
-        QueryModel(
-          name: "search",
-          value: search,
-        ),
-        QueryModel(
-          name: "keywordId",
-          value: keywordId == 0 ? null : keywordId.toString(),
-        ),
-        QueryModel(
-          name: "page",
-          value: 1.toString(),
-        ),
-        QueryModel(
-          name: "pageSize",
-          value: 20.toString(),
-        ),
-      ],
-      HeaderEnum.EmptyHeaderEnum,
+    Map<String, dynamic> json = {
+      "search": search,
+    };
+    String body = jsonEncode(json);
+    ResponseModel response = await HTTPPOST(
+      RoutingBalance.POST_Search,
+      [],
+      body,
+      HeaderEnum.BasicHeaderEnum,
       ResponseEnum.ResponseModelEnum,
     );
-    if (response.data != null && response.data["parts"] != null)
-      response.data = Part().listFromJson(response.data["parts"]);
+    if (response.isSuccess) response.data = Part().listFromJson(response.data);
 
     return ResponseModel<Part>(
       isSuccess: response.isSuccess,
