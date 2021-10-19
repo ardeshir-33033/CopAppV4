@@ -9,7 +9,7 @@ import 'package:get/get.dart';
 
 class SearchProductPage extends StatelessWidget {
   final Part? bal;
-  late final  SearchProductController searchProductController;
+  late final SearchProductController searchProductController;
   SearchProductPage({
     this.bal,
     Key? key,
@@ -26,31 +26,25 @@ class SearchProductPage extends StatelessWidget {
         bottomNavigationBar: MainFooterNavigation(),
         backgroundColor: const Color(0xfff7f4f8),
         body: SafeArea(
-              child: Stack(
-                alignment: Alignment.bottomCenter,
-                children: <Widget>[
-                  Column(
-                    children: [
-                      SizedBox(
-                        height: MediaQuery.of(context).size.height / 10,
-                      ),
-                      Flexible(
-                          fit: FlexFit.tight,
-                          child: ListView.builder(
-                              itemCount:
-                                  searchProductController.part!.products!.length,
-                              itemBuilder: (context, i) {
-                                return SearchProduct();
-                              })),
-                    ],
+          child: Stack(
+            alignment: Alignment.bottomCenter,
+            children: <Widget>[
+              Column(
+                children: [
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height / 10,
                   ),
-                  Padding(
-                      padding: const EdgeInsets.only(top: 10 , left: 25 , right: 25),
-                      child: SearchboxV2(
-                          scaffoldKey: searchProductController.scaffoldKey)),
+                  Flexible(
+                      fit: FlexFit.tight,
+                      child: SingleChildScrollView(child: SearchProduct())),
                 ],
               ),
-
+              Padding(
+                  padding: const EdgeInsets.only(top: 10, left: 25, right: 25),
+                  child: SearchboxV2(
+                      scaffoldKey: searchProductController.scaffoldKey)),
+            ],
+          ),
         ),
       ),
     );

@@ -94,8 +94,8 @@ class JoinedProducts extends StatelessWidget {
                                   margin: EdgeInsets.all(0.0),
                                   decoration: BoxDecoration(
                                     image: DecorationImage(
-                                      image: AssetImage(
-                                          'images/noimageicon.png'),
+                                      image:
+                                          AssetImage('images/noimageicon.png'),
                                       fit: BoxFit.scaleDown,
                                     ),
                                   ),
@@ -161,8 +161,8 @@ class JoinedProducts extends StatelessWidget {
                                             ' ')
                                         .toPersianDigit(),
                                     style: TextStyle(
-                                      fontSize: CBase()
-                                          .getSubTitlefontSizeByScreen(),
+                                      fontSize:
+                                          CBase().getSubTitlefontSizeByScreen(),
                                       color: CBase().basePrimaryColor,
                                       letterSpacing: -0.26,
                                     ),
@@ -200,8 +200,7 @@ class JoinedProducts extends StatelessWidget {
                       Column(
                         children: [
                           JoinedItems(
-                            bal:
-                                searchProductController.part?.products?.first,
+                            bal: searchProductController.part?.products?.first,
                           )
                         ],
                       ),
@@ -240,7 +239,8 @@ class JoinedProducts extends StatelessWidget {
                       0
               ? MoreFamily(
                   vis: searchProductController.allJoinVis,
-                  familyCount: searchProductController.part!.products!.length-1,
+                  familyCount:
+                      searchProductController.part!.products!.length - 1,
                 )
               : SizedBox(
                   width: 1.0,

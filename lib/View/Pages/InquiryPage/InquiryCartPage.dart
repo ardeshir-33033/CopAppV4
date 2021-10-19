@@ -203,7 +203,7 @@ class InquiryCartPage extends StatelessWidget {
                                                                         10.0)),
                                                         child: GetBuilder<
                                                             InquiryCartController>(
-                                                     id: 'sub',
+                                                          id: 'sub',
                                                           builder: (_) {
                                                             return Row(
                                                               mainAxisAlignment:
