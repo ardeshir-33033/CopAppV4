@@ -58,37 +58,26 @@ class JoinedProducts extends StatelessWidget {
                         children: [
                           searchProductController.part != null &&
                                   searchProductController
-                                      .part!.thumbImagePath!.isNotEmpty
-                              ? InkWell(
-                                  onTap: () {
-                                    // ProductWidgets().showDialog(
-                                    //     context, widget.scaffold, [
-                                    //   ProductImage(
-                                    //     id: 1,
-                                    //     path: widget.bal?.imagePath ?? "",
-                                    //   )
-                                    // ]);
-                                  },
-                                  child: Container(
-                                    height: 200.0,
-                                    child: Column(
-                                      children: <Widget>[
-                                        Container(
-                                          height: 200.0,
-                                          margin: EdgeInsets.all(0.0),
-                                          decoration: BoxDecoration(
-                                            image: DecorationImage(
-                                              image: NetworkImage(
-                                                  searchProductController
-                                                      .part!.thumbImagePath!),
-                                              fit: BoxFit.scaleDown,
-                                            ),
-                                          ),
+                                      .part!.partImage!.isNotEmpty
+                              ? Container(
+                                height: 200.0,
+                                child: Column(
+                                  children: <Widget>[
+                                    Container(
+                                      height: 200.0,
+                                      margin: EdgeInsets.all(0.0),
+                                      decoration: BoxDecoration(
+                                        image: DecorationImage(
+                                          image: NetworkImage(
+                                              searchProductController
+                                                  .part!.partImage!),
+                                          fit: BoxFit.scaleDown,
                                         ),
-                                      ],
+                                      ),
                                     ),
-                                  ),
-                                )
+                                  ],
+                                ),
+                              )
                               : Container(
                                   height: 200.0,
                                   margin: EdgeInsets.all(0.0),

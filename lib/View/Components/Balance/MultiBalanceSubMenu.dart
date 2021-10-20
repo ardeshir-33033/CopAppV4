@@ -1,4 +1,5 @@
 import 'package:copapp/AppModel/MultiBalance/Part.dart';
+import 'package:copapp/Controller/Controllers/Balance/MultiBalanceController.dart';
 import 'package:copapp/Controller/Service/BalanceExtension.dart';
 import 'package:copapp/Utilities/Base.dart';
 import 'package:copapp/Utilities/Snacki.dart';
@@ -6,6 +7,7 @@ import 'package:copapp/View/Components/General/WhiteButton.dart';
 import 'package:copapp/View/Pages/Balance/BalancePage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 // ignore: must_be_immutable
 class ProductPageSubMenu extends StatelessWidget {
@@ -43,9 +45,10 @@ class ProductPageSubMenu extends StatelessWidget {
         WhiteButton(
           text: "مشاهده همه",
           color: CBase().textPrimaryColor,
-          onTapCallback: () async{
+          onTapCallback: () async {
             if (items!.length > 0) {
-              // BalanceExtensions().setSelectedPart(items!);
+              BalanceExtensions().clearSelectedPart();
+              MultiBalanceController multiBalanceController = Get.find();
               Navigator.push(
                 context,
                 MaterialPageRoute(
@@ -54,6 +57,8 @@ class ProductPageSubMenu extends StatelessWidget {
                   ),
                 ),
               );
+              multiBalanceController.update([3]);
+
               // Future.delayed(Duration(seconds: 2), () {
               //   BalanceExtensions().setSelectedPart([]);
               // });

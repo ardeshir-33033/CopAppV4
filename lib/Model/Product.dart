@@ -1,12 +1,10 @@
 import 'dart:ui';
-
 import 'package:copapp/AppModel/MultiBalance/Part.dart';
 import 'package:copapp/Utilities/Base.dart';
 import 'package:flutter/material.dart';
 import 'package:photo_view/photo_view.dart';
 import 'package:photo_view/photo_view_gallery.dart';
 import 'package:slide_popup_dialog/slide_popup_dialog.dart' as slideDialog;
-
 import 'Brand.dart';
 import 'Country.dart';
 import 'ProductImage.dart';
@@ -256,6 +254,7 @@ class _SliderDialogState extends State<SliderDialog> {
         //     //
         //   },
         // ),
+
         );
   }
 }

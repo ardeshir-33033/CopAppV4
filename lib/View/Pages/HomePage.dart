@@ -30,7 +30,7 @@ class HomePageV4 extends StatelessWidget {
       Get.put(BalanceItemController());
   InquiryItemController inquiryItemController =
       Get.put(InquiryItemController());
-        InquiryCartController inquiryController = Get.put(InquiryCartController());
+  InquiryCartController inquiryController = Get.put(InquiryCartController());
 
   ScrollController scrollController = ScrollController();
 
