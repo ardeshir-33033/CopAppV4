@@ -20,6 +20,7 @@ class PlateWidget extends StatefulWidget {
 }
 
 class _PlateWidgetState extends State<PlateWidget> {
+  int preLength = 0, length = 0;
   // List<DropdownMenuItem<String>> dropDownItems = [
   //   DropdownMenuItem(
   //     child: Text('الف'),
@@ -166,6 +167,11 @@ class _PlateWidgetState extends State<PlateWidget> {
       }
     });
     widget.textEditingController3.addListener(() {
+      preLength = length;
+      length = widget.textEditingController3.text.length;
+      if (preLength == 3 && length == 2) {
+        widget.textEditingController3.text = '';
+      }
       if (widget.textEditingController3.text.length > 1 &&
           widget.textEditingController3.text != 'الف') {
         if (widget.textEditingController3.text.contains("ا") &&
@@ -204,8 +210,6 @@ class _PlateWidgetState extends State<PlateWidget> {
       }
     });
   }
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -270,13 +274,17 @@ class _PlateWidgetState extends State<PlateWidget> {
               child: TextField(
                 controller: widget.textEditingController3,
                 textAlign: TextAlign.center,
+                textAlignVertical: TextAlignVertical.top,
                 keyboardType: TextInputType.text,
                 // maxLength: 1,
 
                 inputFormatters: [
-                  FilteringTextInputFormatter.allow(RegExp(r"^[آ-ی]*"))
+                  FilteringTextInputFormatter.allow(RegExp(r"^[آ-ی]*")),
+                  FilteringTextInputFormatter.deny(RegExp(r"^[ًٌٍَُِئّ]*"))
                 ],
-                style: TextStyle(color: CBase().textPrimaryColor),
+                style: TextStyle(
+                    color: CBase().textPrimaryColor,
+                    fontSize: CBase().getTitlefontSizeByScreen() * 0.9),
 
                 decoration: InputDecoration(
                   border: InputBorder.none,
