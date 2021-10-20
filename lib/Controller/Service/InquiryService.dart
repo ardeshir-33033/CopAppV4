@@ -16,7 +16,7 @@ class InquiryService with Api {
   }
 
   Future<ResponseModel<InquiryCart>> getInquiry() async {
-    var response = await HTTPGET(
+    ResponseModel response = await HTTPGET(
       RoutingInquiry.GetInquiry,
       [],
       HeaderEnum.BearerHeaderEnum,
@@ -37,8 +37,12 @@ class InquiryService with Api {
   }
 
   Future<ResponseModel<InquiryCart>> addInquiryProduct(
-      int productId, int qty) async {
-    var map = {"productId": productId, "qty": qty};
+      {required int productId, required int qty, required int supplier}) async {
+    Map<String, dynamic> map = {
+      "productId": productId,
+      "qty": qty,
+      "supplierId": supplier
+    };
 
     var response = await HTTPPOST(
       RoutingInquiry.Post_AddProduct,
@@ -62,11 +66,11 @@ class InquiryService with Api {
   }
 
   Future<ResponseModel<InquiryCart>> updateProduct(
-      int productId, int qty) async {
-    var map = {"productId": productId, "qty": qty};
+      int productId, int qty , int supplierId) async {
+    Map<String , dynamic> map = {"productId": productId, "qty": qty , "supplierId" : supplierId};
 
-    var response = await HTTPPUT(
-      RoutingInquiry.Put_UpdateProduct,
+    var response = await HTTPPOST(
+      RoutingInquiry.Post_UpdateProduct,
       [],
       jsonEncode([map]),
       HeaderEnum.BearerHeaderEnum,
@@ -86,17 +90,20 @@ class InquiryService with Api {
     );
   }
 
-  Future<ResponseModel<InquiryCart>> deleteProduct(int id) async {
+  Future<ResponseModel<InquiryCart>> deleteProduct(int productId , int vendorId) async {
     var response = await HTTPDELETE(
       RoutingInquiry.DeleteProduct,
-      [QueryModel(name: "id", value: "$id")],
+      [
+        QueryModel(name: "productId", value: "$productId" ),
+        QueryModel(name: "vendorId", value: "$vendorId")
+      ],
       HeaderEnum.BearerHeaderEnum,
       ResponseEnum.ResponseModelEnum,
     );
 
     if (response.isSuccess) {
       response.data = InquiryCart.fromJson(response.data);
-      changeProductQTY(id, 0);
+      changeProductQTY(productId, 0);
     }
 
     return ResponseModel(
@@ -137,7 +144,7 @@ class InquiryService with Api {
 
     ResponseModel response = await HTTPGET(
       RoutingInquiry.GenerateManualPreOrder,
-      [QueryModel(name: "sellerProfileId", value: "$profileId") ],
+      [QueryModel(name: "sellerProfileId", value: "$profileId")],
       HeaderEnum.BearerHeaderEnum,
       ResponseEnum.ResponseModelEnum,
     );

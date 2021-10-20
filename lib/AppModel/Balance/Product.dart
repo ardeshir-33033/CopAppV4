@@ -18,6 +18,7 @@ class Product {
   int? score;
   int? productsId;
   int? detailQTY;
+  int? supplierId;
   double? lastMarketPrice;
   List<ProductImage>? images;
   bool? warranty;
@@ -37,6 +38,7 @@ class Product {
       this.images,
       this.warranty,
       this.detailQTY,
+      this.supplierId,
       this.lastMarketPriceUpdate});
 
   Product.fromJson(Map<String, dynamic> json) {
@@ -48,6 +50,7 @@ class Product {
     productInfosPrice = json['productInfosPrice'];
     productVirtualQTY = json['productVirtualQTY'];
     detailQTY = json['detailQTY'];
+    supplierId = json['supplierId'];
     //remove this later when the model is unique.
     if (json['country'] == null || json['country'].runtimeType == String)
       country = json['country'];
@@ -80,6 +83,7 @@ class Product {
     data['score'] = this.score;
     data['lastMarketPrice'] = this.lastMarketPrice;
     data['detailQTY'] = this.detailQTY;
+    data['supplierId'] = this.supplierId;
     if (this.images != null) {
       data['images'] = this.images!.map((v) => v.toJson()).toList();
     }
@@ -96,7 +100,6 @@ class Product {
   bool isForSale() {
     return this.productVirtualQTY != null && this.productVirtualQTY! > 0;
   }
-  
 }
 
 class SliderDialog extends StatefulWidget {

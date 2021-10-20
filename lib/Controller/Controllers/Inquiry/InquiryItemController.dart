@@ -15,7 +15,7 @@ class InquiryItemController extends GetxController {
         : product.multipleQTY!);
     int newQty = 0;
     await InquiryService()
-        .addInquiryProduct(product.productsId!, multipleQty)
+        .addInquiryProduct(productId:product.productsId!,qty: multipleQty , supplier: product.supplierId!)
         .then((value) {
       if (value.isSuccess) {
         InquiryCart t = value.data;
@@ -41,7 +41,7 @@ class InquiryItemController extends GetxController {
       //is adding to item quantity
       qty = newQty + multipleQty;
       await InquiryService()
-          .updateProduct(product.productsId!, qty)
+          .updateProduct(product.productsId!, qty , product.supplierId!)
           .then((value) {
         if (value.isSuccess) {
           InquiryCart t = value.data;
@@ -63,7 +63,7 @@ class InquiryItemController extends GetxController {
         qty = InquiryService().inquiryProductQTY(product.productsId) -
             multipleQty;
         await InquiryService()
-            .updateProduct(product.productsId!, qty)
+            .updateProduct(product.productsId!, qty, product.supplierId!)
             .then((value) {
           if (value.isSuccess) {
             InquiryCart t = value.data;
@@ -92,7 +92,7 @@ class InquiryItemController extends GetxController {
   }
 
   Future<ResponseModel> remove(Product product) async {
-    var response = await InquiryService().deleteProduct(product.productsId!);
+    var response = await InquiryService().deleteProduct(product.productsId! , product.supplierId!);
     if (response.isSuccess) {
       BalanceItemController balanceItemController = Get.find();
       balanceItemController.update([6]);
