@@ -8,6 +8,7 @@ class Part {
   String? familyTitle;
   // String? joinTitle;
   String? thumbImagePath;
+  String? partImage;
   List<Product>? products;
   List<Vehicle>? vehicles;
   // List<Category>? categories;
@@ -27,6 +28,7 @@ class Part {
     this.thumbImagePath,
     this.vehicles,
     this.family,
+    this.partImage,
     // this.join,
     // this.categories,
     this.id,
@@ -40,6 +42,7 @@ class Part {
     appName = json['appName'] ?? "";
     familyTitle = json['familyTitle'] ?? "";
     // joinTitle = json['joinTitle'] ?? "";
+    partImage = json['partImage'] ?? "";
     thumbImagePath = json['thumbImagePath'] ?? "";
     if (json['products'] != null) {
       products = [];
@@ -54,10 +57,10 @@ class Part {
       });
     }
     // if (json['joines'] != null) {
-      // join = [];
-      // json['joines'].forEach((v) {
-      //   join!.add(Part.fromJson(v));
-      // });
+    // join = [];
+    // json['joines'].forEach((v) {
+    //   join!.add(Part.fromJson(v));
+    // });
     // }
     if (json['vehicles'] != null) {
       vehicles = [];
@@ -82,6 +85,7 @@ class Part {
     data['name'] = this.name;
     data['familyTitle'] = this.familyTitle;
     data['thumbImagePath'] = this.thumbImagePath;
+    data['partImage'] = this.partImage;
     if (this.products != null) {
       data['products'] = this.products!.map((v) => v.toJson()).toList();
     }
@@ -113,9 +117,9 @@ class Part {
     return null;
   }
 
-  // void displayImageSlider(BuildContext context) {
-  //   if (this.products != null && this.products!.length > 0) {
-  //     this.products!.first.displayImageSlider(context);
-  //   }
-  // }
+// void displayImageSlider(BuildContext context) {
+//   if (this.products != null && this.products!.length > 0) {
+//     this.products!.first.displayImageSlider(context);
+//   }
+// }
 }
