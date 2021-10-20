@@ -7,7 +7,7 @@ class RoutingInquiry extends RoutingBase {
   static const Post_AddProduct = "${RoutingBase.ApiUrlV2}/$BaseName/AddProductToInquiry";
   static const Post_UpdateProduct =
       "${RoutingBase.ApiUrlV2}/$BaseName/UpdateProductInquiry";
-  static const DeleteProduct = "${RoutingBase.ApiUrl}/$BaseName/DeleteProdutFromInquiry";
+  static const DeleteProduct = "${RoutingBase.ApiUrlV2}/$BaseName/DeleteProdutFromInquiry";
   static const GenerateOrderWithAddress =
       "${RoutingBase.ApiUrl}/$BaseName/GenerateOrderWithAddress";
   static const GenerateManualPreOrder =
