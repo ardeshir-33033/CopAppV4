@@ -34,9 +34,7 @@ class InquiryDetails {
   InquiryDetails.fromJson(Map<String, dynamic> json) {
     if (json['product'] != null) {
       product = new Product.fromJson(json['product']);
-      product!.detailQTY = json['qty'].toInt();
     }
-    // qty = json['qty'].toInt();
     lastSalePrice = json['lastSalePrice'];
     inquiryDetailId = json['inquiryDetailId'];
   }
