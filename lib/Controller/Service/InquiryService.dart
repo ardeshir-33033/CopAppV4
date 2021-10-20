@@ -113,7 +113,7 @@ class InquiryService with Api {
           .indexWhere((element) => element.product!.productsId == productId);
 
       if (product >= 0)
-        return inquiryCart!.details[product].qty!.toInt();
+        return inquiryCart!.details[product].product!.detailQTY!.toInt();
     }
 
     return 0;
@@ -127,7 +127,7 @@ class InquiryService with Api {
       if (qty == 0) {
         inquiryCart!.details.removeAt(index);
       } else {
-        inquiryCart!.details[index].qty = qty;
+        inquiryCart!.details[index].product!.detailQTY = qty;
       }
     }
   }

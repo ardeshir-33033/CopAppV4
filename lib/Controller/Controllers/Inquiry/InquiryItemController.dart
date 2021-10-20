@@ -20,8 +20,10 @@ class InquiryItemController extends GetxController {
       if (value.isSuccess) {
         InquiryCart t = value.data;
         newQty = t.details
-            .firstWhere((element) => element.product!.productsId == product.productsId)
-            .qty!;
+            .firstWhere(
+                (element) => element.product!.productsId == product.productsId)
+            .product!
+            .detailQTY!;
       } else {
         value.showMessage();
       }
@@ -38,12 +40,15 @@ class InquiryItemController extends GetxController {
     if (isAdding) {
       //is adding to item quantity
       qty = newQty + multipleQty;
-      await InquiryService().updateProduct(product.productsId!, qty).then((value) {
+      await InquiryService()
+          .updateProduct(product.productsId!, qty)
+          .then((value) {
         if (value.isSuccess) {
           InquiryCart t = value.data;
           newQty = t.details
-              .firstWhere((element) => element.product!.productsId == product.productsId)
-              .qty!;
+              .firstWhere((element) =>
+                  element.product!.productsId == product.productsId).product!
+              .detailQTY!;
           BalanceItemController balanceItemController = Get.find();
           balanceItemController.update([6]);
         } else {
@@ -52,15 +57,20 @@ class InquiryItemController extends GetxController {
       });
     } else {
       //is decreasing item quantity
-      if (InquiryService().inquiryProductQTY(product.productsId) - multipleQty > 0) {
+      if (InquiryService().inquiryProductQTY(product.productsId) - multipleQty >
+          0) {
         //the item won't be removed
-        qty = InquiryService().inquiryProductQTY(product.productsId) - multipleQty;
-        await InquiryService().updateProduct(product.productsId!, qty).then((value) {
+        qty = InquiryService().inquiryProductQTY(product.productsId) -
+            multipleQty;
+        await InquiryService()
+            .updateProduct(product.productsId!, qty)
+            .then((value) {
           if (value.isSuccess) {
             InquiryCart t = value.data;
             newQty = t.details
-                .firstWhere((element) => element.product!.productsId == product.productsId)
-                .qty!;
+                .firstWhere((element) =>
+                    element.product!.productsId == product.productsId).product!
+                .detailQTY!;
             BalanceItemController balanceItemController = Get.find();
             balanceItemController.update([6]);
           } else {
@@ -89,5 +99,4 @@ class InquiryItemController extends GetxController {
     }
     return response;
   }
-
 }

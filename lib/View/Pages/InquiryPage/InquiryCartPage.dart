@@ -46,7 +46,7 @@ class InquiryCartPage extends StatelessWidget {
                         builder: (_) {
                           return InquiryService()
                                   .getInquiryCart()!
-                                  .inquiryDetails
+                                  .details
                                   .isNotEmpty
                               ? Column(
                                   children: [
@@ -55,19 +55,19 @@ class InquiryCartPage extends StatelessWidget {
                                         child: ListView.builder(
                                             itemCount: InquiryService()
                                                 .getInquiryCart()!
-                                                .inquiryDetails
+                                                .details
                                                 .length,
                                             itemBuilder: (context, i) {
                                               return InquiryService()
                                                           .getInquiryCart()!
-                                                          .inquiryDetails[i]
-                                                          .qty! >
+                                                          .details[i].product!
+                                                          .detailQTY! >
                                                       0
                                                   ? InquiryItem(
                                                       scaffold: scaffoldKey,
                                                       bal: InquiryService()
                                                           .getInquiryCart()!
-                                                          .inquiryDetails[i]
+                                                          .details[i]
                                                           .product,
                                                     )
                                                   : SizedBox();

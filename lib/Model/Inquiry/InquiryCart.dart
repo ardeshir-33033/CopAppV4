@@ -26,11 +26,10 @@ class InquiryCart {
 
 class InquiryDetails {
   Product? product;
-  int? qty;
   double? lastSalePrice;
   int? inquiryDetailId;
 
-  InquiryDetails({this.product, this.qty, this.inquiryDetailId});
+  InquiryDetails({this.product, this.inquiryDetailId});
 
   InquiryDetails.fromJson(Map<String, dynamic> json) {
     if (json['product'] != null) {
@@ -47,7 +46,6 @@ class InquiryDetails {
     if (this.product != null) {
       data['product'] = this.product!.toJson();
     }
-    data['qty'] = this.qty;
     data['lastSalePrice'] = this.lastSalePrice;
     data['inquiryDetailId'] = this.inquiryDetailId;
     return data;
