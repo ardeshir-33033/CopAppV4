@@ -19,8 +19,8 @@ class InquiryItemController extends GetxController {
         .then((value) {
       if (value.isSuccess) {
         InquiryCart t = value.data;
-        newQty = t.inquiryDetails
-            .firstWhere((element) => element.productId == product.productsId)
+        newQty = t.details
+            .firstWhere((element) => element.product!.productsId == product.productsId)
             .qty!;
       } else {
         value.showMessage();
@@ -41,8 +41,8 @@ class InquiryItemController extends GetxController {
       await InquiryService().updateProduct(product.productsId!, qty).then((value) {
         if (value.isSuccess) {
           InquiryCart t = value.data;
-          newQty = t.inquiryDetails
-              .firstWhere((element) => element.productId == product.productsId)
+          newQty = t.details
+              .firstWhere((element) => element.product!.productsId == product.productsId)
               .qty!;
           BalanceItemController balanceItemController = Get.find();
           balanceItemController.update([6]);
@@ -58,8 +58,8 @@ class InquiryItemController extends GetxController {
         await InquiryService().updateProduct(product.productsId!, qty).then((value) {
           if (value.isSuccess) {
             InquiryCart t = value.data;
-            newQty = t.inquiryDetails
-                .firstWhere((element) => element.productId == product.productsId)
+            newQty = t.details
+                .firstWhere((element) => element.product!.productsId == product.productsId)
                 .qty!;
             BalanceItemController balanceItemController = Get.find();
             balanceItemController.update([6]);

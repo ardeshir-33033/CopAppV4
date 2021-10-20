@@ -108,26 +108,26 @@ class InquiryService with Api {
   }
 
   int inquiryProductQTY(int? productId) {
-    if (inquiryCart?.inquiryDetails != null) {
-      var product = inquiryCart!.inquiryDetails
-          .indexWhere((element) => element.productId == productId);
+    if (inquiryCart?.details != null) {
+      var product = inquiryCart!.details
+          .indexWhere((element) => element.product!.productsId == productId);
 
       if (product >= 0)
-        return inquiryCart!.inquiryDetails[product].qty!.toInt();
+        return inquiryCart!.details[product].qty!.toInt();
     }
 
     return 0;
   }
 
   changeProductQTY(int productId, int qty) {
-    if (inquiryCart?.inquiryDetails != null) {
-      int index = inquiryCart!.inquiryDetails
-          .indexWhere((element) => element.productId == productId);
+    if (inquiryCart?.details != null) {
+      int index = inquiryCart!.details
+          .indexWhere((element) => element.product!.productsId == productId);
 
       if (qty == 0) {
-        inquiryCart!.inquiryDetails.removeAt(index);
+        inquiryCart!.details.removeAt(index);
       } else {
-        inquiryCart!.inquiryDetails[index].qty = qty;
+        inquiryCart!.details[index].qty = qty;
       }
     }
   }

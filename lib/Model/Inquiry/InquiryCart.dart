@@ -1,76 +1,45 @@
-
 import 'package:copapp/AppModel/Balance/Product.dart';
 
 class InquiryCart {
-  List<InquiryDetails> inquiryDetails = [];
-  double? decreasePrice;
-  double? sumPrice;
-  double? finalPrice;
-  int? id;
+  List<InquiryDetails> details = [];
+  int? inquiryId;
 
-  InquiryCart(
-      {required this.inquiryDetails,
-      this.decreasePrice,
-      this.sumPrice,
-      this.finalPrice,
-      this.id});
+  InquiryCart({required this.details, this.inquiryId});
 
   InquiryCart.fromJson(Map<String, dynamic> json) {
-    if (json['inquiryDetails'] != null) {
-      json['inquiryDetails'].forEach((v) {
-        inquiryDetails.add(new InquiryDetails.fromJson(v));
+    if (json['details'] != null) {
+      json['details'].forEach((v) {
+        details.add(new InquiryDetails.fromJson(v));
       });
-    } 
-    decreasePrice = json['decreasePrice'];
-    sumPrice = json['sumPrice'];
-    finalPrice = json['finalPrice'];
-    id = json['id'];
+    }
+    inquiryId = json['inquiryId'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
 
-    data['inquiryDetails'] =
-        this.inquiryDetails.map((v) => v.toJson()).toList();
-
-    data['decreasePrice'] = this.decreasePrice;
-    data['sumPrice'] = this.sumPrice;
-    data['finalPrice'] = this.finalPrice;
-    data['id'] = this.id;
+    data['details'] = this.details.map((v) => v.toJson()).toList();
+    data['inquiryId'] = this.inquiryId;
     return data;
   }
 }
 
 class InquiryDetails {
   Product? product;
-  int? productId;
   int? qty;
-  double? unitPrice;
-  double? decreasePrice;
-  double? finalPrice;
-  double? sumPrice;
-  int? id;
+  double? lastSalePrice;
+  int? inquiryDetailId;
 
-  InquiryDetails(
-      {this.product,
-      this.productId,
-      this.qty,
-      this.unitPrice,
-      this.decreasePrice,
-      this.finalPrice,
-      this.sumPrice,
-      this.id});
+  InquiryDetails({this.product, this.qty, this.inquiryDetailId});
 
   InquiryDetails.fromJson(Map<String, dynamic> json) {
-    product =
-        json['product'] != null ? new Product.fromJson(json['product']) : null;
-    productId = json['productId'];
-    qty = json['qty'].toInt();
-    unitPrice = json['unitPrice'];
-    decreasePrice = json['decreasePrice'];
-    finalPrice = json['finalPrice'];
-    sumPrice = json['sumPrice'];
-    id = json['id'];
+    if (json['product'] != null) {
+      product = new Product.fromJson(json['product']);
+      product!.detailQTY = json['qty'].toInt();
+    }
+    // qty = json['qty'].toInt();
+    lastSalePrice = json['lastSalePrice'];
+    inquiryDetailId = json['inquiryDetailId'];
   }
 
   Map<String, dynamic> toJson() {
@@ -78,13 +47,9 @@ class InquiryDetails {
     if (this.product != null) {
       data['product'] = this.product!.toJson();
     }
-    data['productId'] = this.productId;
     data['qty'] = this.qty;
-    data['unitPrice'] = this.unitPrice;
-    data['decreasePrice'] = this.decreasePrice;
-    data['finalPrice'] = this.finalPrice;
-    data['sumPrice'] = this.sumPrice;
-    data['id'] = this.id;
+    data['lastSalePrice'] = this.lastSalePrice;
+    data['inquiryDetailId'] = this.inquiryDetailId;
     return data;
   }
 }

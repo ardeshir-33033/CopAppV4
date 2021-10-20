@@ -26,7 +26,7 @@ class InquiryCartController extends GetxController {
     update(['sub']);
     res.showMessage();
     if (res.isSuccess) {
-      InquiryService.inquiryCart!.inquiryDetails = [];
+      InquiryService.inquiryCart!.details = [];
       update();
       InquiryService().getInquiry();
     }
