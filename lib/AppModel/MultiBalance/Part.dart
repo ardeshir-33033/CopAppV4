@@ -117,6 +117,39 @@ class Part {
     return null;
   }
 
+  listFromJsonOld(dynamic jsns) {
+    if (jsns != null) {
+      return jsns.map<Part>((ct) {
+        return Part.fromJsonOld(ct);
+      }).toList();
+    }
+
+    return null;
+  }
+
+  Part.fromJsonOld(Map<String, dynamic> json) {
+      partNumber = json['partNumber'] ?? "";
+    name = json['name'] ?? "";
+    appName = json['appName'] ?? "";
+    familyTitle = json['familyTitle'] ?? "";
+    thumbImagePath = json['thumbImagePath'] ?? "";
+    if (json['products'] != null) {
+      products = [];
+      json['products'].forEach((v) {
+        products!.add(Product.fromJsonOld(v));
+      });
+    }
+    if (json['vehicles'] != null) {
+      vehicles = [];
+      json['vehicles'].forEach((v) {
+        vehicles!.add(new Vehicle.fromJson(v));
+      });
+    }
+    id = json['id'] ?? 0;
+    partImage = json['imagePath'] ?? "";
+    vehiclePersianName = json['vehiclesPersianName'] ?? "";
+  }
+
 // void displayImageSlider(BuildContext context) {
 //   if (this.products != null && this.products!.length > 0) {
 //     this.products!.first.displayImageSlider(context);

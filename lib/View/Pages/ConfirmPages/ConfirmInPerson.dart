@@ -127,8 +127,11 @@ class _ConfirmInPersonState
                               invoiceController.orderId!,
                               addressId: widget.addressId);
                         } else {
-                          result =
-                              await CartServiceV2().payment(widget.addressId);
+                          result = await CartServiceV2()
+                              .payment(widget.addressId)!
+                              .then((value) {
+                            if (!value.isSuccess) value.showMessage();
+                          });
                         }
                         setState(() {
                           isLoading = false;

@@ -100,6 +100,25 @@ class Product {
   bool isForSale() {
     return this.productVirtualQTY != null && this.productVirtualQTY! > 0;
   }
+
+  Product.fromJsonOld(Map<String, dynamic> json) {
+    productsName = json['name'] ?? "";
+    multipleQTY = json['multipleQTY'] ?? 0;
+    unitsName = json['unit']['name'];
+    brandsName = json['brand']['name'];
+    country = json['country']['name'];
+    if (json['images'] != null) {
+      images = [];
+      json['images'].forEach((v) {
+        images!.add(ProductImage.fromJson(v));
+      });
+    }
+    productInfosPrice = json['productInfos'][0]['price'];
+    productVirtualQTY= json['productInfos'][0]['qty'];
+    productsId= json['productInfos'][0]['productId'];
+    score=json['productInfos'][0]['score'];
+    lastMarketPrice=json['productInfos'][0]['lastMarketPrice'];
+  }
 }
 
 class SliderDialog extends StatefulWidget {

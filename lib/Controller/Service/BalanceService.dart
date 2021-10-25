@@ -219,7 +219,7 @@ class BalanceServiceV2 extends BalanceExtensions with Api {
         HeaderEnum.BasicHeaderEnum,
         ResponseEnum.ResponseModelEnum);
     if (response.isSuccess) {
-      response.data = Part().listFromJson(response.data['parts']);
+      response.data = Part().listFromJsonOld(response.data['parts']);
     }
     return ResponseModel(
         data: response.data,
