@@ -54,7 +54,7 @@ class _JoinedItemsState extends State<JoinedItems> {
 
   @override
   Widget build(BuildContext context) {
-    // checkHasItem(widget.bal!.productsId!);
+    checkHasItem(widget.bal!.productsId!);
     return Container(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
