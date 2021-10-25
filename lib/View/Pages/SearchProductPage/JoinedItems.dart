@@ -146,35 +146,35 @@ class _JoinedItemsState extends State<JoinedItems> {
                       fit: FlexFit.tight,
                       child: Text(""),
                     ),
-                    Container(
-                      width: 20.0,
-                      height: 20.0,
-                      child: GetBuilder<BalanceItemController>(
-                        id: 'load',
-                        builder: (_) {
-                          return Visibility(
-                            maintainSize: false,
-                            maintainAnimation: true,
-                            maintainState: true,
-                            visible: isLoadingPurchase,
-                            child: Theme(
-                              data: Theme.of(context).copyWith(
-                                accentColor: CBase().basePrimaryColor,
-                              ),
-                              child: isLoadingPurchase
-                                  ? CircularProgressIndicator(
-                                      valueColor: AlwaysStoppedAnimation<Color>(
-                                          CBase().basePrimaryColor),
-                                    )
-                                  : Text(""),
-                            ),
-                          );
-                        },
-                      ),
-                    ),
-                    SizedBox(
-                      width: 1.0,
-                    ),
+                    // Container(
+                    //   width: 20.0,
+                    //   height: 20.0,
+                    //   child: GetBuilder<BalanceItemController>(
+                    //     id: 'load',
+                    //     builder: (_) {
+                    //       return Visibility(
+                    //         maintainSize: false,
+                    //         maintainAnimation: true,
+                    //         maintainState: true,
+                    //         visible: isLoadingPurchase,
+                    //         child: Theme(
+                    //           data: Theme.of(context).copyWith(
+                    //             accentColor: CBase().basePrimaryColor,
+                    //           ),
+                    //           child: isLoadingPurchase
+                    //               ? CircularProgressIndicator(
+                    //                   valueColor: AlwaysStoppedAnimation<Color>(
+                    //                       CBase().basePrimaryColor),
+                    //                 )
+                    //               : Text(""),
+                    //         ),
+                    //       );
+                    //     },
+                    //   ),
+                    // ),
+                    // SizedBox(
+                    //   width: 1.0,
+                    // ),
                     Container(
                       width: 20.0,
                       height: 20.0,
