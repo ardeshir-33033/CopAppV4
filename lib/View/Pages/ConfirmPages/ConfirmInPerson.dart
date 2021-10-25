@@ -129,19 +129,12 @@ class _ConfirmInPersonState
                         } else {
                           result = await CartServiceV2()
                               .payment(widget.addressId)!
-                              .then((value) {
-                            if (!value.isSuccess) value.showMessage();
-                          });
-                        }
-                        setState(() {
-                          isLoading = false;
-                        });
-
-                        if (result!.isSuccess) {
-                          MyInAppBrowser().setBrowser(browser);
+                              .then((value)async {
+                            if (value.isSuccess) {
+                                 MyInAppBrowser().setBrowser(browser);
                           await browser.openUrlRequest(
                               urlRequest: URLRequest(
-                                url: Uri.parse(result.data),
+                                url: Uri.parse(value.data),
                               ),
                               options: InAppBrowserClassOptions(
                                   inAppWebViewGroupOptions:
@@ -151,10 +144,20 @@ class _ConfirmInPersonState
                                 useOnLoadResource: true,
                               ))));
 
-                          // await _launchURL(result.data);
-                        } else {
-                          result.showMessage(_scaffoldKey);
+                            }
+                           else value.showMessage();
+                          });
                         }
+                        setState(() {
+                          isLoading = false;
+                        });
+
+                        // if (result!.isSuccess) {
+                       
+                        //   // await _launchURL(result.data);
+                        // } else {
+                        //   result.showMessage(_scaffoldKey);
+                        // }
                       },
                     ),
                     flex: 1,

@@ -106,6 +106,7 @@ class Product {
     multipleQTY = json['multipleQTY'] ?? 0;
     unitsName = json['unit']['name'];
     brandsName = json['brand']['name'];
+    brandsImagePath = json['brand']['imagePath'];
     country = json['country']['name'];
     if (json['images'] != null) {
       images = [];
@@ -114,10 +115,10 @@ class Product {
       });
     }
     productInfosPrice = json['productInfos'][0]['price'];
-    productVirtualQTY= json['productInfos'][0]['qty'];
-    productsId= json['productInfos'][0]['productId'];
-    score=json['productInfos'][0]['score'];
-    lastMarketPrice=json['productInfos'][0]['lastMarketPrice'];
+    productVirtualQTY = json['productInfos'][0]['qty'].toInt();
+    productsId = json['id'];
+    score = json['productInfos'][0]['score'].toInt();
+    lastMarketPrice = json['productInfos'][0]['lastMarketPrice'];
   }
 }
 
