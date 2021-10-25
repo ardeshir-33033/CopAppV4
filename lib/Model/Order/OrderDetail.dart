@@ -46,7 +46,7 @@ class OrderDetail {
     finalPrice = json['finalPrice'] ?? 0;
     id = json['id'] ?? 0;
     product =
-        json['product'] != null ? new Product.fromJson(json['product']) : null;
+        json['product'] != null ? new Product.fromJsonOld(json['product']) : null;
     createDm = json['createDm'];
     createDs = json['createDs'];
     lastUpdateDm = json['lastUpdateDm'];
