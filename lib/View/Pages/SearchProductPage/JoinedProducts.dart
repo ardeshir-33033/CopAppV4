@@ -1,3 +1,4 @@
+import 'package:copapp/Controller/Controllers/Balance/BalanceItemController.dart';
 import 'package:copapp/Controller/Controllers/SearchProductController.dart';
 import 'package:copapp/Utilities/Base.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -60,24 +61,24 @@ class JoinedProducts extends StatelessWidget {
                                   searchProductController
                                       .part!.partImage!.isNotEmpty
                               ? Container(
-                                height: 200.0,
-                                child: Column(
-                                  children: <Widget>[
-                                    Container(
-                                      height: 200.0,
-                                      margin: EdgeInsets.all(0.0),
-                                      decoration: BoxDecoration(
-                                        image: DecorationImage(
-                                          image: NetworkImage(
-                                              searchProductController
-                                                  .part!.partImage!),
-                                          fit: BoxFit.scaleDown,
+                                  height: 200.0,
+                                  child: Column(
+                                    children: <Widget>[
+                                      Container(
+                                        height: 200.0,
+                                        margin: EdgeInsets.all(0.0),
+                                        decoration: BoxDecoration(
+                                          image: DecorationImage(
+                                            image: NetworkImage(
+                                                searchProductController
+                                                    .part!.partImage!),
+                                            fit: BoxFit.scaleDown,
+                                          ),
                                         ),
                                       ),
-                                    ),
-                                  ],
-                                ),
-                              )
+                                    ],
+                                  ),
+                                )
                               : Container(
                                   height: 200.0,
                                   margin: EdgeInsets.all(0.0),
@@ -188,8 +189,14 @@ class JoinedProducts extends StatelessWidget {
                       ),
                       Column(
                         children: [
-                          JoinedItems(
-                            bal: searchProductController.part?.products?.first,
+                          GetBuilder<BalanceItemController>(
+                            id: "search",
+                            builder: (_) {
+                              return JoinedItems(
+                                bal: searchProductController
+                                    .part?.products?.first,
+                              );
+                            },
                           )
                         ],
                       ),

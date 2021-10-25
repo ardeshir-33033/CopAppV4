@@ -316,11 +316,11 @@ class _BalanceItemState extends State<BalanceItem> {
                                                         .upDate();
                                                     balanceItemController
                                                         .upDateRow();
-                                                //  isLoading = false;
-                                                // balanceItemController.upDate();
-                                                // checkNewCount(value);
-                                                // balanceItemController
-                                                //     .upDateRow();
+                                                    //  isLoading = false;
+                                                    // balanceItemController.upDate();
+                                                    // checkNewCount(value);
+                                                    // balanceItemController
+                                                    //     .upDateRow();
                                                   });
                                                 }
                                               },
@@ -393,6 +393,8 @@ class _BalanceItemState extends State<BalanceItem> {
                                                     checkNewCount(value);
                                                     balanceItemController
                                                         .upDateRow();
+                                                    balanceItemController
+                                                        .update(["search"]);
                                                   });
                                                 }
                                               },
