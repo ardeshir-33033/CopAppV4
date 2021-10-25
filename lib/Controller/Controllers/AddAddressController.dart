@@ -38,7 +38,7 @@ class AddAddressController extends GetxController {
 
   List<ProvinceCities> cities = [];
 
-  bool isSendingCart=true;
+  bool isSendingCart = true;
   @override
   void onInit() {
     super.onInit();
@@ -87,40 +87,36 @@ class AddAddressController extends GetxController {
 
   Future getCountries() async {
     try {
-      ResponseModel result =
-          await ShippingService().getAllCountries();
+      ResponseModel result = await ShippingService().getAllCountries();
 
-        countries = result.data;
-        provinces = countries[0].countryProvinces!;
-        provincesItems = [];
+      countries = result.data;
+      provinces = countries[0].countryProvinces!;
+      provincesItems = [];
+      for (int i = 0; i < provinces.length; i++) {
+        provincesItems.add(DropdownMenuItem(
+          value: i,
+          child: Text(
+            provinces[i].persianName!,
+            style:
+                TextStyle(color: Colors.black, fontWeight: FontWeight.normal),
+          ),
+        ));
+      }
+      if (provinces.isNotEmpty && currentAddress != null) {
         for (int i = 0; i < provinces.length; i++) {
-          provincesItems.add(DropdownMenuItem(
-            value: i,
-            child: Text(
-              provinces[i].persianName!,
-              style:
-                  TextStyle(color: Colors.black, fontWeight: FontWeight.normal),
-            ),
-          ));
+          if (provinces[i].persianName == currentAddress!.province)
+            dropdownProvincevalue = i;
         }
-        if (provinces.isNotEmpty && currentAddress != null) {
-          for (int i = 0; i < provinces.length; i++) {
-            if (provinces[i].persianName == currentAddress!.province)
-              dropdownProvincevalue = i;
-          }
-          setCities(dropdownProvincevalue!);
-          for (int i = 0; i < cities.length; i++) {
-            if (cities[i].persianName == currentAddress!.city)
-              dropdownCityvalue = i;
-          }
+        setCities(dropdownProvincevalue!);
+        for (int i = 0; i < cities.length; i++) {
+          if (cities[i].persianName == currentAddress!.city)
+            dropdownCityvalue = i;
         }
-        update();
-
+      }
+      update();
     } catch (e) {
       // ignore: deprecated_member_use
-      scaffoldKey.currentState!.showSnackBar(SnackBar(
-        content: Text('مشکلی در دریافت اطلاعات رخ داده است'),
-      ));
+      Snacki().GETSnackBar(false, 'مشکلی در دریافت اطلاعات رخ داده است');
       Future.delayed(Duration(seconds: 2), () {
         Get.back();
       });
@@ -136,8 +132,7 @@ class AddAddressController extends GetxController {
         value: i,
         child: Text(
           cities[i].persianName!,
-          style:
-              TextStyle(color: Colors.black, fontWeight: FontWeight.normal),
+          style: TextStyle(color: Colors.black, fontWeight: FontWeight.normal),
         ),
       ));
     }
@@ -167,7 +162,6 @@ class AddAddressController extends GetxController {
         dropdownProvincevalue != null) {
       if (mapMark == null) {
         Snacki().GETSnackBar(false, 'لطفا موقعیت مکانی را مشخص کنید');
-
       } else {
         isLoading = true;
         update();
