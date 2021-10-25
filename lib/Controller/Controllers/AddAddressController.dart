@@ -115,7 +115,6 @@ class AddAddressController extends GetxController {
       }
       update();
     } catch (e) {
-      // ignore: deprecated_member_use
       Snacki().GETSnackBar(false, 'مشکلی در دریافت اطلاعات رخ داده است');
       Future.delayed(Duration(seconds: 2), () {
         Get.back();
