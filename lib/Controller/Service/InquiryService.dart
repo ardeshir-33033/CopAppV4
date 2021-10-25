@@ -66,8 +66,12 @@ class InquiryService with Api {
   }
 
   Future<ResponseModel<InquiryCart>> updateProduct(
-      int productId, int qty , int supplierId) async {
-    Map<String , dynamic> map = {"productId": productId, "qty": qty , "supplierId" : supplierId};
+      int productId, int qty, int supplierId) async {
+    Map<String, dynamic> map = {
+      "productId": productId,
+      "qty": qty,
+      "supplierId": supplierId
+    };
 
     var response = await HTTPPOST(
       RoutingInquiry.Post_UpdateProduct,
@@ -90,11 +94,12 @@ class InquiryService with Api {
     );
   }
 
-  Future<ResponseModel<InquiryCart>> deleteProduct(int productId , int vendorId) async {
+  Future<ResponseModel<InquiryCart>> deleteProduct(
+      int productId, int vendorId) async {
     var response = await HTTPDELETE(
       RoutingInquiry.DeleteProduct,
       [
-        QueryModel(name: "productId", value: "$productId" ),
+        QueryModel(name: "productId", value: "$productId"),
         QueryModel(name: "vendorId", value: "$vendorId")
       ],
       HeaderEnum.BearerHeaderEnum,
@@ -104,6 +109,27 @@ class InquiryService with Api {
     if (response.isSuccess) {
       response.data = InquiryCart.fromJson(response.data);
       changeProductQTY(productId, 0);
+    }
+
+    return ResponseModel(
+      isSuccess: response.isSuccess,
+      statusCode: response.statusCode,
+      data: response.data,
+      message: response.message,
+    );
+  }
+
+  Future<ResponseModel<InquiryCart>> deleteInquiry() async {
+    var response = await HTTPDELETE(
+      RoutingInquiry.DeleteProduct,
+      [],
+      HeaderEnum.BearerHeaderEnum,
+      ResponseEnum.ResponseModelEnum,
+    );
+
+    if (response.isSuccess) {
+      response.data = InquiryCart.fromJson(response.data);
+      inquiryCart = response.data;
     }
 
     return ResponseModel(
