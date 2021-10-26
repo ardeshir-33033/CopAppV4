@@ -22,10 +22,10 @@ class MultiBalanceController extends GetxController {
   getBalance({bool isSubCat = false}) async {
      getBalanceData(isSubCat: isSubCat).then((value) async {
       result = value;
-      update([1,2]);
+      update(["sub&button","multi"]);
     });
      getFilters().then((value) {
-      update([1]);
+      update(["sub&button"]);
     });
   }
 
@@ -65,13 +65,13 @@ class MultiBalanceController extends GetxController {
       BalanceExtensions().setFormerCategory(true);
     }
     result = null;
-    update([2]);
+    update(["multi"]);
     BalanceExtensions()
         .setSelectedCategory(Category(name: "", id: subCategories![index].id));
-    update([1]);
+    update(["sub&button"]);
     getBalanceData(isSubCat: true).then((value) {
       result = value;
-      update([2]);
+      update(["multi"]);
     });
   }
 
@@ -91,10 +91,10 @@ class MultiBalanceController extends GetxController {
         Get.back();
       } else {
         result = null;
-        update([2]);
+        update(["multi"]);
         BalanceExtensions()
             .setSelectedCategory(BalanceExtensions().getFormerCategory());
-        update([1]);
+        update(["sub&button"]);
         // getBalance().then((value) {
         //   setState(() {});
         // });
@@ -108,6 +108,6 @@ class MultiBalanceController extends GetxController {
         ? BalanceExtensions().removePart(part.id)
         : BalanceExtensions().selectPart(part);
 
-    update([3]);
+    update(["redBox"]);
   }
 }
