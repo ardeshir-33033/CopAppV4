@@ -66,7 +66,7 @@ class _BalancePageState extends State<BalancePage> {
                     ),
                   ),
                   GetBuilder<BalanceController>(
-                      id: 1,
+                      id: "Load",
                       builder: (_) {
                         return balanceController.isLoadingfilter
                             ? Expanded(
@@ -84,7 +84,7 @@ class _BalancePageState extends State<BalancePage> {
                                 ),
                               )
                             : GetBuilder<BalanceItemController>(
-                                id: 6,
+                                id: "parent",
                                 builder: (_) {
                                   return Flexible(
                                     fit: FlexFit.tight,

@@ -45,7 +45,7 @@ class CartPage extends StatelessWidget {
                   ))
                 : CartServiceV2().getMyCart() != null
                     ? GetBuilder<BalanceItemController>(
-                        id: 5,
+                        id: "cart",
                         builder: (_) {
                           return Column(
                             children: [

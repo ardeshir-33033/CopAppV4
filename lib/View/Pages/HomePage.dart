@@ -91,7 +91,7 @@ class HomePageV4 extends StatelessWidget {
                       ),
                     ),
                     GetBuilder<HomeController>(
-                        id: '1',
+                        id: 'animate',
                         builder: (_) {
                           return AnimatedContainer(
                             duration: Duration(milliseconds: 400),
@@ -104,7 +104,7 @@ class HomePageV4 extends StatelessWidget {
                       child: Container(
                         child: SingleChildScrollView(
                           child: GetBuilder<HomeController>(
-                              id: '1',
+                              id: 'animate',
                               builder: (_) {
                                 return Column(
                                   children: [
@@ -140,7 +140,7 @@ class HomePageV4 extends StatelessWidget {
                     child: Column(
                       children: [
                         GetBuilder<HomeController>(
-                            id: '1',
+                            id: 'animate',
                             builder: (_) {
                               return AnimatedContainer(
                                 duration: Duration(milliseconds: 400),

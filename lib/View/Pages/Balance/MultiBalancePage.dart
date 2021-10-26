@@ -59,7 +59,7 @@ class _MultiBalancePageState extends State<MultiBalancePage> {
                     height: 90,
                   ),
                   GetBuilder<MultiBalanceController>(
-                      id: 1,
+                      id: "sub&button",
                       builder: (_) {
                         return Container(
                           height: 30,
@@ -119,7 +119,7 @@ class _MultiBalancePageState extends State<MultiBalancePage> {
                         );
                       }),
                   GetBuilder<MultiBalanceController>(
-                      id: 2,
+                      id: "multi",
                       builder: (_) {
                         return Expanded(
                           child: Padding(
@@ -162,7 +162,7 @@ class _MultiBalancePageState extends State<MultiBalancePage> {
                         );
                       }),
                   GetBuilder<MultiBalanceController>(
-                      id: 1,
+                      id: "sub&button",
                       builder: (_) {
                         return Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 5.0),

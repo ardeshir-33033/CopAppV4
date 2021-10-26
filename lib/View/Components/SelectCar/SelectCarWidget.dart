@@ -12,7 +12,7 @@ class SelectCarWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<HomeController>(
-        id: '2',
+        id: 'selectCar',
         builder: (_) {
           return Container(
             child: homeController.isLoading

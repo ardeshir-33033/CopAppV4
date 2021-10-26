@@ -57,7 +57,7 @@ class ProductPageSubMenu extends StatelessWidget {
                   ),
                 ),
               );
-              multiBalanceController.update([3]);
+              multiBalanceController.update(['redBox']);
 
               // Future.delayed(Duration(seconds: 2), () {
               //   BalanceExtensions().setSelectedPart([]);

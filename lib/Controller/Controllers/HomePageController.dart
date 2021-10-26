@@ -25,7 +25,7 @@ class HomeController extends GetxController {
         cars.forEach((v) {
           v.name = v.name!.toPersianDigit();
         });
-        update(['2']);
+        update(['selectCar']);
       } else {
         v.showMessage();
       }
@@ -45,10 +45,10 @@ class HomeController extends GetxController {
             .setSelectedCar(Car(id: 0, engName: "همه", name: "All"));
         carNotSelected = true;
         isuzuApear = true;
-        update(['1']);
+        update(['animate']);
         Future.delayed(Duration(milliseconds: 400), () {
           isuzuApear = true;
-          update([3]);
+          // update([3]);
         });
       }
     }
@@ -58,14 +58,14 @@ class HomeController extends GetxController {
   onCancelCar() {
     BalanceExtensions().setSelectedCar(Car(id: 0, engName: "همه", name: "All"));
     carNotSelected = true;
-    update(['1']);
+    update(['animate']);
 
     Future.delayed(Duration(milliseconds: 400), () {
       isuzuApear = true;
-      update(['1']);
+      update(['animate']);
     });
     titleHeight = 35;
-    update(['1']);
+    update(['animate']);
   }
 
   onSelectCar(int i) {
@@ -75,11 +75,11 @@ class HomeController extends GetxController {
     carNotSelected = false;
     titleHeight = 0.0;
     isuzuApear = false;
-    update(['1']);
+    update(['animate']);
 
     Future.delayed(Duration(milliseconds: 400), () {
       carNotSelected = false;
-      update(['1']);
+      update(['animate']);
     });
   }
 }

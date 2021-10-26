@@ -227,7 +227,7 @@ class _JoinedItemsState extends State<JoinedItems> {
                         Flexible(
                           child: Container(
                             child: GetBuilder<BalanceItemController>(
-                              id: 1,
+                              id: "addDel",
                               builder: (_) {
                                 return Row(
                                   mainAxisAlignment:

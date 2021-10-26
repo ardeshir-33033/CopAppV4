@@ -13,7 +13,7 @@ class BalanceController extends GetxController {
   init(List<Part> part) {
     items = part;
     isLoadingfilter = false;
-    update([1]);
+    update(["Load"]);
   }
 
   List<Part>? getItems() {
@@ -23,8 +23,8 @@ class BalanceController extends GetxController {
   balanceFilter(
       {required GlobalKey<ScaffoldState> scaffoldKey, int? filterId}) async {
     isLoadingfilter = true;
-    update([2]);
-    update([1]);
+    update(["filter"]);
+    update(["Load"]);
 
     items =
         (await BalanceServiceV2().getBalanceData(
@@ -45,6 +45,6 @@ class BalanceController extends GetxController {
       items = temp;
     }
     isLoadingfilter = false;
-    update([1]);
+    update(["Load"]);
   }
 }

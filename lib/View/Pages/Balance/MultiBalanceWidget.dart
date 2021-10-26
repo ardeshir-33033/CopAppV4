@@ -78,7 +78,7 @@ class MultiBalanceWidget extends StatelessWidget {
                         ),
                       ),
             GetBuilder<MultiBalanceController>(
-                id: 3,
+                id: "redBox",
                 builder: (_) {
                   return BalanceExtensions().selectedPart(bal.id) == true
                       ? Padding(

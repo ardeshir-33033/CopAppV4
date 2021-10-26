@@ -33,7 +33,7 @@ class FilterBalanceWidget extends StatelessWidget {
                 }
               },
               child: GetBuilder<BalanceController>(
-                id: 2,
+                id: "filter",
                 builder: (_) {
                   return Container(
                     padding: EdgeInsets.all(5),
