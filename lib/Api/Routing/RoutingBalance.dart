@@ -12,6 +12,8 @@ class RoutingBalance extends RoutingBase {
       "${RoutingBase.ApiUrl}/$BaseName/ShowAllParents";
   static const POST_SearchByPartNumbers =
       "${RoutingBase.ApiUrl}/$BaseName/SearchByPartNumbers"; //"https://192.168.10.91:5000/api/v1/$BaseName/SearchByPartNumbersN";
+        static const POST_SearchByEPCPartNumbers =
+      "${RoutingBase.ApiUrlV2}/$BaseName/SearchByEPCPartNumbers"; 
   static const Post_GetBalanceData =
       "${RoutingBase.ApiUrlV2}/$BaseName/GetBalanceData";
         static const GET_GetBalanceFilterBox =

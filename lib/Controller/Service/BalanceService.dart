@@ -228,6 +228,22 @@ class BalanceServiceV2 extends BalanceExtensions with Api {
         statusCode: response.statusCode);
   }
 
+  Future<ResponseModel<List<Part>>> searchByEPCPartNumbers(
+      List<String> num, int carId) async {
+    Map<String, dynamic> map = {"numbers": num, "modelSeriesId": carId};
+    var json = jsonEncode(map);
+    var response = await HTTPPOST(RoutingBalance.POST_SearchByEPCPartNumbers,
+        [], json, HeaderEnum.BearerHeaderEnum, ResponseEnum.ResponseModelEnum);
+    if (response.isSuccess) {
+      response.data = Part().listFromJson(response.data['parts']);
+    }
+    return ResponseModel(
+        data: response.data,
+        isSuccess: response.isSuccess,
+        message: response.message,
+        statusCode: response.statusCode);
+  }
+
   Future<ResponseModel<Part>> getBalanceDataSearch(
       {int? page,
       int? pageSize,

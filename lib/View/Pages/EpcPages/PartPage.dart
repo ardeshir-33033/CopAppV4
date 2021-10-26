@@ -151,11 +151,11 @@ class _EpcPartPageState extends State<EpcPartPage>
                                                                 null
                                                             ? SizedBox()
                                                             : partController
-                                                                    .balanceParts[
-                                                                        partController
+                                                                        .balanceParts[partController
                                                                             .tabController!
                                                                             .index]
-                                                                    .isEmpty
+                                                                        .isEmpty ||
+                                                                    !hasValidItem()
                                                                 ? Text(
                                                                     'کالایی موجود نیست')
                                                                 : EpcFamilyHeading(
@@ -168,9 +168,9 @@ class _EpcPartPageState extends State<EpcPartPage>
                                                                             .first
                                                                             .appName!
                                                                             .isEmpty
-                                                                        ? 'بدون نام'
+                                                                        ? 'نام وارد نشده'
                                                                         : partController.balanceParts[partController.tabController!.index].first.appName ??
-                                                                            'بدون نام',
+                                                                            'نام وارد نشده',
                                                                   ),
                                                         Container(
                                                             width: CBase()
@@ -190,11 +190,11 @@ class _EpcPartPageState extends State<EpcPartPage>
                                                                       padding: EdgeInsets.symmetric(
                                                                           horizontal:
                                                                               11),
-                                                                      child: partController.balanceProducts[partController.tabController!.index][i].productVirtualQTY != 0 &&
+                                                                      child: partController.balanceProducts[partController.tabController!.index][i].productVirtualQTY! > 0 &&
                                                                               partController.balanceProducts[partController.tabController!.index][i].productInfosPrice == 0
                                                                           ? Container()
                                                                           : Container(
-                                                                              child: partController.balanceProducts[partController.tabController!.index][i].productVirtualQTY!= 0
+                                                                              child: partController.balanceProducts[partController.tabController!.index][i].productVirtualQTY != 0
                                                                                   ? BalanceItem(
                                                                                       bal: partController.balanceProducts[partController.tabController!.index][i],
                                                                                       scaffold: partController.scaffoldKey,
@@ -223,5 +223,16 @@ class _EpcPartPageState extends State<EpcPartPage>
         ),
       ),
     );
+  }
+
+  bool hasValidItem() {
+    bool r = false;
+    partController.balanceProducts[partController.tabController!.index]
+        .forEach((element) {
+      if (!(element.productVirtualQTY! > 0 && element.productInfosPrice == 0)) {
+        r = true;
+      }
+    });
+    return r;
   }
 }

@@ -126,11 +126,12 @@ class EpcPartController extends GetxController {
       update();
       Future.delayed(Duration(milliseconds: 10), () {
         scrollController.animateTo(scrollController.position.maxScrollExtent,
-          duration: Duration(milliseconds: 500), curve: Curves.easeIn);
+            duration: Duration(milliseconds: 500), curve: Curves.easeIn);
       });
-      await BalanceServiceV2().searchByPartNumbers(getCodes()
-      // ,EpcService.selectedModelSerie!.id!
-      ).then((value) {
+      await BalanceServiceV2()
+          .searchByEPCPartNumbers(
+              getCodes(), EpcService.selectedModelSerie!.id!)
+          .then((value) {
         if (value.isSuccess) {
           balanceParts[tabIndex] = value.data;
           balanceParts[tabIndex].forEach((element) {
