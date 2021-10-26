@@ -42,31 +42,31 @@ class Product {
       this.lastMarketPriceUpdate});
 
   Product.fromJson(Map<String, dynamic> json) {
-    productsId = json['productsId'];
-    productsName = json['productsName'];
-    unitsName = json['unitsName'];
-    brandsName = json['brandsName'];
-    brandsImagePath = json['brandsImagePath'];
-    productInfosPrice = json['productInfosPrice'];
-    productVirtualQTY = json['productVirtualQTY'];
-    detailQTY = json['detailQTY'];
-    supplierId = json['supplierId'];
+    productsId = json['productsId'] ?? 0;
+    productsName = json['productsName'] ?? "نام وارد نشده";
+    unitsName = json['unitsName'] ?? "";
+    brandsName = json['brandsName'] ?? "نام وارد نشده";
+    brandsImagePath = json['brandsImagePath'] ?? "";
+    productInfosPrice = json['productInfosPrice'] ?? 0;
+    productVirtualQTY = json['productVirtualQTY'] ?? 1;
+    detailQTY = json['detailQTY'] ?? 0;
+    supplierId = json['supplierId'] ?? 0;
     //remove this later when the model is unique.
     if (json['country'] == null || json['country'].runtimeType == String)
-      country = json['country'];
+      country = json['country'] ?? "";
     else
-      country = json['country']["name"];
-    multipleQTY = json['multipleQTY'];
-    score = json['score'];
-    lastMarketPrice = json['lastMarketPrice'];
+      country = json['country']["name"] ?? "";
+    multipleQTY = json['multipleQTY'] ?? 1;
+    score = json['score'] ?? 0;
+    lastMarketPrice = json['lastMarketPrice'] ?? 0;
     if (json['images'] != null) {
       images = [];
       json['images'].forEach((v) {
         images!.add(ProductImage.fromJson(v));
       });
     }
-    warranty = json["warranty"];
-    lastMarketPriceUpdate = json['lastMarketPriceUpdate'];
+    warranty = json["warranty"] ?? false;
+    lastMarketPriceUpdate = json['lastMarketPriceUpdate'] ?? "";
   }
 
   Map<String, dynamic> toJson() {
@@ -114,6 +114,7 @@ class Product {
         images!.add(ProductImage.fromJson(v));
       });
     }
+    supplierId = 3088;
     productInfosPrice = json['productInfos'][0]['price'];
     productVirtualQTY = json['productInfos'][0]['qty'].toInt();
     productsId = json['id'];

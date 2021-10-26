@@ -40,9 +40,9 @@ class BalanceWidget extends StatelessWidget {
                               EdgeInsets.symmetric(horizontal: 0, vertical: 5),
                           child: Column(
                               children: bal!.products!
-                                  .map((e) => e.productVirtualQTY != 0 &&
+                                  .map((e) => e.productVirtualQTY! > 0 &&
                                           e.productInfosPrice == 0
-                                      ? Container()
+                                      ? SizedBox()
                                       : Padding(
                                           padding: EdgeInsets.symmetric(
                                               horizontal: 10.0),
