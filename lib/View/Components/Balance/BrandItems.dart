@@ -281,7 +281,7 @@ class _BalanceItemState extends State<BalanceItem> {
                             Flexible(
                               flex: 7,
                               child: GetBuilder<BalanceItemController>(
-                                id: 1,
+                                id: "addDel",
                                 builder: (_) {
                                   return Row(
                                     mainAxisAlignment:
@@ -421,7 +421,7 @@ class _BalanceItemState extends State<BalanceItem> {
                                   children: [
                                     Container(
                                       child: GetBuilder<BalanceItemController>(
-                                        id: 1,
+                                        id: "addDel",
                                         builder: (_) {
                                           return Column(
                                             mainAxisAlignment:

@@ -50,7 +50,7 @@ class InquiryItemController extends GetxController {
                   element.product!.productsId == product.productsId).product!
               .detailQTY!;
           BalanceItemController balanceItemController = Get.find();
-          balanceItemController.update([6]);
+          balanceItemController.update(["parent"]);
         } else {
           value.showMessage();
         }
@@ -72,7 +72,7 @@ class InquiryItemController extends GetxController {
                     element.product!.productsId == product.productsId).product!
                 .detailQTY!;
             BalanceItemController balanceItemController = Get.find();
-            balanceItemController.update([6]);
+            balanceItemController.update(["parent"]);
           } else {
             value.showMessage();
           }
@@ -95,7 +95,7 @@ class InquiryItemController extends GetxController {
     var response = await InquiryService().deleteProduct(product.productsId! , product.supplierId!);
     if (response.isSuccess) {
       BalanceItemController balanceItemController = Get.find();
-      balanceItemController.update([6]);
+      balanceItemController.update(["parent"]);
     }
     return response;
   }

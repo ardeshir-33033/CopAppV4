@@ -18,8 +18,8 @@ class BalanceItemController extends GetxController {
         result.showMessage();
         return 0;
       } else {
-        update([1]);
-        update([6]);
+        update(["addDel"]);
+        update(["parent"]);
         if (bal.productInfosPrice! > 0) {
           PointController pointController = Get.find();
           pointController
@@ -53,8 +53,8 @@ class BalanceItemController extends GetxController {
         if (!result.isSuccess) {
           result.showMessage();
         } else {
-          update([1]);
-          update([6]);
+          update(["addDel"]);
+          update(["parent"]);
           if (bal.score! > 0) {
             PointController pointController = Get.find();
             pointController.add(bal.score!.toDouble() * (bal.multipleQTY??1),false);
@@ -87,8 +87,8 @@ class BalanceItemController extends GetxController {
         pointController.decrease(bal.score!.toDouble()* (bal.multipleQTY??1));
         ScoreService scoreService = Get.find();
         scoreService.update();
-        update([5]);
-        update([6]);
+        update(["cart"]);
+        update(["parent"]);
         // update([1]);
       }
     } else {
@@ -101,8 +101,8 @@ class BalanceItemController extends GetxController {
         pointController.decrease(bal.score!.toDouble() * (bal.multipleQTY??1));
         ScoreService scoreService = Get.find();
         scoreService.update();
-        update([1]);
-        update([6]);
+        update(["addDel"]);
+        update(["parent"]);
       }
     }
     return itemCount;
@@ -116,6 +116,6 @@ class BalanceItemController extends GetxController {
   }
 
   upDateRow() {
-    update([1]);
+    update(["addDel"]);
   }
 }

@@ -84,7 +84,7 @@ class _BalancePageState extends State<BalancePage> {
                                 ),
                               )
                             : GetBuilder<BalanceItemController>(
-                                id: 6,
+                                id: "parent",
                                 builder: (_) {
                                   return Flexible(
                                     fit: FlexFit.tight,
