@@ -22,8 +22,8 @@ class BalanceItemController extends GetxController {
         update(["parent"]);
         if (bal.productInfosPrice! > 0) {
           PointController pointController = Get.find();
-          pointController
-              .add(bal.score!.toDouble() * (bal.multipleQTY??1),true);
+          pointController.add(
+              bal.score!.toDouble() * (bal.multipleQTY ?? 1), true);
           ScoreService scoreService = Get.find();
           scoreService.update();
         }
@@ -48,7 +48,8 @@ class BalanceItemController extends GetxController {
             false, "تعداد خرید این کالا به ماکسیمم خود رسیده است.");
         return qty;
       } else {
-        var result = await CartServiceV2().updateProduct(bal.productsId!, newQTY);
+        var result =
+            await CartServiceV2().updateProduct(bal.productsId!, newQTY);
 
         if (!result.isSuccess) {
           result.showMessage();
@@ -57,7 +58,8 @@ class BalanceItemController extends GetxController {
           update(["parent"]);
           if (bal.score! > 0) {
             PointController pointController = Get.find();
-            pointController.add(bal.score!.toDouble() * (bal.multipleQTY??1),false);
+            pointController.add(
+                bal.score!.toDouble() * (bal.multipleQTY ?? 1), false);
             ScoreService scoreService = Get.find();
             scoreService.update();
           }
@@ -71,7 +73,7 @@ class BalanceItemController extends GetxController {
     upDate();
 
     // var newQty = CartServiceV2().cartProductQTY(bal.id);
-
+    int oldQTY = itemCount;
     if (bal.multipleQTY! <= 0)
       itemCount -= 1;
     else
@@ -82,9 +84,11 @@ class BalanceItemController extends GetxController {
 
       if (!result.isSuccess) {
         result.showMessage();
+        itemCount = oldQTY;
       } else {
         PointController pointController = Get.find();
-        pointController.decrease(bal.score!.toDouble()* (bal.multipleQTY??1));
+        pointController
+            .decrease(bal.score!.toDouble() * (bal.multipleQTY ?? 1));
         ScoreService scoreService = Get.find();
         scoreService.update();
         update(["cart"]);
@@ -92,13 +96,16 @@ class BalanceItemController extends GetxController {
         // update([1]);
       }
     } else {
-      var result = await CartServiceV2().updateProduct(bal.productsId!, itemCount);
+      var result =
+          await CartServiceV2().updateProduct(bal.productsId!, itemCount);
 
       if (!result.isSuccess) {
         result.showMessage();
+        itemCount = oldQTY;
       } else {
         PointController pointController = Get.find();
-        pointController.decrease(bal.score!.toDouble() * (bal.multipleQTY??1));
+        pointController
+            .decrease(bal.score!.toDouble() * (bal.multipleQTY ?? 1));
         ScoreService scoreService = Get.find();
         scoreService.update();
         update(["addDel"]);
