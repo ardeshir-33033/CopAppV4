@@ -118,16 +118,16 @@ class _ConfirmInPersonState
                         ),
                       ),
                       onTap: () async {
-                        var result;
+                      
                         setState(() {
                           isLoading = true;
                         });
                         if (invoiceController.orderId != null) {
-                          result = await OrderServiceV2().zarrinPayOrder(
+                           await OrderServiceV2().zarrinPayOrder(
                               invoiceController.orderId!,
                               addressId: widget.addressId);
                         } else {
-                          result = await CartServiceV2()
+                          await CartServiceV2()
                               .payment(widget.addressId)!
                               .then((value)async {
                             if (value.isSuccess) {
