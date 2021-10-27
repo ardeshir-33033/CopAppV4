@@ -283,7 +283,7 @@ class OrdersDetailWidget extends StatelessWidget {
                                                   Text(
                                                     nf
                                                         .format(orderDetail!
-                                                                .product!.unitPrice ??
+                                                                .unitPrice ??
                                                             0)
                                                         .toString(),
                                                     style: TextStyle(
