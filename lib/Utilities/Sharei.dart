@@ -1,7 +1,7 @@
 import 'dart:io';
 import 'dart:typed_data';
 import 'package:copapp/AppModel/MultiBalance/Part.dart';
-import 'package:copapp/Model/OrderHeader.dart';
+import 'package:copapp/Model/Order/OrderHeader.dart';
 import 'package:flutter/services.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:screenshot/screenshot.dart';
