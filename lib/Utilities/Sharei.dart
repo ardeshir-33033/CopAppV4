@@ -1,7 +1,6 @@
 import 'dart:io';
 import 'dart:typed_data';
 import 'package:copapp/AppModel/MultiBalance/Part.dart';
-import 'package:copapp/Model/Order/OrderHeader.dart';
 import 'package:flutter/services.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:screenshot/screenshot.dart';
@@ -72,32 +71,32 @@ class Sharei {
     }
   }
 
-  shareOrderScreenshot(
-      ScreenshotController screenshotController, OrderHeader order) async {
-    try {
-      var result = await screenshotController.capture(
-          delay: Duration(milliseconds: 10), pixelRatio: 2.0);
+  // shareOrderScreenshot(
+  //     ScreenshotController screenshotController, OrderHeader order) async {
+  //   try {
+  //     var result = await screenshotController.capture(
+  //         delay: Duration(milliseconds: 10), pixelRatio: 2.0);
 
-      final directory = (await getApplicationDocumentsDirectory()).path;
+  //     final directory = (await getApplicationDocumentsDirectory()).path;
 
-      File file = File('$directory/screenshot.png');
+  //     File file = File('$directory/screenshot.png');
 
-      file.writeAsBytes(result!);
+  //     file.writeAsBytes(result!);
 
-      String content = "جزئیات فاکتور \n";
-      content += "وضعیت : ${order.orderStatus?.description} \n";
-      content += "مبلغ کل : ${order.finalPrice} \n";
+  //     String content = "جزئیات فاکتور \n";
+  //     content += "وضعیت : ${order.orderStatus?.description} \n";
+  //     content += "مبلغ کل : ${order.finalPrice} \n";
 
-      order.orderDetails!.forEach((element) {
-        content +=
-            '${element.product?.productsName} - ${element.quantity} ${element.product!.unitsName} - مبلغ کل : ${element.finalPrice}\n';
-      });
+  //     order.orderDetails!.forEach((element) {
+  //       content +=
+  //           '${element.product?.productsName} - ${element.quantity} ${element.product!.unitsName} - مبلغ کل : ${element.finalPrice}\n';
+  //     });
 
-      await Share.shareFiles(['$directory/screenshot.png'],
-          subject: '${order.code} ${order.orderStatus?.description}',
-          text: content);
-    } on PlatformException catch (e) {
-      print("Exception while taking screenshot:" + e.toString());
-    }
-  }
+  //     await Share.shareFiles(['$directory/screenshot.png'],
+  //         subject: '${order.code} ${order.orderStatus?.description}',
+  //         text: content);
+  //   } on PlatformException catch (e) {
+  //     print("Exception while taking screenshot:" + e.toString());
+  //   }
+  // }
 }

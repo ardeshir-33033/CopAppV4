@@ -231,7 +231,7 @@ class OrdersDetailWidget extends StatelessWidget {
                                           Container(
                                             padding: EdgeInsets.all(5.0),
                                             child: Text(
-                                              (orderDetail!.quantity!
+                                              (orderDetail!.product!.detailQTY!
                                                       .toInt()
                                                       .toString()
                                                       .toPersianDigit() +
@@ -241,7 +241,7 @@ class OrdersDetailWidget extends StatelessWidget {
                                               style: TextStyle(
                                                 fontSize: CBase()
                                                     .getTitlefontSizeByScreen(),
-                                                color: orderDetail!.quantity! >
+                                                color: orderDetail!.product!.detailQTY! >
                                                         0
                                                     ? CBase().textPrimaryColor
                                                     : CBase().basePrimaryColor,
@@ -283,7 +283,7 @@ class OrdersDetailWidget extends StatelessWidget {
                                                   Text(
                                                     nf
                                                         .format(orderDetail!
-                                                                .unitPrice ??
+                                                                .product!.unitPrice ??
                                                             0)
                                                         .toString(),
                                                     style: TextStyle(
