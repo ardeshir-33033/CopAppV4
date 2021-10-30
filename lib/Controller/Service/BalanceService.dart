@@ -11,6 +11,7 @@ import 'package:copapp/AppModel/MultiBalance/Part.dart';
 import 'package:copapp/Model/Balance/QuickSearchModel.dart';
 import 'BalanceExtension.dart';
 import 'UserServiceV2.dart';
+import 'package:persian_number_utility/persian_number_utility.dart';
 
 class BalanceServiceV2 extends BalanceExtensions with Api {
   static HomeModel? myHomeData;
@@ -264,7 +265,7 @@ class BalanceServiceV2 extends BalanceExtensions with Api {
         message: "پارامتر های ورودی خالی هستند",
       );
     Map<String, dynamic> json = {
-      "search": search,
+      "search": search.toEnglishDigit(),
     };
     String body = jsonEncode(json);
     ResponseModel response = await HTTPPOST(
