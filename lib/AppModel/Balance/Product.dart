@@ -1,4 +1,4 @@
-import 'package:copapp/AppModel/Images/ProductImages.dart';
+
 import 'package:copapp/Utilities/Base.dart';
 import 'package:flutter/material.dart';
 import 'package:photo_view/photo_view.dart';
@@ -87,7 +87,7 @@ class Product {
     data['detailQTY'] = this.detailQTY;
     data['supplierId'] = this.supplierId;
     if (this.images != null) {
-      data['images'] = this.images!.map((v) => v.toJson()).toList();
+      data['images'] = this.images!.map((v) => v).toList();
     }
     data['warranty'] = this.warranty;
     data['lastMarketPriceUpdate'] = this.lastMarketPriceUpdate;
@@ -113,7 +113,7 @@ class Product {
     if (json['images'] != null) {
       images = [];
       json['images'].forEach((v) {
-        images!.add(ProductImage.fromJson(v));
+        images!.add(v);
       });
     }
     supplierId = 3088;
@@ -126,7 +126,7 @@ class Product {
 }
 
 class SliderDialog extends StatefulWidget {
-  final List<ProductImage>? images;
+  final List<String>? images;
 
   SliderDialog({required this.images});
 
@@ -172,12 +172,12 @@ class _SliderDialogState extends State<SliderDialog> {
               pageOptions: [
                 for (int i = 0; i <= widget.images!.length - 1; i++)
                   PhotoViewGalleryPageOptions(
-                    imageProvider: NetworkImage(widget.images![i].path ?? ""),
+                    imageProvider: NetworkImage(widget.images![i]),
                     initialScale: PhotoViewComputedScale.contained * 0.8,
                     minScale: 0.4,
                     maxScale: 0.8,
                     heroAttributes:
-                        PhotoViewHeroAttributes(tag: widget.images![i].id ?? 0),
+                        PhotoViewHeroAttributes(tag: widget.images![i]),
                   ),
               ],
               loadingBuilder: (context, event) => Center(
