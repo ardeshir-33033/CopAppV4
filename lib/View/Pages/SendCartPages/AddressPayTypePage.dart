@@ -249,6 +249,7 @@ class _AddressPayTypeState extends State<AddressPayType>
 
   void pay() async {
     addressController.setLoading(true);
+    // -10 is the Id for in-person shopping - Synced with backend
     await CartServiceV2().payment(-10)!.then((value) async {
       if (value.isSuccess) {
         MyInAppBrowser().setBrowser(browser);
