@@ -93,14 +93,18 @@ class SendCartController extends GetxController {
                   "https://wa.me/98$num/?text=copapp.ir\nفروشگاه آنلاین قطعات ایسوزو - مشتری گرامی ${controller1.text} \n *•* برای مشاهده فاکتور خود بر روی لینک کلیک کنید:\n ${screenShot[0]}  \n *•* برای پرداخت فاکتور خود بر روی لینک کلیک کنید: \n ${paymentRes.data ?? ""}";
               // _url = "https://wa.me/98${num}/?text=${Uri.parse("copapp.ir\nفروشگاه")}";
             }
-            try {
-              await launch(Uri.parse(_url).toString());
-            } on Exception catch (e) {
-              Snacki().GETSnackBar(false, e.toString());
-            } finally {
-              isLoading = false;
-              update();
-            }
+            // try {
+            //   await launch(Uri.parse(_url).toString());
+            // } on Exception catch (e) {
+            //   Snacki().GETSnackBar(false, e.toString());
+            // } finally {
+            //   isLoading = false;
+            //   update();
+            // }
+          } else {
+            isLoading = false;
+            update();
+            Snacki().GETSnackBar(false, "امکان ارسال به مشتری وجود ندارد.");
           }
         }
       } on Exception catch (e) {

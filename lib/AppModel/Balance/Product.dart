@@ -58,10 +58,14 @@ class Product {
     multipleQTY = json['multipleQTY'] ?? 1;
     score = json['score'] ?? 0;
     lastMarketPrice = json['lastMarketPrice'] ?? 0;
-    images = [];
-    json['images'].forEach((v) {
-      images!.add(v);
-    });
+
+    if(json['images'] != null){
+      images = [];
+      json['images'].forEach((v) {
+        images!.add(v);
+      });
+    }
+
     // images = json['images'] ?? [];
     // if (json['images'] != null) {
 
