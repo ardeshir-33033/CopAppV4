@@ -1,4 +1,3 @@
-
 import 'package:copapp/Utilities/Base.dart';
 import 'package:flutter/material.dart';
 import 'package:photo_view/photo_view.dart';
@@ -59,7 +58,11 @@ class Product {
     multipleQTY = json['multipleQTY'] ?? 1;
     score = json['score'] ?? 0;
     lastMarketPrice = json['lastMarketPrice'] ?? 0;
-    images = json['images'] ?? [];
+    images = [];
+    json['images'].forEach((v) {
+      images!.add(v);
+    });
+    // images = json['images'] ?? [];
     // if (json['images'] != null) {
 
     // images = [];
