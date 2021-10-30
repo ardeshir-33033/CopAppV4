@@ -1,5 +1,5 @@
 import 'package:copapp/Utilities/Base.dart';
-import 'package:copapp/View/Components/ChooseAddController.dart';
+import 'package:copapp/Controller/Controllers/ChooseAddController.dart';
 import 'package:copapp/View/Components/FullCheckBox.dart';
 import 'package:copapp/View/Pages/AddressPages/AddAddress.dart';
 import 'package:flutter/material.dart';

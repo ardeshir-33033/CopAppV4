@@ -290,7 +290,7 @@ class _PlateWidgetState extends State<PlateWidget> {
                   border: InputBorder.none,
                   contentPadding: EdgeInsets.only(bottom: 8),
                   counterText: '',
-                  hintText: 'د',
+                  hintText: 'ع',
                   hintStyle: TextStyle(color: Colors.black26),
                   // border: OutlineInputBorder(
                   //     borderRadius: BorderRadius.circular(5.0),
