@@ -24,7 +24,7 @@ class LoginController extends GetxController {
       if (autoLoginValue.value == '1') {
         UserServiceV2().initialization().then((value) async {
           circularVis = true;
-          update([2]);
+          update(["Load"]);
           userName.text = UserServiceV2().getUser().userName!;
           password.text = UserServiceV2().getUser().password!;
 
@@ -32,7 +32,7 @@ class LoginController extends GetxController {
               .loginFunc(userName: userName.text, password: password.text)
               .then((value) {
             circularVis = false;
-            update([2]);
+            update(["Load"]);
           });
           // logingIn();
         });
@@ -49,7 +49,7 @@ class LoginController extends GetxController {
 
   setCircularVal(bool val) {
     circularVis = val;
-    update([2]);
+    update(["Load"]);
   }
 
   Future<bool> loginFunc({
@@ -57,14 +57,14 @@ class LoginController extends GetxController {
     required String password,
   }) async {
     circularVis = true;
-    update([2]);
+    update(["Load"]);
     ResponseModel res = await UserServiceV2()
         .Token(LoginModel(password: password, userName: userName));
     if (res.isSuccess == false) {
       // setCircularVal(false);
       res.showMessage();
       circularVis = false;
-      update([2]);
+      update(["Load"]);
       return false;
     } else {
       if (autoLoginValue.value == '1') {
@@ -80,7 +80,7 @@ class LoginController extends GetxController {
       this.userName.text = '';
       circularVis = false;
       autoLoginValue = '0'.obs;
-      update([2]);
+      update(["Load"]);
       return false;
     }
   }
@@ -93,7 +93,7 @@ class LoginController extends GetxController {
       Snacki().GETSnackBar(false, "فیلد رمز و پسورد نباید خالی باشد.");
     } else {
       loginFunc(password: password, userName: userName);
-      update([2]);
+      update(["Load"]);
     }
 
     // Future.delayed(Duration(milliseconds: 1000), () {

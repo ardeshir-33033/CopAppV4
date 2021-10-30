@@ -258,7 +258,8 @@ class CartServiceV2 extends GetxController with Api {
     }
 
     return ResponseModel<String>(
-      isSuccess: response.isSuccess,
+      isSuccess: false,
+      // response.isSuccess,
       statusCode: response.statusCode,
       data: response.data,
       message: response.message,

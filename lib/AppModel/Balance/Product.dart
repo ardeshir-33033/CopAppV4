@@ -20,7 +20,7 @@ class Product {
   int? detailQTY;
   int? supplierId;
   double? lastMarketPrice;
-  List<ProductImage>? images;
+  List<String>? images;
   bool? warranty;
 
   Product(
@@ -59,12 +59,14 @@ class Product {
     multipleQTY = json['multipleQTY'] ?? 1;
     score = json['score'] ?? 0;
     lastMarketPrice = json['lastMarketPrice'] ?? 0;
-    if (json['images'] != null) {
-      images = [];
-      json['images'].forEach((v) {
-        images!.add(ProductImage.fromJson(v));
-      });
-    }
+    images = json['images'] ?? [];
+    // if (json['images'] != null) {
+
+    // images = [];
+    // json['images'].forEach((v) {
+    //   images!.add(ProductImage.fromJson(v));
+    // });
+    // }
     warranty = json["warranty"] ?? false;
     lastMarketPriceUpdate = json['lastMarketPriceUpdate'] ?? "";
   }

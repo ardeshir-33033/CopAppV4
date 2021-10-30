@@ -108,7 +108,7 @@ class AppDrawer extends StatelessWidget {
                   ),
                   KDivider(),
                   GetBuilder<AppDrawerController>(
-                      id: 1,
+                      id: "profile",
                       builder: (_) {
                         return Visibility(
                           visible: appDrawerController.profileVis,
@@ -196,7 +196,7 @@ class AppDrawer extends StatelessWidget {
                   ),
                   KDivider(),
                   GetBuilder<AppDrawerController>(
-                      id: 2,
+                      id: "order",
                       builder: (_) {
                         return Visibility(
                           visible: appDrawerController.sefareshVis,
