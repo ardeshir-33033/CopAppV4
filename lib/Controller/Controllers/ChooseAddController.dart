@@ -10,11 +10,11 @@ import 'package:get/get.dart';
 class ChooseAddressController extends GetxController {
   AddAddressController addAddressController = Get.put(AddAddressController());
   GlobalKey<ScaffoldState> scaffoldKey = new GlobalKey<ScaffoldState>();
-  ResponseModel shipperResponse =
-      ResponseModel();
+  ResponseModel shipperResponse = ResponseModel();
   List<AllShippers> shipper = [];
   int radioVal = 1;
   List<bool> checkboxes = [true];
+  bool isLoading = false;
 
   ResponseModel addressModel = ResponseModel();
 
@@ -38,13 +38,13 @@ class ChooseAddressController extends GetxController {
     addresses = null;
     initAddress().then((value) {
       if (addressModel.isSuccess) {
-  addresses = addressModel.data;
-  for (int i = 0; i < addresses!.length; i++) {
-    checkboxes.add(false);
-  }
-  checkboxSelect(0);
-  update();
-}
+        addresses = addressModel.data;
+        for (int i = 0; i < addresses!.length; i++) {
+          checkboxes.add(false);
+        }
+        checkboxSelect(0);
+        update();
+      }
     });
   }
 
@@ -80,5 +80,10 @@ class ChooseAddressController extends GetxController {
         }
       }
     }
+  }
+
+  void setLoading(bool bool) {
+    isLoading = bool;
+    update(['loading']);
   }
 }

@@ -183,7 +183,6 @@ class CartServiceV2 extends GetxController with Api {
           name: "productId",
           value: id.toString(),
         ),
-        
       ],
       HeaderEnum.BearerHeaderEnum,
       ResponseEnum.ResponseModelEnum,
@@ -258,8 +257,7 @@ class CartServiceV2 extends GetxController with Api {
     }
 
     return ResponseModel<String>(
-      isSuccess: false,
-      // response.isSuccess,
+      isSuccess: response.isSuccess,
       statusCode: response.statusCode,
       data: response.data,
       message: response.message,

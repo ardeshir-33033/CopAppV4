@@ -25,7 +25,7 @@ class ConfirmInPerson extends StatefulWidget {
 }
 
 class _ConfirmInPersonState
-    extends State<ConfirmInPerson> // with WidgetsBindingObserver
+    extends State<ConfirmInPerson> with WidgetsBindingObserver
 {
   GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   bool isLoading = false;
@@ -39,14 +39,14 @@ class _ConfirmInPersonState
   @override
   void initState() {
     super.initState();
-    // WidgetsBinding.instance?.addObserver(this);
+    WidgetsBinding.instance?.addObserver(this);
   }
 
-  // @override
-  // void dispose() {
-  //   WidgetsBinding.instance?.removeObserver(this);
-  //   super.dispose();
-  // }
+  @override
+  void dispose() {
+    WidgetsBinding.instance?.removeObserver(this);
+    super.dispose();
+  }
 
   Future<void> didChangeAppLifecycleState(AppLifecycleState state) async {
     if (state == AppLifecycleState.resumed) {
