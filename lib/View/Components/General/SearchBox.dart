@@ -161,8 +161,11 @@ class _SearchboxV2State extends State<SearchboxV2> {
                                   color: CBase().basePrimaryColor,
                                 ),
                                 onTap: () {
-                                  controller.text = '';
-                                  searchController.update(['clear']);
+                                  boxVis = false;
+                                  controller.text = "";
+                                  searchController.searchedItems.clear();
+                                  searchController
+                                      .update(['box', 'item', 'clear']);
                                 },
                               ));
                         },
