@@ -1,7 +1,7 @@
 import 'package:copapp/Controller/Controllers/InvoiceController.dart';
 import 'package:copapp/Model/Address.dart';
 import 'package:copapp/Utilities/Base.dart';
-import 'package:copapp/View/Components/ChooseAddController.dart';
+import 'package:copapp/Controller/Controllers/ChooseAddController.dart';
 import 'package:copapp/View/Pages/ConfirmPages/ConfirmInPerson.dart';
 import 'package:easy_localization/easy_localization.dart'as lc;
 import 'package:flutter/material.dart';

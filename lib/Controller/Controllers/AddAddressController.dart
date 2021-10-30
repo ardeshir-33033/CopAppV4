@@ -8,7 +8,7 @@ import 'package:copapp/Model/Shipping/CountryNameModel.dart';
 import 'package:copapp/Model/Shipping/ProvinceCityModel.dart';
 import 'package:copapp/Model/Shipping/ProvinceModel.dart';
 import 'package:copapp/Utilities/Snacki.dart';
-import 'package:copapp/View/Components/ChooseAddController.dart';
+import 'package:copapp/Controller/Controllers/ChooseAddController.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -195,7 +195,6 @@ class AddAddressController extends GetxController {
           }
           isLoading = false;
           update();
-          Get.back();
         } else {
           result.showMessage();
           isLoading = false;

@@ -128,6 +128,7 @@ class _SearchboxV2State extends State<SearchboxV2> {
                                     searchController
                                         .update(['box', 'item', 'vis']);
                                   }
+                                  searchController.update(['clear']);
                                 },
                                 textAlign: TextAlign.right,
                                 textDirection: TextDirection.rtl,
@@ -148,7 +149,27 @@ class _SearchboxV2State extends State<SearchboxV2> {
                                     strokeWidth: 2,
                                   )),
                             );
-                          })
+                          }),
+                      GetBuilder<SearchController>(
+                        id: 'clear',
+                        builder: (_) {
+                          return Visibility(
+                              visible: controller.text.isNotEmpty,
+                              child: InkWell(
+                                child: Icon(
+                                  Icons.clear_rounded,
+                                  color: CBase().basePrimaryColor,
+                                ),
+                                onTap: () {
+                                  boxVis = false;
+                                  controller.text = "";
+                                  searchController.searchedItems.clear();
+                                  searchController
+                                      .update(['box', 'item', 'clear']);
+                                },
+                              ));
+                        },
+                      ),
                     ],
                   ),
                 ),
@@ -163,6 +184,7 @@ class _SearchboxV2State extends State<SearchboxV2> {
                         speechTextCallBack: (result) {
                           // boxVis = true;
                           controller.text = result;
+                          searchController.update(['clear']);
                           // searchItems(result);
                         },
                       ),
@@ -364,7 +386,7 @@ class _SearchboxV2State extends State<SearchboxV2> {
                               boxVis = false;
                               controller.text = "";
                               searchController.searchedItems.clear();
-                              searchController.update(['box', 'item']);
+                              searchController.update(['box', 'item', 'clear']);
                             },
                           ),
                         ],

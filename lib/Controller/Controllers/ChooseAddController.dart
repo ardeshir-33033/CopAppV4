@@ -37,12 +37,14 @@ class ChooseAddressController extends GetxController {
     // });
     addresses = null;
     initAddress().then((value) {
-      addresses = addressModel.data;
-      for (int i = 0; i < addresses!.length; i++) {
-        checkboxes.add(false);
-      }
-      checkboxSelect(0);
-      update();
+      if (addressModel.isSuccess) {
+  addresses = addressModel.data;
+  for (int i = 0; i < addresses!.length; i++) {
+    checkboxes.add(false);
+  }
+  checkboxSelect(0);
+  update();
+}
     });
   }
 
