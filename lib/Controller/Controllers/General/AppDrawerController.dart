@@ -7,12 +7,12 @@ class AppDrawerController extends GetxController {
 
   profileSelected() {
     profileVis = !profileVis;
-    update([1]);
+    update(["profile"]);
   }
 
   ordersSelected() {
     sefareshVis = !sefareshVis;
-    update([2]);
+    update(["order"]);
   }
 
   exitPressed() async {

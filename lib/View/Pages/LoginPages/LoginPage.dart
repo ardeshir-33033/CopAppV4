@@ -201,7 +201,7 @@ class LoginPage extends StatelessWidget {
                                           CBase().getFullHeight(context) / 20,
                                     ),
                                     GetBuilder<LoginController>(
-                                      id: 2,
+                                      id: "Load",
                                       builder: (_) {
                                         return Visibility(
                                           maintainSize: true,

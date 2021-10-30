@@ -73,34 +73,24 @@ class SendCartController extends GetxController {
 
   void confirmSend() async {
     if (controller1.text != "" && controller2.text != "") {
-      InvoiceController invoiceController = Get.find();
       isLoading = true;
       update();
-      var res;
-      if (invoiceController.orderId == null) {
-        res = await CartServiceV2().payment(1);
-      } else {
-        res = await OrderServiceV2().zarrinPayOrder(invoiceController.orderId!);
-      }
-      if (res != null) {
-        ResponseModel? response = await ProfileServiceV2().uploadScreenShot(1);
-        ResponseModel? response2;
-        if (Sharei().getMultiPic()) {
-          response2 = (await ProfileServiceV2().uploadScreenShot(2))!;
-        }
+      try {
+        ResponseModel paymentRes = await _payment();
 
-        if (response!.isSuccess == true) {
+        if (paymentRes.isSuccess) {
+          List screenShot = await _uploadScreenShot();
           String num = controller2.text.substring(1).toEnglishDigit();
 
           if (await canLaunch(
-              "https://wa.me/98$num/?text=test-${response.data}")) {
+              "https://wa.me/98$num/?text=test-${screenShot.first}")) {
             String _url;
-            if (response2 != null) {
+            if (screenShot.length > 1) {
               _url =
-                  "https://wa.me/98$num/?text=copapp.ir\nفروشگاه آنلاین قطعات ایسوزو - مشتری گرامی ${controller1.text} \n *•* برای مشاهده فاکتور خود بر روی لینک کلیک کنید:\n ${response.data}  \n ادامه: \n ${response2.data} \n *•* برای پرداخت فاکتور خود بر روی لینک کلیک کنید: \n ${res.data ?? ""}";
+                  "https://wa.me/98$num/?text=copapp.ir\nفروشگاه آنلاین قطعات ایسوزو - مشتری گرامی ${controller1.text} \n *•* برای مشاهده فاکتور خود بر روی لینک کلیک کنید:\n ${screenShot[0]}  \n ادامه: \n ${screenShot[1]} \n *•* برای پرداخت فاکتور خود بر روی لینک کلیک کنید: \n ${paymentRes.data ?? ""}";
             } else {
               _url =
-                  "https://wa.me/98$num/?text=copapp.ir\nفروشگاه آنلاین قطعات ایسوزو - مشتری گرامی ${controller1.text} \n *•* برای مشاهده فاکتور خود بر روی لینک کلیک کنید:\n ${response.data}  \n *•* برای پرداخت فاکتور خود بر روی لینک کلیک کنید: \n ${res.data ?? ""}";
+                  "https://wa.me/98$num/?text=copapp.ir\nفروشگاه آنلاین قطعات ایسوزو - مشتری گرامی ${controller1.text} \n *•* برای مشاهده فاکتور خود بر روی لینک کلیک کنید:\n ${screenShot[0]}  \n *•* برای پرداخت فاکتور خود بر روی لینک کلیک کنید: \n ${paymentRes.data ?? ""}";
               // _url = "https://wa.me/98${num}/?text=${Uri.parse("copapp.ir\nفروشگاه")}";
             }
             try {
@@ -112,11 +102,12 @@ class SendCartController extends GetxController {
               update();
             }
           }
-        } else {
-          response.showMessage();
         }
-      } else {
-        res!.showMessage(scaffoldKey);
+      } on Exception catch (e) {
+        Snacki().GETSnackBar(false, e.toString());
+      } finally {
+        isLoading = false;
+        update();
       }
     } else {
       Snacki().GETSnackBar(false, "لطفا فیلد های ضروری را پر کنید");
@@ -124,5 +115,50 @@ class SendCartController extends GetxController {
 
     isLoading = false;
     update();
+  }
+
+  Future<ResponseModel> _payment() async {
+    InvoiceController invoiceController = Get.find();
+
+    ResponseModel res;
+    if (invoiceController.orderId == null) {
+      res = (await CartServiceV2().payment(1))!;
+    } else {
+      res =
+          (await OrderServiceV2().zarrinPayOrder(invoiceController.orderId!))!;
+    }
+    if (!res.isSuccess) {
+      res.showMessage();
+    }
+
+    return res;
+  }
+
+  Future<List> _uploadScreenShot() async {
+    List returnedList = [];
+    ResponseModel? response = await ProfileServiceV2().uploadScreenShot(1);
+
+    ResponseModel? response2;
+    if (Sharei().getMultiPic()) {
+      response2 = (await ProfileServiceV2().uploadScreenShot(2))!;
+    }
+
+    if (!response!.isSuccess) {
+      response.showMessage();
+      returnedList.add("خطا در آپلود فاکتور");
+    } else {
+      returnedList.add(response.data);
+    }
+
+    if (Sharei().getMultiPic()) {
+      if (!response2!.isSuccess) {
+        response2.showMessage();
+        returnedList.add(null);
+      } else {
+        returnedList.add(response2.data);
+      }
+    }
+
+    return returnedList;
   }
 }
