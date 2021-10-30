@@ -51,7 +51,7 @@ class OrdersDetailWidget extends StatelessWidget {
                           flex: 3,
                           child: orderDetail!.product!.images!.length != 0
                               ? Image.network(
-                                  orderDetail!.product!.images!.first.path!)
+                                  orderDetail!.product!.images!.first)
                               : Container(
                                   decoration: BoxDecoration(
                                       image: DecorationImage(

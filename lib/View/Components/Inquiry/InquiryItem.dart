@@ -94,7 +94,7 @@ class _InquiryItemState extends State<InquiryItem> {
                                 decoration: BoxDecoration(
                                   image: DecorationImage(
                                     image: NetworkImage(
-                                        widget.bal?.images!.first.path ?? ""),
+                                        widget.bal?.images!.first ?? ""),
                                     fit: BoxFit.contain,
                                   ),
                                 ),

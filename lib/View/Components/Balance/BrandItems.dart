@@ -88,7 +88,7 @@ class _BalanceItemState extends State<BalanceItem> {
                                 decoration: BoxDecoration(
                                   image: DecorationImage(
                                     image: NetworkImage(
-                                        widget.bal?.images!.first.path ?? ""),
+                                        widget.bal?.images!.first ?? ""),
                                     fit: BoxFit.contain,
                                   ),
                                 ),
