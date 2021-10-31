@@ -93,6 +93,8 @@ class SendCartController extends GetxController {
                   "https://wa.me/98$num/?text=copapp.ir\nفروشگاه آنلاین قطعات ایسوزو - مشتری گرامی ${controller1.text} \n *•* برای مشاهده فاکتور خود بر روی لینک کلیک کنید:\n ${screenShot[0]}  \n *•* برای پرداخت فاکتور خود بر روی لینک کلیک کنید: \n ${paymentRes.data ?? ""}";
               // _url = "https://wa.me/98${num}/?text=${Uri.parse("copapp.ir\nفروشگاه")}";
             }
+            await launch(Uri.parse(_url).toString());
+
             // try {
             //   await launch(Uri.parse(_url).toString());
             // } on Exception catch (e) {
