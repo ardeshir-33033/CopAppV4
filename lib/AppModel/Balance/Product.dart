@@ -59,7 +59,7 @@ class Product {
     multipleQTY = json['multipleQTY'] ?? 1;
     score = json['score'] ?? 0;
     lastMarketPrice = json['lastMarketPrice'] ?? 0;
-
+    //remove this later when the model is unique.
     if (json['images'] != null) {
       images = [];
       json['images'].forEach((v) {
