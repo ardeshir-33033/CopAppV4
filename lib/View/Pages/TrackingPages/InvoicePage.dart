@@ -17,7 +17,7 @@ import 'buy.dart';
 import 'invoice.dart';
 
 class Tracking extends StatefulWidget {
-  late final TrackingStage trackingStage;
+   TrackingStage trackingStage;
   final int? orderId;
 
   Tracking({Key? key, this.trackingStage = TrackingStage.Bill, this.orderId})
