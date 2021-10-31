@@ -1,3 +1,4 @@
+import 'package:copapp/AppModel/Images/ProductImages.dart';
 import 'package:copapp/Utilities/Base.dart';
 import 'package:flutter/material.dart';
 import 'package:photo_view/photo_view.dart';
@@ -59,10 +60,13 @@ class Product {
     score = json['score'] ?? 0;
     lastMarketPrice = json['lastMarketPrice'] ?? 0;
 
-    if(json['images'] != null){
+    if (json['images'] != null) {
       images = [];
       json['images'].forEach((v) {
-        images!.add(v);
+        if (v.runtimeType == String)
+          images!.add(v);
+        else
+          images!.add(ProductImage.fromJson(v).path!);
       });
     }
 
