@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class PersonalInfoTabWidget extends StatelessWidget {
-
   final ProfileController profileController = Get.find();
   @override
   Widget build(BuildContext context) {
@@ -27,7 +26,7 @@ class PersonalInfoTabWidget extends StatelessWidget {
                   ],
                 ),
               ),
-              KDivider(),
+              GDivider(),
             ],
           ),
           SizedBox(
@@ -47,7 +46,7 @@ class PersonalInfoTabWidget extends StatelessWidget {
                   ],
                 ),
               ),
-              KDivider(),
+              GDivider(),
             ],
           ),
           SizedBox(
@@ -70,7 +69,7 @@ class PersonalInfoTabWidget extends StatelessWidget {
                   ],
                 ),
               ),
-              KDivider(),
+              GDivider(),
             ],
           ),
           SizedBox(
@@ -90,7 +89,7 @@ class PersonalInfoTabWidget extends StatelessWidget {
                   ],
                 ),
               ),
-              KDivider(),
+              GDivider(),
             ],
           ),
         ],
@@ -98,4 +97,3 @@ class PersonalInfoTabWidget extends StatelessWidget {
     );
   }
 }
-
