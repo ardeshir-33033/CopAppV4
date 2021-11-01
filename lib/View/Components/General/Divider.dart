@@ -9,7 +9,7 @@ class KDivider extends StatelessWidget {
       child: Divider(
         height: 1,
         thickness: 1,
-        color: CBase().baseYellowColor,
+        color: CBase().borderPrimaryColor,
       ),
     );
   }
