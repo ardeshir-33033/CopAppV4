@@ -23,8 +23,8 @@ class ProfileServiceV2 extends UserServiceV2 {
     var head = Api().bearerHeader;
     var request = http.MultipartRequest(
         'POST',
-        Uri.parse(
-            'https://mobile.dinavision.org/api/v1/Profile/EditPersonalAvatar'));
+        Uri.parse(RoutingProfile.POST_UploadAvatar
+            ));
     request.files
         .add(await http.MultipartFile.fromPath('avatar', imageFile.path));
     request.headers.addAll(head);
@@ -245,9 +245,9 @@ class ProfileServiceV2 extends UserServiceV2 {
     );
 
     if (response.isSuccess) {
-      profile = Profile();
+      // profile = Profile();
       profile.addresses = Address().listFromJson(response.data);
-      response.data = Address().listFromJson(response.data);
+      response.data = profile.addresses;
     }
 
     return ResponseModel<List<Address>>(
