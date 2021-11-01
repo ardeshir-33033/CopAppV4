@@ -110,7 +110,7 @@ class SendCartController extends GetxController {
           }
         }
       } on Exception catch (e) {
-        Snacki().GETSnackBar(false, e.toString());
+        Snacki().GETSnackBar(false, "در ارسال به مشتری با مشکل مواجه شد. لطفا دوباره تلاش کنید.");
       } finally {
         isLoading = false;
         update();

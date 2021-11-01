@@ -13,7 +13,7 @@ class Sharei {
   takeScreenshot(ScreenshotController screenshotController, int index) async {
     try {
       Uint8List? result = await screenshotController.capture(
-          delay: Duration(milliseconds: 10), pixelRatio: 2.0);
+          delay: Duration(milliseconds: 40), pixelRatio: 2.0);
       imagePath = (await getApplicationDocumentsDirectory()).path;
       File file = File('$imagePath/screenshot$index.png');
 
