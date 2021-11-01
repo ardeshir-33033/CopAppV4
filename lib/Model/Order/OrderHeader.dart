@@ -1,6 +1,4 @@
-
 import 'OrderDetail.dart';
-
 
 class OrderHeader {
   String? title;
@@ -19,26 +17,28 @@ class OrderHeader {
   double? commissionPrice;
   String? paidTime;
   String? paidRefId;
+  int? itemCount;
+  double? totalScore;
 
-  OrderHeader({
-    this.title,
-    this.description,
-    this.code,
-    this.sumPrice,
-    this.decreasedPrice,
-    this.increasedPrice,
-    this.finalPrice,
-
-    this.orderStatusId,
-    this.orderDetails,
-    this.deliveryProvince,
-    this.deliveryCity,
-    this.deliveryAddress,
-    this.id,
-    this.commissionPrice,
-    this.paidRefId,
-    this.paidTime,
-  });
+  OrderHeader(
+      {this.title,
+      this.description,
+      this.code,
+      this.sumPrice,
+      this.decreasedPrice,
+      this.increasedPrice,
+      this.finalPrice,
+      this.orderStatusId,
+      this.orderDetails,
+      this.deliveryProvince,
+      this.deliveryCity,
+      this.deliveryAddress,
+      this.id,
+      this.commissionPrice,
+      this.paidRefId,
+      this.paidTime,
+      this.itemCount,
+      this.totalScore});
 
   OrderHeader.fromJson(Map<String, dynamic> json) {
     title = json['title'] ?? "";
@@ -62,6 +62,8 @@ class OrderHeader {
     deliveryCity = json['deliveryCity'] ?? "";
     deliveryAddress = json['deliveryAddress'] ?? "";
     id = json['id'] ?? 0;
+    itemCount = json['itemCount'] ?? 0;
+    totalScore = json['totalScore'] ?? 0.0;
   }
 
   Map<String, dynamic> toJson() {
@@ -82,6 +84,8 @@ class OrderHeader {
     data['deliveryCity'] = this.deliveryCity;
     data['deliveryAddress'] = this.deliveryAddress;
     data['id'] = this.id;
+    data['totalScore'] = this.totalScore;
+    data['itemCount'] = this.itemCount;
     return data;
   }
 
