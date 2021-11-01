@@ -9,7 +9,7 @@ class PendingOrdController extends GetxController {
   List<OrderHeader>? pendingOrders;
 
   Future getPendingOrders() async {
-    orderResponse = await OrderServiceV2().getAllPendingOrders();
+    orderResponse = await OrderServiceV2().getPendingOrders();
     if (!orderResponse.isSuccess) {
       orderResponse.showMessage();
       Future.delayed(Duration(seconds: 2), () {

@@ -10,7 +10,7 @@ class SendingOrdController extends GetxController {
   List<OrderHeader>? sendingOrders;
 
   Future getSendingOrders() async {
-    orderResponse = await OrderServiceV2().getSendingOrder();
+    orderResponse = await OrderServiceV2().getSendingOrders();
     if (!orderResponse.isSuccess) {
       orderResponse.showMessage();
       Future.delayed(Duration(seconds: 2), () {

@@ -63,9 +63,9 @@ class OrderServiceV2 extends Api {
     );
   }
 
-  Future<ResponseModel> getAllPendingOrders() async {
+  Future<ResponseModel> getPendingOrders() async {
     ResponseModel response = await HTTPGET(
-      RoutingOrder.GET_GetAllPendingOrders,
+      RoutingOrder.GET_GetPendingOrders,
       [],
       HeaderEnum.BearerHeaderEnum,
       ResponseEnum.ResponseModelEnum,
@@ -83,9 +83,9 @@ class OrderServiceV2 extends Api {
     );
   }
 
-  Future<ResponseModel> getSendingOrder() async {
+  Future<ResponseModel> getSendingOrders() async {
     ResponseModel response = await HTTPGET(
-      RoutingOrder.GET_GetSendingOrder,
+      RoutingOrder.GET_GetSendingOrders,
       [],
       HeaderEnum.BearerHeaderEnum,
       ResponseEnum.ResponseModelEnum,
@@ -102,9 +102,9 @@ class OrderServiceV2 extends Api {
     );
   }
 
-  Future<ResponseModel<List<OrderHeader>>> getConfirmedPayOrders() async {
+  Future<ResponseModel<List<OrderHeader>>> getConfirmedOrders() async {
     ResponseModel response = await HTTPGET(
-      RoutingOrder.GET_GetConfirmedPayOrders,
+      RoutingOrder.GET_GetConfirmedOrders,
       [],
       HeaderEnum.BearerHeaderEnum,
       ResponseEnum.ResponseModelEnum,

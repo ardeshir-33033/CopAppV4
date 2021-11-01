@@ -9,7 +9,7 @@ class ConfirmedOrdController extends GetxController {
   List<OrderHeader>? confirmedOrders;
 
   Future getPendingOrders() async {
-    confirmedResponse = await OrderServiceV2().getConfirmedPayOrders();
+    confirmedResponse = await OrderServiceV2().getConfirmedOrders();
     if (!confirmedResponse.isSuccess) {
       confirmedResponse.showMessage();
       Future.delayed(Duration(seconds: 2), () {
