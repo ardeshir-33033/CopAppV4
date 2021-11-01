@@ -42,7 +42,7 @@ class HomeController extends GetxController {
         );
       else {
         BalanceExtensions()
-            .setSelectedCar(Car(id: 0, engName: "همه", name: "All"));
+            .setSelectedCar(Car(id: null, engName: "همه", name: "All"));
         carNotSelected = true;
         isuzuApear = true;
         update(['animate']);
@@ -56,7 +56,7 @@ class HomeController extends GetxController {
   }
 
   onCancelCar() {
-    BalanceExtensions().setSelectedCar(Car(id: 0, engName: "همه", name: "All"));
+    BalanceExtensions().setSelectedCar(Car(id: null, engName: "همه", name: "All"));
     carNotSelected = true;
     update(['animate']);
 
