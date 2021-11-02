@@ -8,11 +8,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
+import '../OrdersDetail.dart';
+
 class PendingOrders extends StatelessWidget {
-
-  final PendingOrdController pendingOrdController = Get.put(PendingOrdController());
+  final PendingOrdController pendingOrdController =
+      Get.put(PendingOrdController());
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
-
 
   @override
   Widget build(BuildContext context) {
@@ -20,8 +21,7 @@ class PendingOrders extends StatelessWidget {
       textDirection: TextDirection.rtl,
       child: Scaffold(
         key: scaffoldKey,
-        bottomNavigationBar:
-            MainFooterNavigation(),
+        bottomNavigationBar: MainFooterNavigation(),
         drawer: AppDrawer(
           scaffoldKey: scaffoldKey,
         ),
@@ -48,37 +48,56 @@ class PendingOrders extends StatelessWidget {
               )),
           leading: DrawerWidget(scaffoldKey: scaffoldKey),
         ),
-        body: GetBuilder<PendingOrdController>(
-          builder: (_) {
-            return SafeArea(
-              child: Column(
-                children: [
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Expanded(
-                      flex: 10,
-                      child: pendingOrdController.pendingOrders == null
-                          ? Center(
-                              child: CircularProgressIndicator(
-                              valueColor: AlwaysStoppedAnimation<Color>(
-                                  CBase().basePrimaryColor),
-                            ))
-                          : pendingOrdController.pendingOrders?.length != 0
-                              ? ListView.builder(
-                                  itemCount: pendingOrdController.pendingOrders!.length,
-                                  itemBuilder: (context, int index) {
-                                    return OrdersV2Widget(
-                                      item: pendingOrdController.pendingOrders![index],
-                                      type: 1,
-                                    );
-                                  })
-                              : Center(child: Text("سبدی وجود ندارد")))
-                ],
-              ),
-            );
-          }
-        ),
+        body: GetBuilder<PendingOrdController>(builder: (_) {
+          return SafeArea(
+            child: Column(
+              children: [
+                SizedBox(
+                  height: 10,
+                ),
+                Expanded(
+                    flex: 10,
+                    child: pendingOrdController.pendingOrders == null
+                        ? Center(
+                            child: CircularProgressIndicator(
+                            valueColor: AlwaysStoppedAnimation<Color>(
+                                CBase().basePrimaryColor),
+                          ))
+                        : pendingOrdController.pendingOrders?.length != 0
+                            ? ListView.builder(
+                                itemCount:
+                                    pendingOrdController.pendingOrders!.length,
+                                itemBuilder: (context, int index) {
+                                  return OrdersV2Widget(
+                                    item: pendingOrdController
+                                        .pendingOrders![index],
+                                    pageTitle: "در انتظار پرداخت",
+                                    tapFunc: () {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  OrdersDetail(
+                                                    orderDetails:
+                                                        pendingOrdController
+                                                            .pendingOrders![
+                                                                index]
+                                                            .orderDetails,
+                                                    orderId:
+                                                        pendingOrdController
+                                                            .pendingOrders![
+                                                                index]
+                                                            .id,
+                                                    type: 1,
+                                                  )));
+                                    },
+                                  );
+                                })
+                            : Center(child: Text("سبدی وجود ندارد")))
+              ],
+            ),
+          );
+        }),
       ),
     );
   }

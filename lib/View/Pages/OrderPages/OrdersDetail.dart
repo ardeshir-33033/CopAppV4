@@ -14,7 +14,9 @@ import 'package:get/get.dart';
 
 // ignore: must_be_immutable
 class OrdersDetail extends StatelessWidget {
-  OrdersDetail({this.orderDetails, required this.type, this.orderId});
+  OrdersDetail({
+    this.orderDetails,
+    required this.type, this.orderId});
 
   List<OrderDetail>? orderDetails = [];
   final int? orderId;
