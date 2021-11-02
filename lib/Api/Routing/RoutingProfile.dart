@@ -17,6 +17,7 @@ class RoutingProfile extends RoutingBase {
   static const POST_ChangeSecondPassword = "${RoutingBase.ApiUrl}/$BaseName/ChangeSecondPassword";
   static const POST_CheckSecondPassword = "${RoutingBase.ApiUrl}/$BaseName/CheckSecondPassword";
   static const POST_UploadScreenShot = "${RoutingBase.ApiUrl}/$BaseName/UploadScreenshot";
+  static const POST_UploadAvatar = "${RoutingBase.ApiUrl}/$BaseName/EditPersonalAvatar'";
 
 
   static const DELETE_Delete = "${RoutingBase.ApiUrl}/$BaseName/Delete";

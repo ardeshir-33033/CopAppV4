@@ -14,6 +14,19 @@ class KDivider extends StatelessWidget {
     );
   }
 }
+class GDivider extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 15),
+      child: Divider(
+        height: 1,
+        thickness: 1,
+        color: CBase().borderPrimaryColor,
+      ),
+    );
+  }
+}
 
 class WDivider extends StatelessWidget {
   @override

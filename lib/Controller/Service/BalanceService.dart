@@ -264,8 +264,13 @@ class BalanceServiceV2 extends BalanceExtensions with Api {
         data: null,
         message: "پارامتر های ورودی خالی هستند",
       );
+    List<int> keywords = [];
+    if (keywordId != null) {
+      keywords.add(keywordId);
+    }
     Map<String, dynamic> json = {
       "search": search.toEnglishDigit(),
+      "vehicles": keywords,
     };
     String body = jsonEncode(json);
     ResponseModel response = await HTTPPOST(

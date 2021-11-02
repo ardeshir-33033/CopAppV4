@@ -1,39 +1,36 @@
-
-
 import 'Account.dart';
 import 'Address.dart';
 import 'CartHeader.dart';
 import 'FavoriteProduct.dart';
 import 'Order/OrderHeader.dart';
 
-
 class Profile {
   int? userId;
   String? firstName;
-  String ?lastName;
-  int ?phoneNumberId;
+  String? lastName;
+  int? phoneNumberId;
   String? phoneNumber;
-  String ?telePhoneNumber;
+  String? telePhoneNumber;
   // PhoneNumber phoneNumber;
   String? nationalCode;
-  String ?emailAddress;
+  String? emailAddress;
   int? yearBirthDate;
   int? monthBirthDate;
   int? dayBirthDate;
-   String ?imageAddress;
+  String? imageAddress;
   int? points;
   String? bankCarNo;
   List<Address>? addresses;
-  List<FavoriteProduct>? favoriteProducts;
-  List<OrderHeader> ?orderHeaders;
-  List<RCartHeader> ?cartHeaders;
+  // List<FavoriteProduct>? favoriteProducts;
+  // List<OrderHeader>? orderHeaders;
+  // List<RCartHeader>? cartHeaders;
   //Wallet wallet;
-  Account? account;
+  // Account? account;
   int? id;
-  String? createDm;
-  String? createDs;
-  String? lastUpdateDm;
-  String? lastUpdateDs;
+  // String? createDm;
+  // String? createDs;
+  // String? lastUpdateDm;
+  // String? lastUpdateDs;
 
   Profile(
       {this.userId,
@@ -50,16 +47,16 @@ class Profile {
       this.points,
       this.bankCarNo,
       this.addresses,
-      this.favoriteProducts,
-      this.orderHeaders,
-      this.cartHeaders,
+      // this.favoriteProducts,
+      // this.orderHeaders,
+      // this.cartHeaders,
       //this.wallet,
-      this.account,
+      // this.account,
       this.id,
-      this.createDm,
-      this.createDs,
-      this.lastUpdateDm,
-      this.lastUpdateDs,
+      // this.createDm,
+      // this.createDs,
+      // this.lastUpdateDm,
+      // this.lastUpdateDs,
       this.telePhoneNumber});
 
   Profile.fromJson(Map<String, dynamic> json) {
@@ -81,37 +78,37 @@ class Profile {
     points = json['points'];
     bankCarNo = json['bankCarNo'];
     if (json['addresses'] != null) {
-     List<Address> addresses =[];
+      List<Address> addresses = [];
       json['addresses'].forEach((v) {
         addresses.add(Address.fromJson(v));
       });
     }
     if (json['favoriteProducts'] != null) {
-     List<FavoriteProduct> favoriteProducts = [];
+      List<FavoriteProduct> favoriteProducts = [];
       json['favoriteProducts'].forEach((v) {
         favoriteProducts.add(FavoriteProduct.fromJson(v));
       });
     }
     if (json['orderHeaders'] != null) {
-     List<OrderHeader> orderHeaders = [];
+      List<OrderHeader> orderHeaders = [];
       json['orderHeaders'].forEach((v) {
         orderHeaders.add(OrderHeader.fromJson(v));
       });
     }
     if (json['cartHeaders'] != null) {
-     List<RCartHeader> cartHeaders = [];
+      List<RCartHeader> cartHeaders = [];
       json['cartHeaders'].forEach((v) {
         cartHeaders.add(RCartHeader.fromJson(v));
       });
     }
     //wallet = json['wallet'] != null ? Wallet.fromJson(json['wallet']) : null;
-    account =
-        json['account'] != null ? Account.fromJson(json['account']) : null;
+    // account =
+        // json['account'] != null ? Account.fromJson(json['account']) : null;
     id = json['id'];
-    createDm = json['createDm'];
-    createDs = json['createDs'];
-    lastUpdateDm = json['lastUpdateDm'];
-    lastUpdateDs = json['lastUpdateDs'];
+    // createDm = json['createDm'];
+    // createDs = json['createDs'];
+    // lastUpdateDm = json['lastUpdateDm'];
+    // lastUpdateDs = json['lastUpdateDs'];
   }
 
   Map<String, dynamic> toJson() {
@@ -135,27 +132,27 @@ class Profile {
     if (this.addresses != null) {
       data['addresses'] = this.addresses!.map((v) => v.toJson()).toList();
     }
-    if (this.favoriteProducts != null) {
-      data['favoriteProducts'] =
-          this.favoriteProducts!.map((v) => v.toJson()).toList();
-    }
-    if (this.orderHeaders != null) {
-      data['orderHeaders'] = this.orderHeaders!.map((v) => v.toJson()).toList();
-    }
-    if (this.cartHeaders != null) {
-      data['cartHeaders'] = this.cartHeaders!.map((v) => v.toJson()).toList();
-    }
+    // if (this.favoriteProducts != null) {
+    //   data['favoriteProducts'] =
+    //       this.favoriteProducts!.map((v) => v.toJson()).toList();
+    // }
+    // if (this.orderHeaders != null) {
+    //   data['orderHeaders'] = this.orderHeaders!.map((v) => v.toJson()).toList();
+    // }
+    // if (this.cartHeaders != null) {
+    //   data['cartHeaders'] = this.cartHeaders!.map((v) => v.toJson()).toList();
+    // }
     //if (this.wallet != null) {
     //  data['wallet'] = this.wallet.toJson();
     //}
-    if (this.account != null) {
-      data['account'] = this.account!.toJson();
-    }
-    data['id'] = this.id;
-    data['createDm'] = this.createDm;
-    data['createDs'] = this.createDs;
-    data['lastUpdateDm'] = this.lastUpdateDm;
-    data['lastUpdateDs'] = this.lastUpdateDs;
+    // if (this.account != null) {
+    //   data['account'] = this.account!.toJson();
+    // }
+    // data['id'] = this.id;
+    // data['createDm'] = this.createDm;
+    // data['createDs'] = this.createDs;
+    // data['lastUpdateDm'] = this.lastUpdateDm;
+    // data['lastUpdateDs'] = this.lastUpdateDs;
     return data;
   }
 

@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class NumberInfoTabWidget extends StatelessWidget {
-
   final ProfileController profileController = Get.find();
   @override
   Widget build(BuildContext context) {
@@ -28,7 +27,7 @@ class NumberInfoTabWidget extends StatelessWidget {
                   ],
                 ),
               ),
-              KDivider(),
+              GDivider(),
             ],
           ),
           SizedBox(
@@ -48,7 +47,7 @@ class NumberInfoTabWidget extends StatelessWidget {
                   ],
                 ),
               ),
-              KDivider(),
+              GDivider(),
             ],
           ),
           SizedBox(
@@ -65,10 +64,10 @@ class NumberInfoTabWidget extends StatelessWidget {
                       width: 20,
                     ),
                     Text(profileController.profileData.emailAddress ?? ""),
-                  ],
+                  ]
                 ),
               ),
-              KDivider(),
+              GDivider(),
             ],
           ),
         ],
