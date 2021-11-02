@@ -7,21 +7,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
+import '../OrdersDetail.dart';
 import '../OrdersV2Widget.dart';
 
 class SendingOrders extends StatelessWidget {
-
   final GlobalKey<ScaffoldState> scaffoldKey = new GlobalKey<ScaffoldState>();
-  final SendingOrdController sendingOrdController = Get.put(SendingOrdController());
+  final SendingOrdController sendingOrdController =
+      Get.put(SendingOrdController());
 
   @override
   Widget build(BuildContext context) {
     return Directionality(
       textDirection: TextDirection.rtl,
       child: Scaffold(
-        key:scaffoldKey,
-        bottomNavigationBar:
-            MainFooterNavigation(),
+        key: scaffoldKey,
+        bottomNavigationBar: MainFooterNavigation(),
         drawer: AppDrawer(
           scaffoldKey: scaffoldKey,
         ),
@@ -48,40 +48,54 @@ class SendingOrders extends StatelessWidget {
               )),
           leading: DrawerWidget(scaffoldKey: scaffoldKey),
         ),
-        body: GetBuilder<SendingOrdController>(
-          builder: (_) {
-            return SafeArea(
-              child: Column(
-                children: [
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Expanded(
-                    flex: 10,
-                    child: sendingOrdController.sendingOrders == null
-                        ? Center(
-                            child: CircularProgressIndicator(
-                            valueColor: AlwaysStoppedAnimation<Color>(
-                                CBase().basePrimaryColor),
-                          ))
-                        : sendingOrdController.sendingOrders?.length != 0
-                            ? ListView.builder(
-                                itemCount: sendingOrdController.sendingOrders!.length,
-                                itemBuilder: (context, int index) {
-                                  return OrdersV2Widget(
-                                    item: sendingOrdController.sendingOrders![index],
-                                    type: 3,
-                                  );
-                                })
-                            : Center(
-                                child: Text('سبدی وجود ندارد'),
-                              ),
-                  )
-                ],
-              ),
-            );
-          }
-        ),
+        body: GetBuilder<SendingOrdController>(builder: (_) {
+          return SafeArea(
+            child: Column(
+              children: [
+                SizedBox(
+                  height: 10,
+                ),
+                Expanded(
+                  flex: 10,
+                  child: sendingOrdController.sendingOrders == null
+                      ? Center(
+                          child: CircularProgressIndicator(
+                          valueColor: AlwaysStoppedAnimation<Color>(
+                              CBase().basePrimaryColor),
+                        ))
+                      : sendingOrdController.sendingOrders?.length != 0
+                          ? ListView.builder(
+                              itemCount:
+                                  sendingOrdController.sendingOrders!.length,
+                              itemBuilder: (context, int index) {
+                                return OrdersV2Widget(
+                                  item: sendingOrdController
+                                      .sendingOrders![index],
+                                  pageTitle: 'سبد های خرید در حال ارسال',
+                                  tapFunc: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) => OrdersDetail(
+                                                  type: 3,
+                                                  orderDetails:
+                                                      sendingOrdController
+                                                          .sendingOrders![index]
+                                                          .orderDetails,
+                                                  orderId: sendingOrdController
+                                                      .sendingOrders![index].id,
+                                                )));
+                                  },
+                                );
+                              })
+                          : Center(
+                              child: Text('سبدی وجود ندارد'),
+                            ),
+                )
+              ],
+            ),
+          );
+        }),
       ),
     );
   }

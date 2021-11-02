@@ -2,6 +2,7 @@ import 'package:copapp/Controller/Controllers/ConfirmedOrdController.dart';
 import 'package:copapp/Utilities/Base.dart';
 import 'package:copapp/View/Components/General/AppDrawer.dart';
 import 'package:copapp/View/Components/General/MainFooter.dart';
+import 'package:copapp/View/Pages/TrackingPages/InvoicePage.dart';
 import 'package:copapp/View/Widgets/DrawerWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -13,7 +14,6 @@ class ConfirmedOrders extends StatelessWidget {
   final ConfirmedOrdController confirmedOrdController =
       Get.put(ConfirmedOrdController());
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
-
 
   @override
   Widget build(BuildContext context) {
@@ -71,7 +71,19 @@ class ConfirmedOrders extends StatelessWidget {
                                   return OrdersV2Widget(
                                     item: confirmedOrdController
                                         .confirmedOrders![index],
-                                    type: 2,
+                                    pageTitle: 'سبد های خرید پرداخت شده',
+                                    tapFunc: () {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) => Tracking(
+                                                    orderId:
+                                                        confirmedOrdController
+                                                            .confirmedOrders![
+                                                                index]
+                                                            .id,
+                                                  )));
+                                    },
                                   );
                                 })
                             : Center(child: Text("سبدی وجود ندارد")))

@@ -11,17 +11,21 @@ import 'package:persian_number_utility/persian_number_utility.dart';
 // ignore: must_be_immutable
 class OrdersV2Widget extends StatelessWidget {
   OrderHeader? item = OrderHeader();
+  final String pageTitle;
+  final Function() tapFunc;
 
-  @required
-  int? type;
+  // @required
+  // int? type;
 
-  OrdersV2Widget({required this.item, @required this.type});
+  OrdersV2Widget(
+      {required this.item, required this.pageTitle, required this.tapFunc});
+
   ScoreService scoreController = Get.find();
+
   double getTotalScore(List<OrderDetail> item) {
     double totalScore = 0.0;
     item.forEach((element) {
-      totalScore +=
-          element.product!.score! * element.product!.detailQTY!;
+      totalScore += element.product!.score! * element.product!.detailQTY!;
     });
     return totalScore;
   }
@@ -126,34 +130,28 @@ class OrdersV2Widget extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                              ("تعداد اقلام: ${item!.orderDetails!.length}"
+                              ("تعداد اقلام: ${item!.itemCount}"
                                       .toPersianDigit()) +
                                   " عدد",
                               style: TextStyle(
                                 fontSize: CBase().mtextfontSize,
                                 color: CBase().textPrimaryColor,
                               )),
-                          Text(
-                              type == 1
-                                  ? "در انتظار پرداخت"
-                                  : type == 2
-                                      ? "پرداخت شده"
-                                      : type == 3
-                                          ? "در حال ارسال"
-                                          : "",
+                          Text(pageTitle,
                               style: TextStyle(
                                 fontSize: CBase().mtextfontSize,
                                 color: CBase().textPrimaryColor,
                               )),
-                          scoreController.getShowScore()
-                              ? Text(
-                                  ("امتیاز: ${getTotalScore(item!.orderDetails!)}"
-                                      .toPersianDigit()),
-                                  style: TextStyle(
-                                    fontSize: CBase().mtextfontSize,
-                                    color: Color(0xffBD8729),
-                                  ))
-                              : Text(""),
+                          // scoreController.getShowScore()
+                          //     ? Text(
+                          //         ("امتیاز: ${getTotalScore(item!.orderDetails!)}"
+                          //             .toPersianDigit()),
+                          //         style: TextStyle(
+                          //           fontSize: CBase().mtextfontSize,
+                          //           color: Color(0xffBD8729),
+                          //         ))
+                          //     :
+                          Text(""),
                         ],
                       );
                     })),
@@ -161,24 +159,25 @@ class OrdersV2Widget extends StatelessWidget {
             ),
           ),
           onTap: () {
-            if (type == 1 || type == 3) {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => OrdersDetail(
-                            type: type!,
-                            orderDetails: item!.orderDetails,
-                            orderId: item!.id,
-                          )));
-            }
-            if (type == 2) {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => Tracking(
-                            orderId: item!.id,
-                          )));
-            }
+            tapFunc();
+            // if (type == 1 || type == 3) {
+            //   Navigator.push(
+            //       context,
+            //       MaterialPageRoute(
+            //           builder: (context) => OrdersDetail(
+            //                 type: type!,
+            //                 orderDetails: item!.orderDetails,
+            //                 orderId: item!.id,
+            //               )));
+            // }
+            // if (type == 2) {
+            //   Navigator.push(
+            //       context,
+            //       MaterialPageRoute(
+            //           builder: (context) => Tracking(
+            //                 orderId: item!.id,
+            //               )));
+            // }
           },
         ),
         SizedBox(
