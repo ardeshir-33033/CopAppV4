@@ -120,7 +120,7 @@ class OrderServiceV2 extends Api {
     );
   }
 
-  Future<ResponseModel<List<OrderHeader>>> GetOrderInfo(int orderId) async {
+  Future<ResponseModel<List<OrderHeader>>> getOrderInfo(int orderId) async {
     ResponseModel response = await HTTPGET(
       RoutingOrder.GET_GetOrderInfo,
       [QueryModel(name: "orderId", value: orderId.toString())],

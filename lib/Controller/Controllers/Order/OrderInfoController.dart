@@ -11,7 +11,7 @@ class OrderInfoController extends GetxController {
     try {
       isLoading = false;
       update(['loading']);
-      await OrderServiceV2().GetOrderInfo(orderId).then((value) {
+      await OrderServiceV2().getOrderInfo(orderId).then((value) {
         if (value.isSuccess)
           order = value.data;
         else
