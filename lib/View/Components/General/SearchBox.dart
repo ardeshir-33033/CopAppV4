@@ -49,9 +49,7 @@ class _SearchboxV2State extends State<SearchboxV2> {
                     searchController.hintText = "";
                     searchController.update(['vis', 'box']);
                     searchController
-                        .searchItems(
-                            scaffoldKey: widget.scaffoldKey,
-                            search: controller.text)
+                        .searchItems(search: controller.text)
                         .then((value) {
                       isLoading = false;
                       searchController.update(['vis']);
@@ -111,9 +109,7 @@ class _SearchboxV2State extends State<SearchboxV2> {
                                     searchController.hintText = "";
                                     searchController.update(['vis', 'box']);
                                     searchController
-                                        .searchItems(
-                                            scaffoldKey: widget.scaffoldKey,
-                                            search: controller.text)
+                                        .searchItems(search: controller.text)
                                         .then((value) {
                                       isLoading = false;
                                       searchController.update(['vis']);
