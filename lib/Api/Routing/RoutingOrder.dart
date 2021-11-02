@@ -9,6 +9,8 @@ class RoutingOrder extends RoutingBase {
       "${RoutingBase.ApiUrl}/$BaseName/ZarrinPayOrder";
   static const GET_GetConfirmedOrders =
       "${RoutingBase.ApiUrlV2}/$BaseName/ConfirmedOrdersV2";
+  static const GET_GetOrderInfo =
+      "${RoutingBase.ApiUrlV2}/$BaseName/GetOrderInfo";
   static const GET_GetSendingOrders =
       "${RoutingBase.ApiUrlV2}/$BaseName/SendingOrdersV2";
   static const GET_GetPendingOrders =

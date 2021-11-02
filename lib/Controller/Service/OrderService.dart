@@ -120,6 +120,24 @@ class OrderServiceV2 extends Api {
     );
   }
 
+  Future<ResponseModel<List<OrderHeader>>> GetOrderInfo(int orderId) async {
+    ResponseModel response = await HTTPGET(
+      RoutingOrder.GET_GetOrderInfo,
+      [QueryModel(name: "orderId", value: orderId.toString())],
+      HeaderEnum.BearerHeaderEnum,
+      ResponseEnum.ResponseModelEnum,
+    );
+    if (response.isSuccess) {
+      response.data = OrderHeader.fromJson(response.data);
+    }
+    return ResponseModel(
+      isSuccess: response.isSuccess,
+      statusCode: response.statusCode,
+      data: response.data,
+      message: response.message,
+    );
+  }
+
   Future<ResponseModel> getFeedOrdersFilter() async {
     ResponseModel response = await HTTPGET(
       RoutingOrder.GET_FeedOrdersFilter,
