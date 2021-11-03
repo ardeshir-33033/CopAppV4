@@ -233,135 +233,160 @@ class _SearchboxV2State extends State<SearchboxV2> {
                               builder: (_) {
                                 return Flexible(
                                   fit: FlexFit.tight,
-                                  child: ListView.builder(
-                                    itemCount:
-                                        searchController.searchedItems.length,
-                                    itemBuilder:
-                                        (BuildContext context, int index) {
-                                      return InkWell(
-                                        child: Container(
-                                          margin: EdgeInsets.only(bottom: 15),
-                                          child: Row(
-                                            children: [
-                                              Container(
-                                                width: MediaQuery.of(context)
-                                                        .size
-                                                        .width *
-                                                    0.16,
-                                                height: 75.0,
-                                                decoration: BoxDecoration(
-                                                  image: DecorationImage(
-                                                    image: searchController
-                                                                    .searchedItems[
-                                                                        index]
-                                                                    .thumbImagePath !=
-                                                                null &&
-                                                            searchController
-                                                                    .searchedItems[
-                                                                        index]
-                                                                    .thumbImagePath !=
-                                                                ""
-                                                        ? NetworkImage(searchController
-                                                                .searchedItems[
-                                                                    index]
-                                                                .thumbImagePath ??
-                                                            "")
-                                                        : AssetImage(
-                                                                "images/noimageicon.png")
-                                                            as ImageProvider,
-                                                    fit: BoxFit.scaleDown,
-                                                  ),
-                                                ),
-                                              ),
-                                              Container(
-                                                child: Column(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.start,
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  children: [
-                                                    Container(
-                                                      width: CBase()
-                                                              .getFullWidth(
-                                                                  context) /
-                                                          1.7,
-                                                      child:
-                                                          SingleChildScrollView(
-                                                        scrollDirection:
-                                                            Axis.horizontal,
-                                                        child: Text(
-                                                          searchController
+                                  child: GetBuilder<SearchController>(
+                                    id: 'error',
+                                    builder: (_) {
+                                      return searchController
+                                                  .searchedItems.isEmpty &&
+                                              searchController
+                                                  .errorText.isNotEmpty
+                                          ? Center(
+                                              child: Text(
+                                              searchController.errorText,
+                                              style: TextStyle(
+                                                  color:
+                                                      CBase().textPrimaryColor,
+                                                  fontSize: CBase()
+                                                      .getTitlefontSizeByScreen()),
+                                              textAlign: TextAlign.center,
+                                            ))
+                                          : ListView.builder(
+                                              itemCount: searchController
+                                                  .searchedItems.length,
+                                              itemBuilder:
+                                                  (BuildContext context,
+                                                      int index) {
+                                                return InkWell(
+                                                  child: Container(
+                                                    margin: EdgeInsets.only(
+                                                        bottom: 15),
+                                                    child: Row(
+                                                      children: [
+                                                        Container(
+                                                          width: MediaQuery.of(
+                                                                      context)
+                                                                  .size
+                                                                  .width *
+                                                              0.16,
+                                                          height: 75.0,
+                                                          decoration:
+                                                              BoxDecoration(
+                                                            image:
+                                                                DecorationImage(
+                                                              image: searchController
+                                                                              .searchedItems[
+                                                                                  index]
+                                                                              .thumbImagePath !=
+                                                                          null &&
+                                                                      searchController
+                                                                              .searchedItems[
+                                                                                  index]
+                                                                              .thumbImagePath !=
+                                                                          ""
+                                                                  ? NetworkImage(searchController
                                                                           .searchedItems[
                                                                               index]
-                                                                          .name !=
-                                                                      null &&
-                                                                  searchController
-                                                                      .searchedItems[
-                                                                          index]
-                                                                      .name!
-                                                                      .isNotEmpty
-                                                              ? searchController
-                                                                  .searchedItems[
-                                                                      index]
-                                                                  .name!
-                                                                  .toPersianDigit()
-                                                              : "بدون نام",
-                                                          style: TextStyle(
-                                                            fontSize: CBase()
-                                                                .getSubTitlefontSizeByScreen(),
-                                                            color: CBase()
-                                                                .textPrimaryColor,
-                                                            fontWeight:
-                                                                FontWeight.w500,
-                                                          ),
-                                                          textAlign:
-                                                              TextAlign.right,
-                                                        ),
-                                                      ),
-                                                    ),
-                                                    Container(
-                                                      height: 20,
-                                                      width: 150.0,
-                                                      child: SingleChildScrollView(
-                                                          scrollDirection: Axis.horizontal,
-                                                          // itemCount: searchController
-                                                          //     .searchedItems[
-                                                          //         index]
-                                                          //     .vehicleEnglishName!
-                                                          //     .length,
-
-                                                          child: Padding(
-                                                            padding: EdgeInsets
-                                                                .symmetric(
-                                                                    horizontal:
-                                                                        8.0),
-                                                            child: Text(
-                                                              searchController
-                                                                      .searchedItems[
-                                                                          index]
-                                                                      .vehicleEnglishName ??
-                                                                  "",
-                                                              style: TextStyle(
-                                                                  color: Colors
-                                                                      .red,
-                                                                  fontSize: CBase()
-                                                                      .ssmallTextfontSize),
+                                                                          .thumbImagePath ??
+                                                                      "")
+                                                                  : AssetImage(
+                                                                          "images/noimageicon.png")
+                                                                      as ImageProvider,
+                                                              fit: BoxFit
+                                                                  .scaleDown,
                                                             ),
-                                                          )),
-                                                    )
-                                                  ],
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                        onTap: () {
-                                          Get.to(() => SearchProductPage(
-                                                bal: searchController
-                                                    .searchedItems[index],
-                                              ));
-                                        },
-                                      );
+                                                          ),
+                                                        ),
+                                                        Container(
+                                                          child: Column(
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .start,
+                                                            crossAxisAlignment:
+                                                                CrossAxisAlignment
+                                                                    .start,
+                                                            children: [
+                                                              Container(
+                                                                width: CBase()
+                                                                        .getFullWidth(
+                                                                            context) /
+                                                                    1.7,
+                                                                child:
+                                                                    SingleChildScrollView(
+                                                                  scrollDirection:
+                                                                      Axis.horizontal,
+                                                                  child: Text(
+                                                                    searchController.searchedItems[index].name !=
+                                                                                null &&
+                                                                            searchController
+                                                                                .searchedItems[
+                                                                                    index]
+                                                                                .name!
+                                                                                .isNotEmpty
+                                                                        ? searchController
+                                                                            .searchedItems[index]
+                                                                            .name!
+                                                                            .toPersianDigit()
+                                                                        : "بدون نام",
+                                                                    style:
+                                                                        TextStyle(
+                                                                      fontSize:
+                                                                          CBase()
+                                                                              .getSubTitlefontSizeByScreen(),
+                                                                      color: CBase()
+                                                                          .textPrimaryColor,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .w500,
+                                                                    ),
+                                                                    textAlign:
+                                                                        TextAlign
+                                                                            .right,
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                              Container(
+                                                                height: 20,
+                                                                width: 150.0,
+                                                                child: SingleChildScrollView(
+                                                                    scrollDirection: Axis.horizontal,
+                                                                    // itemCount: searchController
+                                                                    //     .searchedItems[
+                                                                    //         index]
+                                                                    //     .vehicleEnglishName!
+                                                                    //     .length,
+
+                                                                    child: Padding(
+                                                                      padding: EdgeInsets.symmetric(
+                                                                          horizontal:
+                                                                              8.0),
+                                                                      child:
+                                                                          Text(
+                                                                        searchController.searchedItems[index].vehicleEnglishName ??
+                                                                            "",
+                                                                        style: TextStyle(
+                                                                            color:
+                                                                                Colors.red,
+                                                                            fontSize: CBase().ssmallTextfontSize),
+                                                                      ),
+                                                                    )),
+                                                              )
+                                                            ],
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                  onTap: () {
+                                                    Get.to(
+                                                        () => SearchProductPage(
+                                                              bal: searchController
+                                                                      .searchedItems[
+                                                                  index],
+                                                            ));
+                                                  },
+                                                );
+                                              },
+                                            );
                                     },
                                   ),
                                 );

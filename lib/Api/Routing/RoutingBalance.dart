@@ -5,6 +5,7 @@ class RoutingBalance extends RoutingBase {
 
   static const GET_Home = "${RoutingBase.ApiUrl}/$BaseName/Home";
   static const POST_BalanceDataSearch = "${RoutingBase.ApiUrlV2}/$BaseName/GetBalanceDataSearch";
+  static const POST_GetBalanceQuickSearch = "${RoutingBase.ApiUrlV2}/$BaseName/GetBalanceQuickSearch";
   static const GET_QuickSearch = "${RoutingBase.ApiUrl}/$BaseName/QuickSearch";
   static const GET_ShowCategory =
       "${RoutingBase.ApiUrl}/$BaseName/ShowCategory";

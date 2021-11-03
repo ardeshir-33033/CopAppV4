@@ -274,7 +274,7 @@ class BalanceServiceV2 extends BalanceExtensions with Api {
     };
     String body = jsonEncode(json);
     ResponseModel response = await HTTPPOST(
-      RoutingBalance.POST_BalanceDataSearch,
+      RoutingBalance.POST_GetBalanceQuickSearch,
       [],
       body,
       HeaderEnum.BearerHeaderEnum,
