@@ -250,7 +250,8 @@ class BalanceServiceV2 extends BalanceExtensions with Api {
     ResponseModel response = await HTTPPOST(
         RoutingBalance.POST_GetBalanceQuickSearchV2,
         [
-          QueryModel(name: "search" , value: search)
+          QueryModel(name: "search" , value: search),
+          QueryModel(name: "keywordId" , value: keywordId)
         ],
         {},
         HeaderEnum.BearerHeaderEnum,
