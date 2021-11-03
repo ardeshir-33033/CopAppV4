@@ -1,5 +1,5 @@
 import 'package:copapp/Api/ResponseModel.dart';
-import 'package:copapp/AppModel/MultiBalance/Part.dart';
+import 'package:copapp/AppModel/Balance/SearchPart.dart';
 import 'package:copapp/Controller/Service/BalanceService.dart';
 import 'package:copapp/Utilities/Snacki.dart';
 import 'package:get/get.dart';
@@ -7,7 +7,7 @@ import 'package:get/get.dart';
 class SearchController extends GetxController {
   String hintText = "";
   String errorText = '';
-  List<Part> searchedItems = [];
+  List<SearchPart> searchedItems = [];
 
   Future searchItems({
     String search = '',
@@ -16,10 +16,10 @@ class SearchController extends GetxController {
       errorText = '';
       searchedItems = [];
       update(['error']);
-      ResponseModel<Part> result = await BalanceServiceV2()
-          .getBalanceDataSearch(
-              search: search,
-              keywordId: BalanceServiceV2().getSelectedCar()?.id);
+      ResponseModel result = await BalanceServiceV2()
+          .quickSearch(
+               search,
+             BalanceServiceV2().getSelectedCar()?.id);
 
       if (result.isSuccess == false) {
         errorText = result.message;
