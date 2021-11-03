@@ -2,8 +2,6 @@ import 'package:copapp/Controller/Controllers/General/ScoreService.dart';
 import 'package:copapp/Model/Order/OrderDetail.dart';
 import 'package:copapp/Model/Order/OrderHeader.dart';
 import 'package:copapp/Utilities/Base.dart';
-import 'package:copapp/View/Pages/OrderPages/OrdersDetail.dart';
-import 'package:copapp/View/Pages/TrackingPages/InvoicePage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:persian_number_utility/persian_number_utility.dart';

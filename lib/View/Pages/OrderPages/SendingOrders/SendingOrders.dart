@@ -2,12 +2,11 @@ import 'package:copapp/Controller/Controllers/SendingOrdController.dart';
 import 'package:copapp/Utilities/Base.dart';
 import 'package:copapp/View/Components/General/AppDrawer.dart';
 import 'package:copapp/View/Components/General/MainFooter.dart';
+import 'package:copapp/View/Pages/OrderPages/SendingOrders/sendingOrdersDetailPage.dart';
 import 'package:copapp/View/Widgets/DrawerWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-
-import '../OrdersDetail.dart';
 import '../OrdersV2Widget.dart';
 
 class SendingOrders extends StatelessWidget {
@@ -76,14 +75,12 @@ class SendingOrders extends StatelessWidget {
                                     Navigator.push(
                                         context,
                                         MaterialPageRoute(
-                                            builder: (context) => OrdersDetail(
-                                                  type: 3,
-                                                  orderDetails:
-                                                      sendingOrdController
-                                                          .sendingOrders![index]
-                                                          .orderDetails,
-                                                  orderId: sendingOrdController
-                                                      .sendingOrders![index].id,
+                                            builder: (context) =>
+                                                SendingOrdersDetailPage(
+                                                  finalPrice:
+                                                      sendingOrdController.sendingOrders![index].finalPrice!,
+                                                  finalScore: sendingOrdController.sendingOrders![index].totalScore!,
+                                                  orderId: sendingOrdController.sendingOrders![index].id!,
                                                 )));
                                   },
                                 );

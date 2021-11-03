@@ -3,12 +3,12 @@ import 'package:copapp/Utilities/Base.dart';
 import 'package:copapp/View/Components/General/AppDrawer.dart';
 import 'package:copapp/View/Components/General/MainFooter.dart';
 import 'package:copapp/View/Pages/OrderPages/OrdersV2Widget.dart';
+import 'package:copapp/View/Pages/OrderPages/PendingOrders/pendingOrderDetailPage.dart';
 import 'package:copapp/View/Widgets/DrawerWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
-import '../OrdersDetail.dart';
 
 class PendingOrders extends StatelessWidget {
   final PendingOrdController pendingOrdController =
@@ -77,19 +77,32 @@ class PendingOrders extends StatelessWidget {
                                           context,
                                           MaterialPageRoute(
                                               builder: (context) =>
-                                                  OrdersDetail(
-                                                    orderDetails:
-                                                        pendingOrdController
-                                                            .pendingOrders![
-                                                                index]
-                                                            .orderDetails,
-                                                    orderId:
-                                                        pendingOrdController
-                                                            .pendingOrders![
-                                                                index]
-                                                            .id,
-                                                    type: 1,
-                                                  )));
+                                                  PendingOrdersDetailPage(
+                                                      finalScore:
+                                                          pendingOrdController
+                                                              .pendingOrders![
+                                                                  index]
+                                                              .totalScore!,
+                                                      finalPrice:
+                                                          pendingOrdController
+                                                              .pendingOrders![
+                                                                  index]
+                                                              .finalPrice!,
+                                                      orderId: pendingOrdController.pendingOrders![index].id!)
+                                              // OrdersDetail(
+                                              //   orderDetails:
+                                              //       pendingOrdController
+                                              //           .pendingOrders![
+                                              //               index]
+                                              //           .orderDetails,
+                                              //   orderId:
+                                              //       pendingOrdController
+                                              //           .pendingOrders![
+                                              //               index]
+                                              //           .id,
+                                              //   type: 1,
+                                              // )
+                                              ));
                                     },
                                   );
                                 })

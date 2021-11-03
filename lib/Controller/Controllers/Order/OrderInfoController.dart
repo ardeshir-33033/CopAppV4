@@ -4,12 +4,12 @@ import 'package:copapp/Utilities/Snacki.dart';
 import 'package:get/get.dart';
 
 class OrderInfoController extends GetxController {
-  bool isLoading = false;
+  bool isLoading = true;
   OrderHeader? order;
 
   getOrder(orderId) async {
     try {
-      isLoading = false;
+      isLoading = true;
       update(['loading']);
       await OrderServiceV2().getOrderInfo(orderId).then((value) {
         if (value.isSuccess)

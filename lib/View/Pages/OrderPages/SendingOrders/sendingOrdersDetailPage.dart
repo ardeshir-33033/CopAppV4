@@ -10,8 +10,8 @@ import 'package:get/get.dart';
 import '../OrdersDetailWidget.dart';
 
 // ignore: must_be_immutable
-class PendingOrdersDetailPage extends StatefulWidget {
-  PendingOrdersDetailPage({required this.finalScore,
+class SendingOrdersDetailPage extends StatefulWidget {
+  SendingOrdersDetailPage({required this.finalScore,
     required this.finalPrice,
     required this.orderId});
 
@@ -20,11 +20,11 @@ class PendingOrdersDetailPage extends StatefulWidget {
   int orderId;
 
   @override
-  _PendingOrdersDetailPageState createState() =>
-      _PendingOrdersDetailPageState();
+  _SendingOrdersDetailPageState createState() =>
+      _SendingOrdersDetailPageState();
 }
 
-class _PendingOrdersDetailPageState extends State<PendingOrdersDetailPage> {
+class _SendingOrdersDetailPageState extends State<SendingOrdersDetailPage> {
   OrderInfoController orderInfoController = Get.put(OrderInfoController());
 
   @override
@@ -50,7 +50,7 @@ class _PendingOrdersDetailPageState extends State<PendingOrdersDetailPage> {
         ),
         appBar: CustomAppBar(
           scaffoldKey: _scaffoldKey,
-          title: "سبدهای خرید در انتظار پرداخت",
+          title: "سبدهای خرید در حال ارسال",
         ),
         body: SafeArea(
           child: GetBuilder<OrderInfoController>(
@@ -59,6 +59,7 @@ class _PendingOrdersDetailPageState extends State<PendingOrdersDetailPage> {
               return orderInfoController.isLoading
                   ? Center(
                 child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     CircularProgressIndicator(
                       valueColor:

@@ -5,6 +5,7 @@ import 'package:copapp/Api/QueryModel.dart';
 import 'package:copapp/Api/ResponseModel.dart';
 import 'package:copapp/Api/Routing/RoutingBalance.dart';
 import 'package:copapp/AppModel/Balance/FilterBox.dart';
+import 'package:copapp/AppModel/Balance/SearchPart.dart';
 import 'package:copapp/AppModel/Home/Category.dart';
 import 'package:copapp/AppModel/Home/HomeModel.dart';
 import 'package:copapp/AppModel/MultiBalance/Part.dart';
@@ -245,6 +246,23 @@ class BalanceServiceV2 extends BalanceExtensions with Api {
         statusCode: response.statusCode);
   }
 
+  Future<ResponseModel> quickSearch(String search , String keywordId) async{
+    ResponseModel response = await HTTPPOST(
+        RoutingBalance.POST_GetBalanceQuickSearchV2,
+        [
+          QueryModel(name: "search" , value: search)
+        ],
+        {},
+        HeaderEnum.BearerHeaderEnum,
+        ResponseEnum.ResponseModelEnum,
+    );
+
+    if(response.isSuccess){
+      response.data = SearchPart.fromJson(response.data);
+    }
+    return response;
+  }
+
   Future<ResponseModel<Part>> getBalanceDataSearch(
       {int? page,
       int? pageSize,
@@ -274,7 +292,7 @@ class BalanceServiceV2 extends BalanceExtensions with Api {
     };
     String body = jsonEncode(json);
     ResponseModel response = await HTTPPOST(
-      RoutingBalance.POST_GetBalanceQuickSearch,
+      RoutingBalance.POST_BalanceDataSearch,
       [],
       body,
       HeaderEnum.BearerHeaderEnum,
