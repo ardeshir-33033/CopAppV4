@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:copapp/Controller/Controllers/General/SearchController.dart';
 import 'package:copapp/Utilities/Base.dart';
 import 'package:copapp/View/Components/Search/SearchSpeech.dart';
-import 'package:copapp/View/Pages/SearchProductPage/SearchProductPage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
