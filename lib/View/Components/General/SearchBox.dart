@@ -276,17 +276,17 @@ class _SearchboxV2State extends State<SearchboxV2> {
                                                               image: searchController
                                                                               .searchedItems[
                                                                                   index]
-                                                                              . !=
+                                                                              .partImage !=
                                                                           null &&
                                                                       searchController
                                                                               .searchedItems[
                                                                                   index]
-                                                                              .thumbImagePath !=
+                                                                              .partImage !=
                                                                           ""
                                                                   ? NetworkImage(searchController
                                                                           .searchedItems[
                                                                               index]
-                                                                          .thumbImagePath ??
+                                                                          .partImage ??
                                                                       "")
                                                                   : AssetImage(
                                                                           "images/noimageicon.png")
@@ -315,16 +315,16 @@ class _SearchboxV2State extends State<SearchboxV2> {
                                                                   scrollDirection:
                                                                       Axis.horizontal,
                                                                   child: Text(
-                                                                    searchController.searchedItems[index].name !=
+                                                                    searchController.searchedItems[index].partName !=
                                                                                 null &&
                                                                             searchController
                                                                                 .searchedItems[
                                                                                     index]
-                                                                                .name!
+                                                                                .partName!
                                                                                 .isNotEmpty
                                                                         ? searchController
                                                                             .searchedItems[index]
-                                                                            .name!
+                                                                            .partName!
                                                                             .toPersianDigit()
                                                                         : "بدون نام",
                                                                     style:
@@ -361,7 +361,7 @@ class _SearchboxV2State extends State<SearchboxV2> {
                                                                               8.0),
                                                                       child:
                                                                           Text(
-                                                                        searchController.searchedItems[index].vehicleEnglishName ??
+                                                                        searchController.searchedItems[index].keyWord ??
                                                                             "",
                                                                         style: TextStyle(
                                                                             color:
@@ -377,12 +377,12 @@ class _SearchboxV2State extends State<SearchboxV2> {
                                                     ),
                                                   ),
                                                   onTap: () {
-                                                    Get.to(
-                                                        () => SearchProductPage(
-                                                              bal: searchController
-                                                                      .searchedItems[
-                                                                  index],
-                                                            ));
+                                                    // Get.to(
+                                                    //     () => SearchProductPage(
+                                                    //           bal: searchController
+                                                    //                   .searchedItems[
+                                                    //               index],
+                                                    //         ));
                                                   },
                                                 );
                                               },
