@@ -5,6 +5,7 @@ class SearchPart {
   String? vehicleId;
   String? keyWord;
   String? keywordsName;
+  String? partImage;
   int? categoriesId;
   int? partId;
   int? keyWordId;
@@ -18,7 +19,9 @@ class SearchPart {
       this.vehicleId,
       this.keyWord,
       this.keyWordId,
-      this.keywordsName});
+      this.keywordsName,
+      this.partImage,
+      });
 
   SearchPart.fromJson(Map<String, dynamic> json) {
     partName = json['partName'];
@@ -30,6 +33,7 @@ class SearchPart {
     keyWord = json['keyWord'];
     keyWordId = json['keyWordId'];
     keywordsName = json['keywordsName'];
+    partImage = json['partImage'];
   }
 
   Map<String, dynamic> toJson() {
@@ -43,6 +47,7 @@ class SearchPart {
     data['keyWord'] = this.keyWord;
     data['keyWordId'] = this.keyWordId;
     data['keywordsName'] = this.keywordsName;
+    data['partImage'] = this.partImage;
     return data;
   }
 
