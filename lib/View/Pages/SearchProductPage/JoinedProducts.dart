@@ -122,7 +122,6 @@ class JoinedProducts extends StatelessWidget {
                                 SingleChildScrollView(
                                   scrollDirection: Axis.horizontal,
                                   child: Text(
-                                    // "ardeshir gave",
                                     part.name!,
                                     style: TextStyle(
                                       fontSize:
