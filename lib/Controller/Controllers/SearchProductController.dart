@@ -1,21 +1,44 @@
-
 import 'package:copapp/AppModel/MultiBalance/Part.dart';
+import 'package:copapp/Controller/Service/BalanceService.dart';
+import 'package:copapp/Utilities/Snacki.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class SearchProductController extends GetxController {
-
   final GlobalKey<ScaffoldState> scaffoldKey = new GlobalKey<ScaffoldState>();
   List<Widget> items = [];
-  Part? part;
-  bool isLoadingJoin = false;
-  bool allJoinVis = false;
+  List<Part> parts = [];
+  String? partnumber;
+  // bool isLoadingJoin = false;
+  List<bool> allJoinVis = [];
+  bool isLoading = false;
 
-
-  SearchProductController(Part? bal) {
-    this.part = bal;
+  setPartNumber(String? partNum) {
+    this.partnumber = partNum;
   }
 
+  void getPart() async {
+    try {
+      allJoinVis = [];
+      isLoading = true;
+      update(['loading']);
+      await BalanceServiceV2()
+          .getBalanceDataSearch(search: partnumber)
+          .then((value) {
+        if (value.isSuccess) {
+          parts = value.data;
+          parts.forEach((element) => allJoinVis.add(false));
+        } else {
+          value.showMessage();
+        }
+      });
+    } catch (e) {
+      Snacki().GETSnackBar(false, 'خطایی در ارتباط با سرور بوجود آمده است');
+    } finally {
+      isLoading = false;
+      update(['loading']);
+    }
+  }
 
   // Future add(Product? bal) async {
   //   int newQTY = CartServiceV2().cartProductQTY(bal!.id);

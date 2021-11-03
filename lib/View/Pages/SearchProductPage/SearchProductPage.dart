@@ -1,5 +1,5 @@
-import 'package:copapp/AppModel/MultiBalance/Part.dart';
 import 'package:copapp/Controller/Controllers/SearchProductController.dart';
+import 'package:copapp/Utilities/Base.dart';
 import 'package:copapp/View/Components/General/MainFooter.dart';
 import 'package:copapp/View/Components/General/SearchBox.dart';
 import 'package:copapp/View/Pages/SearchProductPage/SearchProduct.dart';
@@ -7,14 +7,18 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class SearchProductPage extends StatelessWidget {
-  final Part? bal;
-  late final SearchProductController searchProductController;
-  SearchProductPage({
-    this.bal,
-    Key? key,
-  }) {
-    searchProductController = Get.put(SearchProductController(bal));
+class SearchProductPage extends StatefulWidget {
+  @override
+  _SearchProductPageState createState() => _SearchProductPageState();
+}
+
+class _SearchProductPageState extends State<SearchProductPage> {
+  SearchProductController searchProductController = Get.find();
+
+  @override
+  void initState() {
+    super.initState();
+    searchProductController.getPart();
   }
 
   @override
@@ -34,9 +38,26 @@ class SearchProductPage extends StatelessWidget {
                   SizedBox(
                     height: MediaQuery.of(context).size.height / 10,
                   ),
-                  Flexible(
-                      fit: FlexFit.tight,
-                      child: SingleChildScrollView(child: SearchProduct())),
+                  GetBuilder<SearchProductController>(
+                    id: 'loading',
+                    builder: (_) {
+                      return searchProductController.isLoading
+                          ? Expanded(
+                              child: Center(
+                                  child: CircularProgressIndicator(
+                                valueColor: AlwaysStoppedAnimation<Color>(
+                                    CBase().basePrimaryColor),
+                              )),
+                            )
+                          : Flexible(
+                              fit: FlexFit.tight,
+                              child: ListView.builder(
+                                itemCount: searchProductController.parts.length,
+                                  itemBuilder: (context, index) {
+                                return SearchProduct(part:searchProductController.parts[index],index: index,);
+                              }));
+                    },
+                  ),
                 ],
               ),
               Padding(

@@ -1,8 +1,10 @@
 import 'dart:io';
 
 import 'package:copapp/Controller/Controllers/General/SearchController.dart';
+import 'package:copapp/Controller/Controllers/SearchProductController.dart';
 import 'package:copapp/Utilities/Base.dart';
 import 'package:copapp/View/Components/Search/SearchSpeech.dart';
+import 'package:copapp/View/Pages/SearchProductPage/SearchProductPage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -376,12 +378,16 @@ class _SearchboxV2State extends State<SearchboxV2> {
                                                     ),
                                                   ),
                                                   onTap: () {
-                                                    // Get.to(
-                                                    //     () => SearchProductPage(
-                                                    //           bal: searchController
-                                                    //                   .searchedItems[
-                                                    //               index],
-                                                    //         ));
+                                                    SearchProductController
+                                                        controller = Get.put(
+                                                            SearchProductController());
+                                                    controller.setPartNumber(
+                                                        searchController
+                                                            .searchedItems[
+                                                                index]
+                                                            .partNumber);
+                                                    Get.to(() =>
+                                                        SearchProductPage());
                                                   },
                                                 );
                                               },

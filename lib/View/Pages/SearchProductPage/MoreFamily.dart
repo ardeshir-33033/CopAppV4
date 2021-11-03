@@ -6,11 +6,12 @@ import 'package:get/get.dart';
 class MoreFamily extends StatelessWidget {
   final bool vis;
   final int? familyCount;
+  final int index;
 
   MoreFamily({
     required this.vis,
     this.familyCount,
-    Key? key,
+    Key? key,required this.index,
   }) : super(key: key);
   final SearchProductController searchProductController = Get.find();
 
@@ -54,8 +55,8 @@ class MoreFamily extends StatelessWidget {
                 ),
               ),
               onTap: () {
-                searchProductController.allJoinVis =
-                    !searchProductController.allJoinVis;
+                searchProductController.allJoinVis[index] =
+                    !searchProductController.allJoinVis[index];
                 searchProductController.update();
               },
             ),

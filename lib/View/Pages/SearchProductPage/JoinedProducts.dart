@@ -1,3 +1,4 @@
+import 'package:copapp/AppModel/MultiBalance/Part.dart';
 import 'package:copapp/Controller/Controllers/Balance/BalanceItemController.dart';
 import 'package:copapp/Controller/Controllers/SearchProductController.dart';
 import 'package:copapp/Utilities/Base.dart';
@@ -11,6 +12,9 @@ import 'JoinedItems.dart';
 import 'MoreFamily.dart';
 
 class JoinedProducts extends StatelessWidget {
+  JoinedProducts({required this.part, required this.index});
+  final Part part;
+  final int index;
   final SearchProductController searchProductController = Get.find();
   final ScreenshotController screenshotController = ScreenshotController();
 
@@ -57,9 +61,7 @@ class JoinedProducts extends StatelessWidget {
                       Stack(
                         alignment: Alignment.bottomLeft,
                         children: [
-                          searchProductController.part != null &&
-                                  searchProductController
-                                      .part!.partImage!.isNotEmpty
+                          part.partImage!.isNotEmpty
                               ? Container(
                                   height: 200.0,
                                   child: Column(
@@ -69,9 +71,8 @@ class JoinedProducts extends StatelessWidget {
                                         margin: EdgeInsets.all(0.0),
                                         decoration: BoxDecoration(
                                           image: DecorationImage(
-                                            image: NetworkImage(
-                                                searchProductController
-                                                    .part!.partImage!),
+                                            image:
+                                                NetworkImage(part.partImage!),
                                             fit: BoxFit.scaleDown,
                                           ),
                                         ),
@@ -113,76 +114,36 @@ class JoinedProducts extends StatelessWidget {
                           left: 10.0,
                           bottom: 7.5,
                         ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            // InkWell(
-                            //   child:
-                            //   onTap: () {
-                            //     ProductWidgets()
-                            //         .showDialog(context, widget.scaffold, [
-                            //       ProductImage(
-                            //         id: 1,
-                            //         path: widget.bal?.imagePath ?? "",
-                            //       )
-                            //     ]);
-                            //   },
-                            // ),
-                            SingleChildScrollView(
-                              scrollDirection: Axis.horizontal,
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    searchProductController.part!.name!,
+                            Row(
+                              children: [
+                                SingleChildScrollView(
+                                  scrollDirection: Axis.horizontal,
+                                  child: Text(
+                                    // "ardeshir gave",
+                                    part.name!,
                                     style: TextStyle(
                                       fontSize:
                                           CBase().getTitlefontSizeByScreen(),
                                       color: CBase().textPrimaryColor,
-                                      letterSpacing: -0.26,
                                     ),
                                   ),
-                                  SizedBox(
-                                    width: 5,
-                                  ),
-                                  Text(
-                                    (searchProductController
-                                                .part?.vehiclePersianName ??
-                                            ' ')
-                                        .toPersianDigit(),
-                                    style: TextStyle(
-                                      fontSize:
-                                          CBase().getSubTitlefontSizeByScreen(),
-                                      color: CBase().basePrimaryColor,
-                                      letterSpacing: -0.26,
-                                    ),
-                                    textAlign: TextAlign.left,
-                                  ),
-                                ],
-                              ),
+                                ),
+                              ],
                             ),
-                            Visibility(
-                              maintainSize: false,
-                              maintainAnimation: true,
-                              maintainState: true,
-                              visible: searchProductController.isLoadingJoin,
-                              child: Theme(
-                                data: Theme.of(context).copyWith(
-                                  accentColor: CBase().basePrimaryColor,
-                                ),
-                                child: Container(
-                                  width: 20.0,
-                                  height: 20.0,
-                                  margin: EdgeInsets.only(right: 10),
-                                  child: searchProductController.isLoadingJoin
-                                      ? CircularProgressIndicator(
-                                          valueColor:
-                                              AlwaysStoppedAnimation<Color>(
-                                                  CBase().basePrimaryColor),
-                                        )
-                                      : Text(""),
-                                ),
+                            SizedBox(
+                              width: 5,
+                            ),
+                            Text(
+                              (part.vehiclePersianName ?? ' ').toPersianDigit(),
+                              style: TextStyle(
+                                fontSize: CBase().getSubTitlefontSizeByScreen(),
+                                color: CBase().basePrimaryColor,
+                                letterSpacing: -0.26,
                               ),
+                              textAlign: TextAlign.left,
                             ),
                           ],
                         ),
@@ -193,8 +154,7 @@ class JoinedProducts extends StatelessWidget {
                             id: "search",
                             builder: (_) {
                               return JoinedItems(
-                                bal: searchProductController
-                                    .part?.products?.first,
+                                bal: part.products?.first,
                               );
                             },
                           )
@@ -204,18 +164,17 @@ class JoinedProducts extends StatelessWidget {
                         maintainSize: false,
                         maintainAnimation: true,
                         maintainState: true,
-                        visible: searchProductController.allJoinVis,
-                        child: searchProductController.part!.products != null
+                        visible: searchProductController.allJoinVis[index],
+                        child: part.products != null
                             ? Column(
-                                children:
-                                    searchProductController.part!.products!
-                                        .skip(1)
-                                        .map(
-                                          (e) => JoinedItems(
-                                            bal: e,
-                                          ),
-                                        )
-                                        .toList(),
+                                children: part.products!
+                                    .skip(1)
+                                    .map(
+                                      (e) => JoinedItems(
+                                        bal: e,
+                                      ),
+                                    )
+                                    .toList(),
                               )
                             : SizedBox(),
                       ),
@@ -225,18 +184,13 @@ class JoinedProducts extends StatelessWidget {
               ],
             ),
           ),
-          searchProductController.part!.products != null &&
-                  searchProductController.part!.products!.length > 0 &&
-                  searchProductController
-                          .part!.products!.first.productVirtualQTY !=
-                      0 &&
-                  searchProductController
-                          .part!.products!.first.productInfosPrice !=
-                      0
+          part.products != null //&&
+              // part.products!.first.productVirtualQTY != 0 &&
+              // part.products!.first.productInfosPrice != 0
               ? MoreFamily(
-                  vis: searchProductController.allJoinVis,
-                  familyCount:
-                      searchProductController.part!.products!.length - 1,
+                  index: index,
+                  vis: searchProductController.allJoinVis[index],
+                  familyCount: part.products!.length - 1,
                 )
               : SizedBox(
                   width: 1.0,

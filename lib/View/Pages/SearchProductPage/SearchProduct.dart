@@ -1,3 +1,4 @@
+import 'package:copapp/AppModel/MultiBalance/Part.dart';
 import 'package:copapp/Controller/Controllers/SearchProductController.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -7,7 +8,11 @@ import 'JoinedProducts.dart';
 class SearchProduct extends StatelessWidget {
   SearchProduct({
     Key? key,
+    required this.part,
+    required this.index,
   }) : super(key: key);
+  final Part part;
+  final int index;
   final SearchProductController searchProductController = Get.find();
   @override
   Widget build(BuildContext context) {
@@ -34,9 +39,10 @@ class SearchProduct extends StatelessWidget {
                   left: 10.0,
                   right: 10.0,
                 ),
-                child: searchProductController.part != null
-                    ? JoinedProducts()
-                    : SizedBox(),
+                child: JoinedProducts(
+                  part: part,
+                  index: index,
+                ),
               );
             },
           ),

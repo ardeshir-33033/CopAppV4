@@ -219,34 +219,89 @@ class _JoinedItemsState extends State<JoinedItems> {
           ),
           Container(
               height: 60.0,
-              child: widget.bal!.productInfosPrice != 0.0 &&
-                      widget.bal!.productVirtualQTY != 0.0
-                  ? Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Flexible(
-                          child: Container(
-                            child: GetBuilder<BalanceItemController>(
-                              id: "addDel",
-                              builder: (_) {
-                                return Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    hasItem
-                                        ? InkWell(
+              child: widget.bal!.productVirtualQTY! > 0 &&
+                      widget.bal!.productInfosPrice == 0
+                  ? Center(
+                      child: Text(
+                        'ناموجود',
+                        style: TextStyle(
+                          fontSize: CBase().getTitlefontSizeByScreen(),
+                          color: CBase().textPrimaryColor,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                    )
+                  : isForSale(widget.bal!)
+                      ? Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Flexible(
+                              child: Container(
+                                child: GetBuilder<BalanceItemController>(
+                                  id: "addDel",
+                                  builder: (_) {
+                                    return Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        hasItem
+                                            ? InkWell(
+                                                child: Container(
+                                                  padding: EdgeInsets.only(
+                                                    top: 5.0,
+                                                    bottom: 5.0,
+                                                    right: 10.0,
+                                                    left: 5.0,
+                                                  ),
+                                                  child: SvgPicture.asset(
+                                                    "images/plus.svg",
+                                                    width: 15.0,
+                                                    height: 15.0,
+                                                    color: CBase()
+                                                        .basePrimaryColor,
+                                                  ),
+                                                ),
+                                                onTap: () {
+                                                  isLoadingPurchase = true;
+                                                  searchProductController
+                                                      .update();
+                                                  balanceItemController
+                                                      .add(widget.bal!, hasItem)
+                                                      .then((value) {
+                                                    checkNewCount(value);
+                                                    isLoadingPurchase = false;
+                                                    searchProductController
+                                                        .update();
+                                                  });
+                                                },
+                                              )
+                                            : Text(""),
+                                        Flexible(
+                                          child: InkWell(
                                             child: Container(
-                                              padding: EdgeInsets.only(
-                                                top: 5.0,
-                                                bottom: 5.0,
-                                                right: 10.0,
-                                                left: 5.0,
-                                              ),
-                                              child: SvgPicture.asset(
-                                                "images/plus.svg",
-                                                width: 15.0,
-                                                height: 15.0,
-                                                color: CBase().basePrimaryColor,
+                                              padding: EdgeInsets.all(5.0),
+                                              child: Text(
+                                                !hasItem
+                                                    ? 'خرید'
+                                                    : (CartServiceV2()
+                                                                .cartProductQTY(
+                                                                    widget.bal!
+                                                                        .productsId)
+                                                                .toString() +
+                                                            " " +
+                                                            widget.bal!
+                                                                .unitsName!)
+                                                        .toPersianDigit(),
+                                                style: TextStyle(
+                                                  fontSize: CBase()
+                                                      .getTitlefontSizeByScreen(),
+                                                  color: hasItem
+                                                      ? CBase().textPrimaryColor
+                                                      : CBase()
+                                                          .basePrimaryColor,
+                                                  letterSpacing: -0.32,
+                                                ),
+                                                textAlign: TextAlign.center,
                                               ),
                                             ),
                                             onTap: () {
@@ -261,159 +316,180 @@ class _JoinedItemsState extends State<JoinedItems> {
                                                     .update();
                                               });
                                             },
-                                          )
-                                        : Text(""),
-                                    Flexible(
-                                      child: InkWell(
-                                        child: Container(
-                                          padding: EdgeInsets.all(5.0),
-                                          child: Text(
-                                            !hasItem
-                                                ? 'خرید'
-                                                : (CartServiceV2()
-                                                            .cartProductQTY(
-                                                                widget.bal!
-                                                                    .productsId)
-                                                            .toString() +
-                                                        " " +
-                                                        widget.bal!.unitsName!)
-                                                    .toPersianDigit(),
-                                            style: TextStyle(
-                                              fontSize: CBase()
-                                                  .getTitlefontSizeByScreen(),
-                                              color: hasItem
-                                                  ? CBase().textPrimaryColor
-                                                  : CBase().basePrimaryColor,
-                                              letterSpacing: -0.32,
-                                            ),
-                                            textAlign: TextAlign.center,
                                           ),
                                         ),
-                                        onTap: () {
-                                          isLoadingPurchase = true;
-                                          searchProductController.update();
-                                          balanceItemController
-                                              .add(widget.bal!, hasItem)
-                                              .then((value) {
-                                            checkNewCount(value);
-                                            isLoadingPurchase = false;
-                                            searchProductController.update();
-                                          });
-                                        },
-                                      ),
-                                    ),
-                                    hasItem
-                                        ? InkWell(
-                                            child: Container(
-                                              padding: EdgeInsets.only(
-                                                top: 5.0,
-                                                bottom: 5.0,
-                                                left: 10.0,
-                                                right: 5.0,
-                                              ),
-                                              child: SvgPicture.asset(
-                                                "images/del.svg",
-                                                width: 15.0,
-                                                height: 15.0,
-                                              ),
-                                            ),
-                                            onTap: () {
-                                              isLoadingPurchase = true;
-                                              searchProductController.update();
-                                              balanceItemController
-                                                  .remove(
-                                                      widget.bal!, itemCount)
-                                                  .then((value) {
-                                                checkNewCount(value);
-                                                isLoadingPurchase = false;
-                                                searchProductController
-                                                    .update();
-                                              });
-                                            },
-                                          )
-                                        : Text(""),
-                                  ],
-                                );
-                              },
+                                        hasItem
+                                            ? InkWell(
+                                                child: Container(
+                                                  padding: EdgeInsets.only(
+                                                    top: 5.0,
+                                                    bottom: 5.0,
+                                                    left: 10.0,
+                                                    right: 5.0,
+                                                  ),
+                                                  child: SvgPicture.asset(
+                                                    "images/del.svg",
+                                                    width: 15.0,
+                                                    height: 15.0,
+                                                  ),
+                                                ),
+                                                onTap: () {
+                                                  isLoadingPurchase = true;
+                                                  searchProductController
+                                                      .update();
+                                                  balanceItemController
+                                                      .remove(widget.bal!,
+                                                          itemCount)
+                                                      .then((value) {
+                                                    checkNewCount(value);
+                                                    isLoadingPurchase = false;
+                                                    searchProductController
+                                                        .update();
+                                                  });
+                                                },
+                                              )
+                                            : Text(""),
+                                      ],
+                                    );
+                                  },
+                                ),
+                              ),
                             ),
-                          ),
-                        ),
-                        Container(
-                          margin: EdgeInsets.all(5.0),
-                          decoration: BoxDecoration(
-                            color: CBase().borderPrimaryColor,
-                          ),
-                          width: 0.5,
-                          height: 47.0,
-                        ),
-                        Flexible(
-                          child: Container(
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Container(
-                                  // margin: EdgeInsets.only(right: 20.0),
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: [
-                                      hasItem
-                                          ? Visibility(
-                                              visible: scoreController
-                                                  .getShowScore(),
-                                              child: Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.start,
-                                                children: [
-                                                  Container(
+                            Container(
+                              margin: EdgeInsets.all(5.0),
+                              decoration: BoxDecoration(
+                                color: CBase().borderPrimaryColor,
+                              ),
+                              width: 0.5,
+                              height: 47.0,
+                            ),
+                            Flexible(
+                              child: Container(
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Container(
+                                      // margin: EdgeInsets.only(right: 20.0),
+                                      child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        children: [
+                                          hasItem
+                                              ? Visibility(
+                                                  visible: scoreController
+                                                      .getShowScore(),
+                                                  child: Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment.start,
+                                                    children: [
+                                                      Container(
+                                                        child: Text(
+                                                          ('${(widget.bal!.score! * itemCount).toInt()}'),
+                                                          style: TextStyle(
+                                                            fontSize: CBase()
+                                                                    .getTextfontSizeByScreen() +
+                                                                2,
+                                                            color: CBase()
+                                                                .textPrimaryColor,
+                                                          ),
+                                                          textAlign:
+                                                              TextAlign.center,
+                                                        ),
+                                                      ),
+                                                      SizedBox(
+                                                        width: 5.0,
+                                                      ),
+                                                      Text(
+                                                        "امتیاز",
+                                                        style: TextStyle(
+                                                          fontSize: CBase()
+                                                              .getSmallfontSizeByScreen(),
+                                                          color: CBase()
+                                                              .textPrimaryColor,
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                )
+                                              : Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.start,
+                                                  children: [
+                                                    Container(
+                                                      child: Text(
+                                                        nf
+                                                            .format(widget.bal!
+                                                                    .productInfosPrice ??
+                                                                0.0)
+                                                            .toString(),
+                                                        style: TextStyle(
+                                                          fontSize: CBase()
+                                                                  .getTextfontSizeByScreen() +
+                                                              2,
+                                                          color: CBase()
+                                                              .textPrimaryColor,
+                                                        ),
+                                                        textAlign:
+                                                            TextAlign.center,
+                                                      ),
+                                                    ),
+                                                    SizedBox(
+                                                      width: 5.0,
+                                                    ),
+                                                    SvgPicture.string(
+                                                      CBase.toman,
+                                                      allowDrawingOutsideViewBox:
+                                                          true,
+                                                      width: 13.0,
+                                                      height: 13.0,
+                                                    ),
+                                                  ],
+                                                ),
+                                          Row(
+                                            children: [
+                                              Visibility(
+                                                visible: hasItem &&
+                                                    scoreController
+                                                        .getShowScore(),
+                                                child: Container(
+                                                  margin: EdgeInsets.symmetric(
+                                                      vertical: 1),
+                                                  height: 0.47,
+                                                  width: CBase().getFullWidth(
+                                                              context) /
+                                                          2.4 -
+                                                      5,
+                                                  color: CBase()
+                                                      .borderPrimaryColor,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                          Visibility(
+                                            visible: hasItem,
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                IntrinsicHeight(
+                                                  child: Container(
                                                     child: Text(
-                                                      ('${(widget.bal!.score! * itemCount).toInt()}'),
+                                                      nf
+                                                          .format(itemCount *
+                                                              widget.bal!
+                                                                  .productInfosPrice!)
+                                                          .toString(),
                                                       style: TextStyle(
                                                         fontSize: CBase()
-                                                                .getTextfontSizeByScreen() +
-                                                            2,
+                                                            .getTitlefontSizeByScreen(),
                                                         color: CBase()
-                                                            .textPrimaryColor,
+                                                            .basePrimaryLightColor,
                                                       ),
                                                       textAlign:
                                                           TextAlign.center,
                                                     ),
-                                                  ),
-                                                  SizedBox(
-                                                    width: 5.0,
-                                                  ),
-                                                  Text(
-                                                    "امتیاز",
-                                                    style: TextStyle(
-                                                      fontSize: CBase()
-                                                          .getSmallfontSizeByScreen(),
-                                                      color: CBase()
-                                                          .textPrimaryColor,
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            )
-                                          : Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.start,
-                                              children: [
-                                                Container(
-                                                  child: Text(
-                                                    nf
-                                                        .format(widget.bal!
-                                                                .productInfosPrice ??
-                                                            0.0)
-                                                        .toString(),
-                                                    style: TextStyle(
-                                                      fontSize: CBase()
-                                                              .getTextfontSizeByScreen() +
-                                                          2,
-                                                      color: CBase()
-                                                          .textPrimaryColor,
-                                                    ),
-                                                    textAlign: TextAlign.center,
                                                   ),
                                                 ),
                                                 SizedBox(
@@ -423,237 +499,161 @@ class _JoinedItemsState extends State<JoinedItems> {
                                                   CBase.toman,
                                                   allowDrawingOutsideViewBox:
                                                       true,
-                                                  width: 13.0,
-                                                  height: 13.0,
+                                                  width: 18.0,
+                                                  height: 18.0,
+                                                  color: CBase()
+                                                      .basePrimaryLightColor,
                                                 ),
                                               ],
                                             ),
-                                      Row(
-                                        children: [
-                                          Visibility(
-                                            visible: hasItem &&
-                                                scoreController.getShowScore(),
-                                            child: Container(
-                                              margin: EdgeInsets.symmetric(
-                                                  vertical: 1),
-                                              height: 0.47,
-                                              width: CBase().getFullWidth(
-                                                          context) /
-                                                      2.4 -
-                                                  5,
-                                              color: CBase().borderPrimaryColor,
-                                            ),
-                                          ),
+                                          )
                                         ],
                                       ),
-                                      Visibility(
-                                        visible: hasItem,
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            IntrinsicHeight(
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ],
+                        )
+                      : GetBuilder<InquiryItemController>(
+                          id: 1,
+                          builder: (_) {
+                            return Row(
+                              children: [
+                                Expanded(
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      hasItem
+                                          ? InkWell(
                                               child: Container(
-                                                child: Text(
-                                                  nf
-                                                      .format(itemCount *
-                                                          widget.bal!
-                                                              .productInfosPrice!)
-                                                      .toString(),
-                                                  style: TextStyle(
-                                                    fontSize: CBase()
-                                                        .getTitlefontSizeByScreen(),
-                                                    color: CBase()
-                                                        .basePrimaryLightColor,
-                                                  ),
-                                                  textAlign: TextAlign.center,
+                                                padding: EdgeInsets.only(
+                                                  top: 5.0,
+                                                  bottom: 5.0,
+                                                  right: 10.0,
+                                                  left: 5.0,
+                                                ),
+                                                child: SvgPicture.asset(
+                                                  "images/plus.svg",
+                                                  width: 15.0,
+                                                  height: 15.0,
+                                                  color:
+                                                      CBase().basePrimaryColor,
                                                 ),
                                               ),
+                                              onTap: () {
+                                                if (!isLoadingPurchase) {
+                                                  isLoadingPurchase = true;
+                                                  inquiryItemController
+                                                      .update(['load']);
+                                                  inquiryItemController
+                                                      .upDate(widget.bal!, true)
+                                                      .then((value) {
+                                                    checkNewCount(value);
+                                                    isLoadingPurchase = false;
+                                                    inquiryItemController
+                                                        .update([1, 'load']);
+                                                  });
+                                                }
+                                              },
+                                            )
+                                          : Text(""),
+                                      Flexible(
+                                        child: InkWell(
+                                          child: Container(
+                                            padding: EdgeInsets.all(5.0),
+                                            child: Text(
+                                              !hasItem
+                                                  ? 'پیش سفارش'
+                                                  : itemCount
+                                                          .toString()
+                                                          .toPersianDigit() +
+                                                      " " +
+                                                      widget.bal!.unitsName!,
+                                              style: TextStyle(
+                                                fontSize: CBase()
+                                                    .getTitlefontSizeByScreen(),
+                                                color: hasItem
+                                                    ? CBase().textPrimaryColor
+                                                    : CBase().basePrimaryColor,
+                                                letterSpacing: -0.32,
+                                              ),
+                                              textAlign: TextAlign.center,
                                             ),
-                                            SizedBox(
-                                              width: 5.0,
-                                            ),
-                                            SvgPicture.string(
-                                              CBase.toman,
-                                              allowDrawingOutsideViewBox: true,
-                                              width: 18.0,
-                                              height: 18.0,
-                                              color:
-                                                  CBase().basePrimaryLightColor,
-                                            ),
-                                          ],
+                                          ),
+                                          onTap: () {
+                                            if (!isLoadingPurchase) {
+                                              isLoadingPurchase = true;
+                                              inquiryItemController
+                                                  .update(['load']);
+                                              inquiryItemController
+                                                  .add(widget.bal!)
+                                                  .then((value) {
+                                                isLoadingPurchase = false;
+                                                checkNewCount(value);
+                                                inquiryItemController
+                                                    .update([1, 'load']);
+                                              });
+                                            }
+                                          },
                                         ),
-                                      )
+                                      ),
+                                      hasItem
+                                          ? InkWell(
+                                              child: Container(
+                                                padding: EdgeInsets.only(
+                                                  top: 5.0,
+                                                  bottom: 5.0,
+                                                  left: 10.0,
+                                                  right: 5.0,
+                                                ),
+                                                child: SvgPicture.asset(
+                                                  "images/del.svg",
+                                                  width: 15.0,
+                                                  height: 15.0,
+                                                ),
+                                              ),
+                                              onTap: () {
+                                                if (!isLoadingPurchase) {
+                                                  isLoadingPurchase = true;
+                                                  inquiryItemController
+                                                      .update(['load']);
+
+                                                  inquiryItemController
+                                                      .upDate(
+                                                          widget.bal!, false)
+                                                      .then((value) {
+                                                    isLoadingPurchase = false;
+
+                                                    checkNewCount(value);
+                                                    inquiryItemController
+                                                        .update([1, 'load']);
+                                                  });
+                                                }
+                                              },
+                                            )
+                                          : Text(""),
                                     ],
                                   ),
                                 ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ],
-                    )
-                  : GetBuilder<InquiryItemController>(
-                      id: 1,
-                      builder: (_) {
-                        return Row(
-                          children: [
-                            Expanded(
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  hasItem
-                                      ? InkWell(
-                                          child: Container(
-                                            padding: EdgeInsets.only(
-                                              top: 5.0,
-                                              bottom: 5.0,
-                                              right: 10.0,
-                                              left: 5.0,
-                                            ),
-                                            child: SvgPicture.asset(
-                                              "images/plus.svg",
-                                              width: 15.0,
-                                              height: 15.0,
-                                              color: CBase().basePrimaryColor,
-                                            ),
-                                          ),
-                                          onTap: () {
-                                            if (!isLoadingPurchase) {
-                                              isLoadingPurchase = true;
-                                              inquiryItemController
-                                                  .update(['load']);
-                                              inquiryItemController
-                                                  .upDate(widget.bal!, true)
-                                                  .then((value) {
-                                                checkNewCount(value);
-                                                isLoadingPurchase = false;
-                                                inquiryItemController
-                                                    .update([1, 'load']);
-                                              });
-                                            }
-                                          },
-                                        )
-                                      : Text(""),
-                                  Flexible(
-                                    child: InkWell(
-                                      child: Container(
-                                        padding: EdgeInsets.all(5.0),
-                                        child: Text(
-                                          !hasItem
-                                              ? 'پیش سفارش'
-                                              : itemCount
-                                                      .toString()
-                                                      .toPersianDigit() +
-                                                  " " +
-                                                  widget.bal!.unitsName!,
-                                          style: TextStyle(
-                                            fontSize: CBase()
-                                                .getTitlefontSizeByScreen(),
-                                            color: hasItem
-                                                ? CBase().textPrimaryColor
-                                                : CBase().basePrimaryColor,
-                                            letterSpacing: -0.32,
-                                          ),
-                                          textAlign: TextAlign.center,
-                                        ),
-                                      ),
-                                      onTap: () {
-                                        if (!isLoadingPurchase) {
-                                          isLoadingPurchase = true;
-                                          inquiryItemController
-                                              .update(['load']);
-                                          inquiryItemController
-                                              .add(widget.bal!)
-                                              .then((value) {
-                                            isLoadingPurchase = false;
-                                            checkNewCount(value);
-                                            inquiryItemController
-                                                .update([1, 'load']);
-                                          });
-                                        }
-                                      },
-                                    ),
-                                  ),
-                                  hasItem
-                                      ? InkWell(
-                                          child: Container(
-                                            padding: EdgeInsets.only(
-                                              top: 5.0,
-                                              bottom: 5.0,
-                                              left: 10.0,
-                                              right: 5.0,
-                                            ),
-                                            child: SvgPicture.asset(
-                                              "images/del.svg",
-                                              width: 15.0,
-                                              height: 15.0,
-                                            ),
-                                          ),
-                                          onTap: () {
-                                            if (!isLoadingPurchase) {
-                                              isLoadingPurchase = true;
-                                              inquiryItemController
-                                                  .update(['load']);
-
-                                              inquiryItemController
-                                                  .upDate(widget.bal!, false)
-                                                  .then((value) {
-                                                isLoadingPurchase = false;
-
-                                                checkNewCount(value);
-                                                inquiryItemController
-                                                    .update([1, 'load']);
-                                              });
-                                            }
-                                          },
-                                        )
-                                      : Text(""),
-                                ],
-                              ),
-                            ),
-                            Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(vertical: 5.0),
-                              child: VerticalDivider(
-                                width: 0.5,
-                                color: CBase().borderPrimaryColor,
-                                thickness: 0.5,
-                              ),
-                            ),
-                            Expanded(
-                                child: Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                Text(
-                                  'آخرین قیمت',
-                                  style: TextStyle(
-                                    fontSize:
-                                        CBase().getSmallfontSizeByScreen(),
-                                    color: CBase().textPrimaryColor,
-                                  ),
-                                  textAlign: TextAlign.center,
-                                ),
                                 Padding(
-                                  padding: const EdgeInsets.only(right: 5.0),
-                                  child: Divider(
+                                  padding:
+                                      const EdgeInsets.symmetric(vertical: 5.0),
+                                  child: VerticalDivider(
+                                    width: 0.5,
                                     color: CBase().borderPrimaryColor,
-                                    height: 0.5,
                                     thickness: 0.5,
                                   ),
                                 ),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
+                                Expanded(
+                                    child: Column(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
                                   children: [
                                     Text(
-                                      widget.bal!.lastMarketPrice == null ||
-                                              widget.bal!.lastMarketPrice == 0
-                                          ? 'بدون قیمت'
-                                          : nf
-                                              .format(
-                                                  widget.bal!.lastMarketPrice!)
-                                              .toString(),
+                                      'آخرین قیمت',
                                       style: TextStyle(
                                         fontSize:
                                             CBase().getSmallfontSizeByScreen(),
@@ -661,33 +661,64 @@ class _JoinedItemsState extends State<JoinedItems> {
                                       ),
                                       textAlign: TextAlign.center,
                                     ),
-                                    Visibility(
-                                      visible:
-                                          widget.bal!.lastMarketPrice != null &&
-                                              widget.bal!.lastMarketPrice != 0,
-                                      child: Row(
-                                        children: [
-                                          SizedBox(
-                                            width: 5.0,
-                                          ),
-                                          SvgPicture.string(
-                                            CBase.toman,
-                                            color: CBase().textPrimaryColor,
-                                            allowDrawingOutsideViewBox: true,
-                                            width: 15.0,
-                                            height: 15.0,
-                                          ),
-                                        ],
+                                    Padding(
+                                      padding:
+                                          const EdgeInsets.only(right: 5.0),
+                                      child: Divider(
+                                        color: CBase().borderPrimaryColor,
+                                        height: 0.5,
+                                        thickness: 0.5,
                                       ),
                                     ),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Text(
+                                          widget.bal!.lastMarketPrice == null ||
+                                                  widget.bal!.lastMarketPrice ==
+                                                      0
+                                              ? 'بدون قیمت'
+                                              : nf
+                                                  .format(widget
+                                                      .bal!.lastMarketPrice!)
+                                                  .toString(),
+                                          style: TextStyle(
+                                            fontSize: CBase()
+                                                .getSmallfontSizeByScreen(),
+                                            color: CBase().textPrimaryColor,
+                                          ),
+                                          textAlign: TextAlign.center,
+                                        ),
+                                        Visibility(
+                                          visible: widget
+                                                      .bal!.lastMarketPrice !=
+                                                  null &&
+                                              widget.bal!.lastMarketPrice != 0,
+                                          child: Row(
+                                            children: [
+                                              SizedBox(
+                                                width: 5.0,
+                                              ),
+                                              SvgPicture.string(
+                                                CBase.toman,
+                                                color: CBase().textPrimaryColor,
+                                                allowDrawingOutsideViewBox:
+                                                    true,
+                                                width: 15.0,
+                                                height: 15.0,
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ],
+                                    ),
                                   ],
-                                ),
+                                ))
                               ],
-                            ))
-                          ],
-                        );
-                      },
-                    ))
+                            );
+                          },
+                        ))
         ],
       ),
     );
@@ -710,5 +741,9 @@ class _JoinedItemsState extends State<JoinedItems> {
       hasItem = true;
       itemCount = c;
     }
+  }
+
+  bool isForSale(Product p) {
+    return p.productVirtualQTY != null && p.productVirtualQTY! > 0;
   }
 }
