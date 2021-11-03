@@ -175,38 +175,6 @@ class BalanceServiceV2 extends BalanceExtensions with Api {
     );
   }
 
-  Future<ResponseModel<QuickSearchModel>> getQuickSearch(String search) async {
-    // validation
-    if (search.isEmpty)
-      return ResponseModel<QuickSearchModel>(
-        isSuccess: false,
-        statusCode: "500",
-        data: null,
-        message: "پارامتر های ورودی خالی هستند",
-      );
-
-    var response = await HTTPGET<QuickSearchModel>(
-      RoutingBalance.GET_QuickSearch,
-      [
-        QueryModel(
-          name: "search",
-          value: search,
-        ),
-      ],
-      HeaderEnum.BasicHeaderEnum,
-      ResponseEnum.ResponseModelEnum,
-    );
-
-    // response.data = QuickSearchModel.fromJson(response.data);
-
-    return ResponseModel<QuickSearchModel>(
-      isSuccess: response.isSuccess,
-      statusCode: response.statusCode,
-      data: response.data,
-      message: response.message,
-    );
-  }
-
   Future<ResponseModel<List<Part>>> searchByPartNumbers(List<String> num
       // ,int carId
       ) async {
@@ -247,19 +215,20 @@ class BalanceServiceV2 extends BalanceExtensions with Api {
   }
 
   Future<ResponseModel> quickSearch(String search , int? keywordId) async{
+    Map<String,String> map = {};
     ResponseModel response = await HTTPPOST(
         RoutingBalance.POST_GetBalanceQuickSearchV2,
         [
           QueryModel(name: "search" , value: search),
           QueryModel(name: "keywordId" , value: keywordId.toString())
         ],
-        {},
+        json.encode(map),
         HeaderEnum.BearerHeaderEnum,
         ResponseEnum.ResponseModelEnum,
     );
 
     if(response.isSuccess){
-      response.data = SearchPart.fromJson(response.data);
+      response.data = SearchPart().listFromJson(response.data);
     }
     return response;
   }
