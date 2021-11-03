@@ -22,7 +22,7 @@ class OrderServiceV2 extends Api {
       );
 
     ResponseModel response = await HTTPGET(
-      RoutingOrder.GET_GetWithDetail,
+      RoutingOrder.GET_GetOrderInfo,
       [
         QueryModel(
           name: "orderId",
