@@ -276,7 +276,7 @@ class _SearchboxV2State extends State<SearchboxV2> {
                                                               image: searchController
                                                                               .searchedItems[
                                                                                   index]
-                                                                              .thumbImagePath !=
+                                                                              . !=
                                                                           null &&
                                                                       searchController
                                                                               .searchedItems[
