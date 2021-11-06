@@ -4,8 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class EpcItemsTable extends StatelessWidget {
-  
-
   final EpcPartController partController = Get.find();
 
   @override
@@ -82,12 +80,7 @@ class EpcItemsTable extends StatelessWidget {
                               child: SingleChildScrollView(
                                 scrollDirection: Axis.horizontal,
                                 child: Text(
-                                  partController
-                                          .filteredPartGroups[partController
-                                              .tabController!.index]
-                                          .parts![i]
-                                          .englishName ??
-                                      'بدون نام',
+                                  getName(i),
                                   maxLines: 1,
                                   style: TextStyle(
                                     color: partController
@@ -155,5 +148,31 @@ class EpcItemsTable extends StatelessWidget {
         ),
       );
     });
+  }
+
+  String getName(int i) {
+    if (partController.filteredPartGroups[partController.tabController!.index]
+                .parts![i].persianName !=
+            null &&
+        partController.filteredPartGroups[partController.tabController!.index]
+            .parts![i].persianName!.isNotEmpty) {
+      return partController
+          .filteredPartGroups[partController.tabController!.index]
+          .parts![i]
+          .persianName!;
+    } else if (partController
+                .filteredPartGroups[partController.tabController!.index]
+                .parts![i]
+                .englishName !=
+            null &&
+        partController.filteredPartGroups[partController.tabController!.index]
+            .parts![i].englishName!.isNotEmpty) {
+      return partController
+          .filteredPartGroups[partController.tabController!.index]
+          .parts![i]
+          .englishName!;
+    } else {
+      return 'نام وارد نشده';
+    }
   }
 }
