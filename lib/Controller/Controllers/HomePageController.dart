@@ -18,7 +18,6 @@ class HomeController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    BalanceServiceV2().quickSearch("یاتا" , null);
     BalanceServiceV2().getHomeData().then((v) {
       if (v.isSuccess) {
         isLoading = false;

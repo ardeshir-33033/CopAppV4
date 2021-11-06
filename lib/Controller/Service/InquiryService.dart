@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:copapp/Api/Api.dart';
 import 'package:copapp/Api/Enums.dart';
 import 'package:copapp/Api/QueryModel.dart';
