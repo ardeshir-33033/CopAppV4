@@ -16,8 +16,14 @@ class BalanceItemController extends GetxController {
       var result = await CartServiceV2().addProduct(bal.productsId!, 1);
       if (!result.isSuccess) {
         result.showMessage();
+
         return 0;
       } else {
+        if (CartServiceV2().cartProductQTY(bal.productsId!) == 0) {
+          Snacki().GETSnackBar(
+              false, 'خطایی در برقراری ارتباط با سرور رخ داده است');
+          return 0;
+        }
         update(["addDel"]);
         update(["parent"]);
         if (bal.productInfosPrice! > 0) {

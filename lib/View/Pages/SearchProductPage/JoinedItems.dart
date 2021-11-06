@@ -5,6 +5,7 @@ import 'package:copapp/Controller/Controllers/General/ScoreService.dart';
 import 'package:copapp/Controller/Controllers/Inquiry/InquiryItemController.dart';
 import 'package:copapp/Controller/Controllers/SearchProductController.dart';
 import 'package:copapp/Controller/Service/CartService.dart';
+import 'package:copapp/Controller/Service/InquiryService.dart';
 import 'package:copapp/Utilities/Base.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
@@ -147,46 +148,17 @@ class _JoinedItemsState extends State<JoinedItems> {
                       fit: FlexFit.tight,
                       child: Text(""),
                     ),
-                    // Container(
-                    //   width: 20.0,
-                    //   height: 20.0,
-                    //   child: GetBuilder<BalanceItemController>(
-                    //     id: 'load',
-                    //     builder: (_) {
-                    //       return Visibility(
-                    //         maintainSize: false,
-                    //         maintainAnimation: true,
-                    //         maintainState: true,
-                    //         visible: isLoadingPurchase,
-                    //         child: Theme(
-                    //           data: Theme.of(context).copyWith(
-                    //             accentColor: CBase().basePrimaryColor,
-                    //           ),
-                    //           child: isLoadingPurchase
-                    //               ? CircularProgressIndicator(
-                    //                   valueColor: AlwaysStoppedAnimation<Color>(
-                    //                       CBase().basePrimaryColor),
-                    //                 )
-                    //               : Text(""),
-                    //         ),
-                    //       );
-                    //     },
-                    //   ),
-                    // ),
-                    // SizedBox(
-                    //   width: 1.0,
-                    // ),
-                    Container(
-                      width: 20.0,
-                      height: 20.0,
-                      child: GetBuilder<InquiryItemController>(
-                        id: 'load',
-                        builder: (_) {
-                          return Visibility(
-                            maintainSize: false,
-                            maintainAnimation: true,
-                            maintainState: true,
-                            visible: isLoadingPurchase,
+                    GetBuilder<BalanceItemController>(
+                      id: 'load',
+                      builder: (_) {
+                        return Visibility(
+                          maintainSize: false,
+                          maintainAnimation: true,
+                          maintainState: true,
+                          visible: isLoadingPurchase,
+                          child: Container(
+                            width: 20.0,
+                            height: 20.0,
                             child: Theme(
                               data: Theme.of(context).copyWith(
                                 accentColor: CBase().basePrimaryColor,
@@ -198,9 +170,38 @@ class _JoinedItemsState extends State<JoinedItems> {
                                     )
                                   : Text(""),
                             ),
-                          );
-                        },
-                      ),
+                          ),
+                        );
+                      },
+                    ),
+                    SizedBox(
+                      width: 1.0,
+                    ),
+                    GetBuilder<InquiryItemController>(
+                      id: 'load',
+                      builder: (_) {
+                        return Visibility(
+                          maintainSize: false,
+                          maintainAnimation: true,
+                          maintainState: true,
+                          visible: isLoadingPurchase,
+                          child: Container(
+                            width: 20.0,
+                            height: 20.0,
+                            child: Theme(
+                              data: Theme.of(context).copyWith(
+                                accentColor: CBase().basePrimaryColor,
+                              ),
+                              child: isLoadingPurchase
+                                  ? CircularProgressIndicator(
+                                      valueColor: AlwaysStoppedAnimation<Color>(
+                                          CBase().basePrimaryColor),
+                                    )
+                                  : Text(""),
+                            ),
+                          ),
+                        );
+                      },
                     ),
                     SizedBox(
                       width: 1.0,
@@ -263,15 +264,17 @@ class _JoinedItemsState extends State<JoinedItems> {
                                                 ),
                                                 onTap: () {
                                                   isLoadingPurchase = true;
-                                                  searchProductController
-                                                      .update();
+                                                  // searchProductController
+                                                  //     .update();
                                                   balanceItemController
                                                       .add(widget.bal!, hasItem)
                                                       .then((value) {
                                                     checkNewCount(value);
                                                     isLoadingPurchase = false;
-                                                    searchProductController
-                                                        .update();
+                                                    balanceItemController
+                                                        .upDate();
+                                                    // searchProductController
+                                                    //     .update();
                                                   });
                                                 },
                                               )
@@ -306,14 +309,15 @@ class _JoinedItemsState extends State<JoinedItems> {
                                             ),
                                             onTap: () {
                                               isLoadingPurchase = true;
-                                              searchProductController.update();
+                                              // searchProductController.update();
                                               balanceItemController
                                                   .add(widget.bal!, hasItem)
                                                   .then((value) {
                                                 checkNewCount(value);
                                                 isLoadingPurchase = false;
-                                                searchProductController
-                                                    .update();
+                                                balanceItemController.upDate();
+                                                // searchProductController
+                                                //     .update();
                                               });
                                             },
                                           ),
@@ -335,16 +339,18 @@ class _JoinedItemsState extends State<JoinedItems> {
                                                 ),
                                                 onTap: () {
                                                   isLoadingPurchase = true;
-                                                  searchProductController
-                                                      .update();
+                                                  // searchProductController
+                                                  //     .update();
                                                   balanceItemController
                                                       .remove(widget.bal!,
                                                           itemCount)
                                                       .then((value) {
                                                     checkNewCount(value);
                                                     isLoadingPurchase = false;
-                                                    searchProductController
-                                                        .update();
+                                                    balanceItemController
+                                                        .upDate();
+                                                    // searchProductController
+                                                    //     .update();
                                                   });
                                                 },
                                               )
@@ -725,7 +731,13 @@ class _JoinedItemsState extends State<JoinedItems> {
   }
 
   checkHasItem(int id) {
-    itemCount = CartServiceV2().cartProductQTY(id);
+    if (isForSale(widget.bal!)) {
+      //check in cart
+      itemCount = CartServiceV2().cartProductQTY(id);
+    } else {
+      //check in inquiry
+      itemCount = InquiryService().inquiryProductQTY(id);
+    }
     if (itemCount == 0) {
       hasItem = false;
     } else {

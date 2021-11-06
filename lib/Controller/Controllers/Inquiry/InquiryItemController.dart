@@ -15,7 +15,10 @@ class InquiryItemController extends GetxController {
         : product.multipleQTY!);
     int newQty = 0;
     await InquiryService()
-        .addInquiryProduct(productId:product.productsId!,qty: multipleQty , supplier: product.supplierId!)
+        .addInquiryProduct(
+            productId: product.productsId!,
+            qty: multipleQty,
+            supplier: product.supplierId!)
         .then((value) {
       if (value.isSuccess) {
         InquiryCart t = value.data;
@@ -41,13 +44,14 @@ class InquiryItemController extends GetxController {
       //is adding to item quantity
       qty = newQty + multipleQty;
       await InquiryService()
-          .updateProduct(product.productsId!, qty , product.supplierId!)
+          .updateProduct(product.productsId!, qty, product.supplierId!)
           .then((value) {
         if (value.isSuccess) {
           InquiryCart t = value.data;
           newQty = t.details
               .firstWhere((element) =>
-                  element.product!.productsId == product.productsId).product!
+                  element.product!.productsId == product.productsId)
+              .product!
               .detailQTY!;
           BalanceItemController balanceItemController = Get.find();
           balanceItemController.update(["parent"]);
@@ -69,7 +73,8 @@ class InquiryItemController extends GetxController {
             InquiryCart t = value.data;
             newQty = t.details
                 .firstWhere((element) =>
-                    element.product!.productsId == product.productsId).product!
+                    element.product!.productsId == product.productsId)
+                .product!
                 .detailQTY!;
             BalanceItemController balanceItemController = Get.find();
             balanceItemController.update(["parent"]);
@@ -92,7 +97,8 @@ class InquiryItemController extends GetxController {
   }
 
   Future<ResponseModel> remove(Product product) async {
-    var response = await InquiryService().deleteProduct(product.productsId! , product.supplierId!);
+    var response = await InquiryService()
+        .deleteProduct(product.productsId!, product.supplierId!);
     if (response.isSuccess) {
       BalanceItemController balanceItemController = Get.find();
       balanceItemController.update(["parent"]);
