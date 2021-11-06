@@ -59,6 +59,7 @@ class _PendingOrdersDetailPageState extends State<PendingOrdersDetailPage> {
               return orderInfoController.isLoading
                   ? Center(
                 child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     CircularProgressIndicator(
                       valueColor:
