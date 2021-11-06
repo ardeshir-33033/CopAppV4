@@ -117,20 +117,26 @@ class JoinedProducts extends StatelessWidget {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            Row(
-                              children: [
-                                SingleChildScrollView(
+                            Container(
+                              width: MediaQuery.of(context).size.width,
+                              child: Center(
+                                child: SingleChildScrollView(
                                   scrollDirection: Axis.horizontal,
-                                  child: Text(
-                                    part.name!,
-                                    style: TextStyle(
-                                      fontSize:
-                                          CBase().getTitlefontSizeByScreen(),
-                                      color: CBase().textPrimaryColor,
-                                    ),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        part.name!,
+                                        style: TextStyle(
+                                          fontSize: CBase()
+                                              .getTitlefontSizeByScreen(),
+                                          color: CBase().textPrimaryColor,
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                 ),
-                              ],
+                              ),
                             ),
                             SizedBox(
                               width: 5,

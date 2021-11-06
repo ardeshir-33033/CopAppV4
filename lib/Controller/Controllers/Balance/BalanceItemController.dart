@@ -99,7 +99,7 @@ class BalanceItemController extends GetxController {
         scoreService.update();
         update(["cart"]);
         update(["parent"]);
-        // update([1]);
+        update(["addDel"]);
       }
     } else {
       var result =
