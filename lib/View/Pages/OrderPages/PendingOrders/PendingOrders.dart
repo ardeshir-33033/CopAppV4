@@ -9,7 +9,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
-
 class PendingOrders extends StatelessWidget {
   final PendingOrdController pendingOrdController =
       Get.put(PendingOrdController());
@@ -78,17 +77,12 @@ class PendingOrders extends StatelessWidget {
                                           MaterialPageRoute(
                                               builder: (context) =>
                                                   PendingOrdersDetailPage(
-                                                      finalScore:
+                                
+                                                      orderId:
                                                           pendingOrdController
                                                               .pendingOrders![
                                                                   index]
-                                                              .totalScore!,
-                                                      finalPrice:
-                                                          pendingOrdController
-                                                              .pendingOrders![
-                                                                  index]
-                                                              .finalPrice!,
-                                                      orderId: pendingOrdController.pendingOrders![index].id!)
+                                                              .id!)
                                               // OrdersDetail(
                                               //   orderDetails:
                                               //       pendingOrdController

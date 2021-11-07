@@ -1,7 +1,5 @@
 import 'package:copapp/Api/ResponseModel.dart';
-import 'package:copapp/Controller/Controllers/InvoiceController.dart';
 import 'package:copapp/Controller/Service/CartService.dart';
-import 'package:copapp/Controller/Service/OrderService.dart';
 import 'package:copapp/Controller/Service/ProfileServiceV2.dart';
 import 'package:copapp/Utilities/Sharei.dart';
 import 'package:copapp/Utilities/Snacki.dart';
@@ -124,19 +122,11 @@ class SendCartController extends GetxController {
   }
 
   Future<ResponseModel> _payment() async {
-    InvoiceController invoiceController = Get.find();
-
     ResponseModel res;
-    if (invoiceController.orderId == null) {
       res = (await CartServiceV2().payment(1))!;
-    } else {
-      res =
-          (await OrderServiceV2().zarrinPayOrder(invoiceController.orderId!))!;
-    }
     if (!res.isSuccess) {
       res.showMessage();
     }
-
     return res;
   }
 

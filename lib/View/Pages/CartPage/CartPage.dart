@@ -1,10 +1,12 @@
 import 'package:copapp/Controller/Controllers/Balance/BalanceItemController.dart';
 import 'package:copapp/Controller/Controllers/Cart/CartController.dart';
 import 'package:copapp/Controller/Controllers/General/ScoreService.dart';
+import 'package:copapp/Controller/Controllers/InvoiceController.dart';
 import 'package:copapp/Controller/Service/CartService.dart';
 import 'package:copapp/Utilities/Base.dart';
 import 'package:copapp/View/Components/General/AppDrawer.dart';
 import 'package:copapp/View/Components/General/CustomAppBar.dart';
+import 'package:copapp/View/Pages/InvoicePage/InvoicePage.dart';
 import 'package:easy_localization/easy_localization.dart' as lc;
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -182,7 +184,22 @@ class CartPage extends StatelessWidget {
                                                   height: 10,
                                                 ),
                                                 BottomCompleteBuying(
-                                                  type: 1,
+                                                  onTap: () {
+                                                    InvoiceController
+                                                        invoiceController =
+                                                        Get.put(
+                                                            InvoiceController());
+                                                    invoiceController.cart =
+                                                        CartServiceV2()
+                                                            .getMyCart()!
+                                                            .details!;
+                                            
+                                                    Navigator.push(
+                                                        context,
+                                                        MaterialPageRoute(
+                                                            builder: (context) =>
+                                                                InvoicePage()));
+                                                  },
                                                 )
                                               ],
                                             ),

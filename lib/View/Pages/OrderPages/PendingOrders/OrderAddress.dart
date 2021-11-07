@@ -1,5 +1,4 @@
-import 'package:copapp/Controller/Controllers/InvoiceController.dart';
-import 'package:copapp/Controller/Service/CartService.dart';
+import 'package:copapp/Controller/Controllers/Order/OrderInfoController.dart';
 import 'package:copapp/Controller/Service/OrderService.dart';
 import 'package:copapp/Model/Address.dart';
 import 'package:copapp/Model/Order/OrderHeader.dart';
@@ -7,21 +6,20 @@ import 'package:copapp/Utilities/Base.dart';
 import 'package:copapp/Controller/Controllers/ChooseAddController.dart';
 import 'package:copapp/Utilities/Snacki.dart';
 import 'package:copapp/View/Components/General/InAppBrowser.dart';
-import 'package:copapp/View/Pages/ConfirmPages/ConfirmInPerson.dart';
+import 'package:copapp/View/Pages/OrderPages/PendingOrders/ConfirmPayment.dart';
+import 'package:copapp/View/Pages/SendCartPages/AddressWidget.dart';
 import 'package:easy_localization/easy_localization.dart' as lc;
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:get/get.dart';
 import 'package:persian_number_utility/persian_number_utility.dart';
 
-import 'AddressWidget.dart';
-
-class AddressPayType extends StatefulWidget {
+class OrderAddress extends StatefulWidget {
   @override
-  _AddressPayTypeState createState() => _AddressPayTypeState();
+  _OrderAddressState createState() => _OrderAddressState();
 }
 
-class _AddressPayTypeState extends State<AddressPayType>
+class _OrderAddressState extends State<OrderAddress>
     with WidgetsBindingObserver {
   final lc.NumberFormat nf = lc.NumberFormat.currency(
     locale: "fa-IR",
@@ -31,7 +29,7 @@ class _AddressPayTypeState extends State<AddressPayType>
   final ChooseAddressController addressController =
       Get.put(ChooseAddressController());
 
-  final InvoiceController invoiceController = Get.find();
+  OrderInfoController orderInfoController = Get.find();
 
   @override
   void initState() {
@@ -57,7 +55,6 @@ class _AddressPayTypeState extends State<AddressPayType>
           if (payedOrder.orderStatusId == "confirmed" ||
               payedOrder.orderStatusId == "packing") {
             Snacki().GETSnackBar(true, "عملیات موفق بود");
-            CartServiceV2().getCart();
 
             ///
           } else {
@@ -110,7 +107,7 @@ class _AddressPayTypeState extends State<AddressPayType>
                               children: [
                                 Text(
                                   " تعداد اقلام " +
-                                      invoiceController.cart.length
+                                      orderInfoController.order!.orderDetails!.length
                                           .toString()
                                           .toPersianDigit() +
                                       ' عدد',
@@ -135,7 +132,7 @@ class _AddressPayTypeState extends State<AddressPayType>
                                 ),
                                 Text(
                                   nf
-                                          .format(invoiceController
+                                          .format(orderInfoController
                                               .getCartFinalPrice())
                                           .toString() +
                                       " تومان",
@@ -192,7 +189,7 @@ class _AddressPayTypeState extends State<AddressPayType>
                                   addressController.getSelectedAddress();
                               if (addressController.getSelectedAddress() !=
                                   null) {
-                                Get.to(() => ConfirmInPerson(
+                                Get.to(() => ConfirmPayment(
                                       items: {
                                         'شهر :': '${address!.city}',
                                         'نوع ارسال :': 'توسط CopApp',
@@ -250,7 +247,7 @@ class _AddressPayTypeState extends State<AddressPayType>
   void pay() async {
     addressController.setLoading(true);
     // -10 is the Id for in-person shopping - Synced with backend
-    await CartServiceV2().payment(-10)!.then((value) async {
+    await OrderServiceV2().zarrinPayOrder(orderInfoController.order!.id!,addressId:-10).then((value) async {
       if (value.isSuccess) {
         MyInAppBrowser().setBrowser(browser);
         await browser.openUrlRequest(

@@ -217,7 +217,7 @@ class OrderServiceV2 extends Api {
     paymentAuthority = auth;
   }
 
-  Future<ResponseModel<String>>? zarrinPayOrder(int orderId,
+  Future<ResponseModel<String?>> zarrinPayOrder(int orderId,
       {int? addressId}) async {
     var response = await HTTPPOST(
       RoutingOrder.Post_ZarrinPayOrder,

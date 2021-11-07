@@ -1,5 +1,4 @@
 import 'package:copapp/AppModel/Balance/Product.dart';
-import 'package:copapp/AppModel/Cart/CartDetail.dart';
 
 
 class OrderDetail {
@@ -62,19 +61,19 @@ class OrderDetail {
     return null;
   }
 
-  List<CartDetail>? toCartDetail(List<OrderDetail>? list) {
-    if (list != null) {
-      return list.map<CartDetail>((e) {
-        return CartDetail(
-          detailUnitPrice: e.unitPrice,
-          detailFinalPrice: e.finalPrice,
-          detailDecreasePrice: e.decreasedPrice,
-          detailId: e.id,
-          product: e.product,
-          // detailQTY: e.quantity!.toInt(),
-          detailSumPrice: e.sumPrice
-        );
-      }).toList();
-    }
-  }
+  // List<CartDetail>? toCartDetail(List<OrderDetail>? list) {
+  //   if (list != null) {
+  //     return list.map<CartDetail>((e) {
+  //       return CartDetail(
+  //         detailUnitPrice: e.unitPrice,
+  //         detailFinalPrice: e.finalPrice,
+  //         detailDecreasePrice: e.decreasedPrice,
+  //         detailId: e.id,
+  //         product: e.product,
+  //         // detailQTY: e.quantity!.toInt(),
+  //         detailSumPrice: e.sumPrice
+  //       );
+  //     }).toList();
+  //   }
+  // }
 }

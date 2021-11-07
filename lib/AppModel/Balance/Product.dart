@@ -25,21 +25,21 @@ class Product {
 
   Product(
       {this.productsId,
-        this.productsName,
-        this.unitsName,
-        this.brandsImagePath,
-        this.productInfosPrice,
-        this.productVirtualQTY,
-        this.brandsName,
-        this.country,
-        this.multipleQTY,
-        this.score,
-        this.lastMarketPrice,
-        this.images,
-        this.warranty,
-        this.detailQTY,
-        this.supplierId,
-        this.lastMarketPriceUpdate});
+      this.productsName,
+      this.unitsName,
+      this.brandsImagePath,
+      this.productInfosPrice,
+      this.productVirtualQTY,
+      this.brandsName,
+      this.country,
+      this.multipleQTY,
+      this.score,
+      this.lastMarketPrice,
+      this.images,
+      this.warranty,
+      this.detailQTY,
+      this.supplierId,
+      this.lastMarketPriceUpdate});
 
   Product.fromJson(Map<String, dynamic> json) {
     productsId = json['productsId'] ?? 0;
@@ -65,8 +65,7 @@ class Product {
       json['images'].forEach((v) {
         if (v.runtimeType == String)
           images!.add(v);
-        else
-          images!.add(ProductImage.fromJson(v).path!);
+        else if (v != null) images!.add(ProductImage.fromJson(v).path!);
       });
     }
 
@@ -188,7 +187,7 @@ class _SliderDialogState extends State<SliderDialog> {
                     minScale: 0.4,
                     maxScale: 0.8,
                     heroAttributes:
-                    PhotoViewHeroAttributes(tag: widget.images![i]),
+                        PhotoViewHeroAttributes(tag: widget.images![i]),
                   ),
               ],
               loadingBuilder: (context, event) => Center(
@@ -197,11 +196,11 @@ class _SliderDialogState extends State<SliderDialog> {
                   height: 200.0,
                   child: CircularProgressIndicator(
                     valueColor:
-                    AlwaysStoppedAnimation<Color>(CBase().basePrimaryColor),
+                        AlwaysStoppedAnimation<Color>(CBase().basePrimaryColor),
                     value: event == null
                         ? 0
                         : event.cumulativeBytesLoaded /
-                        event.expectedTotalBytes!,
+                            event.expectedTotalBytes!,
                   ),
                 ),
               ),

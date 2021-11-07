@@ -13,7 +13,7 @@ class InvoiceController extends GetxController {
   ScrollController scrollController = ScrollController();
   List<CartDetail> cartSec = [];
   bool isLoading = true;
-  int? orderId;
+
 
   @override
   void onInit() {
@@ -42,7 +42,9 @@ class InvoiceController extends GetxController {
     });
   }
 
-  double getCartSumPrice() {
-    return CartServiceV2.myCart!.orderFinalPrice??0;
+  double getCartFinalPrice() {
+    double finalPrice = 0.0;
+    cart.forEach((element) => finalPrice += element.detailFinalPrice!);
+    return finalPrice;
   }
 }
