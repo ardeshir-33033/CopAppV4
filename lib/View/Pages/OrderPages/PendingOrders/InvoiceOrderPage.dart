@@ -1,38 +1,39 @@
-import 'package:copapp/Controller/Controllers/InvoiceController.dart';
-import 'package:copapp/Controller/Service/CartService.dart';
+
+import 'package:copapp/Controller/Controllers/Order/OrderInfoController.dart';
 import 'package:copapp/Utilities/Base.dart';
 import 'package:copapp/View/Components/General/AppDrawer.dart';
 import 'package:copapp/View/Components/General/CustomAppBar.dart';
+import 'package:copapp/View/Pages/InvoicePage/WhiteButton.dart';
 import 'package:easy_localization/easy_localization.dart'as lc;
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:persian_number_utility/persian_number_utility.dart';
 import 'package:screenshot/screenshot.dart';
 import 'InvoicePageWidget.dart';
-import 'WhiteButton.dart';
 
-class InvoicePage extends StatelessWidget {
-  final InvoiceController invoiceController = Get.find();
+class InvoiceOrderPage extends StatelessWidget {
+  final OrderInfoController orderInfoController = Get.find();
+      final GlobalKey<ScaffoldState> scaffoldKey = new GlobalKey<ScaffoldState>();
   final lc.NumberFormat nf = lc.NumberFormat.currency(
     locale: "fa-IR",
     symbol: "",
   );
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<InvoiceController>(builder: (_) {
+    return GetBuilder<OrderInfoController>(builder: (_) {
       return Screenshot(
-        controller: invoiceController.screenshotController,
+        controller: orderInfoController.screenshotController,
         child: Directionality(
           textDirection: TextDirection.rtl,
           child: Scaffold(
-            key: invoiceController.scaffoldKey,
+            key: scaffoldKey,
             drawer: AppDrawer(
-              scaffoldKey: invoiceController.scaffoldKey,
+              scaffoldKey: scaffoldKey,
             ),
             appBar: CustomAppBar(
-              scaffoldKey: invoiceController.scaffoldKey,
+              scaffoldKey: scaffoldKey,
             ),
-            body: invoiceController.isLoading
+            body: orderInfoController.isLoading
                 ? Center(
                     child: CircularProgressIndicator(
                       valueColor: AlwaysStoppedAnimation<Color>(
@@ -183,17 +184,17 @@ class InvoicePage extends StatelessWidget {
                         ),
                       ),
                       Expanded(
-                        child: CartServiceV2().cartHasProduct() ||
-                                invoiceController.cart.isNotEmpty
+                        child: 
+                                orderInfoController.order!.orderDetails!.isNotEmpty
                             ? ListView.builder(
-                                controller: invoiceController.scrollController,
-                                itemCount: invoiceController.cart.length,
+                                controller: orderInfoController.scrollController,
+                                itemCount: orderInfoController.order!.orderDetails!.length,
                                 itemBuilder: (context, int index) {
                                   return Padding(
                                     padding:
                                         EdgeInsets.symmetric(horizontal: 20.0),
                                     child: InvoiceWidget(
-                                      item: invoiceController.cart[index],
+                                      item: orderInfoController.order!.orderDetails![index],
                                       id: index + 1,
                                     ),
                                   );
@@ -220,7 +221,7 @@ class InvoicePage extends StatelessWidget {
                             Expanded(
                               flex: 3,
                               child: Text(
-                                (invoiceController.cart.length.toString())
+                                (orderInfoController.order!.orderDetails!.length.toString())
                                     .toPersianDigit(),
                                 style: TextStyle(
                                   fontSize: CBase().getTextfontSizeByScreen() + 1,
@@ -233,7 +234,7 @@ class InvoicePage extends StatelessWidget {
                               flex: 6,
                               child: Text(
                                 // CartServiceV2().getCartTotalPrice()
-                                nf.format(invoiceController.getCartFinalPrice()),
+                                nf.format(orderInfoController.getCartFinalPrice()),
                                   textAlign: TextAlign.left,
                                   style: TextStyle(
                                   fontSize: CBase().getTextfontSizeByScreen() + 1,
@@ -251,17 +252,10 @@ class InvoicePage extends StatelessWidget {
                             text: 'تایید',
                             color: CBase().basePrimaryLightColor,
                             onTapCallback: (v) {
-                              invoiceController.confirm();
+                              orderInfoController.confirmFactor();
                             },
                           ),
-                          WhiteButton(
-                            text: 'اصلاح',
-                            color: CBase().textPrimaryColor,
-                            onTapCallback: (v) {
-                              // shareScreenshot();
-                              Navigator.pop(context);
-                            },
-                          ),
+                          
                         ],
                       )
                     ],

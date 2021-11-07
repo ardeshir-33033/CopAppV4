@@ -1,27 +1,25 @@
-import 'package:copapp/Controller/Controllers/SendCartController.dart';
+import 'package:copapp/Controller/Controllers/Order/OrderInfoController.dart';
 import 'package:copapp/Utilities/Base.dart';
+import 'package:copapp/View/Pages/SendCartPages/PlateWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'PlateWidget.dart';
-
-class SendingCartCustomerWidget extends StatefulWidget {
-  SendingCartCustomerWidget({
+class SendOrderTab extends StatefulWidget {
+  SendOrderTab({
     Key? key,
   }) : super(key: key);
 
   @override
-  _SendingCartCustomerWidgetState createState() =>
-      _SendingCartCustomerWidgetState();
+  _SendOrderTabState createState() => _SendOrderTabState();
 }
 
-class _SendingCartCustomerWidgetState extends State<SendingCartCustomerWidget> {
-  SendCartController sendCartController = Get.find();
+class _SendOrderTabState extends State<SendOrderTab> {
+  OrderInfoController orderInfoController = Get.find();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: sendCartController.isLoading
+      bottomNavigationBar: orderInfoController.isLoading
           ? Container(
               width: 100,
               height: 100,
@@ -61,7 +59,7 @@ class _SendingCartCustomerWidgetState extends State<SendingCartCustomerWidget> {
                 ),
               ),
               onTap: () {
-                  sendCartController.confirmSend();
+                orderInfoController.confirmSend();
               },
             ),
       body: SingleChildScrollView(
@@ -93,7 +91,7 @@ class _SendingCartCustomerWidgetState extends State<SendingCartCustomerWidget> {
                         children: [
                           Expanded(
                               child: TextField(
-                            controller: sendCartController.controller1,
+                            controller: orderInfoController.controller1,
                             style: TextStyle(color: CBase().textPrimaryColor),
                             decoration: InputDecoration(
                               hintText: "نام و نام خانوادگی:",
@@ -127,7 +125,7 @@ class _SendingCartCustomerWidgetState extends State<SendingCartCustomerWidget> {
                         children: [
                           Expanded(
                               child: TextField(
-                            controller: sendCartController.controller2,
+                            controller: orderInfoController.controller2,
                             style: TextStyle(color: CBase().textPrimaryColor),
                             decoration: InputDecoration(
                               hintText: "شماره همراه:",
@@ -162,7 +160,7 @@ class _SendingCartCustomerWidgetState extends State<SendingCartCustomerWidget> {
                         children: [
                           Expanded(
                               child: TextField(
-                            controller: sendCartController.controller3,
+                            controller: orderInfoController.controller3,
                             style: TextStyle(color: CBase().textPrimaryColor),
                             decoration: InputDecoration(
                               border: InputBorder.none,
@@ -187,7 +185,7 @@ class _SendingCartCustomerWidgetState extends State<SendingCartCustomerWidget> {
                         children: [
                           Expanded(
                               child: TextField(
-                            controller: sendCartController.controller4,
+                            controller: orderInfoController.controller4,
                             style: TextStyle(color: CBase().textPrimaryColor),
                             decoration: InputDecoration(
                               border: InputBorder.none,
@@ -219,13 +217,13 @@ class _SendingCartCustomerWidgetState extends State<SendingCartCustomerWidget> {
                           ),
                           PlateWidget(
                             textEditingController1:
-                                sendCartController.controllerplate1,
+                                orderInfoController.controllerplate1,
                             textEditingController2:
-                                sendCartController.controllerplate2,
+                                orderInfoController.controllerplate2,
                             textEditingController3:
-                                sendCartController.controllerplate3,
+                                orderInfoController.controllerplate3,
                             textEditingController4:
-                                sendCartController.controllerplate4,
+                                orderInfoController.controllerplate4,
                           )
                         ],
                       ))

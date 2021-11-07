@@ -1,18 +1,15 @@
-import 'package:copapp/Controller/Controllers/InvoiceController.dart';
-import 'package:copapp/Controller/Service/CartService.dart';
 import 'package:copapp/Model/Order/OrderDetail.dart';
 import 'package:copapp/Utilities/Base.dart';
-import 'package:copapp/View/Pages/InvoicePage/InvoicePage.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class BottomCompleteBuying extends StatelessWidget {
   BottomCompleteBuying(
-      {this.type = 2, Key? key, this.pendingCart, this.orderId})
+      {Key? key, this.pendingCart, this.orderId, required this.onTap})
       : super(key: key);
   final List<OrderDetail>? pendingCart;
-  final int type;
+
   final int? orderId;
+  final Function() onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -36,16 +33,7 @@ class BottomCompleteBuying extends StatelessWidget {
         ),
       ),
       onTap: () {
-        InvoiceController invoiceController = Get.put(InvoiceController());
-        if (type == 1) {
-          invoiceController.cart = CartServiceV2().getMyCart()!.details!;
-          invoiceController.orderId = null;
-        } else {
-          invoiceController.cart = OrderDetail().toCartDetail(pendingCart!)!;
-          invoiceController.orderId = orderId;
-        }
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => InvoicePage()));
+        onTap();
       },
     );
   }
