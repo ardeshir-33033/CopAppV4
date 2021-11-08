@@ -6,6 +6,7 @@ import 'package:copapp/Utilities/Base.dart';
 import 'package:copapp/Utilities/SharedPreferencePath.dart';
 import 'package:copapp/Utilities/Snacki.dart';
 import 'package:copapp/View/Pages/HomePage.dart';
+import 'package:copapp/View/externalPages/externalMultiBalancePage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -73,9 +74,12 @@ class LoginController extends GetxController {
       // circularVis = false;
       // update([2]);
       // Get.o(HomePageV4());
-      Get.offAll(
-        () => HomePageV4(),
-      );
+
+      Get.offAll(ExternalMultiBalancePage());
+
+      // Get.offAll(
+      //   () => HomePageV4(),
+      // );
       this.password.text = '';
       this.userName.text = '';
       circularVis = false;
