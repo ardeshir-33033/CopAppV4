@@ -3,8 +3,7 @@ import 'package:copapp/Controller/Controllers/Balance/ExternalMultiBalanceContro
 import 'package:copapp/Controller/Service/BalanceExtension.dart';
 import 'package:copapp/Utilities/Base.dart';
 import 'package:copapp/View/Components/Balance/ExternalMultiBalanceWidget.dart';
-import 'package:copapp/View/Components/Balance/MultiBalanceSubMenu.dart';
-import 'package:copapp/View/Components/General/CustomAppBar.dart';
+import 'package:copapp/View/Components/Balance/externalProductPageSubPage.dart';
 import 'package:copapp/View/Components/General/SearchBox.dart';
 import 'package:cupertino_will_pop_scope/cupertino_will_pop_scope.dart';
 import 'package:flutter/material.dart';
@@ -166,7 +165,7 @@ class _ExternalMultiBalancePageState extends State<ExternalMultiBalancePage> {
                           builder: (_) {
                             return Padding(
                               padding: const EdgeInsets.symmetric(horizontal: 5.0),
-                              child: ProductPageSubMenu(
+                              child: ExternalProductPageSubMenu(
                                 items: multiBalanceController.result,
                                 scaffoldKey: multiBalanceController.scaffoldKey,
                               ),
