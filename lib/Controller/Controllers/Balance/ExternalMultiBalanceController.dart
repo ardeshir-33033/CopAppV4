@@ -28,7 +28,7 @@ class ExternalMultiBalanceController extends MultiBalanceController {
     }
   }
 
-  Future<List<Part>?> getBalanceDataExternal({categoryId, carId}) async {
+  Future<List<Part>?> getBalanceDataExternal({required int categoryId, required int carId}) async {
     var selectedBalances = await BalanceServiceV2().getBalanceData(
       categoryId,
       // 233,
