@@ -2,6 +2,7 @@ import 'package:copapp/AppModel/MultiBalance/Part.dart';
 import 'package:copapp/Controller/Controllers/Balance/BalanceItemController.dart';
 import 'package:copapp/Controller/Controllers/Balance/externalBalanceController.dart';
 import 'package:copapp/Controller/Controllers/Cart/CartLengthController.dart';
+import 'package:copapp/Controller/Controllers/General/PointController.dart';
 import 'package:copapp/Controller/Controllers/General/ScoreService.dart';
 import 'package:copapp/Controller/Controllers/Inquiry/InquiryController.dart';
 import 'package:copapp/Controller/Controllers/Inquiry/InquiryItemController.dart';
@@ -38,6 +39,7 @@ class _ExternalBalancePageState extends State<ExternalBalancePage> {
       Get.put(InquiryItemController());
   InquiryCartController inquiryController = Get.put(InquiryCartController());
   CartLengthController cartLengthController = Get.put(CartLengthController());
+  PointController pointController = Get.put(PointController());
   @override
   void initState() {
     balanceController.init(widget.items);
