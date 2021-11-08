@@ -10,7 +10,6 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:persian_number_utility/persian_number_utility.dart';
-
 import 'RegisterPage.dart';
 import 'ResetPasswordPage.dart';
 

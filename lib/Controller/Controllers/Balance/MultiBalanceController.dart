@@ -20,14 +20,15 @@ class MultiBalanceController extends GetxController {
   }
 
   getBalance({bool isSubCat = false}) async {
-     getBalanceData(isSubCat: isSubCat).then((value) async {
+    getBalanceData(isSubCat: isSubCat).then((value) async {
       result = value;
-      update(["sub&button","multi"]);
+      update(["sub&button", "multi"]);
     });
-     getFilters().then((value) {
+    getFilters().then((value) {
       update(["sub&button"]);
     });
   }
+
 
   Future getFilters({bool isSubCat = false}) async {
     var response = await BalanceServiceV2().getBalanceFilterBox(
@@ -41,6 +42,7 @@ class MultiBalanceController extends GetxController {
       BalanceExtensions().setFilter((response.data as FilterBox).filters!);
     }
   }
+
 
   Future<List<Part>?> getBalanceData({bool isSubCat = false}) async {
     var selectedBalances = await BalanceServiceV2().getBalanceData(
@@ -59,6 +61,7 @@ class MultiBalanceController extends GetxController {
       return [];
     }
   }
+
 
   subCategorySelect(int index) {
     if (BalanceExtensions().getFormerCategory() == null) {
