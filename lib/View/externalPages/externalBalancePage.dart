@@ -142,24 +142,7 @@ class _ExternalBalancePageState extends State<ExternalBalancePage> {
                                 },
                               );
                       }),
-                  Container(
-                    margin: EdgeInsets.symmetric(horizontal: 20),
-                    child: Row(
-                      children: [
-                        WhiteButton(
-                          text: 'سبد خرید',
-                          color: CBase().textPrimaryColor,
-                          onTapCallback: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => CartPage(),
-                                ));
-                          },
-                        ),
-                      ],
-                    ),
-                  )
+           
                 ],
               ),
               Padding(

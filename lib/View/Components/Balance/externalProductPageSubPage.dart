@@ -6,6 +6,7 @@ import 'package:copapp/Utilities/Base.dart';
 import 'package:copapp/Utilities/Snacki.dart';
 import 'package:copapp/View/Components/General/WhiteButton.dart';
 import 'package:copapp/View/Pages/Balance/BalancePage.dart';
+import 'package:copapp/View/externalPages/externalBalancePage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -33,7 +34,7 @@ class ExternalProductPageSubMenu extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => BalancePage(
+                  builder: (context) => ExternalBalancePage(
                     items: BalanceExtensions().getSelectedPart(),
                   ),
                 ),
@@ -53,7 +54,7 @@ class ExternalProductPageSubMenu extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => BalancePage(
+                  builder: (context) => ExternalBalancePage(
                     items: items,
                   ),
                 ),

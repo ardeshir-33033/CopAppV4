@@ -10,6 +10,7 @@ class ExternalBalanceController extends BalanceController {
   @override
   init(List<Part>? part) {
     if (part != null) {
+      isLoadingExternal = false;
       super.items = part;
       update(["Load"]);
     } else {
