@@ -2,6 +2,7 @@ import 'package:copapp/Api/ResponseModel.dart';
 import 'package:copapp/Controller/Controllers/ChooseAddController.dart';
 import 'package:copapp/Controller/Service/OrderService.dart';
 import 'package:copapp/Controller/Service/ProfileServiceV2.dart';
+import 'package:copapp/Model/Address.dart';
 import 'package:copapp/Model/Order/OrderHeader.dart';
 import 'package:copapp/Utilities/Sharei.dart';
 import 'package:copapp/Utilities/Snacki.dart';
@@ -92,7 +93,6 @@ class OrderInfoController extends GetxController {
     }
   }
 
-  
   void confirmFactor() {
     Sharei().takeScreenshot(screenshotController, 1);
     if (scrollController.position.pixels !=
@@ -112,11 +112,12 @@ class OrderInfoController extends GetxController {
 
   double getCartFinalPrice() {
     double finalPrice = 0.0;
-    order!.orderDetails!.forEach((element) => finalPrice += element.finalPrice!);
+    order!.orderDetails!
+        .forEach((element) => finalPrice += element.finalPrice!);
     return finalPrice;
   }
 
-   void confirmSend() async {
+  void confirmSend() async {
     if (controller1.text != "" && controller2.text != "") {
       isLoading = true;
       update();
@@ -155,7 +156,8 @@ class OrderInfoController extends GetxController {
           }
         }
       } catch (e) {
-        Snacki().GETSnackBar(false, "در ارسال به مشتری با مشکل مواجه شد. لطفا دوباره تلاش کنید.");
+        Snacki().GETSnackBar(false,
+            "در ارسال به مشتری با مشکل مواجه شد. لطفا دوباره تلاش کنید.");
       } finally {
         isLoading = false;
         update();
@@ -170,10 +172,15 @@ class OrderInfoController extends GetxController {
 
   Future<ResponseModel> _payment() async {
     ChooseAddressController addressController = Get.find();
-    ResponseModel 
-      res =
-          (await OrderServiceV2().zarrinPayOrder(order!.id!,addressId: addressController.getSelectedAddress()!.id));
-    
+    int addressId;
+    if (addressController.getSelectedAddress() == null) {
+      addressId = -10;
+    } else {
+      addressId = addressController.getSelectedAddress()!.id!;
+    }
+    ResponseModel res = (await OrderServiceV2()
+        .zarrinPayOrder(order!.id!, addressId: addressId));
+
     if (!res.isSuccess) {
       res.showMessage();
     }

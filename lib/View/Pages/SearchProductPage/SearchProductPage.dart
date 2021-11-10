@@ -49,13 +49,33 @@ class _SearchProductPageState extends State<SearchProductPage> {
                                     CBase().basePrimaryColor),
                               )),
                             )
-                          : Flexible(
-                              fit: FlexFit.tight,
-                              child: ListView.builder(
-                                itemCount: searchProductController.parts.length,
-                                  itemBuilder: (context, index) {
-                                return SearchProduct(part:searchProductController.parts[index],index: index,);
-                              }));
+                          : searchProductController.parts.isNotEmpty
+                              ? Flexible(
+                                  fit: FlexFit.tight,
+                                  child: ListView.builder(
+                                      itemCount:
+                                          searchProductController.parts.length,
+                                      itemBuilder: (context, index) {
+                                        return SearchProduct(
+                                          part: searchProductController
+                                              .parts[index],
+                                          index: index,
+                                        );
+                                      }))
+                              : Expanded(
+                                  child: Center(
+                                    child: Text(
+                                      'مشکلی در برقراری ارتباط با سرور بوجود آمده است',
+                                      style: TextStyle(
+                                        fontSize:
+                                            CBase().getTitlefontSizeByScreen() *
+                                                0.8,
+                                        color: CBase().textPrimaryColor,
+                                      ),
+                                      textAlign: TextAlign.center,
+                                    ),
+                                  ),
+                                );
                     },
                   ),
                 ],
