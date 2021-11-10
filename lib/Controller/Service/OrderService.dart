@@ -232,12 +232,11 @@ class OrderServiceV2 extends Api {
       ResponseEnum.ResponseModelEnum,
     );
 
-    // if (response.isSuccess) {
-    //   var list = response.data.toString().split("/").toList();
+    if (response.isSuccess) {
+      List<String> list = response.data.toString().split("/").toList();
 
-    //   if (list != null && list.length > 0)
-    //     OrderServiceV2().setAuthority(list.last);
-    // }
+      if (list.length > 0) OrderServiceV2().setAuthority(list.last);
+    }
 
     return ResponseModel<String>(
       isSuccess: response.isSuccess,

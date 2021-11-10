@@ -1,4 +1,4 @@
-import 'package:copapp/Controller/Controllers/Balance/BalanceController.dart';
+import 'package:copapp/Controller/Controllers/Balance/externalBalanceController.dart';
 import 'package:copapp/Controller/Service/BalanceExtension.dart';
 import 'package:copapp/Utilities/Base.dart';
 import 'package:flutter/material.dart';
@@ -24,7 +24,7 @@ class FilterBalanceWidget extends StatelessWidget {
               splashColor: Colors.transparent,
               highlightColor: Colors.transparent,
               onTap: () {
-                BalanceController balanceController = Get.find();
+                ExternalBalanceController balanceController = Get.find();
                 if (!balanceController.isLoadingfilter) {
                   selected = i;
                   balanceController.balanceFilter(
@@ -32,7 +32,7 @@ class FilterBalanceWidget extends StatelessWidget {
                       filterId: BalanceExtensions().getFilter()[i].id);
                 }
               },
-              child: GetBuilder<BalanceController>(
+              child: GetBuilder<ExternalBalanceController>(
                 id: "filter",
                 builder: (_) {
                   return Container(

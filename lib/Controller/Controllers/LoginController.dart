@@ -6,6 +6,7 @@ import 'package:copapp/Utilities/Base.dart';
 import 'package:copapp/Utilities/SharedPreferencePath.dart';
 import 'package:copapp/Utilities/Snacki.dart';
 import 'package:copapp/View/Pages/HomePage.dart';
+import 'package:copapp/View/externalPages/externalBalancePage.dart';
 import 'package:copapp/View/externalPages/externalMultiBalancePage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
