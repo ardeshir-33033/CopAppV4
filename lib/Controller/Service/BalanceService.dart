@@ -213,20 +213,20 @@ class BalanceServiceV2 extends BalanceExtensions with Api {
         statusCode: response.statusCode);
   }
 
-  Future<ResponseModel> quickSearch(String search , int? keywordId) async{
-    Map<String,String> map = {};
+  Future<ResponseModel> quickSearch(String search, int? keywordId) async {
+    Map<String, String> map = {};
     ResponseModel response = await HTTPPOST(
-        RoutingBalance.POST_GetBalanceQuickSearchV2,
-        [
-          QueryModel(name: "search" , value: search),
-          QueryModel(name: "keywordId" , value: keywordId.toString())
-        ],
-        json.encode(map),
-        HeaderEnum.BearerHeaderEnum,
-        ResponseEnum.ResponseModelEnum,
+      RoutingBalance.POST_GetBalanceQuickSearchV2,
+      [
+        QueryModel(name: "search", value: search),
+        QueryModel(name: "keywordId", value: keywordId.toString())
+      ],
+      json.encode(map),
+      HeaderEnum.BearerHeaderEnum,
+      ResponseEnum.ResponseModelEnum,
     );
 
-    if(response.isSuccess){
+    if (response.isSuccess) {
       response.data = SearchPart().listFromJson(response.data);
     }
     return response;

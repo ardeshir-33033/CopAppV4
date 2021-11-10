@@ -20,6 +20,7 @@ class SearchProductController extends GetxController {
   void getPart() async {
     try {
       allJoinVis = [];
+      parts = [];
       isLoading = true;
       update(['loading']);
       await BalanceServiceV2()
