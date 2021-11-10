@@ -4,24 +4,27 @@ import 'package:copapp/Controller/Service/BalanceExtension.dart';
 import 'package:copapp/Utilities/Base.dart';
 import 'package:copapp/View/Components/Balance/ExternalMultiBalanceWidget.dart';
 import 'package:copapp/View/Components/Balance/externalProductPageSubPage.dart';
+import 'package:copapp/View/Components/General/CustomAppBar.dart';
 import 'package:copapp/View/Components/General/SearchBox.dart';
 import 'package:cupertino_will_pop_scope/cupertino_will_pop_scope.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
 class ExternalMultiBalancePage extends StatefulWidget {
   @override
-  _ExternalMultiBalancePageState createState() => _ExternalMultiBalancePageState();
+  _ExternalMultiBalancePageState createState() =>
+      _ExternalMultiBalancePageState();
 }
 
 class _ExternalMultiBalancePageState extends State<ExternalMultiBalancePage> {
-  ExternalMultiBalanceController multiBalanceController = Get.put(ExternalMultiBalanceController());
-
+  ExternalMultiBalanceController multiBalanceController =
+      Get.put(ExternalMultiBalanceController());
 
   @override
   void initState() {
     super.initState();
-    BalanceExtensions.selectedCategory = Category(name: "" , id: 233);
+    BalanceExtensions.selectedCategory = Category(name: "", id: 233);
     multiBalanceController.getBalanceExternal();
   }
 
@@ -35,60 +38,72 @@ class _ExternalMultiBalancePageState extends State<ExternalMultiBalancePage> {
         // drawer: AppDrawer(
         //   scaffoldKey: multiBalanceController.scaffoldKey,
         // ),
-        // appBar: CustomAppBar(
-        //   scaffoldKey: multiBalanceController.scaffoldKey,
-        // ),
+        appBar: AppBar(
+          elevation: 0.0,
+          backgroundColor: Colors.transparent,
+          automaticallyImplyLeading: false,
+          title: Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              SvgPicture.asset("images/CopAppTitle.svg"),
+            ],
+          ),
+        ),
         body: SafeArea(
             child: ConditionalWillPopScope(
-              // onWillPop: null,
-              onWillPop: () => multiBalanceController.backPress(),
-              shouldAddCallbacks: true,
-              child: Stack(
+          // onWillPop: null,
+          onWillPop: () => multiBalanceController.backPress(),
+          shouldAddCallbacks: true,
+          child: Stack(
+            children: [
+              Column(
                 children: [
-                  Column(
-                    children: [
-                      // Align(
-                      //   alignment: Alignment.topRight,
-                      //   child: Padding(
-                      //     padding: EdgeInsets.only(bottom: 5.0, right: 20),
-                      //     child: PointCounter(),
-                      //   ),
-                      // ),
-                      SizedBox(
-                        height: 100,
-                      ),
-                      GetBuilder<ExternalMultiBalanceController>(
-                          id: "sub&button",
-                          builder: (_) {
-                            return Container(
-                              height: 30,
-                              padding: EdgeInsets.only(right: 30.0),
-                              child:multiBalanceController.result!=null? ListView.builder(
+                  // Align(
+                  //   alignment: Alignment.topRight,
+                  //   child: Padding(
+                  //     padding: EdgeInsets.only(bottom: 5.0, right: 20),
+                  //     child: PointCounter(),
+                  //   ),
+                  // ),
+                  SizedBox(
+                    height: 100,
+                  ),
+                  GetBuilder<ExternalMultiBalanceController>(
+                      id: "sub&button",
+                      builder: (_) {
+                        return Container(
+                          height: 30,
+                          padding: EdgeInsets.only(right: 30.0),
+                          child: multiBalanceController.result != null
+                              ? ListView.builder(
                                   scrollDirection: Axis.horizontal,
-                                  itemCount:
-                                  multiBalanceController.subCategories?.length,
+                                  itemCount: multiBalanceController
+                                      .subCategories?.length,
                                   itemBuilder: (context, int index) {
                                     return Container(
                                       margin: EdgeInsets.only(
                                         left: index !=
-                                            multiBalanceController
-                                                .subCategories!.length -
-                                                1
+                                                multiBalanceController
+                                                        .subCategories!.length -
+                                                    1
                                             ? 10
                                             : 30,
                                       ),
                                       width:
-                                      (MediaQuery.of(context).size.width - 80) /
-                                          3,
+                                          (MediaQuery.of(context).size.width -
+                                                  80) /
+                                              3,
                                       decoration: BoxDecoration(
                                         color: Colors.white,
-                                        borderRadius: BorderRadius.circular(8.0),
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
                                         border: Border.all(
                                             color: BalanceExtensions()
-                                                .getSelectedCategory()!
-                                                .id ==
-                                                multiBalanceController
-                                                    .subCategories![index].id
+                                                        .getSelectedCategory()!
+                                                        .id ==
+                                                    multiBalanceController
+                                                        .subCategories![index]
+                                                        .id
                                                 ? CBase().basePrimaryLightColor
                                                 : Colors.white),
                                       ),
@@ -102,87 +117,90 @@ class _ExternalMultiBalancePageState extends State<ExternalMultiBalancePage> {
                                             scrollDirection: Axis.horizontal,
                                             child: Text(
                                               multiBalanceController
-                                                  .subCategories![index].name ??
+                                                      .subCategories![index]
+                                                      .name ??
                                                   "نام وارد نشده",
                                               style: TextStyle(
-                                                  color: CBase().textPrimaryColor,
+                                                  color:
+                                                      CBase().textPrimaryColor,
                                                   fontSize: 11
-                                                //CBase().getSubTitlefontSizeByScreen()
-                                              ),
+                                                  //CBase().getSubTitlefontSizeByScreen()
+                                                  ),
                                             ),
                                           ),
                                         ),
                                       ),
                                     );
-                                  }):SizedBox(),
-                            );
-                          }),
-                      GetBuilder<ExternalMultiBalanceController>(
-                          id: "multi",
-                          builder: (_) {
-                            return Expanded(
-                              child: Padding(
-                                  padding:
+                                  })
+                              : SizedBox(),
+                        );
+                      }),
+                  GetBuilder<ExternalMultiBalanceController>(
+                      id: "multi",
+                      builder: (_) {
+                        return Expanded(
+                          child: Padding(
+                              padding:
                                   EdgeInsets.only(top: 10, right: 30, left: 30),
-                                  child: multiBalanceController.result == null
+                              child: multiBalanceController.result == null
+                                  ? Center(
+                                      child: Column(
+                                        children: [
+                                          CircularProgressIndicator(
+                                            valueColor:
+                                                AlwaysStoppedAnimation<Color>(
+                                                    CBase().basePrimaryColor),
+                                          ),
+                                          Text("در حال دریافت")
+                                        ],
+                                      ),
+                                    )
+                                  : multiBalanceController.result!.length == 0
                                       ? Center(
-                                    child: Column(
-                                      children: [
-                                        CircularProgressIndicator(
-                                          valueColor:
-                                          AlwaysStoppedAnimation<Color>(
-                                              CBase().basePrimaryColor),
-                                        ),
-                                        Text("در حال دریافت")
-                                      ],
-                                    ),
-                                  )
-                                      : multiBalanceController.result!.length == 0
-                                      ? Center(
-                                    child: Text("کالایی وجود ندارد"),
-                                  )
+                                          child: Text("کالایی وجود ندارد"),
+                                        )
                                       : GridView.builder(
-                                    gridDelegate:
-                                    SliverGridDelegateWithFixedCrossAxisCount(
-                                        childAspectRatio: 1,
-                                        mainAxisSpacing: 8,
-                                        crossAxisSpacing: 8,
-                                        crossAxisCount: 3),
-                                    itemCount: multiBalanceController
-                                        .result!.length,
-                                    itemBuilder: (BuildContext context,
-                                        int index) {
-                                      return ExternalMultiBalanceWidget(
-                                        bal: multiBalanceController
-                                            .result![index],
-                                      );
-                                    },
-                                  )),
-                            );
-                          }),
-                      GetBuilder<ExternalMultiBalanceController>(
-                          id: "sub&button",
-                          builder: (_) {
-                            return Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 5.0),
-                              child: ExternalProductPageSubMenu(
-                                items: multiBalanceController.result,
-                                scaffoldKey: multiBalanceController.scaffoldKey,
-                              ),
-                            );
-                          }),
-                    ],
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(top: 45.0, right: 20, left: 20),
-                    child: SingleChildScrollView(
-                        child: SearchboxV2(
-                          scaffoldKey: multiBalanceController.scaffoldKey,
-                        )),
-                  ),
+                                          gridDelegate:
+                                              SliverGridDelegateWithFixedCrossAxisCount(
+                                                  childAspectRatio: 1,
+                                                  mainAxisSpacing: 8,
+                                                  crossAxisSpacing: 8,
+                                                  crossAxisCount: 3),
+                                          itemCount: multiBalanceController
+                                              .result!.length,
+                                          itemBuilder: (BuildContext context,
+                                              int index) {
+                                            return ExternalMultiBalanceWidget(
+                                              bal: multiBalanceController
+                                                  .result![index],
+                                            );
+                                          },
+                                        )),
+                        );
+                      }),
+                  GetBuilder<ExternalMultiBalanceController>(
+                      id: "sub&button",
+                      builder: (_) {
+                        return Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 5.0),
+                          child: ExternalProductPageSubMenu(
+                            items: multiBalanceController.result,
+                            scaffoldKey: multiBalanceController.scaffoldKey,
+                          ),
+                        );
+                      }),
                 ],
               ),
-            )),
+              Padding(
+                padding: EdgeInsets.only(top: 45.0, right: 20, left: 20),
+                child: SingleChildScrollView(
+                    child: SearchboxV2(
+                  scaffoldKey: multiBalanceController.scaffoldKey,
+                )),
+              ),
+            ],
+          ),
+        )),
       ),
     );
   }
