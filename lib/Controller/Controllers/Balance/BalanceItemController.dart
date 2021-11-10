@@ -60,6 +60,7 @@ class BalanceItemController extends GetxController {
         if (!result.isSuccess) {
           result.showMessage();
         } else {
+          update(["cart"]);
           update(["addDel"]);
           update(["parent"]);
           if (bal.score! > 0) {
@@ -68,6 +69,7 @@ class BalanceItemController extends GetxController {
                 bal.score!.toDouble() * (bal.multipleQTY ?? 1), false);
             ScoreService scoreService = Get.find();
             scoreService.update();
+
           }
         }
         return newQTY;
