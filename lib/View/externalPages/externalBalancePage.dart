@@ -8,13 +8,8 @@ import 'package:copapp/Controller/Controllers/Inquiry/InquiryController.dart';
 import 'package:copapp/Controller/Controllers/Inquiry/InquiryItemController.dart';
 import 'package:copapp/Utilities/Base.dart';
 import 'package:copapp/View/Components/Balance/BalanceWidget.dart';
-import 'package:copapp/View/Components/Balance/FilterBalanceWidget.dart';
-import 'package:copapp/View/Components/General/AppDrawer.dart';
-import 'package:copapp/View/Components/General/CustomAppBar.dart';
-import 'package:copapp/View/Components/General/PointCounter.dart';
+import 'package:copapp/View/Components/Balance/ExternalFilterBalance.dart';
 import 'package:copapp/View/Components/General/SearchBox.dart';
-import 'package:copapp/View/Components/General/WhiteButton.dart';
-import 'package:copapp/View/Pages/CartPage/CartPage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -74,7 +69,7 @@ class _ExternalBalancePageState extends State<ExternalBalancePage> {
                   // ),
                   Padding(
                     padding: const EdgeInsets.only(top: 65.0, bottom: 5),
-                    child: FilterBalanceWidget(
+                    child: ExternalFilterBalanceWidget(
                       scaffoldKey: balanceController.scaffoldKey,
                     ),
                   ),
