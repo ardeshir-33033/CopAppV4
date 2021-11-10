@@ -77,10 +77,11 @@ class LoginController extends GetxController {
       // Get.o(HomePageV4());
 
       // Get.offAll(ExternalMultiBalancePage());
-
+      //
       Get.offAll(
         () => HomePageV4(),
       );
+
       this.password.text = '';
       this.userName.text = '';
       circularVis = false;

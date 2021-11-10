@@ -310,12 +310,14 @@ class _BalanceItemState extends State<BalanceItem> {
                                                   balanceItemController
                                                       .add(widget.bal!, hasItem)
                                                       .then((value) {
-                                                    checkNewCount(value);
                                                     isLoading = false;
                                                     balanceItemController
                                                         .upDate();
+                                                    checkNewCount(value);
                                                     balanceItemController
                                                         .upDateRow();
+                                                    balanceItemController
+                                                        .update(["search"]);
                                                     //  isLoading = false;
                                                     // balanceItemController.upDate();
                                                     // checkNewCount(value);
