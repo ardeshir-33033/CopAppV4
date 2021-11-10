@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:copapp/Controller/Service/UserServiceV2.dart';
@@ -75,27 +76,48 @@ class Api {
   }
 
   responseGetter<T>(ResponseEnum typeEnum, http.Response response) {
+    if (response.statusCode != 200) {
+      printError('Url: ${response.request!.url.path}');
+      printError('StatusCode: ${response.statusCode}');
+    }
     try {
       switch (typeEnum) {
         case ResponseEnum.ResponseModelEnum:
           String data = utf8.decode(response.bodyBytes);
-
-          if (data.isEmpty)
-            return ResponseModel(
-              statusCode: "555",
-              isSuccess: false,
-              data: null,
-              message: "مشکلی در ارتباط با سرور بوجود آمده است."
-            );
-
-          return ResponseModel().fromJson(
+          ResponseModel result = ResponseModel().fromJson(
             json.decode(data),
           );
+          if (!result.isSuccess ||
+              (result.statusCode != '200' && result.statusCode != 'success') ||
+              result.data == null) {
+            printError('Url: ${response.request!.url.path}');
+            printError('StatusCode: ${result.statusCode}');
+            printError('IsStatus: ${result.isSuccess}');
+            printError('Data: ${result.data.toString().substring(0, 100)}');
+            printError('Message: ${result.message}');
+          }
+          if (data.isEmpty) {
+            printError('Url: ${response.request!.url.path}');
+            printError('Data: $data');
+            return ResponseModel(
+                statusCode: "555",
+                isSuccess: false,
+                data: null,
+                message: "مشکلی در ارتباط با سرور بوجود آمده است.");
+          }
+
+          return result;
+        // ResponseModel().fromJson(
+        //   json.decode(data),
+        // );
         default:
           return response.bodyBytes;
       }
     } catch (e) {
-      return  ResponseModel(
+        printError('Url: ${response.request!.url}');
+      printError('StatusCode: ${response.statusCode}');
+      printError('Error: ${e.toString()}');
+      return ResponseModel(
           isSuccess: false,
           statusCode: "500",
           data: null,
@@ -103,15 +125,40 @@ class Api {
     }
   }
 
+  void printError(String text) {
+    print('\x1B[31m$text\x1B[0m');
+  }
+
   responseDynamicGetter<T>(ResponseEnum typeEnum, Response<dynamic> response) {
+    if (response.statusCode != 200) {
+      printError('Url: ${response.realUri}');
+      printError('StatusCode: ${response.statusCode}');
+      printError('StatusMessage: ${response.statusMessage}');
+      printError('Data: ${response.data.toString().substring(0, 100)}');
+    }
     try {
       switch (typeEnum) {
         case ResponseEnum.ResponseModelEnum:
-          return ResponseModel().fromJson(response.data);
+          ResponseModel result = ResponseModel().fromJson(response.data);
+          if (!result.isSuccess ||
+              (result.statusCode != '200' && result.statusCode != 'success') ||
+              result.data == null) {
+            printError('Url: ${response.realUri}');
+            printError('StatusCode: ${result.statusCode}');
+            printError('IsStatus: ${result.isSuccess}');
+            printError('Data: ${result.data.toString().substring(0, 100)}');
+            printError('Message: ${result.message}');
+          }
+          return result;
         default:
           return response.data.bodyBytes;
       }
     } catch (e) {
+      printError('Url: ${response.realUri}');
+      printError('StatusCode: ${response.statusCode}');
+      printError('StatusMessage: ${response.statusMessage}');
+      printError('Data: ${response.data.toString().substring(0, 100)}');
+      printError('Error: ${e.toString()}');
       return ResponseModel(
           isSuccess: false,
           statusCode: "500",

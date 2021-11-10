@@ -16,10 +16,12 @@ class ProfileController extends GetxController {
     super.onInit();
     isLoadingMain = true;
     update();
-    getPersonalInfo().then((value) {
-      profileData = profileResponse.data;
-      isLoadingMain = false;
-      update();
+    getPersonalInfo().then((isSuccess) {
+      if (isSuccess) {
+        profileData = profileResponse.data;
+        isLoadingMain = false;
+        update();
+      }
     });
   }
 
@@ -43,9 +45,10 @@ class ProfileController extends GetxController {
   final picker = ImagePicker();
   bool uploadImage = false;
 
-  Future getPersonalInfo() async {
+  Future<bool> getPersonalInfo() async {
     profileResponse = await ProfileServiceV2().getPersonalInformation();
     profileResponse.showMessage();
+    return profileResponse.isSuccess;
   }
 
   confirmNumber() {

@@ -24,14 +24,15 @@ class ResponseModel<T> {
     return this;
   }
 
-  showMessage(){
+  showMessage() {
     Get.showSnackbar(GetBar(
       titleText: Text(
         this.isSuccess ? "عملیات موفق" : "عملیات ناموفق",
         style: TextStyle(
           fontSize: CBase().getTextfontSizeByScreen(),
           fontWeight: FontWeight.bold,
-          color: this.isSuccess ? CBase().successColor : CBase().basePrimaryColor,
+          color:
+              this.isSuccess ? CBase().successColor : CBase().basePrimaryColor,
         ),
       ),
       messageText: Text(
