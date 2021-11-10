@@ -93,7 +93,7 @@ class Api {
             printError('Url: ${response.request!.url.path}');
             printError('StatusCode: ${result.statusCode}');
             printError('IsStatus: ${result.isSuccess}');
-            printError('Data: ${result.data.toString().substring(0, 100)}');
+            printError('Data: ${result.data.toString()}');
             printError('Message: ${result.message}');
           }
           if (data.isEmpty) {
@@ -134,7 +134,7 @@ class Api {
       printError('Url: ${response.realUri}');
       printError('StatusCode: ${response.statusCode}');
       printError('StatusMessage: ${response.statusMessage}');
-      printError('Data: ${response.data.toString().substring(0, 100)}');
+      printError('Data: ${response.data.toString()}');
     }
     try {
       switch (typeEnum) {
@@ -146,7 +146,7 @@ class Api {
             printError('Url: ${response.realUri}');
             printError('StatusCode: ${result.statusCode}');
             printError('IsStatus: ${result.isSuccess}');
-            printError('Data: ${result.data.toString().substring(0, 100)}');
+            printError('Data: ${result.data.toString()}');
             printError('Message: ${result.message}');
           }
           return result;
